@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { assets } from "./assets";
 
 const teamMembers = [
@@ -32,6 +33,16 @@ export default function Team() {
               <div className="mt-2 text-lg text-white/85">{member.title}</div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <Link
+            to="/team"
+            style={{ width: 122, lineHeight: "40px", background: "#F96D01", borderRadius: 19.5 }}
+            className="inline-block cursor-pointer text-center text-white text-xl font-normal font-['PingFang_SC'] leading-7 tracking-[4.60px]"
+          >
+            查看详情
+          </Link>
         </div>
       </div>
     </section>

@@ -52,11 +52,11 @@ function JobApplyButton() {
   );
 }
 
-function JobCard({ job }: { job: (typeof JOBS)[number] }) {
+function JobCard({ job, isLast }: { job: (typeof JOBS)[number]; isLast: boolean }) {
   return (
     <Link to={`/join/${job.id}`} className="group block">
       <article
-        className="relative mx-auto box-border h-[283px] w-[1117px] max-w-full overflow-y-auto rounded-lg bg-white pt-[28px] shadow-[0px_7px_8px_0px_rgba(0,0,0,0.12)] transition-shadow group-hover:shadow-[0px_10px_14px_0px_rgba(0,0,0,0.16)]"
+        className="relative mx-auto box-border h-[283px] w-[1117px] max-w-full overflow-y-auto rounded-lg bg-white pt-[28px] shadow-none transition-shadow group-hover:shadow-[0px_10px_14px_0px_rgba(0,0,0,0.16)]"
         data-node-id="108:28073"
       >
         <div className="min-w-0 font-normal text-black" data-node-id="108:146">
@@ -66,7 +66,7 @@ function JobCard({ job }: { job: (typeof JOBS)[number] }) {
         <div className="mx-[26px] mt-3 h-px bg-[#f96d01]" aria-hidden />
         <div className="mt-4 pl-[64px] pr-[37px]">
           <JobLabeledBlock label="岗位职责：" text={job.duty} />
-          <JobLabeledBlock label="岗位要求：" text={job.requirement} className="mt-[30px]" />
+          <JobLabeledBlock label="岗位要求：" text={job.requirement} className={isLast ? "mt-[6px]" : "mt-[30px]"} />
           <div className="mt-[30px] grid grid-cols-1 gap-4 sm:grid-cols-[minmax(0,1fr)_152px] sm:items-center sm:gap-x-6">
             <div className="min-w-0 sm:col-start-1">
               <JobLabeledBlock label="岗位地点：" text={job.listLocation} />
@@ -133,8 +133,8 @@ export default function JoinUsPage() {
         </h2>
 
         <div className="flex flex-col gap-5">
-          {JOBS.map((job) => (
-            <JobCard key={job.title} job={job} />
+          {JOBS.map((job, index) => (
+            <JobCard key={job.title} job={job} isLast={index === JOBS.length - 1} />
           ))}
         </div>
 

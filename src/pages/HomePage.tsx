@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Partners from "../components/Partners";
 import Team from "../components/Team";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   useEffect(() => {
@@ -50,7 +51,13 @@ export default function HomePage() {
                   <div className="w-[589px] h-64 justify-start text-black text-2xl font-normal font-['PingFang_SC'] leading-10">强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 + 数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力，最终形成聚变电站的智能操作系统——终极能源的智慧大脑。</div>
               </div>
               <div style={{width: 1135,margin:"0 auto 110px"}} className="text-center">
-                <div  style={{width: 122,lineHeight: "40px",marginLeft:545, background: '#F96D01', borderRadius: 19.50}}  className="w-24 justify-start text-white text-xl font-normal font-['PingFang_SC'] leading-7 tracking-[4.60px]">查看详情</div>
+                <Link
+                  to="/tech"
+                  style={{ width: 122, lineHeight: "40px", marginLeft: 545, background: "#F96D01", borderRadius: 19.5 }}
+                  className="inline-block w-24 cursor-pointer justify-start text-center text-white text-xl font-normal font-['PingFang_SC'] leading-7 tracking-[4.60px]"
+                >
+                  查看详情
+                </Link>
               </div>
         </div>
       </section>
