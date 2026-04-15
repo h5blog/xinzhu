@@ -1,4 +1,4 @@
-import hero from "../images/hero.jpg";
+import hero from "../images/hero.png";
 import heroIcon from "../images/hero-icon.png";
 import qinghua from "../images/qinghua.png";
 import partnerA from "../images/partner-a.png";
