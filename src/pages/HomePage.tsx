@@ -6,18 +6,52 @@ import Team from "../components/Team";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
+const BAIDU_MAP_READY_MAX_MS = 15_000;
+
 export default function HomePage() {
   useEffect(() => {
-    fetch("http://api.map.baidu.com/api?v=2.0&ak=u6QE6iILhnYxm0t5AMwfcJeaGQFyOeFw").then(res => {
-      res.json().then(data => {
-        setTimeout(() => {
-          var map = new BMap.Map("allmap");            // 创建Map实例
-          var point = new BMap.Point(116.404, 39.915); // 创建点坐标
-          map.centerAndZoom(point,15);                 // 初始化地图,设置中心点坐标和地图级别。
-          map.enableScrollWheelZoom();                 //启用滚轮放大缩小
-        }, 1000);
-      });
-    });
+    let cancelled = false;
+    let pollId: ReturnType<typeof setInterval> | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    function tryInit() {
+      const BMapApi = window.BMap;
+      const el = document.getElementById("allmap");
+      if (cancelled || !BMapApi || !el) return false;
+      try {
+        const map = new BMapApi.Map("allmap");
+        const point = new BMapApi.Point(116.404, 39.915);
+        map.centerAndZoom(point, 15);
+        map.enableScrollWheelZoom();
+      } catch {
+        return false;
+      }
+      return true;
+    }
+
+    if (tryInit()) return;
+
+    pollId = setInterval(() => {
+      if (tryInit() && pollId) {
+        clearInterval(pollId);
+        pollId = undefined;
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          timeoutId = undefined;
+        }
+      }
+    }, 100);
+
+    timeoutId = setTimeout(() => {
+      if (pollId) clearInterval(pollId);
+      pollId = undefined;
+    }, BAIDU_MAP_READY_MAX_MS);
+
+    return () => {
+      cancelled = true;
+      if (pollId) clearInterval(pollId);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
   return (
     <div className="min-h-screen bg-white text-[#363636]">
@@ -63,7 +97,8 @@ export default function HomePage() {
       </section>
         <Team />
         <Partners />
-        <div id="allmap"></div>
+        {/* 百度地图容器需明确高度，否则地图无法渲染 */}
+        <div id="allmap" className="h-[371px] w-full" />
       </main>
       <Footer />
     </div>
