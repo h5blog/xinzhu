@@ -3,6 +3,15 @@ import Navbar from "../components/Navbar";
 import { assets } from "../components/assets";
 import { Link } from "react-router-dom";
 import { JOBS } from "../data/jobs";
+import joinHeroBgAvif from "../images/join-hero-bg.opt.avif";
+import joinHeroBgWebp from "../images/join-hero-bg.opt.webp";
+import joinHeroBgJpg from "../images/join-hero-bg.opt.jpg";
+import joinFooter1Avif from "../images/join-footer-1.opt.avif";
+import joinFooter1Webp from "../images/join-footer-1.opt.webp";
+import joinFooter1Jpg from "../images/join-footer-1.opt.jpg";
+import joinFooter2Avif from "../images/join-footer-2.opt.avif";
+import joinFooter2Webp from "../images/join-footer-2.opt.webp";
+import joinFooter2Jpg from "../images/join-footer-2.opt.jpg";
 
 const APPLY_URL =
   "https://ecn5wfrohzj8.feishu.cn/share/base/form/shrcnBNsL5EtkP8DOQBKp6T3qac";
@@ -89,17 +98,23 @@ export default function JoinUsPage() {
 
       <section className="relative h-[217px] w-full overflow-hidden" data-node-id="108:82">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <img
-            alt=""
-            src={assets.joinHeroBg}
-            className="absolute max-w-none"
-            style={{
-              height: "589.93%",
-              width: "100%",
-              left: "0.01%",
-              top: "-283.86%",
-            }}
-          />
+          <picture className="absolute inset-0 block h-full w-full">
+            <source srcSet={joinHeroBgAvif} type="image/avif" />
+            <source srcSet={joinHeroBgWebp} type="image/webp" />
+            <img
+              alt=""
+              src={joinHeroBgJpg}
+              className="absolute max-w-none"
+              style={{
+                height: "589.93%",
+                width: "100%",
+                left: "0.01%",
+                top: "-283.86%",
+              }}
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
         </div>
         <div
           className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]"
@@ -162,7 +177,7 @@ export default function JoinUsPage() {
           <div className="flex shrink-0 justify-center md:justify-end">
             <div className="rounded-[17px] bg-white p-3 shadow-sm" data-node-id="418:50">
               <div className="h-[156px] w-[152px] overflow-hidden rounded-[14px]" data-node-id="418:47">
-                <img src={assets.joinQr} alt="简历投递二维码" className="h-full w-full object-cover" />
+                <img src={assets.joinQr} alt="简历投递二维码" className="h-full w-full object-cover" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -209,6 +224,8 @@ export default function JoinUsPage() {
                 alt="招聘流程：简历投递、初筛、技术面试（1-2 轮）、终面/交流、发放 offer"
                 className="mx-auto h-auto w-full max-w-[700px] object-contain"
                 data-node-id="270:37"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -216,10 +233,18 @@ export default function JoinUsPage() {
           <div className="mt-12 flex justify-center">
             <div className="flex max-w-full flex-col items-center gap-[10px] sm:flex-row sm:items-start">
               <div className="h-[305px] w-[406px] max-w-full shrink-0 overflow-hidden">
-                <img src={assets.joinFooter1} alt="" className="h-full w-full object-cover" data-node-id="268:14" />
+                <picture>
+                  <source srcSet={joinFooter1Avif} type="image/avif" />
+                  <source srcSet={joinFooter1Webp} type="image/webp" />
+                  <img src={joinFooter1Jpg} alt="" className="h-full w-full object-cover" data-node-id="268:14" loading="lazy" decoding="async" />
+                </picture>
               </div>
               <div className="h-[305px] w-[406px] max-w-full shrink-0 overflow-hidden">
-                <img src={assets.joinFooter2} alt="" className="h-full w-full object-cover" data-node-id="268:15" />
+                <picture>
+                  <source srcSet={joinFooter2Avif} type="image/avif" />
+                  <source srcSet={joinFooter2Webp} type="image/webp" />
+                  <img src={joinFooter2Jpg} alt="" className="h-full w-full object-cover" data-node-id="268:15" loading="lazy" decoding="async" />
+                </picture>
               </div>
             </div>
           </div>

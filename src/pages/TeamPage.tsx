@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import TeamMemberTextPanel from "../components/TeamMemberTextPanel";
 import { assets } from "../components/assets";
 import Navbar from "../components/Navbar";
+import ourTeamJpg from "../images/our-team.jpg";
 
 const members = [
   {
@@ -109,11 +110,50 @@ export default function TeamPage() {
         data-name="Rectangle 13"
         data-node-id="103:300"
       >
+        <div className="absolute inset-0 block h-full w-full">
           <img
-            src={assets.ourTeam}
+            src={ourTeamJpg}
             alt=""
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className="h-full w-full object-cover object-center"
+            loading="eager"
+            decoding="async"
           />
+        </div>
+        <div
+          className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]"
+          data-node-id="103:391"
+        />
+
+        <div className="absolute inset-0 text-white">
+          <div className="mx-auto flex h-full w-full max-w-[1050px] flex-col justify-center text-left">
+            <p
+              className="m-0 whitespace-nowrap"
+              style={{
+                fontFamily: "PingFang SC",
+                fontSize: "64px",
+                fontWeight: 600,
+                lineHeight: "normal",
+                fontStyle: "normal",
+              }}
+              data-node-id="151:100"
+            >
+              OUR TEAM
+            </p>
+            <p
+              className="m-0 -mt-1 whitespace-nowrap"
+              style={{
+                fontFamily: "PingFang SC",
+                fontSize: "36px",
+                fontWeight: 600,
+                lineHeight: "normal",
+                fontStyle: "normal",
+              }}
+              data-node-id="151:99"
+            >
+              我们的团队
+            </p>
+          </div>
+        </div>
 
       </section>
 
@@ -137,6 +177,8 @@ export default function TeamPage() {
                   src={m.avatar}
                   alt={m.name}
                   className="block h-full w-full border-0 object-cover object-top outline-none ring-0"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 

@@ -1,8 +1,10 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { assets } from "../components/assets";
 import { JOBS } from "../data/jobs";
+import joinHeroBgAvif from "../images/join-hero-bg.opt.avif";
+import joinHeroBgWebp from "../images/join-hero-bg.opt.webp";
+import joinHeroBgJpg from "../images/join-hero-bg.opt.jpg";
 
 function DetailBlock({ label, items }: { label: string; items: string[] }) {
   return (
@@ -32,12 +34,18 @@ export default function JobDetailPage() {
 
       <section className="relative h-[217px] w-full overflow-hidden">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <img
-            alt=""
-            src={assets.joinHeroBg}
-            className="absolute max-w-none"
-            style={{ height: "589.93%", width: "100%", left: "0.01%", top: "-283.86%" }}
-          />
+          <picture className="absolute inset-0 block h-full w-full">
+            <source srcSet={joinHeroBgAvif} type="image/avif" />
+            <source srcSet={joinHeroBgWebp} type="image/webp" />
+            <img
+              alt=""
+              src={joinHeroBgJpg}
+              className="absolute max-w-none"
+              style={{ height: "589.93%", width: "100%", left: "0.01%", top: "-283.86%" }}
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
         </div>
         <div
           className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]"

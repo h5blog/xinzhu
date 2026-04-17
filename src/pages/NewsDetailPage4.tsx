@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import heroBg from "../images/news-detail-hero-bg.png";
+import heroBgAvif from "../images/news-detail-hero-bg.opt.avif";
+import heroBgWebp from "../images/news-detail-hero-bg.opt.webp";
+import heroBgJpg from "../images/news-detail-hero-bg.opt.jpg";
 import globeImg from "../images/news-detail-4-main.png";
 import company1 from "../images/news-company-1.png";
 import company2 from "../images/news-company-2.png";
@@ -34,7 +36,11 @@ export default function NewsDetailPage4() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <section className="relative h-[217px] w-full overflow-hidden">
-        <img src={heroBg} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <picture className="absolute inset-0 block h-full w-full">
+          <source srcSet={heroBgAvif} type="image/avif" />
+          <source srcSet={heroBgWebp} type="image/webp" />
+          <img src={heroBgJpg} alt="" className="h-full w-full object-cover" loading="eager" decoding="async" />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]" />
       </section>
       <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:pb-24">
@@ -56,6 +62,8 @@ export default function NewsDetailPage4() {
                   className={`h-full w-full ${
                     idx === 0 || idx === 1 || idx === 3 || idx === 4 ? "object-cover" : "object-contain"
                   }`}
+                  loading="lazy"
+                  decoding="async"
                   data-node-id={
                     idx === 0
                       ? "113:151"
@@ -86,7 +94,7 @@ export default function NewsDetailPage4() {
         </section>
         <div className="mx-auto mt-4 h-px w-full max-w-[1064px] bg-[#dfdfdf]" data-node-id="113:164" aria-hidden />
         <div className="mt-8 h-[259px] w-full overflow-hidden">
-          <img src={globeImg} alt="" className="h-full w-full object-cover" />
+          <img src={globeImg} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
         <section className="mt-10 w-full" aria-label="文献时间线">
           <div className="relative mx-auto w-full max-w-[1103px]">

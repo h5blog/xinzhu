@@ -12,6 +12,7 @@ import NewsDetailPage1 from "./pages/NewsDetailPage1";
 import NewsDetailPage2 from "./pages/NewsDetailPage2";
 import NewsDetailPage3 from "./pages/NewsDetailPage3";
 import NewsDetailPage4 from "./pages/NewsDetailPage4";
+import NewsDetailPage5 from "./pages/NewsDetailPage5";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/news/2" element={<NewsDetailPage2 />} />
         <Route path="/news/3" element={<NewsDetailPage3 />} />
         <Route path="/news/4" element={<NewsDetailPage4 />} />
+        <Route path="/news/5" element={<NewsDetailPage5 />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/join" element={<JoinUsPage />} />

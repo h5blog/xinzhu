@@ -18,6 +18,8 @@ export default function AboutPage() {
             alt=""
             className="block h-auto w-full max-w-none"
             data-node-id="97:55"
+            loading="eager"
+            decoding="async"
           />
           <div
             className="pointer-events-none absolute inset-0"
@@ -77,6 +79,7 @@ export default function AboutPage() {
                   alt=""
                   className="pointer-events-none relative z-0 block h-auto w-full max-w-full rounded-[27px]"
                   decoding="async"
+                  loading="eager"
                   aria-hidden
                 />
                 <p
@@ -109,6 +112,8 @@ export default function AboutPage() {
               alt=""
               className="mb-4 h-[64px] w-auto object-contain sm:h-[81px] sm:w-[88px]"
               data-node-id="245:99"
+              loading="lazy"
+              decoding="async"
             />
             <p className="m-0 font-semibold leading-normal text-[#f96d01] sm:text-[24px]" data-node-id="234:40">
               我们的路线
@@ -123,6 +128,8 @@ export default function AboutPage() {
               alt=""
               className="mb-4 h-[60px] w-auto object-contain sm:h-[76px] sm:w-[78px]"
               data-node-id="245:124"
+              loading="lazy"
+              decoding="async"
             />
             <p className="m-0 font-semibold leading-normal text-[#f96d01] sm:text-[24px]">新烛时代的定位</p>
             <p className="mt-2 max-w-[256px] font-normal leading-normal text-[#f96d01] sm:text-[20px]">
@@ -174,6 +181,8 @@ export default function AboutPage() {
               alt="从实验室辅助工具到驱动聚变电厂硬件运行的神经中枢"
               className="mx-auto h-auto w-full max-w-[800px] object-contain"
               data-node-id="245:70"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </section>
@@ -185,6 +194,8 @@ export default function AboutPage() {
               alt=""
               className="h-full w-full object-cover"
               data-node-id="262:40"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div
@@ -203,6 +214,8 @@ export default function AboutPage() {
               alt=""
               className="h-full w-full object-cover"
               data-node-id="262:41"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>

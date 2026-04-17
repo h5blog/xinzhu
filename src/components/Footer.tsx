@@ -49,6 +49,8 @@ export default function Footer() {
               height={129}
               className="block h-[129px] w-[129px] bg-white object-contain p-1"
               data-node-id="470:53"
+              loading="lazy"
+              decoding="async"
             />
             <h3
               className="mt-6 text-[20px] font-medium leading-normal text-[#f96d01] lg:mt-7"

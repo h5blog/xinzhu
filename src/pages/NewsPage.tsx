@@ -46,16 +46,19 @@ const industryArticles = [
   },
 ] as const;
 
+/** 公司新闻：单条列表，进入详情 /news/5（Figma 684:40） */
 const companyArticles = [
   {
     id: "c1",
-    date: "2026-01-01",
-    title: "公司新闻示例标题",
-    excerpt: "此处可接入公司动态与公告，当前为占位文案，便于与「行业资讯」切换对照。",
-    thumb: assets.newsThumb1,
+    date: "2026-03-21",
+    title: "AI加速可控核聚变商业化，新烛时代完成6000万元天使轮融资",
+    excerpt:
+      "本轮融资由中科创星、鼎峰科创联合领投，水木清华校友基金跟投，资金将主要用于核心技术研发、联合验证、平台建设及关键人才引进等，全力推动可控核聚变向商用化加速迈进。",
+    thumb: assets.newsThumb5,
     overlayNodeId: "95:9" as const,
+    to: "/news/5" as const,
   },
-];
+] as const;
 
 /** 默认 Figma 108:29336：#D9D9D9 圆 + 白箭头；悬停 108:29331：橙底白箭头 */
 function ArrowCircleButton() {
@@ -93,11 +96,14 @@ export default function NewsPage() {
             src={assets.newsBg}
             alt=""
             className="absolute inset-0 h-full w-full object-cover"
+            loading="eager"
+            decoding="async"
           />
         </div>
 
-        <div className="relative z-10 mx-auto flex h-[217px] max-w-[1920px] items-center px-6 sm:px-10 lg:pl-[431px]">
-          <div className="flex min-w-0 flex-col justify-center">
+        <div className="relative z-10 h-[217px] w-full">
+          <div className="mx-auto flex h-full w-full max-w-[1052px] items-center text-left">
+            <div className="flex min-w-0 flex-col justify-center">
             <p
               className="font-semibold leading-[1.05] tracking-tight text-white text-[clamp(40px,7vw,64px)]"
               data-node-id="151:92"
@@ -115,6 +121,7 @@ export default function NewsPage() {
             >
               新闻中心
             </p>
+            </div>
           </div>
         </div>
       </section>
@@ -161,17 +168,26 @@ export default function NewsPage() {
       </div>
 
       {/* 列表：默认白底；hover 时 Figma 108:29331 — bg #f5f5f5 + shadow */}
-      <main className="mx-auto w-full max-w-[1183px] px-4 pb-16 pt-10">
-        <ul className="flex flex-col gap-10 sm:gap-12">
-          {list.map((item) => (
-            <li key={item.id}>
-              <Link to={`/news/${item.id}`} className="group block">
+      <main
+        className="mx-auto w-full max-w-[1183px] px-4 pb-16 pt-10"
+        data-node-id={tab === "company" ? "684:40" : undefined}
+      >
+        <div className="flex flex-col">
+          {list.map((item, index) => (
+            <div key={item.id}>
+              <Link
+                to={"to" in item && item.to ? item.to : `/news/${item.id}`}
+                className="group block"
+              >
                 <article className="flex flex-col gap-6 rounded-sm bg-white p-5 shadow-none transition-[background-color,box-shadow] duration-200 sm:p-6 lg:flex-row lg:items-center lg:gap-8 hover:bg-[#f5f5f5] hover:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)] focus-within:bg-[#f5f5f5] focus-within:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)]">
                   <div className="relative h-[172px] w-full max-w-[358px] shrink-0 overflow-hidden lg:w-[358px]">
                     <img
                       src={item.thumb}
                       alt=""
                       className="absolute inset-0 h-full w-full object-cover"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      decoding="async"
                     />
                     <div
                       className="absolute inset-0"
@@ -200,9 +216,9 @@ export default function NewsPage() {
                   </div>
                 </article>
               </Link>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </main>
 
       <Footer />

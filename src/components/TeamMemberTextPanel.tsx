@@ -27,6 +27,8 @@ export default function TeamMemberTextPanel({
           src={assets.teamList}
           alt=""
           className="h-full w-full object-cover object-center"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div className="relative z-10 h-full min-h-0 w-full overflow-y-auto overflow-x-hidden">

@@ -31,6 +31,8 @@ export default function Team() {
                   borderRadius: "100%"
                 }}
                 className="mx-auto h-44 w-44"
+                loading="lazy"
+                decoding="async"
               />
               <div className="mt-6 text-2xl font-medium">{member.name}</div>
               <div className="mt-2 text-lg text-white/85">{member.title}</div>

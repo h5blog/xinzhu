@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import heroBg from "../images/news-detail-hero-bg.png";
+import heroBgAvif from "../images/news-detail-hero-bg.opt.avif";
+import heroBgWebp from "../images/news-detail-hero-bg.opt.webp";
+import heroBgJpg from "../images/news-detail-hero-bg.opt.jpg";
 import mainImg from "../images/news-detail-3-main.png";
 
 export default function NewsDetailPage3() {
@@ -17,14 +19,18 @@ export default function NewsDetailPage3() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <section className="relative h-[217px] w-full overflow-hidden">
-        <img src={heroBg} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <picture className="absolute inset-0 block h-full w-full">
+          <source srcSet={heroBgAvif} type="image/avif" />
+          <source srcSet={heroBgWebp} type="image/webp" />
+          <img src={heroBgJpg} alt="" className="h-full w-full object-cover" loading="eager" decoding="async" />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]" />
       </section>
       <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:pb-24">
         <h1 className="text-[32px] font-semibold leading-[50px] text-black">8月27日：《关于推进“人工智能 +”能源高质量发展的实施意见》</h1>
         <div className="mt-4 h-[2px] w-full bg-[#f96d01]" />
         <div className="mt-6 h-[259px] w-full overflow-hidden">
-          <img src={mainImg} alt="" className="h-full w-full object-cover" />
+          <img src={mainImg} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
         <section className="mt-8 space-y-4">
           {items.map((item) => (
