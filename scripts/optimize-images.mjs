@@ -13,6 +13,7 @@ const root = path.join(__dirname, "..");
  * - quality: output quality for lossy formats
  */
 const targets = [
+  { input: "src/images/banner.png", maxWidth: 1920, quality: 70 },
   { input: "src/images/news-detail-5-main.png", maxWidth: 1064, quality: 72 },
   { input: "src/images/news-detail-hero-bg.jpg", maxWidth: 1920, quality: 70 },
   { input: "src/images/join-hero-bg.png", maxWidth: 1920, quality: 70 },

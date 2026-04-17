@@ -87,7 +87,7 @@ export default function QinghuaCollaboration() {
               className="absolute inset-0 rounded-[inherit]"
             />
             <div className="relative z-10 flex h-full min-h-0 flex-col justify-between p-7 text-left sm:flex-row sm:items-stretch sm:gap-3 sm:px-10 sm:py-9">
-              <div className="min-h-0 min-w-0 flex-1 pr-1 sm:max-w-[52%]">
+              <div className="min-h-0 min-w-0 flex-1 pr-1 sm:max-w-[53%]">
                 <h3 className="font-['PingFang_SC',sans-serif] text-[20px] font-semibold leading-[1.15] text-[#7a3f0d] sm:text-[22px] md:text-[26px]">
                   {card.title}
                 </h3>

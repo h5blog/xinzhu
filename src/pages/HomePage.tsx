@@ -1,10 +1,15 @@
 import Footer from "../components/Footer";
 import { assets } from "../components/assets";
 import Navbar from "../components/Navbar";
-import Partners from "../components/Partners";
-import Team from "../components/Team";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import bannerAvif from "../images/banner.opt.avif";
+import bannerWebp from "../images/banner.opt.webp";
+import bannerJpg from "../images/banner.opt.jpg";
+import homeBannerLogo from "../images/home-banner-logo.svg";
+
+const Team = lazy(() => import("../components/Team"));
+const Partners = lazy(() => import("../components/Partners"));
 
 const BAIDU_MAP_READY_MAX_MS = 15_000;
 const BAIDU_MAP_SCRIPT_ID = "baidu-map-api-script";
@@ -34,8 +39,11 @@ function ensureBaiduMapApi(): Promise<void> {
 }
 
 export default function HomePage() {
+  const mapRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     let cancelled = false;
+    let observer: IntersectionObserver | null = null;
 
     const timeoutPromise = new Promise<never>((_, reject) => {
       setTimeout(() => reject(new Error("Baidu map script timeout")), BAIDU_MAP_READY_MAX_MS);
@@ -49,7 +57,7 @@ export default function HomePage() {
       }
       if (cancelled || !window.BMap) return;
 
-      const el = document.getElementById("allmap");
+      const el = mapRef.current;
       if (!el) return;
 
       const map = new window.BMap.Map("allmap");
@@ -58,10 +66,23 @@ export default function HomePage() {
       map.enableScrollWheelZoom();
     };
 
-    void loadAndInit();
+    const target = mapRef.current;
+    if (!target) return;
+
+    observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          void loadAndInit();
+          observer?.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px" },
+    );
+    observer.observe(target);
 
     return () => {
       cancelled = true;
+      observer?.disconnect();
     };
   }, []);
   return (
@@ -78,13 +99,18 @@ export default function HomePage() {
           overflow: "hidden",
         }}
       >
-        <img
-          src={assets.Banner}
-          alt=""
-          style={{ height: "461px", display: "block", margin: "0 auto" }}
-          loading="eager"
-          decoding="async"
-        />
+        <picture>
+          <source srcSet={bannerAvif} type="image/avif" />
+          <source srcSet={bannerWebp} type="image/webp" />
+          <img
+            src={bannerJpg}
+            alt=""
+            style={{ height: "461px", display: "block", margin: "0 auto" }}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
         <span
           style={{
             position: "absolute",
@@ -122,22 +148,7 @@ export default function HomePage() {
               whiteSpace: "nowrap",
             }}
           >
-            <svg width="220" height="53" viewBox="0 0 158 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19.4241 2.34267H13.393L12.894 0.00244141H6.91927L7.42097 2.34267H0.904297V6.83297H19.4241V2.34267Z" fill="white"/>
-            <path d="M19.0592 23.5556V19.0627H12.953V16.5666H19.9258V12.0737H16.7064L17.7151 8.15918H12.5533L11.5445 12.0737H8.68192L7.67317 8.15918H2.51403L3.52278 12.0737H0.187988V16.5666H7.22513V19.0627H0.719195V23.5556H7.22513V32.9033H6.60271L4.5369 37.3302H7.22513H8.66851H12.2072C12.615 37.3302 12.9504 36.9631 12.9504 36.5167V23.553H19.0592V23.5556Z" fill="white"/>
-            <path d="M26.8743 6.29151L36.5889 5.07121V0.324707L26.8662 1.54765V1.55293L21.0337 2.05214L20.8969 26.2654C20.8942 26.6167 20.8673 26.968 20.8137 27.314L19.5903 35.2882L17.8196 25.2934H13.46L15.236 35.3173H19.5849L19.2764 37.3353H25.0016L26.5791 27.3193C26.6328 26.9759 26.6623 26.6273 26.665 26.2786L26.775 15.8849H28.9347V37.3353H34.4212V15.8849H36.6748V11.392H26.8206L26.8743 6.29151Z" fill="white"/>
-            <path d="M1.77605 25.2909L0 35.3148H4.35697L6.13302 25.2909H1.77605Z" fill="white"/>
-            <path d="M132.788 0.00244141H126.229L120.506 16.7486H124.544V37.1345H130.527V9.80713H129.438L132.788 0.00244141Z" fill="white"/>
-            <path d="M71.1071 27.3089L71.6973 30.6423L68.8079 30.9302V24.7785H76.1723V21.8255V19.892V9.80469V5.10573V4.91819H68.8079V0H63.2302V4.91819H55.8631V5.10573V9.80469V19.892V21.8255V24.7785H63.2302V31.4875L55.6646 32.2456V37.1321L72.5478 35.4416L72.8832 37.3276H77.2401L75.4641 27.3036H71.1071V27.3089ZM71.2439 9.80733V19.8946H68.8079V9.80733H71.2439ZM60.7915 19.8946V9.80733H63.2302V19.8946H60.7915Z" fill="white"/>
-            <path d="M103.824 14.0812H98.1016L100.436 27.3091H106.156L103.824 14.0812Z" fill="white"/>
-            <path d="M155.12 7.36425L153.39 1.10425H147.667L149.401 7.36425H155.12Z" fill="white"/>
-            <path d="M50.0891 20.0503V0.00244141H44.8093V21.334C44.8066 21.6853 39.8862 37.4039 39.8862 37.4039H45.2305C45.2305 37.4039 46.6524 32.7684 47.8758 28.7139L50.3387 37.4039H55.0363L50.0891 20.0503Z" fill="white"/>
-            <path d="M44.3772 18.7113L43.7172 4.68835H40.1973L40.8599 18.7113H44.3772Z" fill="white"/>
-            <path d="M50.4888 18.7113H54.006L54.8699 4.68835H51.3527L50.4888 18.7113Z" fill="white"/>
-            <path d="M80.918 7.16592V16.1756V20.9934V30.4362V35.254H86.5037H90.6111H96.1969V30.4362V20.9934V16.1756V7.16592V5.52565V2.34546H80.9207V7.16592H80.918ZM90.6085 30.4362H86.501V20.9934H90.6085V30.4362ZM90.6085 16.1756H86.501V7.16592H90.6085V16.1756Z" fill="white"/>
-            <path d="M114.419 0.00244141H108.296V4.92063H97.2456V10.1611H108.296V30.8745C108.296 31.3922 107.961 31.8096 107.55 31.8096H104.629L102.563 37.1345H108.296H109.109H113.673C114.086 37.1345 114.419 36.7146 114.419 36.1995V10.1637H117.257V4.92328H114.419V0.00244141Z" fill="white"/>
-            <path d="M149.827 30.8537C148.116 27.7132 146.919 20.9857 146.122 14.6121L156.272 14.1921V8.80111L145.529 9.2475C145.02 4.02819 144.802 0.00805664 144.802 0.00805664H138.299C138.49 3.46823 138.736 6.62992 139.018 9.51956L131.927 9.81275V15.2037L139.624 14.8841C141.323 28.083 143.769 34.2347 144.759 36.3002C145.006 36.8179 145.497 37.1375 146.028 37.1375H155.555L157.347 31.6277H151.064C150.557 31.6224 150.088 31.3292 149.827 30.8537Z" fill="white"/>
-            </svg>
+            <img src={homeBannerLogo} alt="" width={220} height={53} className="block" decoding="async" />
 
           </div>
           <div
@@ -176,7 +187,7 @@ export default function HomePage() {
                   width={488}
                   height={303}
                   className="block h-auto w-[488px] max-w-[min(488px,50vw)] object-contain object-left"
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
                 />
               </picture>
@@ -197,10 +208,14 @@ export default function HomePage() {
               </div>
         </div>
       </section>
-        <Team />
-        <Partners />
+        <Suspense fallback={<div className="h-[600px] w-full bg-white" />}>
+          <Team />
+        </Suspense>
+        <Suspense fallback={<div className="h-[900px] w-full bg-white" />}>
+          <Partners />
+        </Suspense>
         {/* 百度地图容器需明确高度，否则地图无法渲染 */}
-        <div id="allmap" className="h-[371px] w-full" />
+        <div id="allmap" ref={mapRef} className="h-[371px] w-full" />
       </main>
       <Footer />
     </div>

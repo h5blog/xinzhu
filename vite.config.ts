@@ -6,7 +6,17 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: "dist",
-    assetsDir: "pc-website"
+    rollupOptions: {
+      output: {
+        entryFileNames: "js/[name]-[hash].js",
+        chunkFileNames: "js/[name]-[hash].js",
+        assetFileNames: (assetInfo) => {
+          const name = assetInfo.name ?? "";
+          if (name.endsWith(".css")) return "css/[name]-[hash][extname]";
+          return "images/[name]-[hash][extname]";
+        },
+      },
+    },
   },
   server: {
     port: 5173,

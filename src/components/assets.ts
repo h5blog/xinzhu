@@ -1,4 +1,3 @@
-import Banner from "../images/banner.png";
 import heroIcon from "../images/hero-icon.png";
 import heroIconWebp from "../images/hero-icon.webp";
 import partnerA from "../images/partner-a.png";
@@ -46,7 +45,6 @@ import jishuB from "../images/jishu-b.png";
 import techCoreSectionBg from "../images/tech-core-section-bg.jpg";
 import newsBg from "../images/news-bg.jpg";
 export const assets = {
-  Banner,
   heroIcon,
   heroIconWebp,
   techBg,
