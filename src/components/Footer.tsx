@@ -79,14 +79,14 @@ export default function Footer() {
             className="text-center text-[12px] font-medium leading-normal text-[#9c9c9c]"
             data-node-id="470:50"
           >
-            <span>©2025 上海星环聚能科技有限公司 版权所有 </span>
+            <span>©2025 北京新烛时代科技有限公司 版权所有 </span>
             <a
               className="underline decoration-solid underline-offset-2 transition hover:text-[#e8e8e8]"
               href="http://beian.miit.gov.cn/"
               target="_blank"
               rel="noreferrer"
             >
-              沪ICP备2025154076号-1
+              京ICP备2025157244号-1
             </a>
             <span> </span>
             <a

@@ -5,7 +5,8 @@ export default defineConfig({
   base: "./",
   plugins: [react()],
   build: {
-    outDir: "website"
+    outDir: "dist",
+    assetsDir: "pc-website"
   },
   server: {
     port: 5173,

@@ -152,7 +152,7 @@ export default function NewsPage() {
                 ? "border-b-[4px] border-[#f96d01] text-[#f96d01]"
                 : "border-b border-[#d9d9d9] text-black"
             }`}
-            // onClick={() => setTab("company")}
+            onClick={() => setTab("company")}
             data-node-id="83:244"
           >
             公司新闻

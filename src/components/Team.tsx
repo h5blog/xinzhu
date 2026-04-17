@@ -19,7 +19,7 @@ export default function Team() {
       }}
     >
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="text-center text-3xl font-semibold text-[#f96d01] md:text-4xl">公司团队</h2>
+        <h2 className="text-center text-3xl font-semibold text-[#f96d01] md:text-4xl">创始团队</h2>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {teamMembers.map((member) => (
@@ -27,6 +27,9 @@ export default function Team() {
               <img
                 src={member.avatar}
                 alt={member.name}
+                style={{
+                  borderRadius: "100%"
+                }}
                 className="mx-auto h-44 w-44"
               />
               <div className="mt-6 text-2xl font-medium">{member.name}</div>
