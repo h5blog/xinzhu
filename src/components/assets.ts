@@ -40,7 +40,6 @@ import joinLine35 from "../images/join-line-35.svg";
 import joinArrow from "../images/join-arrow.svg";
 import joinQr from "../images/join-qr.png";
 import job from "../images/job.png";
-import jishuA from "../images/jishu-a.jpg";
 import jishuB from "../images/jishu-b.png";
 import techCoreSectionBg from "../images/tech-core-section-bg.jpg";
 import newsBg from "../images/news-bg.jpg";
@@ -87,7 +86,6 @@ export const assets = {
   joinArrow,
   joinQr,
   job,
-  jishuA,
   jishuB,
   techCoreSectionBg,
   newsBg,

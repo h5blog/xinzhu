@@ -21,6 +21,7 @@ const targets = [
   { input: "src/images/join-footer-2.png", maxWidth: 812, quality: 72 },
   { input: "src/images/news-detail-3-main.png", maxWidth: 1103, quality: 72 },
   { input: "src/images/our-team.png", maxWidth: 1920, quality: 70 },
+  { input: "src/images/jishu-a.jpg", maxWidth: 1920, quality: 70 },
 ];
 
 function toOutputPaths(absInput) {

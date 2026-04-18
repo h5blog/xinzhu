@@ -8,12 +8,12 @@ export default defineConfig({
     outDir: "dist",
     rollupOptions: {
       output: {
-        entryFileNames: "js/[name]-[hash].js",
-        chunkFileNames: "js/[name]-[hash].js",
+        entryFileNames: "pc-website/js/[name]-[hash].js",
+        chunkFileNames: "pc-website/js/[name]-[hash].js",
         assetFileNames: (assetInfo) => {
           const name = assetInfo.name ?? "";
-          if (name.endsWith(".css")) return "css/[name]-[hash][extname]";
-          return "images/[name]-[hash][extname]";
+          if (name.endsWith(".css")) return "pc-website/css/[name]-[hash][extname]";
+          return "pc-website/images/[name]-[hash][extname]";
         },
       },
     },

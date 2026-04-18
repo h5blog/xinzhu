@@ -1,6 +1,9 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { assets } from "../components/assets";
+import jishuAHeroAvif from "../images/jishu-a.opt.avif";
+import jishuAHeroWebp from "../images/jishu-a.opt.webp";
+import jishuAHeroJpg from "../images/jishu-a.opt.jpg";
 
 const pillBase =
   "flex h-[86px] shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-[#ffb85c] to-[#f96d01] px-3 text-center text-[20px] font-semibold leading-tight text-white shadow-[0px_16px_17px_0px_rgba(251,85,14,0.25)] sm:text-[28px] md:text-[32px]";
@@ -11,13 +14,22 @@ export default function TechCorePage() {
       <Navbar />
 
       <section className="relative w-full overflow-hidden">
-        <img
-          src={assets.jishuA}
-          alt=""
-          className="block h-auto w-full"
-          data-name="banner"
-          data-node-id="297:83"
-        />
+        <picture>
+          <source srcSet={jishuAHeroAvif} type="image/avif" />
+          <source srcSet={jishuAHeroWebp} type="image/webp" />
+          <img
+            src={jishuAHeroJpg}
+            alt=""
+            className="block h-auto w-full"
+            width={1920}
+            height={759}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            data-name="banner"
+            data-node-id="297:83"
+          />
+        </picture>
       </section>
 
       <section className="relative overflow-hidden">
