@@ -36,6 +36,8 @@ const targets = [
   { input: "src/images/news-thumb-3.jpg", maxWidth: 716, quality: 72 },
   { input: "src/images/news-thumb-4.jpg", maxWidth: 716, quality: 72 },
   { input: "src/images/news-thumb-5.jpg", maxWidth: 716, quality: 72 },
+  // 首页 AI 解决方案区背景，原 png 较大，转多格式并保持 1920 宽
+  { input: "src/images/tech-bg.png", maxWidth: 1920, quality: 66 },
 ];
 
 function toOutputPaths(absInput) {

@@ -7,6 +7,8 @@ import bannerAvif from "../images/banner.opt.avif";
 import bannerWebp from "../images/banner.opt.webp";
 import bannerJpg from "../images/banner.opt.jpg";
 import homeBannerLogo from "../images/home-banner-logo.svg";
+import techBgPng from "../images/tech-bg.png";
+import techBgWebp from "../images/tech-bg.lossless.webp";
 
 const Team = lazy(() => import("../components/Team"));
 const Partners = lazy(() => import("../components/Partners"));
@@ -17,6 +19,7 @@ const BAIDU_MAP_SCRIPT_ID = "baidu-map-gl-script";
 const BAIDU_MAP_AK = "u6QE6iILhnYxm0t5AMwfcJeaGQFyOeFw";
 /** 全局回调名（百度用 callback= 调用；GL 版支持异步加载，无 document.write 问题） */
 const BAIDU_MAP_CALLBACK = "__onBaiduMapGLReady";
+const COMPANY_ADDRESS = "北京市海淀区海淀大悦信息科技园D2号楼4楼C-403室";
 
 let baiduMapApiPromise: Promise<void> | null = null;
 
@@ -81,16 +84,19 @@ function ensureBaiduMapApi(): Promise<void> {
 
 export default function HomePage() {
   const mapRef = useRef<HTMLDivElement | null>(null);
+  const mapReadyRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
     let observer: IntersectionObserver | null = null;
+    let warmupTimer = 0;
 
     const timeoutPromise = new Promise<never>((_, reject) => {
       setTimeout(() => reject(new Error("Baidu map script timeout")), BAIDU_MAP_READY_MAX_MS);
     });
 
     const loadAndInit = async () => {
+      if (mapReadyRef.current) return;
       try {
         await Promise.race([ensureBaiduMapApi(), timeoutPromise]);
       } catch {
@@ -102,13 +108,67 @@ export default function HomePage() {
       if (!el) return;
 
       const map = new window.BMapGL.Map("allmap");
-      const point = new window.BMapGL.Point(116.23, 40.09);
-      map.centerAndZoom(point, 17);
+      const fallbackPoint = new window.BMapGL.Point(116.23, 40.09);
+      map.centerAndZoom(fallbackPoint, 17);
       map.enableScrollWheelZoom(true);
+      // 在地图上标出公司位置，避免仅看底图无法判断具体建筑
+      const BMapGLAny = window.BMapGL as unknown as {
+        Marker: new (point: unknown) => unknown;
+        Label: new (content: string, opts: { position: unknown; offset: unknown }) => unknown;
+        Size: new (width: number, height: number) => unknown;
+        InfoWindow: new (content: string, opts?: { width?: number; title?: string }) => unknown;
+        Geocoder: new () => {
+          getPoint: (address: string, callback: (point: unknown) => void, city?: string) => void;
+        };
+      };
+      const mapAny = map as unknown as {
+        addOverlay: (overlay: unknown) => void;
+        openInfoWindow: (infoWindow: unknown, point: unknown) => void;
+        centerAndZoom: (point: unknown, zoom: number) => void;
+      };
+
+      const renderCompanyMarker = (point: unknown) => {
+        const marker = new BMapGLAny.Marker(point);
+        mapAny.addOverlay(marker);
+        const markerAny = marker as {
+          setLabel: (label: unknown) => void;
+          addEventListener: (eventName: string, handler: () => void) => void;
+        };
+        // const label = new BMapGLAny.Label("新烛时代（公司位置）", {
+        //   position: point,
+        //   offset: new BMapGLAny.Size(20, -10),
+        // });
+        // markerAny.setLabel(label);
+        const infoWindow = new BMapGLAny.InfoWindow(COMPANY_ADDRESS, { title: "公司地址", width: 320 });
+        markerAny.addEventListener("click", () => mapAny.openInfoWindow(infoWindow, point));
+        mapAny.openInfoWindow(infoWindow, point);
+      };
+
+      const geocoder = new BMapGLAny.Geocoder();
+      geocoder.getPoint(
+        COMPANY_ADDRESS,
+        (geocodedPoint) => {
+          if (!geocodedPoint) {
+            renderCompanyMarker(fallbackPoint);
+            return;
+          }
+          mapAny.centerAndZoom(geocodedPoint, 18);
+          renderCompanyMarker(geocodedPoint);
+        },
+        "北京市",
+      );
+      mapReadyRef.current = true;
     };
 
     const target = mapRef.current;
     if (!target) return;
+
+    // 提前在后台预热地图脚本，滚到地图区域时能更快初始化
+    warmupTimer = window.setTimeout(() => {
+      void ensureBaiduMapApi().catch(() => {
+        // 忽略预热失败，进入视口时会再次尝试加载
+      });
+    }, 1200);
 
     observer = new IntersectionObserver(
       (entries) => {
@@ -117,12 +177,13 @@ export default function HomePage() {
           observer?.disconnect();
         }
       },
-      { rootMargin: "400px 0px" },
+      { rootMargin: "1000px 0px" },
     );
     observer.observe(target);
 
     return () => {
       cancelled = true;
+      window.clearTimeout(warmupTimer);
       observer?.disconnect();
     };
   }, []);
@@ -210,17 +271,26 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-        <div className="overflow-hidden"
-        style={{
-          paddingTop:37,
-          backgroundImage: `url(${assets.techBg})`,
-          backgroundSize: "cover",
-        }}>
-            <div className="text-center justify-start text-orange-500 text-4xl font-medium font-['PingFang_SC']">AI解决方案核心技术驱动力</div>
+        <div className="relative overflow-hidden" style={{ paddingTop: 37, backgroundColor: "#F6F6F6" }}>
+            <picture className="pointer-events-none absolute inset-0 z-0 block h-full w-full">
+              <source srcSet={techBgWebp} type="image/webp" />
+              <img
+                src={techBgPng}
+                alt=""
+                width={1920}
+                height={630}
+                className="h-full w-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
+            <div className="relative z-10 text-center justify-start text-orange-500 text-4xl font-medium font-['PingFang_SC']">AI解决方案核心技术驱动力</div>
             <div
               className="relative mx-auto box-border h-[303px] w-full max-w-[1135px] overflow-hidden"
             >
               <picture className="pointer-events-none absolute left-0 top-1/2 z-0 block -translate-y-1/2">
+                <source srcSet={assets.heroIconAvif} type="image/avif" />
                 <source srcSet={assets.heroIconWebp} type="image/webp" />
                 <img
                   src={assets.heroIcon}
@@ -228,7 +298,8 @@ export default function HomePage() {
                   width={488}
                   height={303}
                   className="block h-auto w-[488px] max-w-[min(488px,50vw)] object-contain object-left"
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="auto"
                   decoding="async"
                 />
               </picture>
@@ -238,7 +309,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-              <div style={{width: 1135,margin:"0 auto 110px"}} className="text-center">
+              <div style={{width: 1135,margin:"0 auto 110px"}} className="relative z-10 text-center">
                 <Link
                   to="/tech"
                   style={{ width: 122, lineHeight: "40px", marginLeft: 545, background: "#F96D01", borderRadius: 19.5 }}

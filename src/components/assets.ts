@@ -1,4 +1,5 @@
 import heroIcon from "../images/hero-icon.png";
+import heroIconAvif from "../images/hero-icon.avif";
 import heroIconWebp from "../images/hero-icon.webp";
 import partnerA from "../images/partner-a.png";
 import partnerB from "../images/partner-b.png";
@@ -18,7 +19,6 @@ import team3 from "../images/team-3.jpg";
 import team4 from "../images/team-4.jpg";
 import teamBg from "../images/team-bg.png";
 import teamList from "../images/team-list.jpg";
-import techBg from "../images/tech-bg.png";
 import wg from "../images/wg.jpg";
 import wy from "../images/wy.jpg";
 import zw from "../images/zw.jpg";
@@ -38,8 +38,8 @@ import jishuB from "../images/jishu-b.png";
 import techCoreSectionBg from "../images/tech-core-section-bg.jpg";
 export const assets = {
   heroIcon,
+  heroIconAvif,
   heroIconWebp,
-  techBg,
   teamBg,
   teamList,
   partnerA,

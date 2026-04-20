@@ -8,5 +8,8 @@ interface Window {
       enableScrollWheelZoom: (enable?: boolean) => void;
     };
     Point: new (lng: number, lat: number) => unknown;
+    Geocoder: new () => {
+      getPoint: (address: string, callback: (point: unknown) => void, city?: string) => void;
+    };
   };
 }
