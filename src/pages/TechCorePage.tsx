@@ -13,16 +13,18 @@ export default function TechCorePage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="核心技术" data-node-id="108:28398">
       <Navbar />
 
-      <section className="relative w-full overflow-hidden">
-        <picture>
+      {/* 设计稿 1920×659；用固定比例容器 + object-cover，小屏随宽缩放、大屏不超出版心比例 */}
+      <section className="relative aspect-[1920/659] w-full overflow-hidden" data-name="banner-wrap">
+        <picture className="absolute inset-0 block h-full w-full">
           <source srcSet={jishuAHeroAvif} type="image/avif" />
           <source srcSet={jishuAHeroWebp} type="image/webp" />
           <img
             src={jishuAHeroJpg}
             alt=""
-            className="block h-auto w-full"
+            className="h-full w-full object-cover object-center"
             width={1920}
-            height={759}
+            height={659}
+            sizes="100vw"
             loading="eager"
             fetchPriority="high"
             decoding="async"

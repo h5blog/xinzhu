@@ -16,33 +16,26 @@ import team1 from "../images/team-1.jpg";
 import team2 from "../images/team-2.jpg";
 import team3 from "../images/team-3.jpg";
 import team4 from "../images/team-4.jpg";
-import teamBg from "../images/team-bg.jpg";
+import teamBg from "../images/team-bg.png";
 import teamList from "../images/team-list.jpg";
-import techBg from "../images/tech-bg.jpg";
+import techBg from "../images/tech-bg.png";
 import wg from "../images/wg.jpg";
 import wy from "../images/wy.jpg";
 import zw from "../images/zw.jpg";
 import lty from "../images/lty.jpg";
-import newsThumb1 from "../images/news-thumb-1.jpg";
-import newsThumb2 from "../images/news-thumb-2.jpg";
-import newsThumb3 from "../images/news-thumb-3.jpg";
-import newsThumb4 from "../images/news-thumb-4.jpg";
-import newsThumb5 from "../images/news-thumb-5.jpg";
 import aboutGrid1 from "../images/about-grid-1.jpg";
 import aboutGrid2 from "../images/about-grid-2.jpg";
 import aboutRouteIcon from "../images/about-route-icon.svg";
 import aboutPositionIcon from "../images/about-position-icon.svg";
 import aboutA from "../images/about-a.png";
-import aboutHeroBg from "../images/about-hero-bg.jpg";
 import aboutIcon from "../images/about-icon.png";
 import gj from "../images/gj.png";
 import joinLine35 from "../images/join-line-35.svg";
 import joinArrow from "../images/join-arrow.svg";
-import joinQr from "../images/join-qr.png";
+import joinQr from "../images/join-qr.jpg";
 import job from "../images/job.png";
 import jishuB from "../images/jishu-b.png";
 import techCoreSectionBg from "../images/tech-core-section-bg.jpg";
-import newsBg from "../images/news-bg.jpg";
 export const assets = {
   heroIcon,
   heroIconWebp,
@@ -66,17 +59,11 @@ export const assets = {
   team3,
   team4,
   zw,
-  newsThumb1,
-  newsThumb2,
-  newsThumb3,
-  newsThumb4,
-  newsThumb5,
   aboutGrid1,
   aboutGrid2,
   aboutRouteIcon,
   aboutPositionIcon,
   aboutA,
-  aboutHeroBg,
   aboutIcon,
   gj,
   wg,
@@ -88,6 +75,5 @@ export const assets = {
   job,
   jishuB,
   techCoreSectionBg,
-  newsBg,
 } as const;
 

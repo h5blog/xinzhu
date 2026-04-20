@@ -1,26 +1,17 @@
 ﻿import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import heroBgAvif from "../images/news-detail-hero-bg.opt.avif";
-import heroBgWebp from "../images/news-detail-hero-bg.opt.webp";
-import heroBgJpg from "../images/news-detail-hero-bg.opt.jpg";
-import mainImg from "../images/news-detail-5-main.png";
+import NewsDetailContentImage from "../components/NewsDetailContentImage";
+import NewsDetailHero from "../components/NewsDetailHero";
+import mainAvif from "../images/news-detail-5-main.opt.avif";
+import mainWebp from "../images/news-detail-5-main.opt.webp";
+import mainJpg from "../images/news-detail-5-main.opt.jpg";
 
 export default function NewsDetailPage5() {
   return (
     <div className="min-h-screen bg-white text-[#363636]" data-node-id="684:40">
       <Navbar />
-      <section className="relative h-[217px] w-full overflow-hidden">
-        <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={heroBgAvif} type="image/avif" />
-          <source srcSet={heroBgWebp} type="image/webp" />
-          <img src={heroBgJpg} alt="" className="h-full w-full object-cover" loading="eager" decoding="async" />
-        </picture>
-        <div
-          className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]"
-          data-node-id="103:391"
-        />
-      </section>
+      <NewsDetailHero />
 
       <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:pb-24">
         <h1 className="text-[32px] font-semibold leading-[1.2] text-black">
@@ -34,7 +25,15 @@ export default function NewsDetailPage5() {
         </p>
 
         <div className="mx-auto mt-9 w-full max-w-[1064px] overflow-hidden">
-          <img src={mainImg} alt="" className="h-auto w-full object-cover" loading="lazy" decoding="async" />
+          <NewsDetailContentImage
+            avif={mainAvif}
+            webp={mainWebp}
+            jpg={mainJpg}
+            width={1064}
+            height={521}
+            pictureClassName="block w-full"
+            imgClassName="h-auto w-full object-cover"
+          />
         </div>
 
         <section className="mx-auto mt-12 w-full max-w-[1085px]">

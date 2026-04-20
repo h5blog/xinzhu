@@ -3,7 +3,9 @@ import Footer from "../components/Footer";
 import TeamMemberTextPanel from "../components/TeamMemberTextPanel";
 import { assets } from "../components/assets";
 import Navbar from "../components/Navbar";
-import ourTeamJpg from "../images/our-team.jpg";
+import ourTeamAvif from "../images/our-team.opt.avif";
+import ourTeamWebp from "../images/our-team.opt.webp";
+import ourTeamJpg from "../images/our-team.opt.jpg";
 
 const members = [
   {
@@ -111,13 +113,21 @@ export default function TeamPage() {
         data-node-id="103:300"
       >
         <div className="absolute inset-0 block h-full w-full">
-          <img
-            src={ourTeamJpg}
-            alt=""
-            className="h-full w-full object-cover object-center"
-            loading="eager"
-            decoding="async"
-          />
+          <picture className="absolute inset-0 block h-full w-full">
+            <source srcSet={ourTeamAvif} type="image/avif" />
+            <source srcSet={ourTeamWebp} type="image/webp" />
+            <img
+              src={ourTeamJpg}
+              alt=""
+              width={1920}
+              height={217}
+              className="h-full w-full object-cover object-center"
+              sizes="100vw"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
         </div>
         <div
           className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]"

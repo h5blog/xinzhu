@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import heroBgAvif from "../images/news-detail-hero-bg.opt.avif";
-import heroBgWebp from "../images/news-detail-hero-bg.opt.webp";
-import heroBgJpg from "../images/news-detail-hero-bg.opt.jpg";
-import globeImg from "../images/news-detail-4-main.png";
+import NewsDetailContentImage from "../components/NewsDetailContentImage";
+import NewsDetailHero from "../components/NewsDetailHero";
+import globeAvif from "../images/news-detail-4-main.opt.avif";
+import globeWebp from "../images/news-detail-4-main.opt.webp";
+import globeJpg from "../images/news-detail-4-main.opt.jpg";
 import company1 from "../images/news-company-1.png";
 import company2 from "../images/news-company-2.png";
 import company3 from "../images/news-company-3.png";
@@ -35,14 +36,7 @@ export default function NewsDetailPage4() {
   return (
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
-      <section className="relative h-[217px] w-full overflow-hidden">
-        <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={heroBgAvif} type="image/avif" />
-          <source srcSet={heroBgWebp} type="image/webp" />
-          <img src={heroBgJpg} alt="" className="h-full w-full object-cover" loading="eager" decoding="async" />
-        </picture>
-        <div className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]" />
-      </section>
+      <NewsDetailHero />
       <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:pb-24">
         <h1 className="text-[32px] font-semibold leading-[30px] text-black">AI 赋能聚变已成全球共识</h1>
         <div className="mt-4 h-[2px] w-full bg-[#f96d01]" />
@@ -94,7 +88,14 @@ export default function NewsDetailPage4() {
         </section>
         <div className="mx-auto mt-4 h-px w-full max-w-[1064px] bg-[#dfdfdf]" data-node-id="113:164" aria-hidden />
         <div className="mt-8 h-[259px] w-full overflow-hidden">
-          <img src={globeImg} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+          <NewsDetailContentImage
+            avif={globeAvif}
+            webp={globeWebp}
+            jpg={globeJpg}
+            width={1064}
+            height={709}
+            imgClassName="h-full w-full object-cover"
+          />
         </div>
         <section className="mt-10 w-full" aria-label="文献时间线">
           <div className="relative mx-auto w-full max-w-[1103px]">

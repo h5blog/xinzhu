@@ -12,30 +12,71 @@ const Team = lazy(() => import("../components/Team"));
 const Partners = lazy(() => import("../components/Partners"));
 
 const BAIDU_MAP_READY_MAX_MS = 15_000;
-const BAIDU_MAP_SCRIPT_ID = "baidu-map-api-script";
-const BAIDU_MAP_API_URL =
-  "https://api.map.baidu.com/api?v=2.0&ak=u6QE6iILhnYxm0t5AMwfcJeaGQFyOeFw&autoDecode=true";
+/** 与 v2.0 区分，避免缓存里仍是旧脚本 */
+const BAIDU_MAP_SCRIPT_ID = "baidu-map-gl-script";
+const BAIDU_MAP_AK = "u6QE6iILhnYxm0t5AMwfcJeaGQFyOeFw";
+/** 全局回调名（百度用 callback= 调用；GL 版支持异步加载，无 document.write 问题） */
+const BAIDU_MAP_CALLBACK = "__onBaiduMapGLReady";
+
+let baiduMapApiPromise: Promise<void> | null = null;
+
+function waitForBMapGL(): Promise<void> {
+  if (window.BMapGL) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const t0 = performance.now();
+    const id = window.setInterval(() => {
+      if (window.BMapGL) {
+        window.clearInterval(id);
+        resolve();
+      } else if (performance.now() - t0 > BAIDU_MAP_READY_MAX_MS) {
+        window.clearInterval(id);
+        reject(new Error("Baidu map GL timeout"));
+      }
+    }, 50);
+  });
+}
 
 function ensureBaiduMapApi(): Promise<void> {
-  if (window.BMap) return Promise.resolve();
+  if (window.BMapGL) return Promise.resolve();
+  if (baiduMapApiPromise) return baiduMapApiPromise;
 
-  const existing = document.getElementById(BAIDU_MAP_SCRIPT_ID) as HTMLScriptElement | null;
+  const existing = document.getElementById(BAIDU_MAP_SCRIPT_ID);
   if (existing) {
-    return new Promise((resolve, reject) => {
-      existing.addEventListener("load", () => resolve(), { once: true });
-      existing.addEventListener("error", () => reject(new Error("Baidu map script failed")), { once: true });
+    baiduMapApiPromise = waitForBMapGL().finally(() => {
+      baiduMapApiPromise = null;
     });
+    return baiduMapApiPromise;
   }
 
-  return new Promise((resolve, reject) => {
+  baiduMapApiPromise = new Promise((resolve, reject) => {
+    const win = window as unknown as Record<string, (() => void) | undefined>;
+    win[BAIDU_MAP_CALLBACK] = () => {
+      baiduMapApiPromise = null;
+      try {
+        delete win[BAIDU_MAP_CALLBACK];
+      } catch {
+        win[BAIDU_MAP_CALLBACK] = undefined;
+      }
+      resolve();
+    };
+
     const script = document.createElement("script");
     script.id = BAIDU_MAP_SCRIPT_ID;
-    script.src = BAIDU_MAP_API_URL;
-    script.async = true;
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error("Baidu map script failed"));
+    script.type = "text/javascript";
+    script.src = `https://api.map.baidu.com/api?v=1.0&type=webgl&ak=${BAIDU_MAP_AK}&callback=${BAIDU_MAP_CALLBACK}`;
+    script.onerror = () => {
+      baiduMapApiPromise = null;
+      try {
+        delete win[BAIDU_MAP_CALLBACK];
+      } catch {
+        win[BAIDU_MAP_CALLBACK] = undefined;
+      }
+      reject(new Error("Baidu map script failed"));
+    };
     document.body.appendChild(script);
   });
+
+  return baiduMapApiPromise;
 }
 
 export default function HomePage() {
@@ -55,15 +96,15 @@ export default function HomePage() {
       } catch {
         return;
       }
-      if (cancelled || !window.BMap) return;
+      if (cancelled || !window.BMapGL) return;
 
       const el = mapRef.current;
       if (!el) return;
 
-      const map = new window.BMap.Map("allmap");
-      const point = new window.BMap.Point(116.23,40.09);
+      const map = new window.BMapGL.Map("allmap");
+      const point = new window.BMapGL.Point(116.23, 40.09);
       map.centerAndZoom(point, 17);
-      map.enableScrollWheelZoom();
+      map.enableScrollWheelZoom(true);
     };
 
     const target = mapRef.current;

@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import heroBgAvif from "../images/news-detail-hero-bg.opt.avif";
-import heroBgWebp from "../images/news-detail-hero-bg.opt.webp";
-import heroBgJpg from "../images/news-detail-hero-bg.opt.jpg";
+import NewsDetailHero from "../components/NewsDetailHero";
 
 const rows = [
   ["2022", "《加快电力装备绿色低碳创新发展行动计划的通知》", "加快三代核电标准化、谱系化发展，持续推进钠冷快堆、高温气冷堆、铅铋快堆等四代核电堆型的研发和应用。加快可控核聚变等前沿颠覆性技术研究。", "工业和信息化部、财政部、商务部、国务院国有资产监督管理委员会、国家市场监督管理总局五部门"],
@@ -19,14 +17,7 @@ export default function NewsDetailPage2() {
   return (
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
-      <section className="relative h-[217px] w-full overflow-hidden">
-        <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={heroBgAvif} type="image/avif" />
-          <source srcSet={heroBgWebp} type="image/webp" />
-          <img src={heroBgJpg} alt="" className="h-full w-full object-cover" loading="eager" decoding="async" />
-        </picture>
-        <div className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]" />
-      </section>
+      <NewsDetailHero />
       <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:pb-24">
         <h1 className="text-[32px] font-semibold leading-[30px] text-black">中国核聚变相关政策时间线表格</h1>
         <div className="mt-4 h-[2px] w-full bg-[#f96d01]" />

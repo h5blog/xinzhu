@@ -2,6 +2,9 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import AboutIntroIllustration from "../components/AboutIntroIllustration";
 import { assets } from "../components/assets";
+import aboutHeroAvif from "../images/about-hero-bg.opt.avif";
+import aboutHeroWebp from "../images/about-hero-bg.opt.webp";
+import aboutHeroJpg from "../images/about-hero-bg.opt.jpg";
 
 const heroGradient =
   "linear-gradient(90deg, rgba(255, 111, 0, 0.68) 0%, rgba(0, 0, 0, 0.5) 28.846%, rgba(0, 0, 0, 0.5) 73.077%, rgba(255, 111, 0, 0.68) 100%)";
@@ -13,14 +16,22 @@ export default function AboutPage() {
 
       <section className="relative w-full overflow-hidden">
         <div className="relative w-full">
-          <img
-            src={assets.aboutHeroBg}
-            alt=""
-            className="block h-auto w-full max-w-none"
-            data-node-id="97:55"
-            loading="eager"
-            decoding="async"
-          />
+          <picture className="block w-full">
+            <source srcSet={aboutHeroAvif} type="image/avif" />
+            <source srcSet={aboutHeroWebp} type="image/webp" />
+            <img
+              src={aboutHeroJpg}
+              alt=""
+              width={1920}
+              height={698}
+              className="block h-auto w-full max-w-none"
+              data-node-id="97:55"
+              sizes="100vw"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
           <div
             className="pointer-events-none absolute inset-0"
             data-node-id="97:56"
