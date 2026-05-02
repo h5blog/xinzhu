@@ -25,11 +25,10 @@ import zw from "../images/zw.jpg";
 import lty from "../images/lty.jpg";
 import aboutGrid1 from "../images/about-grid-1.jpg";
 import aboutGrid2 from "../images/about-grid-2.jpg";
-import aboutRouteIcon from "../images/about-route-icon.svg";
-import aboutPositionIcon from "../images/about-position-icon.svg";
+import aboutRouteIcon from "../images/about-route-icon.png";
+import aboutPositionIcon from "../images/about-position-icon.png";
 import aboutA from "../images/about-a.png";
 import aboutIcon from "../images/about-icon.png";
-import gj from "../images/gj.png";
 import joinLine35 from "../images/join-line-35.svg";
 import joinArrow from "../images/join-arrow.svg";
 import joinQr from "../images/join-qr.jpg";
@@ -65,7 +64,6 @@ export const assets = {
   aboutPositionIcon,
   aboutA,
   aboutIcon,
-  gj,
   wg,
   wy,
   lty,  

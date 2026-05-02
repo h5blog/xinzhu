@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import TeamMemberTextPanel from "../components/TeamMemberTextPanel";
 import { assets } from "../components/assets";
@@ -53,7 +52,7 @@ const members = [
 
 function MemberBody({ bio }: { bio: readonly string[] }) {
   return (
-    <ul className="m-0 list-none space-y-3 pl-0 text-[20px] font-normal leading-normal text-black">
+    <ul className="m-0 list-none space-y-3 pl-0 text-[16px] leading-[1.7] text-black sm:text-[18px] md:text-[19px] lg:text-[1.0417vw]">
       {bio.map((para, i) => (
         <li key={i} className="flex gap-3">
           <span className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#f96d01]" aria-hidden />
@@ -69,32 +68,14 @@ function MemberHeading({ name, title }: { name: string; title: string }) {
 
   return (
     <div>
-      <p
-        className="whitespace-pre text-[#121212]"
-        style={{
-          fontFamily: "PingFang SC",
-          fontSize: "32px",
-          fontWeight: 600,
-          lineHeight: "45.31px",
-          wordWrap: "break-word",
-        }}
-      >
+      <p className="whitespace-pre-wrap break-words text-[30px] font-semibold leading-tight font-['PingFang_SC'] text-[#121212] md:text-[36px] lg:text-[2.0833vw]">
         {displayName}
       </p>
-      <p
-        className="mt-[22px] text-[#121212]"
-        style={{
-          fontFamily: "PingFang SC",
-          fontSize: "20px",
-          fontWeight: 600,
-          lineHeight: "28.32px",
-          wordWrap: "break-word",
-        }}
-      >
+      <p className="mt-[22px] text-[17px] font-semibold font-['PingFang_SC'] text-[#121212] sm:text-[18px] lg:mt-[1.1458vw] lg:text-[1.0417vw]">
         {title}
       </p>
       <div
-        className="mt-2 h-2 w-[113px] max-w-full bg-gradient-to-r from-[#f96d01] to-transparent"
+        className="mt-2 h-2 w-[113px] max-w-full bg-gradient-to-r from-[#f96d01] to-transparent lg:w-[5.8854vw]"
         aria-hidden
       />
     </div>
@@ -108,7 +89,7 @@ export default function TeamPage() {
 
       {/* Figma 103:300 Rectangle 13 — 1920×217 头图；文案 151:100 / Line 151:101 / 151:99；侧栏 117:800–805 */}
       <section
-        className="relative h-[217px] w-full overflow-hidden"
+        className="relative h-[max(160px,11.3021vw)] w-full overflow-hidden"
         data-name="Rectangle 13"
         data-node-id="103:300"
       >
@@ -135,44 +116,28 @@ export default function TeamPage() {
         />
 
         <div className="absolute inset-0 text-white">
-          <div className="mx-auto flex h-full w-full max-w-[1050px] flex-col justify-center text-left">
+          <div className="mx-auto flex h-full w-[min(100%-24px,1050px)] flex-col justify-center px-4 text-left sm:px-6 lg:w-[54.6875vw] lg:max-w-none lg:px-0">
             <p
-              className="m-0 whitespace-nowrap"
-              style={{
-                fontFamily: "PingFang SC",
-                fontSize: "64px",
-                fontWeight: 600,
-                lineHeight: "normal",
-                fontStyle: "normal",
-              }}
+              className="m-0 font-['PingFang_SC'] text-[40px] font-semibold leading-none sm:text-[48px] lg:text-[3.3333vw]"
               data-node-id="151:100"
             >
               OUR TEAM
             </p>
             <p
-              className="m-0 -mt-1 whitespace-nowrap"
-              style={{
-                fontFamily: "PingFang SC",
-                fontSize: "36px",
-                fontWeight: 600,
-                lineHeight: "normal",
-                fontStyle: "normal",
-              }}
+              className="m-0 -mt-1 font-['PingFang_SC'] text-[24px] font-semibold leading-none sm:text-[30px] lg:text-[1.875vw]"
               data-node-id="151:99"
             >
-              我们的团队
+              创始团队
             </p>
           </div>
         </div>
 
       </section>
 
-      <main className="mx-auto w-full max-w-[1248px] px-6 pb-20 pt-[78px] sm:px-8">
-        <h1 className="font-medium leading-tight text-[#f96d01]" style={{ fontSize: "32px" }}>
-          我们的团队
-        </h1>
+      <main className="mx-auto w-[min(100%-24px,1248px)] px-6 pb-20 pt-[78px] sm:px-8 lg:w-[65vw] lg:max-w-none lg:pt-[4.0625vw]">
+        <h1 className="text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]">我们的团队</h1>
 
-        <div className="mt-[37px] flex flex-col gap-0">
+        <div className="mt-[37px] flex flex-col gap-0 lg:mt-[1.9271vw]">
           {members.map((m, index) => (
             <article
               key={m.name}
@@ -181,7 +146,7 @@ export default function TeamPage() {
               }`}
             >
               <div
-                className="relative mx-auto h-[313px] w-full max-w-[259px] shrink-0 shadow-none transition-shadow duration-200 group-hover:shadow-[-6px_10px_22px_rgba(0,0,0,0.18),2px_4px_10px_rgba(0,0,0,0.08)] lg:mx-0 lg:w-[259px]"
+                className="relative mx-auto h-[313px] w-full max-w-[259px] shrink-0 shadow-none transition-shadow duration-200 group-hover:shadow-[-6px_10px_22px_rgba(0,0,0,0.18),2px_4px_10px_rgba(0,0,0,0.08)] lg:mx-0 lg:h-[16.3021vw] lg:w-[13.4896vw]"
               >
                 <img
                   src={m.avatar}
@@ -192,9 +157,9 @@ export default function TeamPage() {
                 />
               </div>
 
-              <TeamMemberTextPanel edges={index === 0 ? "top-bottom-right" : "none"}>
-                <div className="flex w-full flex-col gap-[30px] sm:flex-row sm:items-center sm:gap-[30px]">
-                  <div className="w-max max-w-[180px] shrink-0">
+              <TeamMemberTextPanel edges={index % 2 === 0 ? "top-bottom-right" : "top-bottom-left"}>
+                <div className="flex w-full flex-col gap-[30px] sm:flex-row sm:items-center sm:gap-[30px] lg:gap-[1.5625vw]">
+                  <div className="w-max max-w-[180px] shrink-0 lg:max-w-[9.375vw]">
                     <MemberHeading name={m.name} title={m.title} />
                   </div>
                   <div className="min-w-0 flex-1">

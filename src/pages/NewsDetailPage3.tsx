@@ -20,10 +20,10 @@ export default function NewsDetailPage3() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:pb-24">
-        <h1 className="text-[32px] font-semibold leading-[50px] text-black">8月27日：《关于推进“人工智能 +”能源高质量发展的实施意见》</h1>
+      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:w-[58.6979vw] lg:max-w-none lg:pb-24">
+        <h1 className="text-[32px] font-semibold leading-[50px] text-black lg:text-[1.6667vw] lg:leading-[2.6042vw]">8月27日：《关于推进“人工智能 +”能源高质量发展的实施意见》</h1>
         <div className="mt-4 h-[2px] w-full bg-[#f96d01]" />
-        <div className="mt-6 h-[259px] w-full overflow-hidden">
+        <div className="mt-6 h-[259px] w-full overflow-hidden lg:h-[13.4896vw]">
           <NewsDetailContentImage
             avif={mainAvif}
             webp={mainWebp}
@@ -33,19 +33,19 @@ export default function NewsDetailPage3() {
             imgClassName="h-full w-full object-cover"
           />
         </div>
-        <section className="mt-8 space-y-4">
+        <section className="mt-8 space-y-4 lg:mt-[1.6667vw] lg:space-y-[0.8333vw]">
           {items.map((item) => (
-            <div key={item[0]} className="grid grid-cols-[57px_1fr] items-start gap-3">
-              <div className="flex h-[57px] w-[57px] items-center justify-center bg-[#f96d01] text-[28px] font-semibold leading-[30px] text-white">{item[0]}</div>
-              <div className="pt-1">
-                <p className="m-0 text-[20px] font-semibold leading-[30px] text-black">{item[1]}</p>
-                <p className="m-0 text-[20px] leading-[30px] text-black">{item[2]}</p>
+            <div key={item[0]} className="grid grid-cols-[57px_1fr] items-start gap-3 lg:grid-cols-[2.9688vw_1fr] lg:gap-[0.625vw]">
+              <div className="flex h-[57px] w-[57px] items-center justify-center bg-[#f96d01] text-[28px] font-semibold leading-[30px] text-white lg:h-[2.9688vw] lg:w-[2.9688vw] lg:text-[1.4583vw] lg:leading-[1.5625vw]">{item[0]}</div>
+              <div className="pt-1 lg:pt-[0.2083vw]">
+                <p className="m-0 text-[20px] font-semibold leading-[30px] text-black lg:text-[1.0417vw] lg:leading-[1.5625vw]">{item[1]}</p>
+                <p className="m-0 text-[20px] leading-[30px] text-black lg:text-[1.0417vw] lg:leading-[1.5625vw]">{item[2]}</p>
               </div>
             </div>
           ))}
         </section>
-        <div className="mt-12 flex justify-end">
-          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01]">返回全部新闻</Link>
+        <div className="mt-12 flex justify-end lg:mt-[2.5vw]">
+          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01] lg:text-[1.0417vw]">返回全部新闻</Link>
         </div>
       </main>
       <Footer />

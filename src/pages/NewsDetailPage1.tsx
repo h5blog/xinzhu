@@ -33,10 +33,10 @@ export default function NewsDetailPage1() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:pb-24">
-        <h1 className="text-[32px] font-medium leading-[30px] text-black">全球各国核聚变战略部署</h1>
+      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24">
+        <h1 className="text-[32px] font-medium leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.5625vw]">全球各国核聚变战略部署</h1>
         <div className="mt-5 h-[2px] w-full bg-[#f96d01]" />
-        <div className="mx-auto mt-[46px] h-[259px] w-full max-w-[1103px] overflow-hidden">
+        <div className="mx-auto mt-[46px] h-[259px] w-full max-w-[1103px] overflow-hidden lg:mt-[2.3958vw] lg:h-[13.4896vw] lg:max-w-[57.4479vw]">
           <NewsDetailContentImage
             avif={mainAvif}
             webp={mainWebp}
@@ -47,26 +47,26 @@ export default function NewsDetailPage1() {
           />
         </div>
 
-        <section className="mx-auto mt-[56px] w-full max-w-[1103px]">
+        <section className="mx-auto mt-[56px] w-full max-w-[1103px] lg:mt-[2.9167vw] lg:max-w-[57.4479vw]">
           <div className="relative">
             <div className="absolute left-[170px] -top-[12px] h-[calc(100%-36px)] w-px border-l border-dashed border-[#f09652]" aria-hidden />
             <div className="space-y-0">
               {rows.map((row) => (
-                <div key={row.year} className="grid min-h-[101px] grid-cols-[130px_40px_1fr] items-start gap-x-5">
-                  <p className="m-0 h-[30px] whitespace-nowrap text-[24px] font-semibold leading-[30px] text-[#f96d01]">{row.year}</p>
-                  <span className="relative mt-[4px] flex h-[20px] w-[40px] items-center justify-center">
-                    <span className="absolute left-1/2 top-1/2 h-[20px] w-[20px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f96d01]/25" />
-                    <span className="absolute left-1/2 top-1/2 block h-[12px] w-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f96d01]" />
+                <div key={row.year} className="grid min-h-[101px] grid-cols-[130px_40px_1fr] items-start gap-x-5 lg:min-h-[5.2604vw] lg:grid-cols-[6.7708vw_2.0833vw_1fr] lg:gap-x-[1.0417vw]">
+                  <p className="m-0 h-[30px] whitespace-nowrap text-[24px] font-semibold leading-[30px] text-[#f96d01] lg:h-[1.5625vw] lg:text-[1.25vw] lg:leading-[1.5625vw]">{row.year}</p>
+                  <span className="relative mt-[4px] flex h-[20px] w-[40px] items-center justify-center lg:mt-[0.2083vw] lg:h-[1.0417vw] lg:w-[2.0833vw]">
+                    <span className="absolute left-1/2 top-1/2 h-[20px] w-[20px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f96d01]/25 lg:h-[1.0417vw] lg:w-[1.0417vw]" />
+                    <span className="absolute left-1/2 top-1/2 block h-[12px] w-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f96d01] lg:h-[0.625vw] lg:w-[0.625vw]" />
                   </span>
-                  <p className="m-0 text-[20px] leading-[30px] text-black">{row.text}</p>
+                  <p className="m-0 text-[20px] leading-[30px] text-black lg:text-[1.0417vw] lg:leading-[1.5625vw]">{row.text}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
-        <p className="mt-[102px] text-center text-[20px] text-black">数据来源：各国能源部门网站、机构研报</p>
-        <div className="mt-[38px] flex justify-end">
-          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01]">返回全部新闻</Link>
+        <p className="mt-[102px] text-center text-[20px] text-black lg:mt-[5.3125vw] lg:text-[1.0417vw]">数据来源：各国能源部门网站、机构研报</p>
+        <div className="mt-[38px] flex justify-end lg:mt-[1.9792vw]">
+          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01] lg:text-[1.0417vw]">返回全部新闻</Link>
         </div>
       </main>
       <Footer />

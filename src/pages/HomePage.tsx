@@ -193,85 +193,25 @@ export default function HomePage() {
       <main>
       <section>
       <div
-        style={{
-          width: "100%",
-          height: "461px",
-          background: "linear-gradient(333deg, #F15A24 0%, #F7931E 100%)",
-          position: "relative",
-          overflow: "hidden",
-        }}
+        className="relative h-[max(296px,24.01vw)] w-full overflow-hidden"
+        style={{ background: "linear-gradient(333deg, #F15A24 0%, #F7931E 100%)" }}
       >
-        <picture>
+        <picture className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <source srcSet={bannerAvif} type="image/avif" />
           <source srcSet={bannerWebp} type="image/webp" />
           <img
             src={bannerJpg}
             alt=""
-            style={{ height: "461px", display: "block", margin: "0 auto" }}
+            width={1213}
+            height={461}
+            className="block h-full w-auto max-w-full"
             loading="eager"
             fetchPriority="high"
             decoding="async"
           />
         </picture>
-        <span
-          style={{
-            position: "absolute",
-            left: "23%",
-            top: "50%",
-            transform: "translateY(-50%)",
-            color: "#ffffff",
-            fontSize: "180px",
-            lineHeight: 1,
-            fontWeight: 700,
-            letterSpacing: "6px",
-            userSelect: "none",
-          }}
-        >
-          AI
-        </span>
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translateY(-50%)",
-            color: "#ffffff",
-            textAlign: "left",
-            userSelect: "none",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "50px",
-              lineHeight: 1.1,
-              fontWeight: 450,
-              marginTop: "10px",
-              marginLeft: "50px",
-              whiteSpace: "nowrap",
-            }}
-          >
-            <img src={homeBannerLogo} alt="" width={220} height={53} className="block" decoding="async" />
-
-          </div>
-          <div
-            style={{
-              marginTop: "10px",
-              whiteSpace: "nowrap"
-            }}
-          >
-            <span
-            style={{
-              fontSize: "30px",
-              marginBottom: "10px",
-              marginLeft: "50px",
-            }}
-          >
-            —
-          </span> <span style={{fontSize: "30px",}}>用AI打造终极能源的智慧大脑</span>
-          </div>
-        </div>
       </div>
-        <div className="relative overflow-hidden" style={{ paddingTop: 37, backgroundColor: "#F6F6F6" }}>
+        <div className="relative overflow-hidden bg-[#F6F6F6] pt-[37px] lg:pt-[1.9271vw]">
             <picture className="pointer-events-none absolute inset-0 z-0 block h-full w-full">
               <source srcSet={techBgWebp} type="image/webp" />
               <img
@@ -285,10 +225,10 @@ export default function HomePage() {
                 decoding="async"
               />
             </picture>
-            <div className="relative z-10 text-center justify-start text-orange-500 text-4xl font-medium font-['PingFang_SC']">AI解决方案核心技术驱动力</div>
-            <div
-              className="relative mx-auto box-border h-[303px] w-full max-w-[1135px] overflow-hidden"
-            >
+            <h2 className="relative z-10 text-center font-['PingFang_SC'] text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]">
+              AI解决方案核心技术驱动力
+            </h2>
+            <div className="relative mx-auto box-border h-[303px] w-[min(100%-24px,1135px)] overflow-hidden lg:h-[15.7813vw] lg:w-[59.1146vw] lg:max-w-none">
               <picture className="pointer-events-none absolute left-0 top-1/2 z-0 block -translate-y-1/2">
                 <source srcSet={assets.heroIconAvif} type="image/avif" />
                 <source srcSet={assets.heroIconWebp} type="image/webp" />
@@ -297,23 +237,22 @@ export default function HomePage() {
                   alt=""
                   width={488}
                   height={303}
-                  className="block h-auto w-[488px] max-w-[min(488px,50vw)] object-contain object-left"
+                  className="block h-auto w-[488px] max-w-[min(488px,50vw)] object-contain object-left lg:w-[25.4167vw] lg:max-w-none"
                   loading="eager"
                   fetchPriority="auto"
                   decoding="async"
                 />
               </picture>
-              <div className="relative z-10 box-border min-h-0 pl-[546px] pt-[67px] pr-0">
-                <div className="h-64 w-[589px] max-w-full justify-start text-left text-2xl font-normal font-['PingFang_SC'] leading-10 text-black">
+              <div className="relative z-10 box-border min-h-0 pl-[clamp(300px,48vw,546px)] pt-[67px] pr-0 lg:pl-[28.4375vw] lg:pt-[3.4896vw]">
+                <div className="h-64 w-[589px] max-w-full justify-start text-left text-[16px] leading-[1.7] tracking-[0.03em] font-['PingFang_SC'] text-black sm:text-[18px] md:text-[19px] lg:h-[13.3333vw] lg:w-[30.6771vw] lg:max-w-none lg:text-[1.0417vw]">
                   强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 + 数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力，最终形成聚变电站的智能操作系统——终极能源的智慧大脑。
                 </div>
               </div>
             </div>
-              <div style={{width: 1135,margin:"0 auto 110px"}} className="relative z-10 text-center">
+              <div className="relative z-10 mx-auto mb-[110px] w-[min(100%-24px,1135px)] text-center lg:mb-[5.7292vw] lg:w-[59.1146vw] lg:max-w-none">
                 <Link
                   to="/tech"
-                  style={{ width: 122, lineHeight: "40px", marginLeft: 545, background: "#F96D01", borderRadius: 19.5 }}
-                  className="inline-block w-24 cursor-pointer justify-start text-center text-white text-xl font-normal font-['PingFang_SC'] leading-7 tracking-[4.60px]"
+                  className="inline-flex min-w-[max(122px,6.35vw)] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[19.5px] bg-[#F96D01] px-5 py-2.5 text-center text-[17px] font-medium font-['PingFang_SC'] text-white tracking-[0.16em] sm:text-[18px] lg:text-[1.0417vw]"
                 >
                   查看详情
                 </Link>
@@ -327,7 +266,7 @@ export default function HomePage() {
           <Partners />
         </Suspense>
         {/* 百度地图容器需明确高度，否则地图无法渲染 */}
-        <div id="allmap" ref={mapRef} className="h-[371px] w-full" />
+        <div id="allmap" ref={mapRef} className="h-[clamp(240px,19.32vw,420px)] w-full" />
       </main>
       <Footer />
     </div>

@@ -1,15 +1,10 @@
 import { assets } from "./assets";
 
-/** Figma `Rectangle 130` — node id 415:44（metadata：523×303） */
-const CARD_W = 523;
-const CARD_H = 303;
+/** Figma `Rectangle 130` — node id 415:44（metadata：523×303）；卡片比例见 aspect-[523/303] */
 
 /** Dev Mode 渐变：`linear-gradient(120.652deg, rgb(255,151,71) 0.83%, rgb(255,187,50) 99.17%)` */
 const QINGHUA_CARD_SURFACE_BG =
   "linear-gradient(120.652deg, rgb(255, 151, 71) 0.83427%, rgb(255, 187, 50) 99.166%)";
-
-const contentRow =
-  "relative z-10 flex h-full min-h-0 flex-col gap-3 p-5 sm:flex-row sm:items-center sm:gap-4 sm:px-6 sm:py-5";
 
 const qinghuaCards = [
   {
@@ -53,17 +48,12 @@ const qinghuaCards = [
 
 export default function QinghuaCollaboration() {
   return (
-    <div className="mx-auto w-full max-w-[1068px]">
-      <div className="grid grid-cols-1 gap-x-9 gap-y-7 justify-items-center md:grid-cols-2">
+    <div className="mx-auto w-full max-w-[1068px] xl:max-w-none">
+      <div className="grid grid-cols-1 justify-items-center gap-8 md:grid-cols-2 md:justify-items-stretch md:gap-8 xl:gap-[max(1.25rem,1.88vw)]">
         {qinghuaCards.map((card) => (
           <article
             key={card.id}
-            className="relative box-border overflow-hidden rounded-none border border-white/20 shadow-none"
-            style={{
-              width: CARD_W,
-              maxWidth: "100%",
-              height: CARD_H,
-            }}
+            className="relative box-border aspect-[523/303] w-full max-w-[523px] overflow-hidden rounded-none border border-white/20 shadow-none xl:max-w-none xl:w-full"
           >
             <div
               style={{
@@ -79,19 +69,19 @@ export default function QinghuaCollaboration() {
                 width: "100%",
                 height: "100%",
                 backgroundImage: `url(${card.image})`,
-                backgroundSize: `${CARD_W}px ${CARD_H}px`,
+                backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
               aria-hidden
               className="absolute inset-0 rounded-[inherit]"
             />
-            <div className="relative z-10 flex h-full min-h-0 flex-col justify-between p-7 text-left sm:flex-row sm:items-stretch sm:gap-3 sm:px-10 sm:py-9">
+            <div className="relative z-10 flex h-full min-h-0 flex-col justify-between p-7 text-left sm:flex-row sm:items-stretch sm:gap-3 sm:px-10 sm:py-9 xl:p-[1.46vw] xl:px-[2.08vw] xl:py-[1.88vw]">
               <div className="min-h-0 min-w-0 flex-1 pr-1 sm:max-w-[53%]">
-                <h3 className="font-['PingFang_SC',sans-serif] text-[20px] font-semibold leading-[1.15] text-[#7a3f0d] sm:text-[22px] md:text-[26px]">
+                <h3 className="font-['PingFang_SC',sans-serif] text-[20px] font-semibold leading-[1.15] text-[#7a3f0d] sm:text-[22px] md:text-[26px] xl:text-[1.35vw]">
                   {card.title}
                 </h3>
-                <p className="mt-8 max-w-[230px] font-['PingFang_SC',sans-serif] text-[14px] leading-[1.6] text-[#7e4d16] sm:text-[15px] md:text-[17px]">
+                <p className="mt-8 max-w-[230px] font-['PingFang_SC',sans-serif] text-[14px] leading-[1.6] text-[#7e4d16] sm:text-[15px] md:text-[17px] xl:mt-[1.67vw] xl:max-w-[11.98vw] xl:text-[0.89vw]">
                   {card.body}
                 </p>
               </div>

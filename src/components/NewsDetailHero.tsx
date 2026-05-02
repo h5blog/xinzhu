@@ -5,7 +5,7 @@ import heroBgJpg from "../images/news-detail-hero-bg.opt.jpg";
 /** 新闻详情页顶部横幅（与 Figma 头图 + 103:391 渐变一致） */
 export default function NewsDetailHero() {
   return (
-    <section className="relative h-[217px] w-full overflow-hidden">
+    <section className="relative h-[217px] w-full overflow-hidden lg:h-[11.3021vw]">
       <picture className="absolute inset-0 block h-full w-full">
         <source srcSet={heroBgAvif} type="image/avif" />
         <source srcSet={heroBgWebp} type="image/webp" />

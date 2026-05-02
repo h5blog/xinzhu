@@ -11,17 +11,17 @@ const teamMembers = [
 export default function Team() {
   return (
     <section
-      className="relative py-20 text-white"
+      className="relative py-20 text-white lg:py-[4.17vw]"
       style={{
         backgroundImage: `linear-gradient(rgba(20,20,20,0.45), rgba(20,20,20,0.45)), url(${assets.teamBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center"
       }}
     >
-      <div className="mx-auto max-w-7xl px-6">
-        <h2 className="text-center text-3xl font-semibold text-[#f96d01] md:text-4xl">创始团队</h2>
+      <div className="mx-auto w-[min(100%-24px,1213px)] px-6 lg:w-[63.18vw] lg:max-w-none">
+        <h2 className="type-title-xl text-center text-[#f96d01]">创始团队</h2>
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:mt-[3.65vw] lg:grid-cols-4 lg:gap-[1.67vw]">
           {teamMembers.map((member) => (
             <div key={member.name} className="text-center">
               <img
@@ -30,21 +30,22 @@ export default function Team() {
                 style={{
                   borderRadius: "100%"
                 }}
-                className="mx-auto h-44 w-44"
+                className="mx-auto h-44 w-44 lg:h-[9.17vw] lg:w-[9.17vw]"
                 loading="lazy"
                 decoding="async"
               />
-              <div className="mt-6 text-2xl font-medium">{member.name}</div>
-              <div className="mt-2 text-lg text-white/85">{member.title}</div>
+              <div className="type-label-md mt-6 font-semibold text-white lg:mt-[1.25vw]">
+                {member.name}
+              </div>
+              <div className="type-body-md mt-2 text-white/85 lg:mt-[0.42vw]">{member.title}</div>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 flex justify-center">
+        <div className="mt-12 flex justify-center lg:mt-[2.5vw]">
           <Link
             to="/team"
-            style={{ width: 122, lineHeight: "40px", background: "#F96D01", borderRadius: 19.5 }}
-            className="inline-block cursor-pointer text-center text-white text-xl font-normal font-['PingFang_SC'] leading-7 tracking-[4.60px]"
+            className="type-label-md inline-flex min-w-[max(122px,6.35vw)] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[19.5px] bg-[#F96D01] px-5 py-2.5 text-center font-['PingFang_SC'] text-white tracking-[4.60px]"
           >
             查看详情
           </Link>

@@ -23,7 +23,7 @@ import n5Jpg from "../images/news-thumb-5.opt.jpg";
 
 type TabKey = "industry" | "company";
 
-/** 列表卡片左侧图区域 max 358px 宽；与 .opt 实际像素一致，便于布局与解码 */
+/** 列表卡片左侧图：小屏 max 358；lg 按 1920 稿约 440px（22.9167vw）随屏放大，716 宽 .opt 仍可覆盖 2x */
 const NEWS_THUMBS = [
   { avif: n1Avif, webp: n1Webp, jpg: n1Jpg, width: 716, height: 344 },
   { avif: n2Avif, webp: n2Webp, jpg: n2Jpg, width: 361, height: 172 },
@@ -115,8 +115,8 @@ export default function NewsPage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="新闻中心" data-node-id="83:169">
       <Navbar />
 
-      {/* 83:171 头图 + 151:92 / 151:93 / 151:91 + 渐变 95:14 */}
-      <section className="relative h-[217px] w-full overflow-hidden" data-node-id="83:171">
+      {/* 83:171 头图：稿 1920×217，大屏用 11.3021vw 随宽加高；左侧渐变 95:14 提升白字对比 */}
+      <section className="relative h-[max(217px,11.3021vw)] w-full overflow-hidden" data-node-id="83:171">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <picture className="absolute inset-0 block h-full w-full">
             <source srcSet={newsBgAvif} type="image/avif" />
@@ -126,57 +126,69 @@ export default function NewsPage() {
               alt=""
               width={1920}
               height={217}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+              sizes="100vw"
               loading="eager"
               fetchPriority="high"
               decoding="async"
             />
           </picture>
         </div>
+        <div
+          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-black/50 via-black/18 to-transparent sm:from-black/45 sm:via-black/12"
+          data-node-id="95:14"
+          aria-hidden
+        />
 
-        <div className="relative z-10 h-[217px] w-full">
-          <div className="mx-auto flex h-full w-full max-w-[1052px] items-center text-left">
-            <div className="flex min-w-0 flex-col justify-center">
-            <p
-              className="font-semibold leading-[1.05] tracking-tight text-white text-[clamp(40px,7vw,64px)]"
-              data-node-id="151:92"
-            >
-              NEWS
-            </p>
-            <div
-              className="mt-3 h-px w-[286px] max-w-full shrink-0 bg-white"
-              data-node-id="151:93"
-              aria-hidden
-            />
-            <p
-              className="mt-3 font-semibold leading-normal text-white text-[clamp(24px,3vw,36px)]"
-              data-node-id="151:91"
-            >
-              新闻中心
-            </p>
+        <div className="relative z-10 flex h-full w-full">
+          <div className="mx-auto flex h-full w-full max-w-[1052px] items-center px-4 py-8 text-left sm:px-6 sm:py-10 lg:max-w-[54.7917vw] lg:px-0 lg:py-[2.0833vw]">
+            <div className="flex min-w-0 flex-col justify-center gap-3 sm:gap-[max(12px,0.625vw)] lg:gap-[0.8333vw]">
+              <p
+                className="m-0 font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[40px] font-semibold leading-[1.05] tracking-[0.04em] text-white sm:text-[48px] lg:text-[3.3333vw]"
+                data-node-id="151:92"
+              >
+                NEWS
+              </p>
+              <div
+                className="h-px w-[286px] max-w-full shrink-0 bg-white lg:w-[14.8958vw]"
+                data-node-id="151:93"
+                aria-hidden
+              />
+              <p
+                className="m-0 font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[24px] font-semibold leading-[1.2] tracking-[0.06em] text-white sm:text-[30px] lg:text-[1.875vw]"
+                data-node-id="151:91"
+              >
+                新闻中心
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* 83:242 页眉标题 */}
-      <div className="mx-auto w-full max-w-[1920px] px-4 pt-9 text-center">
-        <h1 className="text-[32px] font-semibold leading-tight text-[#f96d01]" data-node-id="83:242">
+      <div className="mx-auto w-full max-w-[1920px] px-4 pt-9 text-center lg:pt-[1.875vw]">
+        <h1 className="text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]" data-node-id="83:242">
           新闻中心
         </h1>
       </div>
 
-      {/* 83:243–266 Tab */}
-      <div className="mx-auto mt-10 flex max-w-[1183px] justify-center px-4" role="tablist" aria-label="资讯分类">
-        <div className="flex w-full max-w-[368px]">
+      {/* 83:243–266 Tab：底边统一 4px 避免切换跳动；lg 宽度 368/1920 */}
+      <div
+        className="mx-auto mt-10 flex w-[min(100%-2rem,1183px)] justify-center overflow-x-auto px-2 lg:mt-[2.0833vw] lg:w-[61.6146vw] lg:px-0"
+        role="tablist"
+        aria-label="资讯分类"
+      >
+        <div className="grid w-full max-w-[368px] grid-cols-2 gap-0 sm:max-w-[min(100%,400px)] lg:max-w-none lg:w-[19.1667vw]">
           <button
+            id="tab-industry"
             type="button"
             role="tab"
             aria-selected={tab === "industry"}
-            className={`min-w-0 flex-1 sm:w-[184px] sm:flex-none pb-3 text-center text-[18px] font-medium transition-colors sm:text-[20px] ${
+            aria-controls="news-tab-panel"
+            className={`min-h-[48px] whitespace-nowrap border-b-[4px] px-2 pb-3 pt-2 text-center text-[17px] font-semibold outline-none transition-[color,border-color,background-color] duration-200 sm:min-h-[52px] sm:px-4 sm:text-[18px] lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] lg:text-[1.0417vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 ${
               tab === "industry"
-                ? "border-b-[4px] border-[#f96d01] text-[#f96d01]"
-                : "border-b border-[#d9d9d9] text-black"
+                ? "border-[#f96d01] text-[#f96d01]"
+                : "border-[#e8e8e8] text-[#363636] hover:border-[#f96d01]/40 hover:bg-black/[0.02] hover:text-[#f96d01]"
             }`}
             onClick={() => setTab("industry")}
             data-node-id="83:243"
@@ -184,13 +196,15 @@ export default function NewsPage() {
             行业资讯
           </button>
           <button
+            id="tab-company"
             type="button"
             role="tab"
             aria-selected={tab === "company"}
-            className={`min-w-0 flex-1 sm:w-[184px] sm:flex-none pb-3 text-center text-[18px] font-medium transition-colors sm:text-[20px] ${
+            aria-controls="news-tab-panel"
+            className={`min-h-[48px] whitespace-nowrap border-b-[4px] px-2 pb-3 pt-2 text-center text-[17px] font-semibold outline-none transition-[color,border-color,background-color] duration-200 sm:min-h-[52px] sm:px-4 sm:text-[18px] lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] lg:text-[1.0417vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 ${
               tab === "company"
-                ? "border-b-[4px] border-[#f96d01] text-[#f96d01]"
-                : "border-b border-[#d9d9d9] text-black"
+                ? "border-[#f96d01] text-[#f96d01]"
+                : "border-[#e8e8e8] text-[#363636] hover:border-[#f96d01]/40 hover:bg-black/[0.02] hover:text-[#f96d01]"
             }`}
             onClick={() => setTab("company")}
             data-node-id="83:244"
@@ -202,7 +216,10 @@ export default function NewsPage() {
 
       {/* 列表：默认白底；hover 时 Figma 108:29331 — bg #f5f5f5 + shadow */}
       <main
-        className="mx-auto w-full max-w-[1183px] px-4 pb-16 pt-10"
+        id="news-tab-panel"
+        role="tabpanel"
+        aria-labelledby={tab === "industry" ? "tab-industry" : "tab-company"}
+        className="mx-auto w-[min(100%-2rem,1183px)] px-0 pb-16 pt-10 lg:w-[61.6146vw] lg:max-w-none lg:pt-[2.0833vw]"
         data-node-id={tab === "company" ? "684:40" : undefined}
       >
         <div className="flex flex-col">
@@ -213,7 +230,7 @@ export default function NewsPage() {
                 className="group block"
               >
                 <article className="flex flex-col gap-6 rounded-sm bg-white p-5 shadow-none transition-[background-color,box-shadow] duration-200 sm:p-6 lg:flex-row lg:items-center lg:gap-8 hover:bg-[#f5f5f5] hover:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)] focus-within:bg-[#f5f5f5] focus-within:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)]">
-                  <div className="relative h-[172px] w-full max-w-[358px] shrink-0 overflow-hidden lg:w-[358px]">
+                  <div className="relative aspect-[358/172] w-full max-w-[358px] shrink-0 overflow-hidden sm:max-w-[min(100%,420px)] lg:max-w-none lg:w-[22.9167vw]">
                     <picture className="absolute inset-0 block h-full w-full">
                       <source srcSet={item.thumb.avif} type="image/avif" />
                       <source srcSet={item.thumb.webp} type="image/webp" />
@@ -223,7 +240,7 @@ export default function NewsPage() {
                         width={item.thumb.width}
                         height={item.thumb.height}
                         className="absolute inset-0 h-full w-full object-cover"
-                        sizes="(max-width: 1024px) 100vw, 358px"
+                        sizes="(max-width: 1023px) min(100vw - 2rem, 420px), 22.9167vw"
                         loading={index === 0 ? "eager" : "lazy"}
                         fetchPriority={index === 0 ? "high" : "low"}
                         decoding="async"
@@ -242,13 +259,16 @@ export default function NewsPage() {
 
                   <div className="flex min-w-0 flex-1 flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
                     <div className="min-w-0 flex-1">
-                      <h2 className="text-[20px] font-semibold leading-snug text-[#121212] transition-colors duration-200 group-hover:text-[#f96d01] group-focus-within:text-[#f96d01]">
+                      <h2 className="text-[18px] font-semibold leading-snug text-[#121212] transition-colors duration-200 group-hover:text-[#f96d01] group-focus-within:text-[#f96d01] sm:text-[19px] lg:text-[1.0417vw]">
                         {item.title}
                       </h2>
-                      <p className="mt-2 text-[20px] font-normal text-[#888]" data-date>
+                      <p
+                        className="mt-5 text-[15px] font-normal leading-normal text-[#888] sm:mt-6 sm:text-[16px] lg:mt-[1.25vw] lg:text-[0.8333vw]"
+                        data-date
+                      >
                         {item.date}
                       </p>
-                      <p className="mt-2 whitespace-pre-wrap text-[20px] font-normal leading-normal text-[#666]">
+                      <p className="mt-7 whitespace-pre-wrap text-[15px] font-normal leading-normal text-[#666] sm:mt-8 sm:text-[16px] lg:mt-[1.875vw] lg:text-[0.9375vw]">
                         {item.excerpt}
                       </p>
                     </div>

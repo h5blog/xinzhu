@@ -37,17 +37,17 @@ export default function NewsDetailPage4() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:pb-24">
-        <h1 className="text-[32px] font-semibold leading-[30px] text-black">AI 赋能聚变已成全球共识</h1>
+      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:w-[58.6979vw] lg:max-w-none lg:pb-24">
+        <h1 className="text-[32px] font-semibold leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.5625vw]">AI 赋能聚变已成全球共识</h1>
         <div className="mt-4 h-[2px] w-full bg-[#f96d01]" />
         <section className="mt-8">
           {companies.map((item, idx) => (
-            <div key={idx} className="grid grid-cols-[201px_1fr] items-center py-2">
+            <div key={idx} className="grid grid-cols-[201px_1fr] items-center py-2 lg:grid-cols-[10.4688vw_1fr] lg:py-[0.4167vw]">
               <div
                 className={`border border-[#f96d01] ${
                   idx === 5 ? "bg-black" : "bg-white"
                 } ${
-                  idx === 0 || idx === 2 || idx === 3 || idx === 5 ? "h-[73px]" : "h-[72px]"
+                  idx === 0 || idx === 2 || idx === 3 || idx === 5 ? "h-[73px] lg:h-[3.8021vw]" : "h-[72px] lg:h-[3.75vw]"
                 }`}
               >
                 <img
@@ -76,18 +76,18 @@ export default function NewsDetailPage4() {
                 />
               </div>
               <div
-                className={`flex h-[72px] items-center px-5 ${
+                className={`flex h-[72px] items-center px-5 lg:h-[3.75vw] lg:px-[1.0417vw] ${
                   idx === 5 ? "bg-gradient-to-r from-[#eeeeee] to-[#ffffff]" : "bg-gradient-to-r from-[#eee] to-white"
                 }`}
                 data-node-id={idx === 5 ? "113:179" : undefined}
               >
-                <p className="m-0 text-[20px] leading-[31px] text-black">{item[1]}</p>
+                <p className="m-0 text-[20px] leading-[31px] text-black lg:text-[1.0417vw] lg:leading-[1.6146vw]">{item[1]}</p>
               </div>
             </div>
           ))}
         </section>
-        <div className="mx-auto mt-4 h-px w-full max-w-[1064px] bg-[#dfdfdf]" data-node-id="113:164" aria-hidden />
-        <div className="mt-8 h-[259px] w-full overflow-hidden">
+        <div className="mx-auto mt-4 h-px w-full max-w-[1064px] bg-[#dfdfdf] lg:max-w-[55.4167vw]" data-node-id="113:164" aria-hidden />
+        <div className="mt-8 h-[259px] w-full overflow-hidden lg:mt-[1.6667vw] lg:h-[13.4896vw]">
           <NewsDetailContentImage
             avif={globeAvif}
             webp={globeWebp}
@@ -97,37 +97,37 @@ export default function NewsDetailPage4() {
             imgClassName="h-full w-full object-cover"
           />
         </div>
-        <section className="mt-10 w-full" aria-label="文献时间线">
-          <div className="relative mx-auto w-full max-w-[1103px]">
+        <section className="mt-10 w-full lg:mt-[2.0833vw]" aria-label="文献时间线">
+          <div className="relative mx-auto w-full max-w-[1103px] lg:max-w-[57.4479vw]">
             {/* 与 Figma 一致：左列右对齐、中列节点、右列正文；竖虚线过中列中心 */}
             <div
-              className="pointer-events-none absolute left-[calc(400px+24px+24px)] top-3 z-0 hidden h-[calc(100%-24px)] -translate-x-1/2 border-l border-dashed border-[#f96d01]/55 sm:block"
+              className="pointer-events-none absolute left-[calc(400px+24px+24px)] top-3 z-0 hidden h-[calc(100%-24px)] -translate-x-1/2 border-l border-dashed border-[#f96d01]/55 lg:block"
               aria-hidden
             />
-            <div className="relative z-[1] flex flex-col gap-10">
+            <div className="relative z-[1] flex flex-col gap-10 lg:gap-[2.0833vw]">
               {references.map(([journal, year, body]) => (
                 <div
                   key={`${journal}-${year}`}
-                  className="grid grid-cols-1 gap-4 sm:grid-cols-[minmax(0,400px)_48px_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-0"
+                  className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,400px)_48px_minmax(0,1fr)] lg:gap-x-[1.25vw] lg:gap-y-0"
                 >
-                  <p className="m-0 whitespace-nowrap text-left text-[24px] font-semibold leading-[30px] text-[#f96d01] sm:text-right">
+                  <p className="m-0 whitespace-nowrap text-left text-[24px] font-semibold leading-[30px] text-[#f96d01] lg:text-right lg:text-[1.25vw] lg:leading-[1.5625vw]">
                     <span>{journal}</span>
                     <span className="ml-2">{year}</span>
                   </p>
-                  <div className="relative flex h-[30px] items-start justify-start sm:justify-center">
+                  <div className="relative flex h-[30px] items-start justify-start lg:justify-center">
                     <span className="relative mt-[5px] block size-[20px] shrink-0">
                       <span className="absolute inset-0 rounded-full bg-[#f96d01]/20" />
                       <span className="absolute left-1/2 top-1/2 block size-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f96d01]" />
                     </span>
                   </div>
-                  <p className="m-0 min-w-0 text-[20px] leading-[33px] text-black">{body}</p>
+                  <p className="m-0 min-w-0 text-[20px] leading-[33px] text-black lg:text-[1.0417vw] lg:leading-[1.7188vw]">{body}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
-        <div className="mt-12 flex justify-end">
-          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01]">返回全部新闻</Link>
+        <div className="mt-12 flex justify-end lg:mt-[2.5vw]">
+          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01] lg:text-[1.0417vw]">返回全部新闻</Link>
         </div>
       </main>
       <Footer />

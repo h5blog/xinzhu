@@ -7,7 +7,7 @@ export default function AboutIntroIllustration() {
       <img
         alt=""
         src={assets.aboutIcon}
-        className="block h-auto w-[167px] max-w-full"
+        className="block h-[176px] w-[167px] max-w-full object-contain lg:h-[8.9796vw] lg:w-[8.5204vw]"
         decoding="async"
       />
     </div>

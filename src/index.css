@@ -6,9 +6,37 @@ body {
   height: 100%;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC",
     "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@layer utilities {
+  .type-title-xl {
+    @apply text-3xl font-semibold leading-tight md:text-4xl lg:text-[2.08vw];
+  }
+
+  .type-body-md {
+    @apply text-[16px] font-normal leading-[1.7] sm:text-[18px] md:text-[19px] lg:text-[1.04vw];
+  }
+
+  .type-label-md {
+    @apply text-[17px] font-medium sm:text-[18px] lg:text-[1.04vw];
+  }
 }
 

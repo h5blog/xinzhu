@@ -5,6 +5,9 @@ import { assets } from "../components/assets";
 import aboutHeroAvif from "../images/about-hero-bg.opt.avif";
 import aboutHeroWebp from "../images/about-hero-bg.opt.webp";
 import aboutHeroJpg from "../images/about-hero-bg.opt.jpg";
+import gjAvif from "../images/gj.opt.avif";
+import gjWebp from "../images/gj.opt.webp";
+import gjJpg from "../images/gj.opt.jpg";
 
 const heroGradient =
   "linear-gradient(90deg, rgba(255, 111, 0, 0.68) 0%, rgba(0, 0, 0, 0.5) 28.846%, rgba(0, 0, 0, 0.5) 73.077%, rgba(255, 111, 0, 0.68) 100%)";
@@ -38,33 +41,30 @@ export default function AboutPage() {
             style={{ backgroundImage: heroGradient }}
             aria-hidden
           />
-          <div className="absolute inset-0 z-10 mx-auto flex max-w-[750px] flex-col items-start px-4 pb-24 pt-16 sm:px-6 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
+          <div className="absolute inset-0 z-10 mx-auto flex max-w-[750px] flex-col items-start px-4 pb-24 pt-20 sm:px-6 sm:pb-28 sm:pt-24 lg:max-w-[39.0625vw] lg:pb-[8.3333vw] lg:pt-[6.875vw]">
             <h1
-              className="text-left font-semibold leading-tight tracking-[0.08em] text-white"
-              style={{ fontSize: "clamp(36px, 6vw, 64px)" }}
+              className="text-left text-[36px] font-semibold leading-tight tracking-[0.08em] text-white sm:text-[48px] lg:text-[3.3333vw]"
               data-node-id="98:260"
             >
               关 于 我 们....
             </h1>
             <div
-              className="mt-10 flex w-full max-w-[461px] items-center justify-center bg-[#f96d01] px-4 py-3 sm:mt-12 sm:h-[69px] sm:py-0"
+              className="mt-10 inline-flex w-auto max-w-full items-center justify-center bg-[#f96d01] px-4 py-3 sm:mt-12 sm:px-5 sm:py-3 lg:min-w-[24.0104vw] lg:px-[1.0417vw] lg:py-[0.625vw]"
               data-node-id="98:261"
             >
               <div
-                className="flex flex-wrap items-center justify-center gap-2 sm:gap-[11px]"
+                className="flex items-center justify-center gap-2 whitespace-nowrap sm:gap-[11px]"
                 data-node-id="98:213"
               >
                 <span
-                  className="whitespace-nowrap font-medium tracking-[0.08em] text-white"
-                  style={{ fontSize: "clamp(22px, 4vw, 32px)" }}
+                  className="whitespace-nowrap text-[22px] font-medium tracking-[0.08em] text-white sm:text-[28px] lg:text-[1.6667vw]"
                   data-node-id="98:143"
                 >
                   AI赋能聚变
                 </span>
                 <span className="inline-block size-[5px] shrink-0 rounded-full bg-white" data-node-id="98:145" />
                 <span
-                  className="whitespace-nowrap font-medium tracking-[0.08em] text-white"
-                  style={{ fontSize: "clamp(22px, 4vw, 32px)" }}
+                  className="whitespace-nowrap text-[22px] font-medium tracking-[0.08em] text-white sm:text-[28px] lg:text-[1.6667vw]"
                   data-node-id="98:144"
                 >
                   聚变驱动AI
@@ -75,14 +75,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <main className="relative z-10 mx-auto -mt-[200px] w-full max-w-[915px] overflow-visible px-4 pb-16 sm:px-6 lg:pb-24">
-        <section className="relative -mt-16 overflow-visible lg:-mt-24">
+      <main className="relative z-10 mx-auto w-[min(100%-24px,915px)] overflow-visible pb-16 lg:w-[47.6563vw] lg:max-w-none lg:pb-24">
+        <section className="relative -mt-[4.2vw] overflow-visible lg:-mt-[5.6vw]">
           <div className="flex flex-col items-stretch gap-6 lg:flex-row lg:items-stretch lg:gap-9">
-            <div
-              className="relative z-20 w-[min(100%,662px)] shrink-0"
-              data-name="Rectangle 140"
-              data-node-id="218:53"
-            >
+            <div className="relative z-20 w-[min(100%,662px)] shrink-0 lg:w-[34.4792vw] lg:max-w-none" data-name="Rectangle 140" data-node-id="218:53">
               {/* about-a.png：完整展示，不裁切、不缩放超出容器 */}
               <div className="relative w-full overflow-visible rounded-[27px]">
                 <img
@@ -94,11 +90,13 @@ export default function AboutPage() {
                   aria-hidden
                 />
                 <p
-                  className="absolute inset-0 z-10 m-0 box-border overflow-y-auto pb-8 pt-[62px] pl-6 pr-[74px] font-['PingFang_SC','Microsoft_YaHei',sans-serif] font-normal not-italic leading-[0] tracking-[4.2px] text-black sm:pb-10 sm:pt-[70px] sm:pl-8 sm:pr-[82px] lg:pb-[30px] lg:pl-[51px] lg:pr-[101px] lg:pt-[94px]"
+                  className="absolute inset-0 z-10 m-0 box-border overflow-visible px-5 pb-[22px] pt-[58px] font-['PingFang_SC','Microsoft_YaHei',sans-serif] tracking-[0.06em] text-black sm:px-8 sm:pb-[26px] sm:pt-[72px] lg:pl-[3.75vw] lg:pr-[4.5833vw] lg:pb-[1.7708vw] lg:pt-[4.8958vw]"
                   data-node-id="34:92"
                 >
-                  <span className="font-semibold leading-normal text-[#f96d01] text-[20px]">新烛时代 (XinZhuAI)</span>
-                  <span className="text-[20px] leading-[30px]">
+                  <span className="mb-2 text-[17px] font-semibold text-[#f96d01] sm:text-[18px] lg:text-[1.0417vw]">
+                    新烛时代 (XinZhuAI)
+                  </span>
+                  <span className="w-full text-[16px] leading-[1.7] text-black sm:text-[18px] md:text-[19px] lg:w-[25.3125vw] lg:text-[1.0417vw]">
                     作为国内AI赋能可控核聚变的引领者，通过深度融合物理机理与人工智能技术，致力于打造服务全球聚变能源产业的通用“聚变智能体”。我们为全球聚变研究机构及商业公司提供涵盖设计、模拟到运维控制的全栈式AI解决方案，推动聚变研发从传统的“经验试错”向“智能预测与主动控制”变革，加速全人类迈向聚变能源新时代。
                   </span>
                 </p>
@@ -112,24 +110,24 @@ export default function AboutPage() {
           </div>
 
           <div
-            className="relative z-10 -mt-8 w-full max-w-[915px] min-h-[235px] overflow-visible rounded-[27px] bg-[#f96d01] lg:-mt-[160px] lg:h-[235px] lg:min-h-0"
+            className="relative z-10 -mt-8 w-full min-h-[235px] overflow-visible rounded-[27px] bg-[#f96d01] lg:-mt-[8.3333vw] lg:h-[12.2396vw] lg:min-h-0"
             data-node-id="218:54"
           />
         </section>
-        <div className="mx-[64px] mt-16 grid gap-12 sm:mt-20 lg:mt-24 lg:grid-cols-2 lg:gap-8">
+        <div className="mx-auto mt-16 w-[min(100%-24px,787px)] grid gap-12 sm:mt-20 lg:mt-24 lg:w-[40.9896vw] lg:max-w-none lg:grid-cols-2 lg:gap-8">
           <div className="flex flex-col items-center text-center lg:items-center" data-node-id="234:40">
             <img
               src={assets.aboutRouteIcon}
               alt=""
-              className="mb-4 h-[64px] w-auto object-contain sm:h-[81px] sm:w-[88px]"
+              className="mb-4 h-[72px] w-auto shrink-0 object-contain sm:h-[80px] lg:h-[4.21875vw] lg:w-auto"
               data-node-id="245:99"
               loading="lazy"
               decoding="async"
             />
-            <p className="m-0 font-semibold leading-normal text-[#f96d01] sm:text-[24px]" data-node-id="234:40">
+            <p className="m-0 text-[20px] font-semibold leading-normal text-[#f96d01] sm:text-[22px] lg:text-[1.25vw]" data-node-id="234:40">
               我们的路线
             </p>
-            <p className="mt-2 font-normal leading-normal text-[#f96d01] sm:text-[20px]">
+            <p className="mt-2 text-[16px] leading-normal text-[#f96d01] sm:text-[18px] md:text-[19px] lg:text-[1.0417vw]">
               打造聚变的 “智能操作系统”
             </p>
           </div>
@@ -137,22 +135,19 @@ export default function AboutPage() {
             <img
               src={assets.aboutPositionIcon}
               alt=""
-              className="mb-4 h-[60px] w-auto object-contain sm:h-[76px] sm:w-[78px]"
+              className="mb-4 h-[72px] w-auto shrink-0 object-contain sm:h-[80px] lg:h-[4.21875vw] lg:w-auto"
               data-node-id="245:124"
               loading="lazy"
               decoding="async"
             />
-            <p className="m-0 font-semibold leading-normal text-[#f96d01] sm:text-[24px]">新烛时代的定位</p>
-            <p className="mt-2 max-w-[256px] font-normal leading-normal text-[#f96d01] sm:text-[20px]">
+            <p className="m-0 text-[20px] font-semibold leading-normal text-[#f96d01] sm:text-[22px] lg:text-[1.25vw]">新烛时代的定位</p>
+            <p className="mx-auto mt-2 w-full max-w-[min(100%,288px)] text-[16px] leading-normal text-[#f96d01] sm:text-[18px] md:text-[19px] lg:max-w-none lg:text-[1.0417vw]">
               我们不造硬件，我们打造驱动硬件的“智慧大脑”。
             </p>
           </div>
         </div>
 
-        <div
-          className="mx-[32px]  mt-10 max-w-[842px] space-y-4 text-[18px] leading-normal tracking-[0.1em] text-black sm:mt-12 sm:text-[20px]"
-          data-node-id="234:43"
-        >
+        <div className="mx-auto mt-10 w-[min(100%-24px,842px)] space-y-4 text-[16px] leading-[1.7] tracking-[0.04em] text-black sm:mt-12 sm:text-[18px] md:text-[19px] lg:w-[43.8542vw] lg:max-w-none lg:text-[1.0417vw]" data-node-id="234:43">
           <p>
             如果说全球聚变公司正在建造性能强大的“CPU”裸机，新烛时代要做的，就是为所有聚变装置打造一个可移植、可扩展、可进化的“智能操作系统”。
           </p>
@@ -176,29 +171,33 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <section className="mx-[32px]  mt-16 sm:mt-20" data-node-id="245:67">
-          <h2 className="font-semibold tracking-[0.12em] text-[#f96d01] sm:text-[24px]">我们的目标</h2>
-          <div className="mt-3 h-0.5 w-[231px] max-w-full bg-[#f96d01]" data-node-id="297:80" aria-hidden />
-          <p
-            className="mt-6 max-w-[842px] text-[18px] leading-normal tracking-[0.1em] text-black sm:text-[20px]"
-            data-node-id="245:66"
-          >
+        <section className="mx-auto mt-16 w-[min(100%-24px,842px)] sm:mt-20 lg:w-[43.8542vw] lg:max-w-none" data-node-id="245:67">
+          <h2 className="text-[30px] font-semibold leading-tight tracking-[0.08em] text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]">我们的目标</h2>
+          <div className="mt-3 h-0.5 w-[231px] max-w-full bg-[#f96d01] lg:w-[12.0313vw]" data-node-id="297:80" aria-hidden />
+          <p className="mt-6 text-[16px] leading-[1.7] tracking-[0.04em] text-black sm:text-[18px] md:text-[19px] lg:text-[1.0417vw]" data-node-id="245:66">
             是让这套智能系统从实验室的辅助工具，进化为驱动聚变电厂硬件运行的神经中枢，在每一次能量的脉动中，贡献源自“新烛”的驱动力！
           </p>
 
           <div className="mt-8 w-full sm:mt-10">
-            <img
-              src={assets.gj}
-              alt="从实验室辅助工具到驱动聚变电厂硬件运行的神经中枢"
-              className="mx-auto h-auto w-full max-w-[800px] object-contain"
-              data-node-id="245:70"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture className="mx-auto block w-full max-w-[800px] lg:max-w-[41.6667vw]">
+              <source srcSet={gjAvif} type="image/avif" />
+              <source srcSet={gjWebp} type="image/webp" />
+              <img
+                src={gjJpg}
+                alt="从实验室辅助工具到驱动聚变电厂硬件运行的神经中枢"
+                width={1600}
+                height={200}
+                className="h-auto w-full object-contain"
+                data-node-id="245:70"
+                sizes="(max-width: 1023px) min(100vw - 24px, 800px), min(41.6667vw, 800px)"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
         </section>
 
-        <div className="mx-[32px]  mt-16 grid grid-cols-1 gap-4 sm:mt-20 sm:grid-cols-2 sm:gap-4 lg:gap-5">
+        <div className="mx-auto mt-16 w-[min(100%-24px,851px)] grid grid-cols-1 gap-4 sm:mt-20 sm:grid-cols-2 sm:gap-4 lg:w-[44.3229vw] lg:max-w-none lg:gap-5">
           <div className="aspect-[406/305] w-full overflow-hidden">
             <img
               src={assets.aboutGrid1}

@@ -30,6 +30,8 @@ const targets = [
   { input: "src/images/news-bg.jpg", maxWidth: 1920, quality: 70 },
   // 关于我们页首屏横幅
   { input: "src/images/about-hero-bg.jpg", maxWidth: 1920, quality: 66 },
+  // 关于我们「我们的目标」插图：展示宽约 800px，源图超宽条，压到 1600 宽以内并出 AVIF/WebP
+  { input: "src/images/gj.png", maxWidth: 1600, quality: 74 },
   // 新闻列表缩略图（卡片约 358×172，2x 约 716 宽）
   { input: "src/images/news-thumb-1.jpg", maxWidth: 716, quality: 72 },
   { input: "src/images/news-thumb-2.jpg", maxWidth: 716, quality: 72 },

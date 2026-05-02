@@ -18,13 +18,13 @@ export default function NewsDetailPage2() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:pb-24">
-        <h1 className="text-[32px] font-semibold leading-[30px] text-black">中国核聚变相关政策时间线表格</h1>
+      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:w-[58.6979vw] lg:max-w-none lg:pb-24">
+        <h1 className="text-[32px] font-semibold leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.5625vw]">中国核聚变相关政策时间线表格</h1>
         <div className="mt-4 h-[2px] w-full bg-[#f96d01]" />
         <section className="mt-6 overflow-hidden bg-white shadow-[0px_4px_10px_0px_rgba(0,0,0,0.12)]">
           <div className="grid grid-cols-[1fr_2.6fr_2.7fr_2.1fr] bg-[#f96d01] text-white">
             {["年份", "政策名字", "相关内容", "发布部门"].map((head) => (
-              <p key={head} className="m-0 px-4 py-3 text-center text-[24px] font-semibold leading-[30px]">
+              <p key={head} className="m-0 px-4 py-3 text-center text-[24px] font-semibold leading-[30px] lg:px-[0.8333vw] lg:py-[0.625vw] lg:text-[1.25vw] lg:leading-[1.5625vw]">
                 {head}
               </p>
             ))}
@@ -33,19 +33,19 @@ export default function NewsDetailPage2() {
           {rows.map((row, idx) => (
             <div key={`${row[0]}-${idx}`}>
               <div className="grid grid-cols-[1fr_2.6fr_2.7fr_2.1fr]">
-                <p className="m-0 border-r border-[#0000001a] px-4 py-6 text-center text-[24px] font-semibold leading-[30px] text-[#f96d01]">
+                <p className="m-0 border-r border-[#0000001a] px-4 py-6 text-center text-[24px] font-semibold leading-[30px] text-[#f96d01] lg:px-[0.8333vw] lg:py-[1.25vw] lg:text-[1.25vw] lg:leading-[1.5625vw]">
                   {row[0]}
                 </p>
-                <p className="m-0 border-r border-[#0000001a] px-4 py-4 text-[20px] leading-[30px] text-black">{row[1]}</p>
-                <p className="m-0 border-r border-[#0000001a] px-4 py-4 text-[20px] leading-[30px] text-black">{row[2]}</p>
-                <p className="m-0 px-4 py-4 text-[20px] leading-[30px] text-black">{row[3]}</p>
+                <p className="m-0 border-r border-[#0000001a] px-4 py-4 text-[20px] leading-[30px] text-black lg:px-[0.8333vw] lg:py-[0.8333vw] lg:text-[1.0417vw] lg:leading-[1.5625vw]">{row[1]}</p>
+                <p className="m-0 border-r border-[#0000001a] px-4 py-4 text-[20px] leading-[30px] text-black lg:px-[0.8333vw] lg:py-[0.8333vw] lg:text-[1.0417vw] lg:leading-[1.5625vw]">{row[2]}</p>
+                <p className="m-0 px-4 py-4 text-[20px] leading-[30px] text-black lg:px-[0.8333vw] lg:py-[0.8333vw] lg:text-[1.0417vw] lg:leading-[1.5625vw]">{row[3]}</p>
               </div>
               {idx < rows.length - 1 ? <div className="mx-[20px] h-px bg-[#0000001a]" aria-hidden /> : null}
             </div>
           ))}
         </section>
-        <div className="mt-12 flex justify-end">
-          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01]">返回全部新闻</Link>
+        <div className="mt-12 flex justify-end lg:mt-[2.5vw]">
+          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01] lg:text-[1.0417vw]">返回全部新闻</Link>
         </div>
       </main>
       <Footer />
