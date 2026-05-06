@@ -18,10 +18,12 @@ export default function NewsDetailPage2() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:w-[58.6979vw] lg:max-w-none lg:pb-24">
-        <h1 className="text-[32px] font-semibold leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.5625vw]">中国核聚变相关政策时间线表格</h1>
-        <div className="mt-4 h-[2px] w-full bg-[#f96d01]" />
-        <section className="mt-6 overflow-hidden bg-white shadow-[0px_4px_10px_0px_rgba(0,0,0,0.12)]">
+      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24 lg:pt-[2.9167vw]">
+        <h1 className="m-0 text-[32px] font-semibold leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.35]">
+          中国核聚变相关政策时间线表格
+        </h1>
+        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
+        <section className="mt-8 overflow-hidden bg-white shadow-[0px_4px_10px_0px_rgba(0,0,0,0.12)] lg:mt-[1.875vw]">
           <div className="grid grid-cols-[1fr_2.6fr_2.7fr_2.1fr] bg-[#f96d01] text-white">
             {["年份", "政策名字", "相关内容", "发布部门"].map((head) => (
               <p key={head} className="m-0 px-4 py-3 text-center text-[24px] font-semibold leading-[30px] lg:px-[0.8333vw] lg:py-[0.625vw] lg:text-[1.25vw] lg:leading-[1.5625vw]">

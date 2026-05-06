@@ -13,13 +13,13 @@ export default function NewsDetailPage5() {
       <Navbar />
       <NewsDetailHero />
 
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24">
-        <h1 className="text-[32px] font-semibold leading-[1.2] text-black lg:text-[1.6667vw]">
+      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24 lg:pt-[2.9167vw]">
+        <h1 className="m-0 text-[32px] font-semibold leading-[1.2] text-black lg:text-[1.6667vw] lg:leading-[1.35]">
           AI加速可控核聚变商业化，新烛时代完成6000万元天使轮融资
         </h1>
-        <div className="mt-5 h-[2px] w-full bg-[#f96d01]" />
+        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
 
-        <p className="mx-auto mt-8 w-full max-w-[1096px] text-[20px] leading-[31px] text-black lg:max-w-[57.0833vw] lg:text-[1.0417vw] lg:leading-[1.6146vw]">
+        <p className="mx-auto mt-10 w-full max-w-[1096px] text-[20px] leading-[31px] text-black lg:mt-[1.875vw] lg:max-w-[57.0833vw] lg:text-[1.0417vw] lg:leading-[1.6146vw]">
           近日，新烛时代宣布完成6000万元天使轮融资。本轮融资由中科创星、鼎峰科创联合领投，水木清华校友基金跟投，
           资金将主要用于核心技术研发、联合验证、平台建设及关键人才引进等，全力推动可控核聚变向商用化加速迈进。
         </p>

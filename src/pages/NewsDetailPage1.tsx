@@ -33,10 +33,12 @@ export default function NewsDetailPage1() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24">
-        <h1 className="text-[32px] font-medium leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.5625vw]">全球各国核聚变战略部署</h1>
-        <div className="mt-5 h-[2px] w-full bg-[#f96d01]" />
-        <div className="mx-auto mt-[46px] h-[259px] w-full max-w-[1103px] overflow-hidden lg:mt-[2.3958vw] lg:h-[13.4896vw] lg:max-w-[57.4479vw]">
+      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24 lg:pt-[2.9167vw]">
+        <h1 className="m-0 text-[32px] font-medium leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.35]">
+          全球各国核聚变战略部署
+        </h1>
+        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
+        <div className="mx-auto mt-[46px] h-[259px] w-full max-w-[1103px] overflow-hidden lg:mt-[2.9167vw] lg:h-[13.4896vw] lg:max-w-[57.4479vw]">
           <NewsDetailContentImage
             avif={mainAvif}
             webp={mainWebp}
@@ -49,7 +51,11 @@ export default function NewsDetailPage1() {
 
         <section className="mx-auto mt-[56px] w-full max-w-[1103px] lg:mt-[2.9167vw] lg:max-w-[57.4479vw]">
           <div className="relative">
-            <div className="absolute left-[170px] -top-[12px] h-[calc(100%-36px)] w-px border-l border-dashed border-[#f09652]" aria-hidden />
+            {/* 与 grid 列对齐：第 1 列宽 + gap + 第 2 列一半；lg 用 vw 与 lg:grid-cols 一致；translate 使 1px 线落在圆心 */}
+            <div
+              className="pointer-events-none absolute left-[calc(130px+1.25rem+20px)] top-[-12px] z-0 h-[calc(100%-36px)] w-px -translate-x-1/2 border-0 border-l border-dashed border-[#f09652] lg:left-[calc(6.7708vw+1.0417vw+2.0833vw/2)] lg:top-[-0.625vw] lg:h-[calc(100%-1.875vw)]"
+              aria-hidden
+            />
             <div className="space-y-0">
               {rows.map((row) => (
                 <div key={row.year} className="grid min-h-[101px] grid-cols-[130px_40px_1fr] items-start gap-x-5 lg:min-h-[5.2604vw] lg:grid-cols-[6.7708vw_2.0833vw_1fr] lg:gap-x-[1.0417vw]">

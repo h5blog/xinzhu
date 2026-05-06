@@ -37,10 +37,10 @@ export default function NewsDetailPage4() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-6 lg:w-[58.6979vw] lg:max-w-none lg:pb-24">
-        <h1 className="text-[32px] font-semibold leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.5625vw]">AI 赋能聚变已成全球共识</h1>
-        <div className="mt-4 h-[2px] w-full bg-[#f96d01]" />
-        <section className="mt-8">
+      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24 lg:pt-[2.9167vw]">
+        <h1 className="m-0 text-[32px] font-semibold leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.35]">AI 赋能聚变已成全球共识</h1>
+        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
+        <section className="mt-10 lg:mt-[2.0833vw]">
           {companies.map((item, idx) => (
             <div key={idx} className="grid grid-cols-[201px_1fr] items-center py-2 lg:grid-cols-[10.4688vw_1fr] lg:py-[0.4167vw]">
               <div
