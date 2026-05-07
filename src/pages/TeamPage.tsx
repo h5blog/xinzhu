@@ -2,9 +2,9 @@ import Footer from "../components/Footer";
 import TeamMemberTextPanel from "../components/TeamMemberTextPanel";
 import { assets } from "../components/assets";
 import Navbar from "../components/Navbar";
-import ourTeamAvif from "../images/our-team.opt.avif";
-import ourTeamWebp from "../images/our-team.opt.webp";
-import ourTeamJpg from "../images/our-team.opt.jpg";
+import teamBannerAvif from "../images/team-banner-bg.opt.avif";
+import teamBannerWebp from "../images/team-banner-bg.opt.webp";
+import teamBannerPng from "../images/team-banner-bg.opt.png";
 
 const members = [
   {
@@ -52,7 +52,7 @@ const members = [
 
 function MemberBody({ bio }: { bio: readonly string[] }) {
   return (
-    <ul className="m-0 list-none space-y-3 pl-0 text-[16px] leading-[1.7] text-black sm:text-[18px] md:text-[19px] lg:text-[1.0417vw]">
+    <ul className="m-0 list-none space-y-2 pl-0 text-[16px] leading-[1.65] text-black sm:text-[18px] md:text-[19px] lg:space-y-[min(8px,0.4167vw)] lg:leading-[1.55] lg:text-[1.0417vw]">
       {bio.map((para, i) => (
         <li key={i} className="flex gap-3">
           <span className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#f96d01]" aria-hidden />
@@ -68,14 +68,14 @@ function MemberHeading({ name, title }: { name: string; title: string }) {
 
   return (
     <div>
-      <p className="whitespace-pre-wrap break-words text-[30px] font-semibold leading-tight font-['PingFang_SC'] text-[#121212] md:text-[36px] lg:text-[2.0833vw]">
+      <p className="whitespace-pre-wrap break-words text-[26px] font-semibold leading-[1.15] font-['PingFang_SC'] text-[#121212] sm:text-[30px] md:text-[34px] md:leading-tight lg:text-[2.0833vw]">
         {displayName}
       </p>
-      <p className="mt-[22px] text-[17px] font-semibold font-['PingFang_SC'] text-[#121212] sm:text-[18px] lg:mt-[1.1458vw] lg:text-[1.0417vw]">
+      <p className="mt-3 text-[16px] font-semibold font-['PingFang_SC'] text-[#121212] sm:mt-[18px] sm:text-[17px] md:text-[18px] lg:mt-[0.9375vw] lg:text-[1.0417vw]">
         {title}
       </p>
       <div
-        className="mt-2 h-2 w-[113px] max-w-full bg-gradient-to-r from-[#f96d01] to-transparent lg:w-[5.8854vw]"
+        className="mt-2 h-1.5 w-[96px] max-w-full bg-gradient-to-r from-[#f96d01] to-transparent sm:h-2 sm:w-[113px] lg:w-[5.8854vw]"
         aria-hidden
       />
     </div>
@@ -95,13 +95,13 @@ export default function TeamPage() {
       >
         <div className="absolute inset-0 block h-full w-full">
           <picture className="absolute inset-0 block h-full w-full">
-            <source srcSet={ourTeamAvif} type="image/avif" />
-            <source srcSet={ourTeamWebp} type="image/webp" />
+            <source srcSet={teamBannerAvif} type="image/avif" />
+            <source srcSet={teamBannerWebp} type="image/webp" />
             <img
-              src={ourTeamJpg}
+              src={teamBannerPng}
               alt=""
-              width={1920}
-              height={217}
+              width={2880}
+              height={326}
               className="h-full w-full object-cover object-center"
               sizes="100vw"
               loading="eager"
@@ -110,43 +110,26 @@ export default function TeamPage() {
             />
           </picture>
         </div>
-        <div
-          className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]"
-          data-node-id="103:391"
-        />
-
-        <div className="absolute inset-0 text-white">
-          <div className="mx-auto flex h-full w-[min(100%-24px,1050px)] flex-col justify-center px-4 text-left sm:px-6 lg:w-[54.6875vw] lg:max-w-none lg:px-0">
-            <p
-              className="m-0 font-['PingFang_SC'] text-[40px] font-semibold leading-none sm:text-[48px] lg:text-[3.3333vw]"
-              data-node-id="151:100"
-            >
-              OUR TEAM
-            </p>
-            <p
-              className="m-0 -mt-1 font-['PingFang_SC'] text-[24px] font-semibold leading-none sm:text-[30px] lg:text-[1.875vw]"
-              data-node-id="151:99"
-            >
-              创始团队
-            </p>
-          </div>
-        </div>
-
       </section>
 
-      <main className="mx-auto w-[min(100%-24px,1248px)] px-6 pb-20 pt-[78px] sm:px-8 lg:w-[65vw] lg:max-w-none lg:pt-[4.0625vw]">
-        <h1 className="text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]">我们的团队</h1>
+      <main className="mx-auto box-border w-[min(100%-32px,1248px)] min-w-0 overflow-x-hidden px-4 pb-16 pt-12 sm:w-[min(100%-48px,1248px)] sm:px-6 sm:pb-20 sm:pt-14 md:px-8 md:pt-[72px] lg:w-[65vw] lg:max-w-none lg:px-[2.0833vw] lg:pb-[5.2083vw] lg:pt-[4.0625vw]">
+        <h1 className="text-[26px] font-semibold leading-tight text-[#f96d01] sm:text-[30px] md:text-[34px] lg:text-[2.0833vw]">我们的团队</h1>
 
-        <div className="mt-[37px] flex flex-col gap-0 lg:mt-[1.9271vw]">
+        <div className="mt-6 flex flex-col gap-0 sm:mt-8 lg:mt-[1.5625vw] lg:gap-y-[min(12px,0.625vw)]">
           {members.map((m, index) => (
             <article
               key={m.name}
-              className={`group flex flex-col items-stretch gap-0 lg:flex-row lg:items-center ${
-                m.imageLeft ? "" : "lg:flex-row-reverse"
+              className={`group m-0 grid w-full grid-cols-1 gap-y-5 sm:gap-y-6 lg:gap-y-0 lg:items-center ${
+                m.imageLeft
+                  ? "lg:grid-cols-[13.489583333333334vw_1fr]"
+                  : "lg:grid-cols-[1fr_13.489583333333334vw]"
               }`}
             >
+              {/** 大屏两列栅格：左/右交替用 col 定位，保证各行左右外缘对齐（避免 flex+max-w 产生单侧留白） */}
               <div
-                className="relative mx-auto h-[313px] w-full max-w-[259px] shrink-0 shadow-none transition-shadow duration-200 group-hover:shadow-[-6px_10px_22px_rgba(0,0,0,0.18),2px_4px_10px_rgba(0,0,0,0.08)] lg:mx-0 lg:h-[16.3021vw] lg:w-[13.4896vw]"
+                className={`relative mx-auto aspect-[259/313] w-[clamp(200px,13.489583333333334vw,259px)] max-w-full shrink-0 shadow-none transition-shadow duration-200 group-hover:shadow-[-6px_10px_22px_rgba(0,0,0,0.18),2px_4px_10px_rgba(0,0,0,0.08)] sm:w-[clamp(220px,13.489583333333334vw,259px)] lg:mx-0 lg:w-full lg:max-w-none lg:self-center ${
+                  m.imageLeft ? "lg:col-start-1 lg:row-start-1" : "lg:col-start-2 lg:row-start-1"
+                }`}
               >
                 <img
                   src={m.avatar}
@@ -157,9 +140,16 @@ export default function TeamPage() {
                 />
               </div>
 
-              <TeamMemberTextPanel edges={index % 2 === 0 ? "top-bottom-right" : "top-bottom-left"}>
-                <div className="flex w-full flex-col gap-[30px] sm:flex-row sm:items-center sm:gap-[30px] lg:gap-[1.5625vw]">
-                  <div className="w-max max-w-[180px] shrink-0 lg:max-w-[9.375vw]">
+              <TeamMemberTextPanel
+                className={
+                  m.imageLeft
+                    ? "lg:col-start-2 lg:row-start-1 lg:self-center lg:justify-self-start"
+                    : "lg:col-start-1 lg:row-start-1 lg:self-center lg:justify-self-end"
+                }
+                edges={index % 2 === 0 ? "top-bottom-right" : "top-bottom-left"}
+              >
+                <div className="flex w-full flex-col gap-5 sm:flex-row sm:items-start sm:gap-5 md:items-center md:gap-6 lg:gap-[1.0417vw]">
+                  <div className="w-max max-w-[min(100%,200px)] shrink-0 sm:max-w-[220px] lg:max-w-[9.375vw]">
                     <MemberHeading name={m.name} title={m.title} />
                   </div>
                   <div className="min-w-0 flex-1">

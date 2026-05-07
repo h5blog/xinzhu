@@ -1,9 +1,10 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { assets } from "../components/assets";
-import jishuAHeroAvif from "../images/jishu-a.opt.avif";
-import jishuAHeroWebp from "../images/jishu-a.opt.webp";
-import jishuAHeroJpg from "../images/jishu-a.opt.jpg";
+import techBannerAvif from "../images/tech-banner.opt.avif";
+import techBannerWebp from "../images/tech-banner.opt.webp";
+import techBannerPng from "../images/tech-banner.opt.png";
+import techIconWebp from "../images/tech-icon.opt.webp";
 
 const pillBase =
   "flex h-[76px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-gradient-to-b from-[#ffb85c] to-[#f96d01] px-3 text-center text-[18px] font-semibold leading-tight text-white shadow-[0px_16px_17px_0px_rgba(251,85,14,0.25)] sm:h-[82px] sm:text-[24px] md:h-[86px] md:text-[28px] lg:h-[4.4792vw] lg:text-[1.4583vw]";
@@ -13,17 +14,17 @@ export default function TechCorePage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="核心技术" data-node-id="108:28398">
       <Navbar />
 
-      {/* 设计稿 1920×659；用固定比例容器 + object-cover，小屏随宽缩放、大屏不超出版心比例 */}
-      <section className="relative aspect-[1920/659] w-full overflow-hidden" data-name="banner-wrap">
+      {/* tech-banner：1920×461（源图 3840×922 等比缩放）；固定比例 + object-cover */}
+      <section className="relative aspect-[1920/461] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={jishuAHeroAvif} type="image/avif" />
-          <source srcSet={jishuAHeroWebp} type="image/webp" />
+          <source srcSet={techBannerAvif} type="image/avif" />
+          <source srcSet={techBannerWebp} type="image/webp" />
           <img
-            src={jishuAHeroJpg}
+            src={techBannerPng}
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}
-            height={659}
+            height={461}
             sizes="100vw"
             loading="eager"
             fetchPriority="high"
@@ -35,17 +36,9 @@ export default function TechCorePage() {
       </section>
 
       <section className="relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.57]"
-          aria-hidden
-          data-name="bg 1"
-          data-node-id="297:85"
-        >
-          <img src={assets.techCoreSectionBg} alt="" className="h-full w-full object-cover" />
-        </div>
         <div className="relative mx-auto w-[min(100%-2rem,1145px)] px-0 pb-12 pt-[77px] sm:w-[min(100%-3rem,1145px)] sm:pb-12 md:pb-16 lg:w-[59.6354vw] lg:max-w-none lg:pt-[4.0104vw]">
           <div className="mx-auto w-full">
-            <p className="text-[16px] leading-[1.7] text-black sm:text-[18px] md:text-[19px] lg:text-[1.0417vw]" data-node-id="280:61">
+            <p className="indent-[2em] text-[16px] leading-[1.7] text-black sm:text-[18px] md:text-[19px] lg:text-[1.0417vw]" data-node-id="280:61">
               当前，核聚变正成为全球科技竞争与能源变革的关键战略方向，而人工智能的快速发展，正在显著改写其研发范式。长期以来，聚变研发面临参数空间庞大、等离子体行为高度复杂、控制精度要求极高、实验与试错成本高昂等核心挑战，导致整体推进周期长、研发效率低。我们判断，AI
               不只是聚变研究的辅助工具，而将成为重塑诊断、预测、控制与设计全流程的关键基础设施，推动可控核聚变从依赖经验的探索式研发，加速迈向以智能预测与主动控制为核心的新阶段。
             </p>
@@ -54,22 +47,28 @@ export default function TechCorePage() {
               AI解决方案核心技术驱动力
             </h1>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:mt-10 sm:gap-5 md:mt-12 md:gap-6 lg:mt-[2.3958vw] lg:gap-[1.25vw]" data-node-id="297:88">
-              <div className={`${pillBase} w-full max-w-[176px] lg:w-[9.1667vw] lg:max-w-none`} data-node-id="297:96">
-                强化学习
-              </div>
-              <div className={`${pillBase} w-full max-w-[217px] lg:w-[11.3021vw] lg:max-w-none`} data-node-id="310:43">
-                生成式模型
-              </div>
-              <div className={`${pillBase} w-full max-w-[256px] lg:w-[13.3333vw] lg:max-w-none`} data-node-id="310:44">
-                自进化智能体
-              </div>
-              <div className={`${pillBase} w-full max-w-[176px] lg:w-[9.1667vw] lg:max-w-none`} data-node-id="310:42">
-                算子学习
+            <div
+              className="relative z-0 mx-auto mt-8 box-border flex min-h-[24.7396vw] w-full max-w-full flex-col justify-end bg-[length:min(100%,49.5833vw)_auto] bg-top bg-no-repeat px-2 pb-6 sm:mt-10 sm:pb-7 md:mt-12 md:pb-8 lg:mt-[2.3958vw] lg:pb-[1.6667vw]"
+              style={{ backgroundImage: `url(${techIconWebp})` }}
+              data-node-id="297:88"
+            >
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 lg:gap-[1.25vw]">
+                <div className={`${pillBase} w-full max-w-[176px] lg:w-[9.1667vw] lg:max-w-none`} data-node-id="297:96">
+                  强化学习
+                </div>
+                <div className={`${pillBase} w-full max-w-[217px] lg:w-[11.3021vw] lg:max-w-none`} data-node-id="310:43">
+                  生成式模型
+                </div>
+                <div className={`${pillBase} w-full max-w-[256px] lg:w-[13.3333vw] lg:max-w-none`} data-node-id="310:44">
+                  自进化智能体
+                </div>
+                <div className={`${pillBase} w-full max-w-[176px] lg:w-[9.1667vw] lg:max-w-none`} data-node-id="310:42">
+                  算子学习
+                </div>
               </div>
             </div>
 
-            <p className="mt-10 text-[16px] leading-[1.7] text-black sm:mt-12 sm:text-[18px] md:mt-14 md:text-[19px] lg:mt-[2.9167vw] lg:text-[1.0417vw]" data-node-id="297:87">
+            <p className="mt-10 indent-[2em] text-[16px] leading-[1.7] text-black sm:mt-12 sm:text-[18px] md:mt-14 md:text-[19px] lg:mt-[2.9167vw] lg:text-[1.0417vw]" data-node-id="297:87">
               基于这一判断，新烛时代于 2025 年 9
               月成立，致力于以人工智能破解核聚变领域最关键的控制与预测难题。公司以强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 +
               数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力。我们的目标，是为未来聚变反应堆打造专属的“智能操作系统”，将分散、模糊、依赖专家经验的知识与流程，沉淀为可复制、可量化、可部署的智能能力，持续提升聚变研发效率，降低研发成本，加速聚变能源走向工程化与商业化。

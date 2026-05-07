@@ -1,33 +1,49 @@
-﻿import Footer from "../components/Footer";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { assets } from "../components/assets";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { JOBS } from "../data/jobs";
-import joinHeroBgAvif from "../images/join-hero-bg.opt.avif";
-import joinHeroBgWebp from "../images/join-hero-bg.opt.webp";
-import joinHeroBgJpg from "../images/join-hero-bg.opt.jpg";
+import { JOB_APPLY_FORM_URL, JOBS } from "../data/jobs";
+import joinBannerAvif from "../images/join-bg.opt.avif";
+import joinBannerWebp from "../images/join-bg.opt.webp";
+import joinBannerPng from "../images/join-bg.opt.png";
 import joinFooter1Avif from "../images/join-footer-1.opt.avif";
 import joinFooter1Webp from "../images/join-footer-1.opt.webp";
 import joinFooter1Jpg from "../images/join-footer-1.opt.jpg";
 import joinFooter2Avif from "../images/join-footer-2.opt.avif";
 import joinFooter2Webp from "../images/join-footer-2.opt.webp";
 import joinFooter2Jpg from "../images/join-footer-2.opt.jpg";
+import fuliPng from "../images/fuli.png";
 
-const APPLY_URL =
-  "https://ecn5wfrohzj8.feishu.cn/share/base/form/shrcnBNsL5EtkP8DOQBKp6T3qac";
+/** 1920 稿 fuli 图 1096×687；lg 下宽 57.0833vw（1096/1920），与首页 vw 适配一致 */
+const FULI_DESIGN_WIDTH = 1096;
+const FULI_DESIGN_HEIGHT = 687;
 
+/** Figma 924:282 / 924:280 / 924:281：横向渐变；小屏 max 1025px，lg 与主栏同宽；高度 3px@1920 用 vw 略放大大屏 */
+function JoinSectionRuleBar({
+  className = "",
+  "data-node-id": nodeId,
+}: {
+  className?: string;
+  "data-node-id": string;
+}) {
+  return (
+    <div
+      className={`mx-auto h-[3px] w-full max-w-[min(1025px,100%)] bg-[linear-gradient(90deg,#f0f0f0_0%,#f96d01_49.519%,#f0f0f0_100%)] lg:h-[0.15625vw] lg:max-h-[5px] lg:max-w-none lg:min-h-[3px] ${className}`}
+      data-node-id={nodeId}
+      aria-hidden
+    />
+  );
+}
 
-/** Figma 270:28：正文区；标签 272:64（141×44）竞争力薪酬；其余 272:66（118×44）；圆角 10px、1px 橘色描边 */
-const BENEFIT_ROWS: { label: string; text: string }[] = [
-  { label: "竞争力薪酬", text: "提供富有竞争力的薪酬，包含基础工资、年终奖；" },
-  { label: "全面保障", text: "六险一金、年度体检、带薪年假、北京户口；" },
-  { label: "福利体系", text: "包含餐费补贴、交通补贴、节日福利、探亲补贴；" },
-  { label: "成长支持", text: "顶级导师指导、参与前沿项目、鼓励发表论文与专利申请；" },
-  { label: "文化氛围", text: "扁平管理、丰富的团建活动与节日福利；" },
-  { label: "实习待遇", text: "提供有竞争力的实习津贴及转正优先权；" },
+const PROCESS_STEPS: { id: string; lines: string[] }[] = [
+  { id: "01", lines: ["简历投递"] },
+  { id: "02", lines: ["初筛"] },
+  { id: "03", lines: ["技术面试", "（1-2 轮）"] },
+  { id: "04", lines: ["终面/交流"] },
+  { id: "05", lines: ["发放offer"] },
 ];
 
-/** 标 + 长文：换后与首「文左缘齐，而非顶到「标签下?*/
 function JobLabeledBlock({
   label,
   text,
@@ -38,224 +54,316 @@ function JobLabeledBlock({
   className?: string;
 }) {
   return (
-    <div className={`flex min-w-0 items-start gap-1 text-[16px] leading-[1.7] text-black sm:text-[18px] md:text-[19px] lg:text-[1.0417vw] ${className}`}>
+    <div
+      className={`flex min-w-0 items-start gap-1 text-[16px] leading-[1.7] text-black sm:text-[18px] md:text-[19px] lg:text-[1.0417vw] ${className}`}
+    >
       <span className="shrink-0 font-semibold">{label}</span>
-      <span className="min-w-0 flex-1 text-left hyphens-none [overflow-wrap:anywhere]">
-        {text}
-      </span>
+      <span className="min-w-0 flex-1 text-left hyphens-none [overflow-wrap:anywhere]">{text}</span>
     </div>
   );
 }
 
-function JobApplyButton() {
+/** Figma 729:29226 — 仅按钮跳转详情页 */
+function JobApplyButton({ to }: { to: string }) {
   return (
-    <span
-      data-node-id="429:81"
-      className="box-border inline-flex min-w-[max(152px,7.92vw)] shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-[25px] bg-[#f96d01] px-5 py-3 text-[17px] font-medium leading-none text-white transition hover:opacity-95 sm:text-[18px] lg:text-[1.0417vw]"
+    <Link
+      to={to}
+      data-node-id="729:29226"
+      className="group box-border inline-flex h-10 w-[152px] shrink-0 cursor-pointer items-center justify-center gap-1 whitespace-nowrap rounded-[25px] bg-[#f96d01] font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[16px] font-normal leading-none text-white no-underline transition-opacity hover:opacity-95 lg:h-[2.0833vw] lg:w-[7.9167vw] lg:gap-[0.2083vw] lg:rounded-[1.3021vw] lg:text-[0.8333vw]"
     >
       查看招聘详情
-      <span
-        className="inline-flex size-[clamp(22px,1.15vw,28px)] shrink-0 items-center justify-center rounded-full border border-white/90 transition-colors duration-200 group-hover:border-white"
+      <img
+        src={assets.joinArrow}
+        alt=""
+        width={16}
+        height={15}
+        className="h-[14px] w-[15.5px] shrink-0 object-contain transition-transform duration-200 group-hover:translate-x-0.5 lg:h-[0.7292vw] lg:w-[0.8073vw]"
         aria-hidden
-      >
-        <img
-          src={assets.joinArrow}
-          alt=""
-          className="size-[clamp(10px,0.52vw,14px)] object-contain transition-transform duration-200 group-hover:translate-x-0.5"
-        />
-      </span>
-    </span>
-  );
-}
-
-function JobCard({ job, isLast }: { job: (typeof JOBS)[number]; isLast: boolean }) {
-  return (
-    <Link to={`/join/${job.id}`} className="group block">
-      <article
-        className="relative mx-auto box-border min-h-[283px] w-full max-w-full overflow-y-auto rounded-lg bg-white pt-[max(28px,1.46vw)] shadow-none transition-shadow group-hover:shadow-[0px_10px_14px_0px_rgba(0,0,0,0.16)]"
-        data-node-id="108:28073"
-      >
-        <div className="min-w-0 font-normal text-black" data-node-id="108:146">
-        <div className="pl-[64px] pr-[37px]">
-          <p className="m-0 text-[22px] font-semibold leading-[1.35] text-[#f96d01] sm:text-[24px] lg:text-[1.25vw]">{job.title}</p>
-        </div>
-        <div className="mx-[26px] mt-[max(10px,0.73vw)] h-px bg-[#f96d01]" aria-hidden />
-        <div className="mt-[max(16px,0.83vw)] pb-[max(16px,0.83vw)] pl-[64px] pr-[37px]">
-          <JobLabeledBlock label="岗位职责：" text={job.duty} />
-          <JobLabeledBlock label="岗位要求：" text={job.requirement} className={isLast ? "mt-[6px]" : "mt-[30px]"} />
-          <div className="mt-[30px] grid grid-cols-1 gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-x-6">
-            <div className="min-w-0 sm:col-start-1">
-              <JobLabeledBlock label="岗位地点：" text={job.listLocation} />
-            </div>
-            <div className="-mt-[20px] flex justify-end sm:col-start-2 sm:justify-self-end">
-              <JobApplyButton />
-            </div>
-          </div>
-        </div>
-        </div>
-      </article>
+        decoding="async"
+      />
     </Link>
   );
 }
 
+/** Figma 729:29156：1920 下 1117×283（宽与 mainCol 一致）；小屏按内容增高，lg 起 min-h 与边距按 vw */
+function JobCard({ job, isLast }: { job: (typeof JOBS)[number]; isLast: boolean }) {
+  return (
+    <article
+      className="relative mx-auto box-border flex w-full min-w-0 max-w-full flex-col overflow-hidden rounded-none bg-white pt-6 shadow-[0px_7px_8px_0px_rgba(0,0,0,0.12)] transition-shadow hover:shadow-[0px_10px_14px_0px_rgba(0,0,0,0.16)] sm:pt-7 lg:min-h-[14.739583333333334vw] lg:pt-[1.4583333333333333vw] lg:shadow-[0px_0.36458333333333335vw_0.4166666666666667vw_0px_rgba(0,0,0,0.12)] lg:hover:shadow-[0px_0.5208333333333334vw_0.7291666666666666vw_0px_rgba(0,0,0,0.16)]"
+      data-node-id="729:29156"
+    >
+      <div className="min-w-0 flex-1 font-normal text-black">
+        <div className="px-4 sm:px-6 lg:pl-[3.3333333333333335vw] lg:pr-[1.9270833333333333vw]">
+          <p className="m-0 text-[22px] font-semibold leading-[1.35] text-[#f96d01] sm:text-[24px] lg:text-[1.25vw]">
+            {job.title}
+          </p>
+        </div>
+        <div
+          className="mx-4 mt-2.5 h-px bg-[#f96d01] sm:mx-6 sm:mt-3 lg:mx-[1.3541666666666667vw] lg:mt-[0.5208333333333333vw]"
+          aria-hidden
+        />
+        <div className="mt-4 px-4 pb-4 sm:mt-5 sm:px-6 sm:pb-5 lg:mt-[0.8333333333333334vw] lg:pb-[0.8333333333333334vw] lg:pl-[3.3333333333333335vw] lg:pr-[1.9270833333333333vw]">
+          <JobLabeledBlock label="岗位职责：" text={job.duty} />
+          <JobLabeledBlock
+            label="岗位要求："
+            text={job.requirement}
+            className={
+              isLast ? "mt-1.5 sm:mt-2" : "mt-6 sm:mt-7 lg:mt-[1.5625vw]"
+            }
+          />
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:mt-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:gap-x-6 lg:mt-[1.5625vw] lg:gap-x-[1.5625vw]">
+            <div className="min-w-0 sm:col-start-1">
+              <JobLabeledBlock label="岗位地点：" text={job.listLocation} />
+            </div>
+            <div className="flex justify-end sm:col-start-2 sm:justify-self-end">
+              <JobApplyButton to={`/join/${job.id}`} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function JoinBenefitsSection() {
+  return (
+    <section className="mt-10 min-w-0 sm:mt-12 lg:mt-14">
+      {/* Figma 729:29274：40px@1920 → 2.0833vw，与首页「AI解决方案…」标题一致 */}
+      <h2
+        className="text-center font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[32px] font-semibold leading-[30px] text-[#f96d01] sm:text-[36px] lg:text-[2.0833vw] lg:leading-tight"
+        data-node-id="729:29274"
+      >
+        薪酬福利
+      </h2>
+      <JoinSectionRuleBar className="mt-6 lg:mt-8" data-node-id="924:280" />
+
+      <div className="relative mx-auto mt-10 aspect-[1096/687] w-full min-w-0 max-w-[min(100%,1096px)] overflow-hidden rounded-2xl bg-[#f0f0f0] sm:rounded-[24px] lg:mt-[2.6042vw] lg:w-[57.0833vw] lg:max-w-none">
+        <img
+          src={fuliPng}
+          alt="薪酬福利"
+          width={FULI_DESIGN_WIDTH}
+          height={FULI_DESIGN_HEIGHT}
+          className="absolute inset-0 h-full w-full object-contain object-center"
+          loading="lazy"
+          decoding="async"
+          sizes="(max-width: 1023px) min(calc(100vw - 48px), 1096px), 57vw"
+        />
+      </div>
+    </section>
+  );
+}
+
+function JoinProcessSection() {
+  return (
+    <section className="mt-12 sm:mt-14 lg:mt-[max(3rem,5vw)]" data-node-id="729:29243">
+      <h2 className="text-center font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[32px] font-semibold leading-[30px] text-[#f96d01] sm:text-[36px] lg:text-[2.0833vw] lg:leading-tight">
+        招聘流程
+      </h2>
+      <JoinSectionRuleBar className="mt-6 lg:mt-8" data-node-id="924:281" />
+
+      <ol className="mt-10 flex flex-col gap-6 px-2 lg:mt-[2.6042vw] lg:hidden">
+        {PROCESS_STEPS.map((step) => (
+          <li key={step.id} className="flex gap-4">
+            <div className="flex size-[56px] shrink-0 items-center justify-center rounded-full border-2 border-[#f96d01] bg-white font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[18px] font-medium text-[#f96d01] sm:size-[68px] sm:text-[20px]">
+              {step.id}
+            </div>
+            <div className="min-w-0 pt-1">
+              {step.lines.map((line) => (
+                <p
+                  key={line}
+                  className="font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[18px] font-semibold leading-[1.4] text-[#f96d01] sm:text-[20px]"
+                >
+                  {line}
+                </p>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      {/* lg+：单行；圆/线/字按 1920 稿用 vw 缩放（68px 圆、20px 字 ≈ 3.54vw / 1.04vw） */}
+      <div
+        className="mx-auto mt-10 hidden min-w-0 w-full max-w-[1040px] flex-nowrap items-start justify-center gap-0 overflow-x-auto pb-1 lg:mt-[2.6042vw] lg:flex lg:max-w-none"
+        role="presentation"
+      >
+        {PROCESS_STEPS.map((step, i) => (
+          <Fragment key={step.id}>
+            <div className="flex w-[min(104px,11vw)] shrink-0 flex-col items-center lg:w-[5.4167vw]">
+              <div className="flex h-[68px] w-full shrink-0 items-center justify-center lg:h-[3.5417vw]">
+                <div className="flex size-[68px] items-center justify-center rounded-full border-2 border-[#f96d01] bg-white font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[20px] font-medium text-[#f96d01] lg:size-[3.5417vw] lg:text-[1.0417vw]">
+                  {step.id}
+                </div>
+              </div>
+              <div className="mt-3 w-full text-center lg:mt-[0.7813vw]">
+                {step.lines.map((line) => (
+                  <p
+                    key={line}
+                    className="font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[16px] font-semibold leading-snug text-[#f96d01] sm:text-[18px] lg:text-[1.0417vw]"
+                  >
+                    {line}
+                  </p>
+                ))}
+              </div>
+            </div>
+            {i < PROCESS_STEPS.length - 1 && (
+              <div
+                className="flex h-[68px] min-w-[16px] flex-1 items-center px-1 lg:h-[3.5417vw] lg:min-w-[0.8333vw] lg:px-[0.2604vw]"
+                aria-hidden
+              >
+                <div className="h-0.5 w-full bg-[#f96d01] lg:h-[0.1042vw]" />
+              </div>
+            )}
+          </Fragment>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function JoinApplySection() {
+  /** 729:29244 / 729:29245 / 729:29246：Figma 32px / 行高 30px；大屏 32/1920vw、30/1920vw */
+  const applyLine =
+    "m-0 text-center font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[32px] font-semibold leading-[30px] text-white lg:text-[1.6666666666666667vw] lg:leading-[1.5625vw]";
+  return (
+    <section
+      className="relative mx-auto mt-12 box-border h-auto w-full max-w-[699px] overflow-clip rounded-[24px] bg-[#f96d01] px-6 py-8 shadow-[0px_4px_11px_0px_#f96d01] sm:px-10 sm:py-10 lg:mt-[3.3333vw] lg:h-[8.90625vw] lg:max-w-none lg:w-[36.40625vw] lg:rounded-[1.25vw] lg:px-[3.125vw] lg:py-[0.7291666666666667vw] lg:shadow-[0px_0.2083vw_0.5729vw_0px_#f96d01]"
+      data-node-id="729:29242"
+    >
+      <div className="flex h-full min-h-0 w-full min-w-0 flex-col items-center gap-8 md:flex-row md:items-center md:justify-between md:gap-8 lg:gap-[1.5625vw]">
+        <div className="flex w-full min-w-0 flex-col items-center gap-[0.65em] text-white md:flex-1 lg:min-w-0 lg:flex-1 lg:items-center lg:gap-[0.8333vw]">
+          <a
+            href={JOB_APPLY_FORM_URL}
+            className={`${applyLine} underline decoration-solid underline-offset-[0.2em]`}
+            data-node-id="729:29246"
+          >
+            网申链接
+          </a>
+          <p className={applyLine} data-node-id="729:29245">
+            或
+          </p>
+          <p className={applyLine} data-node-id="729:29244">
+            简历投递二维码
+          </p>
+        </div>
+        {/** 729:29272：Figma 白底 rounded-17；729:29273：1920 稿 109×111 → vw；图 absolute + object-cover */}
+        <div
+          className="relative shrink-0 overflow-clip rounded-[17px] bg-white p-2 sm:p-2.5 lg:box-border lg:rounded-[0.8854166666666667vw] lg:p-[0.15625vw]"
+          data-node-id="729:29272"
+        >
+          <div
+            className="relative size-[clamp(104px,28vw,127px)] min-h-0 min-w-0 overflow-clip rounded-[14px] sm:size-[118px] lg:h-[5.78125vw] lg:w-[5.677083333333333vw] lg:rounded-[0.7291666666666667vw]"
+            data-node-id="729:29273"
+          >
+            <img
+              src={assets.joinQr}
+              alt="简历投递二维码"
+              className="pointer-events-none absolute inset-0 size-full max-w-none rounded-[14px] object-cover lg:rounded-[0.7291666666666667vw]"
+              width={109}
+              height={111}
+              loading="lazy"
+              decoding="async"
+              sizes="(max-width: 767px) 28vw, (max-width: 1023px) 118px, 111px"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** 1920 稿单张宽约 526px（406:305）；526/1920≈27.3958vw，大屏随视口放大 */
+function JoinFooterGallery() {
+  const tileClass =
+    "relative aspect-[406/305] w-full min-w-0 overflow-hidden sm:w-0 sm:flex-1 sm:basis-0 lg:w-[27.3958vw] lg:flex-none lg:max-w-none";
+  return (
+    <div className="mt-12 w-full min-w-0 lg:mt-[3.3333vw]">
+      <div className="flex w-full min-w-0 flex-col gap-[10px] sm:flex-row sm:items-stretch lg:gap-[0.5208vw]">
+        <div className={tileClass}>
+          <picture>
+            <source srcSet={joinFooter1Avif} type="image/avif" />
+            <source srcSet={joinFooter1Webp} type="image/webp" />
+            <img
+              src={joinFooter1Jpg}
+              alt=""
+              width={406}
+              height={305}
+              className="h-full w-full object-cover"
+              data-node-id="729:29270"
+              loading="lazy"
+              decoding="async"
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) calc((100vw - 48px - 10px) / 2), 27.5vw"
+            />
+          </picture>
+        </div>
+        <div className={tileClass}>
+          <picture>
+            <source srcSet={joinFooter2Avif} type="image/avif" />
+            <source srcSet={joinFooter2Webp} type="image/webp" />
+            <img
+              src={joinFooter2Jpg}
+              alt=""
+              width={406}
+              height={305}
+              className="h-full w-full object-cover"
+              data-node-id="729:29271"
+              loading="lazy"
+              decoding="async"
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) calc((100vw - 48px - 10px) / 2), 27.5vw"
+            />
+          </picture>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const mainCol = "mx-auto w-[min(100%-24px,1117px)] px-0 lg:w-[58.1771vw] lg:max-w-none";
+
 export default function JoinUsPage() {
   return (
-    <div className="min-h-screen bg-[#f1f1f1] text-[#363636]" data-name="加入我们" data-node-id="108:81">
+    <div className="min-h-screen bg-[#f0f0f0] text-[#363636]" data-name="加入我们" data-node-id="729:29148">
       <Navbar />
 
       <section className="relative h-[max(160px,11.3021vw)] w-full overflow-hidden" data-node-id="108:82">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <picture className="absolute inset-0 block h-full w-full">
-            <source srcSet={joinHeroBgAvif} type="image/avif" />
-            <source srcSet={joinHeroBgWebp} type="image/webp" />
+            <source srcSet={joinBannerAvif} type="image/avif" />
+            <source srcSet={joinBannerWebp} type="image/webp" />
             <img
               alt=""
-              src={joinHeroBgJpg}
-              className="absolute max-w-none"
-              style={{
-                height: "589.93%",
-                width: "100%",
-                left: "0.01%",
-                top: "-283.86%",
-              }}
+              src={joinBannerPng}
+              width={3840}
+              height={434}
+              className="h-full w-full object-cover object-center"
+              sizes="100vw"
               loading="eager"
+              fetchPriority="high"
               decoding="async"
             />
           </picture>
         </div>
-        <div
-          className="absolute inset-0 bg-gradient-to-l from-[rgba(249,109,1,0.9)] via-[rgba(249,109,1,0.53)] via-[51.442%] to-[rgba(249,109,1,0)]"
-          data-node-id="108:28071"
-          aria-hidden
-        />
-        <div className="relative mx-auto flex h-full w-[min(100%-24px,1200px)] flex-col justify-end px-4 pb-7 text-left sm:px-6 sm:pb-8 lg:w-[62.5vw] lg:max-w-none lg:pb-[2.0833vw]">
-          <h1
-            className="m-0 font-['PingFang_SC'] text-[40px] leading-[1.05] tracking-tight text-white sm:text-[48px] lg:text-[3.3333vw]"
-            data-node-id="218:51"
-          >
-            Join us
-          </h1>
-          <div className="relative mt-[max(10px,0.5208vw)] w-[min(100%,286px)] max-w-full lg:w-[14.8958vw]" data-node-id="218:52">
-            <img src={assets.joinLine35} alt="" className="h-1 w-full object-cover" />
-          </div>
-          <p
-            className="mt-[max(10px,0.5208vw)] font-['PingFang_SC'] text-[24px] leading-[1.2] tracking-[0.06em] text-white sm:text-[28px] lg:text-[1.875vw]"
-            data-node-id="218:50"
-          >
-            岗位需求
-          </p>
-        </div>
       </section>
 
-      <main className="mx-auto w-[min(100%-24px,1117px)] px-0 pb-16 pt-10 lg:w-[58.1771vw] lg:max-w-none lg:pb-24">
-        <h2 className="mb-6 px-4 text-[28px] font-semibold leading-[1.2] text-black sm:px-6 sm:text-[32px] lg:text-[1.6667vw]" data-node-id="108:145">
+      <main className={`${mainCol} pb-16 pt-10 lg:pb-24 lg:pt-12`}>
+        <JoinBenefitsSection />
+        <JoinProcessSection />
+        <JoinApplySection />
+        <JoinFooterGallery />
+        <h2
+          className="mt-8 text-center font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[32px] font-semibold leading-[30px] text-[#f96d01] sm:text-[36px] lg:mt-10 lg:text-[2.0833vw] lg:leading-tight"
+          data-node-id="924:279"
+        >
           岗位需求
         </h2>
-
-        <div className="flex flex-col gap-5">
+        <JoinSectionRuleBar className="mt-6 lg:mt-8" data-node-id="924:282" />
+        <div className="mt-8 flex flex-col gap-5 lg:mt-10 lg:gap-[1.0416666666666667vw]">
           {JOBS.map((job, index) => (
             <JobCard key={job.title} job={job} isLast={index === JOBS.length - 1} />
           ))}
         </div>
-
-        <section
-          className="relative mt-12 box-border flex w-full max-w-full flex-col gap-8 overflow-hidden rounded-[24px] border-[3px] border-[#f96d01] bg-[#f96d01] px-4 pb-8 pt-[max(28px,1.46vw)] md:min-h-[286px] md:flex-row md:items-center md:justify-between md:gap-0 md:pb-[max(28px,1.46vw)] md:pl-[clamp(24px,14.74vw,283px)] md:pr-[clamp(24px,17.4vw,334px)] md:pt-[max(28px,1.46vw)]"
-          data-node-id="439:663"
-        >
-          <div className="flex min-w-0 flex-1 flex-col items-center gap-4 text-center md:items-start md:text-left">
-            <a
-              href={APPLY_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="font-['PingFang_SC'] text-[28px] font-semibold leading-[1.2] text-white underline decoration-solid underline-offset-4 sm:text-[32px] lg:text-[1.6667vw]"
-              data-node-id="418:49"
-            >
-              网申链接
-            </a>
-            <p className="m-0 font-['PingFang_SC'] text-[28px] font-semibold leading-[1.2] text-white sm:text-[32px] lg:text-[1.6667vw]" data-node-id="418:55">
-              或
-            </p>
-            <p className="m-0 font-['PingFang_SC'] text-[28px] font-semibold leading-[1.2] text-white sm:text-[32px] lg:text-[1.6667vw]" data-node-id="270:30">
-              简历投递二维码
-            </p>
-          </div>
-          <div className="flex shrink-0 justify-center md:justify-end">
-            <div className="rounded-[17px] bg-white p-3 shadow-sm lg:p-[0.8333vw]" data-node-id="418:50">
-              <div className="h-[156px] w-[152px] overflow-hidden rounded-[14px] lg:h-[10.8333vw] lg:w-[10.5625vw]" data-node-id="418:47">
-                <img src={assets.joinQr} alt="简历投递二维码" className="h-full w-full object-cover" loading="lazy" decoding="async" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          className="relative mt-12 box-border w-full max-w-full overflow-hidden rounded-[24px] bg-white px-4 pb-12 pt-[max(28px,1.46vw)] shadow-[0px_0px_18px_0px_rgba(0,0,0,0.05)] md:pb-16"
-          data-node-id="272:65"
-        >
-          <h2 className="text-center text-[28px] font-semibold leading-[1.2] text-[#f96d01] sm:text-[32px] lg:text-[1.6667vw]" data-node-id="270:27">
-            薪酬福利
-          </h2>
-          <div
-            className="mt-8 flex flex-col gap-[clamp(14px,1.56vw,30px)] text-black md:pl-[clamp(24px,10.42vw,200px)] lg:pl-[10.42vw]"
-            data-node-id="270:28"
-          >
-            {BENEFIT_ROWS.map(({ label, text }) => (
-              <div key={label} className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-[44px]">
-                <div className="flex shrink-0 justify-start">
-                  <span
-                    className="box-border inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-[10px] border border-solid border-[#f96d01] px-4 py-1 text-center text-[16px] font-semibold leading-none text-[#f96d01] sm:text-[18px] md:text-[19px] lg:px-[0.8333vw] lg:py-[0.3125vw] lg:text-[1.0417vw]"
-                    {...(label === "竞争力薪酬"
-                      ? { "data-node-id": "272:64" as const }
-                      : label === "全面保障"
-                        ? { "data-node-id": "272:66" as const }
-                        : {})}
-                  >
-                    {label}
-                  </span>
-                </div>
-                <span className="min-w-0 flex-1 text-[16px] leading-[1.7] text-black sm:text-[18px] md:text-[19px] lg:text-[1.0417vw]">{text}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-[max(56px,2.9167vw)]" data-node-id="270:29">
-            <h2 className="text-center text-[28px] font-semibold leading-[1.2] text-[#f96d01] sm:text-[32px] lg:text-[1.6667vw]">招聘流程</h2>
-            <div className="mt-[max(32px,1.6667vw)] flex justify-center">
-              <img
-                src={assets.job}
-                alt="招聘流程：简历投递、初筛、技术面试（1-2 轮）、终面/交流、发放 offer"
-                className="mx-auto h-auto w-[min(100%,700px)] object-contain lg:w-[62.7%] lg:max-w-none"
-                data-node-id="270:37"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-
-          <div className="mt-12 flex justify-center">
-            <div className="flex max-w-full flex-col items-center gap-[10px] sm:flex-row sm:items-start lg:gap-[0.5208vw]">
-              <div className="aspect-[406/305] w-[min(100%,406px)] shrink-0 overflow-hidden lg:w-[21.1458vw]">
-                <picture>
-                  <source srcSet={joinFooter1Avif} type="image/avif" />
-                  <source srcSet={joinFooter1Webp} type="image/webp" />
-                  <img src={joinFooter1Jpg} alt="" className="h-full w-full object-cover" data-node-id="268:14" loading="lazy" decoding="async" />
-                </picture>
-              </div>
-              <div className="aspect-[406/305] w-[min(100%,406px)] shrink-0 overflow-hidden lg:w-[21.1458vw]">
-                <picture>
-                  <source srcSet={joinFooter2Avif} type="image/avif" />
-                  <source srcSet={joinFooter2Webp} type="image/webp" />
-                  <img src={joinFooter2Jpg} alt="" className="h-full w-full object-cover" data-node-id="268:15" loading="lazy" decoding="async" />
-                </picture>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />
     </div>
   );
 }
-
-

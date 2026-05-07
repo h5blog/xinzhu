@@ -86,15 +86,21 @@ const companyArticles = [
   },
 ] as const;
 
-/** 默认 Figma 108:29336：#D9D9D9 圆 + 白箭头；悬停 108:29331：橙底白箭头 */
+/** 默认 Figma 108:29336：#D9D9D9 圆 + 白箭头；1920 稿圆 52×52 → 52/1920vw；悬停 108:29331：橙底白箭头 */
 function ArrowCircleButton() {
   return (
     <span
-      className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full border-0 bg-[#d9d9d9] text-white shadow-none transition-[background-color,box-shadow] duration-200 group-hover:bg-[#f96d01] group-hover:shadow-md group-focus-within:bg-[#f96d01] group-focus-within:shadow-md"
+      className="flex size-[52px] shrink-0 items-center justify-center rounded-full border-0 bg-[#d9d9d9] text-white shadow-none transition-[background-color,box-shadow] duration-200 group-hover:bg-[#f96d01] group-hover:shadow-md group-focus-within:bg-[#f96d01] group-focus-within:shadow-md lg:size-[2.708333333333333vw]"
       data-node-id="108:29336"
       aria-label="查看详情"
     >
-      <svg width="17" height="26" viewBox="0 0 17 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+      <svg
+        viewBox="0 0 17 26"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-[26px] w-[17px] shrink-0 lg:h-[1.3541666666666667vw] lg:w-[0.8854166666666666vw]"
+        aria-hidden
+      >
         <path
           d="M2 2L13 13L2 24"
           stroke="currentColor"

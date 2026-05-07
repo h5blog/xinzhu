@@ -5,10 +5,11 @@ import logoGroupC from "../images/logo-group-c.svg";
 
 const linkBase =
   "relative whitespace-nowrap text-[14px] font-medium leading-none tracking-normal transition-colors duration-150 md:text-[15px] lg:text-[0.96vw]";
+/** 贴齐触发项所在行底边（top-full），不再用 pt 留出缝隙，避免鼠标移入时断开 */
 const submenuWrap =
-  "absolute left-1/2 top-full z-50 w-max -translate-x-1/2 pt-[clamp(8px,0.625vw,12px)]";
+  "absolute left-1/2 top-full z-50 w-max -translate-x-1/2 pt-0";
 const submenuPanel =
-  "hidden origin-top rounded-md border border-black/5 bg-white/95 text-center text-[14px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] backdrop-blur-[2px] transition-all duration-150 group-hover:block group-focus-within:block md:text-[15px] lg:text-[0.96vw]";
+  "hidden origin-top rounded-b-md rounded-t-none border border-t-0 border-black/5 bg-white/95 text-center text-[14px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] backdrop-blur-[2px] transition-all duration-150 group-hover:block group-focus-within:block md:text-[15px] lg:text-[0.96vw]";
 
 /** 子菜单项：与「公司团队」同一套样式（字号、字重、背景、下划线） */
 function SubmenuLink({ to, children }: { to: string; children: string }) {

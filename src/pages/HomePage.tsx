@@ -5,7 +5,7 @@ import { lazy, Suspense, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import bannerAvif from "../images/banner.opt.avif";
 import bannerWebp from "../images/banner.opt.webp";
-import bannerJpg from "../images/banner.opt.jpg";
+import bannerFallbackPng from "../images/banner.opt.png";
 import homeBannerLogo from "../images/home-banner-logo.svg";
 import techBgPng from "../images/tech-bg.png";
 import techBgWebp from "../images/tech-bg.lossless.webp";
@@ -200,10 +200,10 @@ export default function HomePage() {
           <source srcSet={bannerAvif} type="image/avif" />
           <source srcSet={bannerWebp} type="image/webp" />
           <img
-            src={bannerJpg}
+            src={bannerFallbackPng}
             alt=""
-            width={1213}
-            height={461}
+            width={2880}
+            height={692}
             className="block h-full w-auto max-w-full"
             loading="eager"
             fetchPriority="high"
@@ -244,15 +244,16 @@ export default function HomePage() {
                 />
               </picture>
               <div className="relative z-10 box-border min-h-0 pl-[clamp(300px,48vw,546px)] pt-[67px] pr-0 lg:pl-[28.4375vw] lg:pt-[3.4896vw]">
-                <div className="h-64 w-[589px] max-w-full justify-start text-left text-[16px] leading-[1.7] tracking-[0.03em] font-['PingFang_SC'] text-black sm:text-[18px] md:text-[19px] lg:h-[13.3333vw] lg:w-[30.6771vw] lg:max-w-none lg:text-[1.0417vw]">
+                <div className="h-64 w-[589px] max-w-full justify-start text-left indent-[2em] text-[16px] leading-[1.7] tracking-[0.03em] font-['PingFang_SC'] text-black sm:text-[18px] md:text-[19px] lg:h-[13.3333vw] lg:w-[30.6771vw] lg:max-w-none lg:text-[1.0417vw]">
                   强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 + 数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力，最终形成聚变电站的智能操作系统——终极能源的智慧大脑。
                 </div>
               </div>
             </div>
-              <div className="relative z-10 mx-auto mb-[110px] w-[min(100%-24px,1135px)] text-center lg:mb-[5.7292vw] lg:w-[59.1146vw] lg:max-w-none">
+              <div className="relative z-10 mx-auto mb-[110px] w-[min(100%-24px,1135px)] pl-[clamp(300px,48vw,546px)] text-left lg:mb-[5.7292vw] lg:w-[59.1146vw] lg:max-w-none lg:pl-[28.4375vw]">
                 <Link
                   to="/tech"
-                  className="inline-flex min-w-[max(122px,6.35vw)] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[19.5px] bg-[#F96D01] px-5 py-2.5 text-center text-[17px] font-medium font-['PingFang_SC'] text-white tracking-[0.16em] sm:text-[18px] lg:text-[1.0417vw]"
+                  data-node-id="838:1351"
+                  className="inline-flex min-w-[6.78em] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[1.0833em] bg-[#F96D01] px-[1.1111em] py-[0.6111em] text-center font-['PingFang_SC'] text-[17px] font-medium leading-none text-white tracking-[0.16em] transition-opacity hover:opacity-95 sm:text-[18px] lg:text-[1.0417vw]"
                 >
                   查看详情
                 </Link>
