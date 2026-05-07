@@ -121,56 +121,25 @@ export default function NewsPage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="新闻中心" data-node-id="83:169">
       <Navbar />
 
-      {/* 83:171 头图：稿 1920×217，大屏用 11.3021vw 随宽加高；左侧渐变 95:14 提升白字对比 */}
-      <section className="relative h-[max(217px,11.3021vw)] w-full overflow-hidden" data-node-id="83:171">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <picture className="absolute inset-0 block h-full w-full">
-            <source srcSet={newsBgAvif} type="image/avif" />
-            <source srcSet={newsBgWebp} type="image/webp" />
-            <img
-              src={newsBgJpg}
-              alt=""
-              width={1920}
-              height={217}
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              sizes="100vw"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </picture>
-        </div>
-        <div
-          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-black/50 via-black/18 to-transparent sm:from-black/45 sm:via-black/12"
-          data-node-id="95:14"
-          aria-hidden
-        />
-
-        <div className="relative z-10 flex h-full w-full">
-          <div className="mx-auto flex h-full w-full max-w-[1052px] items-center px-4 py-8 text-left sm:px-6 sm:py-10 lg:max-w-[54.7917vw] lg:px-0 lg:py-[2.0833vw]">
-            <div className="flex min-w-0 flex-col justify-center gap-3 sm:gap-[max(12px,0.625vw)] lg:gap-[0.8333vw]">
-              <p
-                className="m-0 font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[40px] font-semibold leading-[1.05] tracking-[0.04em] text-white sm:text-[48px] lg:text-[3.3333vw]"
-                data-node-id="151:92"
-              >
-                NEWS
-              </p>
-              <div
-                className="h-px w-[286px] max-w-full shrink-0 bg-white lg:w-[14.8958vw]"
-                data-node-id="151:93"
-                aria-hidden
-              />
-              <p
-                className="m-0 font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[24px] font-semibold leading-[1.2] tracking-[0.06em] text-white sm:text-[30px] lg:text-[1.875vw]"
-                data-node-id="151:91"
-              >
-                新闻中心
-              </p>
-            </div>
-          </div>
-        </div>
+      <section className="relative aspect-[1920/217] w-full overflow-hidden" data-name="banner-wrap">
+        <picture className="absolute inset-0 block h-full w-full">
+          <source srcSet={newsBgAvif} type="image/avif" />
+          <source srcSet={newsBgWebp} type="image/webp" />
+          <img
+            src={newsBgJpg}
+            alt=""
+            className="h-full w-full object-cover object-center"
+            width={1920}
+            height={217}
+            sizes="100vw"
+            loading="eager"
+            fetchPriority="high"
+            decoding="sync"
+            data-name="banner"
+            data-node-id="297:83"
+          />
+        </picture>
       </section>
-
       {/* 83:242 页眉标题 */}
       <div className="mx-auto w-full max-w-[1920px] px-4 pt-9 text-center lg:pt-[1.875vw]">
         <h1 className="text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]" data-node-id="83:242">
@@ -247,8 +216,8 @@ export default function NewsPage() {
                         height={item.thumb.height}
                         className="absolute inset-0 h-full w-full object-cover"
                         sizes="(max-width: 1023px) min(100vw - 2rem, 420px), 22.9167vw"
-                        loading={index === 0 ? "eager" : "lazy"}
-                        fetchPriority={index === 0 ? "high" : "low"}
+                        loading={index < 2 ? "eager" : "lazy"}
+                        fetchPriority={index < 2 ? "high" : "low"}
                         decoding="async"
                       />
                     </picture>

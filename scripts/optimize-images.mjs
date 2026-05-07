@@ -18,12 +18,12 @@ const root = path.join(__dirname, "..");
  * - fallbackFormat: "jpeg" | "png" — 兜底图格式（PNG 无损更清晰，体积更大）
  */
 const targets = [
-  // 首页顶栏横幅：与 gsjj-banner 相同策略（2880 宽 + 高码率 AVIF/WebP）
+  // 首页顶栏横幅：1920 宽足够覆盖常见视口，显著减小体积与解码耗时
   {
     input: "src/images/banner.png",
-    maxWidth: 2880,
-    quality: 94,
-    avifQuality: 90,
+    maxWidth: 1920,
+    quality: 92,
+    avifQuality: 88,
     avifEffort: 7,
     fallbackFormat: "png",
   },
@@ -31,23 +31,46 @@ const targets = [
   // 详情页头图仅约 217px 高，无需 2K 宽；缩小体积加快首屏
   { input: "src/images/news-detail-hero-bg.jpg", maxWidth: 1600, quality: 62 },
   { input: "src/images/join-hero-bg.png", maxWidth: 1920, quality: 70 },
-  // 加入我们顶栏横幅（join-bg.png，源图多为 3840×434 类超宽条）
+  // 加入我们顶栏：全宽条带，1920 宽与常见视口 1:1，避免 1600 被拉糊
   {
     input: "src/images/join-bg.png",
-    maxWidth: 2880,
-    quality: 94,
-    avifQuality: 90,
+    maxWidth: 1920,
+    quality: 90,
+    avifQuality: 84,
     avifEffort: 7,
-    fallbackFormat: "png",
+    fallbackFormat: "jpeg",
   },
-  // 创始团队页顶栏横幅 team-bg.png（源图多为 3840×434）
+  // 创始团队顶栏：源图 3840 宽，导出 3840 以覆盖 2x 屏（1920 CSS px）；略提质量保文字锐利
+  {
+    input: "src/images/team-banner-bg.png",
+    maxWidth: 3840,
+    quality: 92,
+    avifQuality: 88,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 首页「创始团队」区块背景（首屏下方：体积适中即可）
   {
     input: "src/images/team-bg.png",
-    maxWidth: 2880,
-    quality: 94,
-    avifQuality: 90,
-    avifEffort: 7,
+    maxWidth: 1920,
+    quality: 82,
+    avifQuality: 76,
+    avifEffort: 6,
     fallbackFormat: "png",
+  },
+  // 首页创始团队头像（展示约 176px～9vw，352 宽覆盖 2x）
+  { input: "src/images/team-1.jpg", maxWidth: 352, quality: 82 },
+  { input: "src/images/team-2.jpg", maxWidth: 352, quality: 82 },
+  { input: "src/images/team-3.jpg", maxWidth: 352, quality: 82 },
+  { input: "src/images/team-4.jpg", maxWidth: 352, quality: 82 },
+  // 加入我们「薪酬福利」：展示宽约 1096，1200 宽约 1.1× 稿宽，体积明显小于 1600；原 PNG ~1.6MB
+  {
+    input: "src/images/fuli.png",
+    maxWidth: 1200,
+    quality: 68,
+    avifQuality: 56,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
   },
   { input: "src/images/join-footer-1.png", maxWidth: 812, quality: 72 },
   { input: "src/images/join-footer-2.png", maxWidth: 812, quality: 72 },
@@ -55,22 +78,69 @@ const targets = [
   { input: "src/images/news-detail-1-main.png", maxWidth: 1103, quality: 72 },
   { input: "src/images/news-detail-4-main.png", maxWidth: 1064, quality: 72 },
   { input: "src/images/our-team.png", maxWidth: 1920, quality: 70 },
-  // 技术中心顶栏横幅（与首页横幅同比例 1920×461）
-  { input: "src/images/tech-banner.png", maxWidth: 1920, quality: 70, fallbackFormat: "png" },
-  // 技术中心「强化学习」等胶囊区背景：设计稿 1920 下约 952×475，源图多为 @2x
-  { input: "src/images/tech-icon.png", maxWidth: 1904, quality: 72, fallbackFormat: "png" },
-  { input: "src/images/news-bg.jpg", maxWidth: 1920, quality: 70 },
-  // 关于我们页首屏横幅：2880 宽（≈2× 设计稿）+ 高码率；WebP 不用 nearLossless（否则体积暴涨）
+  // 技术中心顶栏横幅（JPEG 兜底远小于 PNG）
+  {
+    input: "src/images/tech-banner.png",
+    maxWidth: 1920,
+    quality: 82,
+    avifQuality: 78,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 技术中心胶囊区顶图：展示宽约 min(100%,49.58vw)≈952@1920，1200 宽覆盖常见 DPR；JPEG 兜底远小于原 .opt.png
+  {
+    input: "src/images/tech-icon.png",
+    maxWidth: 1200,
+    quality: 78,
+    avifQuality: 68,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 新闻中心顶栏：1920 宽与稿一致，体积适中
+  {
+    input: "src/images/news-bg.png",
+    maxWidth: 1920,
+    quality: 90,
+    avifQuality: 84,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 关于我们页首屏横幅：1920 宽；JPEG 兜底明显小于 PNG，加快不支持 AVIF/WebP 的浏览器
   {
     input: "src/images/gsjj-banner.png",
-    maxWidth: 2880,
-    quality: 94,
-    avifQuality: 90,
+    maxWidth: 1920,
+    quality: 92,
+    avifQuality: 88,
     avifEffort: 7,
-    fallbackFormat: "png",
+    fallbackFormat: "jpeg",
   },
   // 关于我们「我们的目标」插图：展示宽约 800px，源图超宽条，压到 1600 宽以内并出 AVIF/WebP
   { input: "src/images/gj.png", maxWidth: 1600, quality: 74 },
+  // 关于我们三列卡片底图（约 736～764 宽）：多格式减小体积与解码耗时
+  {
+    input: "src/images/about-card-route.png",
+    maxWidth: 800,
+    quality: 78,
+    avifQuality: 68,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  {
+    input: "src/images/about-card-position.png",
+    maxWidth: 800,
+    quality: 78,
+    avifQuality: 68,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  {
+    input: "src/images/about-card-goal.png",
+    maxWidth: 800,
+    quality: 78,
+    avifQuality: 68,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   // 新闻列表缩略图（卡片约 358×172，2x 约 716 宽）
   { input: "src/images/news-thumb-1.jpg", maxWidth: 716, quality: 72 },
   { input: "src/images/news-thumb-2.jpg", maxWidth: 716, quality: 72 },

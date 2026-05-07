@@ -1,11 +1,23 @@
 import { Link } from "react-router-dom";
 import { assets } from "./assets";
+import team1Avif from "../images/team-1.opt.avif";
+import team1Webp from "../images/team-1.opt.webp";
+import team1Jpg from "../images/team-1.opt.jpg";
+import team2Avif from "../images/team-2.opt.avif";
+import team2Webp from "../images/team-2.opt.webp";
+import team2Jpg from "../images/team-2.opt.jpg";
+import team3Avif from "../images/team-3.opt.avif";
+import team3Webp from "../images/team-3.opt.webp";
+import team3Jpg from "../images/team-3.opt.jpg";
+import team4Avif from "../images/team-4.opt.avif";
+import team4Webp from "../images/team-4.opt.webp";
+import team4Jpg from "../images/team-4.opt.jpg";
 
 const teamMembers = [
-  { name: "张 伟", title: "首席执行官", avatar: assets.team1 },
-  { name: "汪 跃", title: "首席技术官", avatar: assets.team2 },
-  { name: "吴 果", title: "首席运营官", avatar: assets.team3 },
-  { name: "刘铁岩", title: "首席科学顾问", avatar: assets.team4 }
+  { name: "张 伟", title: "首席执行官", avif: team1Avif, webp: team1Webp, jpg: team1Jpg },
+  { name: "汪 跃", title: "首席技术官", avif: team2Avif, webp: team2Webp, jpg: team2Jpg },
+  { name: "吴 果", title: "首席运营官", avif: team3Avif, webp: team3Webp, jpg: team3Jpg },
+  { name: "刘铁岩", title: "首席科学顾问", avif: team4Avif, webp: team4Webp, jpg: team4Jpg },
 ] as const;
 
 export default function Team() {
@@ -15,7 +27,7 @@ export default function Team() {
       style={{
         backgroundImage: `linear-gradient(rgba(20,20,20,0.45), rgba(20,20,20,0.45)), url(${assets.teamBg})`,
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
       }}
     >
       <div className="mx-auto w-[min(100%-24px,1213px)] px-6 lg:w-[63.18vw] lg:max-w-none">
@@ -24,16 +36,21 @@ export default function Team() {
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:mt-[3.65vw] lg:grid-cols-4 lg:gap-[1.67vw]">
           {teamMembers.map((member) => (
             <div key={member.name} className="text-center">
-              <img
-                src={member.avatar}
-                alt={member.name}
-                style={{
-                  borderRadius: "100%"
-                }}
-                className="mx-auto h-44 w-44 lg:h-[9.17vw] lg:w-[9.17vw]"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source srcSet={member.avif} type="image/avif" />
+                <source srcSet={member.webp} type="image/webp" />
+                <img
+                  src={member.jpg}
+                  alt={member.name}
+                  width={187}
+                  height={187}
+                  style={{ borderRadius: "100%" }}
+                  className="mx-auto h-44 w-44 object-cover object-center lg:h-[9.17vw] lg:w-[9.17vw]"
+                  loading="eager"
+                  fetchPriority="low"
+                  decoding="async"
+                />
+              </picture>
               <div className="type-label-md mt-6 font-semibold text-white lg:mt-[1.25vw]">
                 {member.name}
               </div>
@@ -54,4 +71,3 @@ export default function Team() {
     </section>
   );
 }
-

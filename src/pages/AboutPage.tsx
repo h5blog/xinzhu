@@ -2,10 +2,16 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import gsjjBannerAvif from "../images/gsjj-banner.opt.avif";
 import gsjjBannerWebp from "../images/gsjj-banner.opt.webp";
-import gsjjBannerPng from "../images/gsjj-banner.opt.png";
-import aboutCardRoute from "../images/about-card-route.png";
-import aboutCardPosition from "../images/about-card-position.png";
-import aboutCardGoal from "../images/about-card-goal.png";
+import gsjjBannerJpg from "../images/gsjj-banner.opt.jpg";
+import aboutCardRouteAvif from "../images/about-card-route.opt.avif";
+import aboutCardRouteWebp from "../images/about-card-route.opt.webp";
+import aboutCardRouteJpg from "../images/about-card-route.opt.jpg";
+import aboutCardPositionAvif from "../images/about-card-position.opt.avif";
+import aboutCardPositionWebp from "../images/about-card-position.opt.webp";
+import aboutCardPositionJpg from "../images/about-card-position.opt.jpg";
+import aboutCardGoalAvif from "../images/about-card-goal.opt.avif";
+import aboutCardGoalWebp from "../images/about-card-goal.opt.webp";
+import aboutCardGoalJpg from "../images/about-card-goal.opt.jpg";
 import aboutGallery1 from "../images/about-gallery-1.png";
 import aboutGallery2 from "../images/about-gallery-2.png";
 import gsjjIcon from "../images/gsjj-icon.png";
@@ -21,18 +27,37 @@ const mainContent =
 /** 中文正文首行缩进两个汉字（随字号缩放） */
 const indent2 = "[text-indent:2em]";
 
+type PillarCardImageSet = {
+  avif: string;
+  webp: string;
+  jpg: string;
+};
+
 function AboutPillarCard({
-  image,
+  imageSet,
   title,
   body,
 }: {
-  image: string;
+  imageSet: PillarCardImageSet;
   title: string;
   body: string;
 }) {
   return (
     <div className="relative mx-auto aspect-[360/426] w-full max-w-[min(360px,100%)] overflow-hidden rounded-bl-[clamp(3rem,12vw,8.75rem)] rounded-tr-[clamp(3rem,12vw,8.75rem)] lg:mx-0 lg:max-w-none lg:rounded-bl-[min(7rem,5.5vw)] lg:rounded-tr-[min(7rem,5.5vw)]">
-      <img src={image} alt="" className="absolute inset-0 size-full object-cover" loading="lazy" decoding="async" />
+      <picture className="absolute inset-0 block size-full">
+        <source srcSet={imageSet.avif} type="image/avif" />
+        <source srcSet={imageSet.webp} type="image/webp" />
+        <img
+          src={imageSet.jpg}
+          alt=""
+          width={360}
+          height={426}
+          className="absolute inset-0 size-full object-cover"
+          sizes="(max-width: 767px) min(360px, 100vw), (max-width: 1023px) 45vw, 20vw"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
       <div className="relative z-10 flex h-full min-h-0 flex-col px-5 pb-7 pt-9 min-[400px]:px-6 sm:px-8 sm:pb-8 sm:pt-11 lg:px-[min(1.75rem,4.2vw)] lg:pb-[min(2rem,4.8vw)] lg:pt-[min(2.75rem,6.2vw)] xl:px-[2.34vw] xl:pb-8 xl:pt-[2.45vw]">
         <p className="m-0 font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[18px] font-semibold leading-snug tracking-[0.06em] text-white sm:text-[24px] sm:tracking-[0.08em] md:text-[28px] lg:text-[1.4583vw]">
           {title}
@@ -59,15 +84,15 @@ export default function AboutPage() {
             <source srcSet={gsjjBannerAvif} type="image/avif" />
             <source srcSet={gsjjBannerWebp} type="image/webp" />
             <img
-              src={gsjjBannerPng}
+              src={gsjjBannerJpg}
               alt=""
-              width={2880}
-              height={692}
+              width={1920}
+              height={461}
               className="block h-auto w-full max-w-none"
               sizes="100vw"
               loading="eager"
               fetchPriority="high"
-              decoding="async"
+              decoding="sync"
             />
           </picture>
         </div>
@@ -86,18 +111,18 @@ export default function AboutPage() {
 
         <div className="mt-12 grid w-full grid-cols-1 gap-6 sm:mt-14 sm:gap-6 md:mt-16 md:grid-cols-2 md:gap-5 lg:mt-[min(5rem,4.17vw)] lg:grid-cols-3 lg:justify-items-stretch lg:gap-[min(1.25rem,1.1vw)]">
           <AboutPillarCard
-            image={aboutCardRoute}
+            imageSet={{ avif: aboutCardRouteAvif, webp: aboutCardRouteWebp, jpg: aboutCardRouteJpg }}
             title="我们的路线"
             body="打造聚变的 “智能操作系统” "
           />
           <AboutPillarCard
-            image={aboutCardPosition}
+            imageSet={{ avif: aboutCardPositionAvif, webp: aboutCardPositionWebp, jpg: aboutCardPositionJpg }}
             title="我们的定位"
             body="我们不造硬件，我们打造驱动硬件的“智慧大脑”。"
           />
           <div className="flex min-w-0 justify-center md:col-span-2 lg:col-span-1 lg:block lg:w-full">
             <AboutPillarCard
-              image={aboutCardGoal}
+              imageSet={{ avif: aboutCardGoalAvif, webp: aboutCardGoalWebp, jpg: aboutCardGoalJpg }}
               title="我们的目标"
               body="让这套智能系统从实验室的辅助工具，进化为驱动聚变电厂硬件运行的神经中枢，在每一次能量的脉动中，贡献源自“新烛”的驱动力！"
             />

@@ -47,7 +47,7 @@ export default function JobDetailPage() {
               sizes="100vw"
               loading="eager"
               fetchPriority="high"
-              decoding="async"
+              decoding="sync"
             />
           </picture>
         </div>
@@ -73,19 +73,8 @@ export default function JobDetailPage() {
         <DetailBlock label="优先条件" items={job.preferred.map((d, i) => `${i + 1}、${d}`)} />
         <DetailBlock label="岗位地点" items={[job.location]} />
 
-        {/** 立即投递：1920 稿 235×61；sm 起固定稿值；lg 起按 235/1920、61/1920 用 vw 缩放，宽高封顶避免超宽屏过大 */}
+        {/** 立即投递：1920 稿 235×61；lg 用纯 vw + clamp，避免视口小于 1920 时仍锁 235px 导致相对主栏偏大 */}
         <div className="mt-8 flex w-full min-w-0 flex-col gap-5 sm:mt-10 lg:mt-[3.125vw] lg:gap-6">
-          <div className="flex w-full justify-center">
-            <a
-              href={JOB_APPLY_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="box-border inline-flex h-[52px] w-full max-w-[min(100%,280px)] shrink-0 items-center justify-center whitespace-nowrap rounded-[20px] bg-[#f96d01] px-6 font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[17px] font-semibold leading-none text-white no-underline shadow-[0px_4px_12px_0px_#f96d01] transition-opacity hover:opacity-95 sm:h-[61px] sm:w-[235px] sm:max-w-none sm:rounded-[24px] sm:px-8 sm:text-[20px] sm:shadow-[0px_5px_14px_0px_#f96d01] lg:h-[min(max(61px,3.1770833333333335vw),96px)] lg:w-[min(max(235px,12.239583333333334vw),400px)] lg:max-w-none lg:text-[max(20px,1.0417vw)] lg:shadow-[0px_0.26041666666666666vw_0.7291666666666666vw_0px_#f96d01]"
-              data-node-id="936:421"
-            >
-              立 即 投 递
-            </a>
-          </div>
           <div className="flex w-full justify-end">
             <Link
               to="/join"
@@ -93,6 +82,17 @@ export default function JobDetailPage() {
             >
               返回招聘列表
             </Link>
+          </div>
+          <div className="flex w-full justify-center">
+            <a
+              href={JOB_APPLY_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="box-border inline-flex h-[52px] w-full max-w-[min(100%,280px)] shrink-0 items-center justify-center whitespace-nowrap rounded-[20px] bg-[#f96d01] px-6 font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[17px] font-semibold leading-none text-white no-underline shadow-[0px_4px_12px_0px_#f96d01] transition-opacity hover:opacity-95 sm:h-[61px] sm:w-[235px] sm:max-w-none sm:rounded-[24px] sm:px-8 sm:text-[20px] sm:shadow-[0px_5px_14px_0px_#f96d01] lg:h-[clamp(48px,3.1770833333333335vw,96px)] lg:w-[clamp(168px,12.239583333333334vw,400px)] lg:max-w-none lg:px-[1.25vw] lg:text-[clamp(16px,1.0417vw,22px)] lg:shadow-[0px_0.26041666666666666vw_0.7291666666666666vw_0px_#f96d01]"
+              data-node-id="936:421"
+            >
+              立 即 投 递
+            </a>
           </div>
         </div>
       </main>

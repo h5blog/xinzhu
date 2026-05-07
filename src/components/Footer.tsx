@@ -2,11 +2,12 @@ import { assets } from "./assets";
 
 /**
  * Figma 470:41 底栏矩形 #252525 h320 + Group 14 (470:40) 文案与分割线布局
+ * 内容区：1920 设计稿约 1180px 宽 → lg 使用 1180/1920≈61.46vw；小屏 max 1180 + 左右留白。
  */
 export default function Footer() {
   return (
     <footer className="bg-[#252525] text-[#363636]" data-node-id="470:41">
-      <div className="mx-auto min-h-[320px] w-[min(100%-2rem,1213px)] pb-[clamp(24px,2.2vw,36px)] pt-[clamp(32px,2.9vw,48px)] lg:w-[63.18vw] lg:max-w-none">
+      <div className="mx-auto box-border min-h-[320px] w-[min(100%-24px,1180px)] px-4 pb-[clamp(24px,2.2vw,36px)] pt-[clamp(32px,2.9vw,48px)] sm:px-6 md:px-8 lg:w-[61.4583vw] lg:max-w-none lg:px-[2.0833vw]">
         <div className="flex flex-col gap-10 md:gap-12 lg:flex-row lg:justify-start lg:gap-[clamp(48px,4.17vw,80px)]">
           {/* 左栏：公司地址 + 联系方式 */}
           <div className="flex max-w-[475px] flex-col gap-[clamp(26px,2.35vw,45px)] lg:max-w-[40.4%]">
@@ -96,6 +97,7 @@ export default function Footer() {
               href="https://beian.mps.gov.cn/#/query/webSearch?code=31011402021678"
               target="_blank"
               rel="noreferrer"
+              style={{opacity: 0}}
             >
               沪公网安备31011402021678号
             </a>

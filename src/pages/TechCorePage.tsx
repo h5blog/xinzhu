@@ -3,8 +3,10 @@ import Navbar from "../components/Navbar";
 import { assets } from "../components/assets";
 import techBannerAvif from "../images/tech-banner.opt.avif";
 import techBannerWebp from "../images/tech-banner.opt.webp";
-import techBannerPng from "../images/tech-banner.opt.png";
+import techBannerJpg from "../images/tech-banner.opt.jpg";
+import techIconAvif from "../images/tech-icon.opt.avif";
 import techIconWebp from "../images/tech-icon.opt.webp";
+import techIconJpg from "../images/tech-icon.opt.jpg";
 
 const pillBase =
   "flex h-[76px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-gradient-to-b from-[#ffb85c] to-[#f96d01] px-3 text-center text-[18px] font-semibold leading-tight text-white shadow-[0px_16px_17px_0px_rgba(251,85,14,0.25)] sm:h-[82px] sm:text-[24px] md:h-[86px] md:text-[28px] lg:h-[4.4792vw] lg:text-[1.4583vw]";
@@ -20,7 +22,7 @@ export default function TechCorePage() {
           <source srcSet={techBannerAvif} type="image/avif" />
           <source srcSet={techBannerWebp} type="image/webp" />
           <img
-            src={techBannerPng}
+            src={techBannerJpg}
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}
@@ -28,7 +30,7 @@ export default function TechCorePage() {
             sizes="100vw"
             loading="eager"
             fetchPriority="high"
-            decoding="async"
+            decoding="sync"
             data-name="banner"
             data-node-id="297:83"
           />
@@ -48,11 +50,25 @@ export default function TechCorePage() {
             </h1>
 
             <div
-              className="relative z-0 mx-auto mt-8 box-border flex min-h-[24.7396vw] w-full max-w-full flex-col justify-end bg-[length:min(100%,49.5833vw)_auto] bg-top bg-no-repeat px-2 pb-6 sm:mt-10 sm:pb-7 md:mt-12 md:pb-8 lg:mt-[2.3958vw] lg:pb-[1.6667vw]"
-              style={{ backgroundImage: `url(${techIconWebp})` }}
+              className="relative z-0 mx-auto mt-8 box-border flex min-h-[24.7396vw] w-full max-w-full flex-col justify-end px-2 pb-6 sm:mt-10 sm:pb-7 md:mt-12 md:pb-8 lg:mt-[2.3958vw] lg:pb-[1.6667vw]"
               data-node-id="297:88"
             >
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 lg:gap-[1.25vw]">
+              <picture className="pointer-events-none absolute left-1/2 top-0 z-0 w-full max-w-[min(100%,49.5833vw)] -translate-x-1/2">
+                <source srcSet={techIconAvif} type="image/avif" />
+                <source srcSet={techIconWebp} type="image/webp" />
+                <img
+                  src={techIconJpg}
+                  alt=""
+                  width={952}
+                  height={475}
+                  className="h-auto w-full object-contain object-top"
+                  sizes="(max-width: 1023px) calc(100vw - 2rem), 49.58vw"
+                  loading="lazy"
+                  fetchPriority="low"
+                  decoding="async"
+                />
+              </picture>
+              <div className="relative z-10 flex flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 lg:gap-[1.25vw]">
                 <div className={`${pillBase} w-full max-w-[176px] lg:w-[9.1667vw] lg:max-w-none`} data-node-id="297:96">
                   强化学习
                 </div>

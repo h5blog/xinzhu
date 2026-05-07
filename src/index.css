@@ -26,6 +26,29 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/*
+ * 首页地图：DOM 图钉 Label（GL 默认 Marker 在画布下层）。
+ */
+#allmap .BMapLabel,
+#allmap .BMap_label {
+  width: max-content !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#allmap .home-bmap-pin-wrap {
+  position: relative;
+  z-index: 5;
+  pointer-events: none;
+  line-height: 0;
+}
+
+#allmap .home-bmap-pin-svg {
+  display: block;
+  vertical-align: top;
+}
+
 @layer utilities {
   .type-title-xl {
     @apply text-3xl font-semibold leading-tight md:text-4xl lg:text-[2.08vw];

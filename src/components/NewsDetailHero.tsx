@@ -18,7 +18,7 @@ export default function NewsDetailHero() {
           sizes="100vw"
           loading="eager"
           fetchPriority="high"
-          decoding="async"
+          decoding="sync"
         />
       </picture>
       <div

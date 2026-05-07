@@ -4,7 +4,7 @@ import { assets } from "../components/assets";
 import Navbar from "../components/Navbar";
 import teamBannerAvif from "../images/team-banner-bg.opt.avif";
 import teamBannerWebp from "../images/team-banner-bg.opt.webp";
-import teamBannerPng from "../images/team-banner-bg.opt.png";
+import teamBannerJpg from "../images/team-banner-bg.opt.jpg";
 
 const members = [
   {
@@ -86,34 +86,27 @@ export default function TeamPage() {
   return (
     <div className="min-h-screen bg-white text-[#363636]" data-node-id="103:299">
       <Navbar />
-
-      {/* Figma 103:300 Rectangle 13 — 1920×217 头图；文案 151:100 / Line 151:101 / 151:99；侧栏 117:800–805 */}
-      <section
-        className="relative h-[max(160px,11.3021vw)] w-full overflow-hidden"
-        data-name="Rectangle 13"
-        data-node-id="103:300"
-      >
-        <div className="absolute inset-0 block h-full w-full">
-          <picture className="absolute inset-0 block h-full w-full">
-            <source srcSet={teamBannerAvif} type="image/avif" />
-            <source srcSet={teamBannerWebp} type="image/webp" />
-            <img
-              src={teamBannerPng}
-              alt=""
-              width={2880}
-              height={326}
-              className="h-full w-full object-cover object-center"
-              sizes="100vw"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </picture>
-        </div>
+      <section className="relative aspect-[3840/434] w-full overflow-hidden" data-name="banner-wrap">
+        <picture className="absolute inset-0 block h-full w-full">
+          <source srcSet={teamBannerAvif} type="image/avif" />
+          <source srcSet={teamBannerWebp} type="image/webp" />
+          <img
+            src={teamBannerJpg}
+            alt=""
+            className="h-full w-full object-cover object-center"
+            width={3840}
+            height={434}
+            sizes="100vw"
+            loading="eager"
+            fetchPriority="high"
+            decoding="sync"
+            data-name="banner"
+            data-node-id="297:83"
+          />
+        </picture>
       </section>
-
       <main className="mx-auto box-border w-[min(100%-32px,1248px)] min-w-0 overflow-x-hidden px-4 pb-16 pt-12 sm:w-[min(100%-48px,1248px)] sm:px-6 sm:pb-20 sm:pt-14 md:px-8 md:pt-[72px] lg:w-[65vw] lg:max-w-none lg:px-[2.0833vw] lg:pb-[5.2083vw] lg:pt-[4.0625vw]">
-        <h1 className="text-[26px] font-semibold leading-tight text-[#f96d01] sm:text-[30px] md:text-[34px] lg:text-[2.0833vw]">我们的团队</h1>
+        <h1 className="text-[26px] font-semibold leading-tight text-[#f96d01] sm:text-[30px] md:text-[34px] lg:text-[2.0833vw]">创始团队</h1>
 
         <div className="mt-6 flex flex-col gap-0 sm:mt-8 lg:mt-[1.5625vw] lg:gap-y-[min(12px,0.625vw)]">
           {members.map((m, index) => (

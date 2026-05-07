@@ -2,15 +2,15 @@ import Footer from "../components/Footer";
 import { assets } from "../components/assets";
 import Navbar from "../components/Navbar";
 import { lazy, Suspense, useEffect, useRef } from "react";
+import Team from "../components/Team";
 import { Link } from "react-router-dom";
 import bannerAvif from "../images/banner.opt.avif";
 import bannerWebp from "../images/banner.opt.webp";
 import bannerFallbackPng from "../images/banner.opt.png";
-import homeBannerLogo from "../images/home-banner-logo.svg";
-import techBgPng from "../images/tech-bg.png";
-import techBgWebp from "../images/tech-bg.lossless.webp";
+import techBgAvif from "../images/tech-bg.opt.avif";
+import techBgWebp from "../images/tech-bg.opt.webp";
+import techBgJpg from "../images/tech-bg.opt.jpg";
 
-const Team = lazy(() => import("../components/Team"));
 const Partners = lazy(() => import("../components/Partners"));
 
 const BAIDU_MAP_READY_MAX_MS = 15_000;
@@ -19,6 +19,7 @@ const BAIDU_MAP_SCRIPT_ID = "baidu-map-gl-script";
 const BAIDU_MAP_AK = "u6QE6iILhnYxm0t5AMwfcJeaGQFyOeFw";
 /** 全局回调名（百度用 callback= 调用；GL 版支持异步加载，无 document.write 问题） */
 const BAIDU_MAP_CALLBACK = "__onBaiduMapGLReady";
+/** 仅用于地理编码定位中心与图钉，不在地图上展示文字 */
 const COMPANY_ADDRESS = "北京市海淀区海淀大悦信息科技园D2号楼4楼C-403室";
 
 let baiduMapApiPromise: Promise<void> | null = null;
@@ -90,10 +91,40 @@ export default function HomePage() {
     let cancelled = false;
     let observer: IntersectionObserver | null = null;
     let warmupTimer = 0;
+    let mapResizeObserver: ResizeObserver | null = null;
+    let onWindowResize: (() => void) | null = null;
 
     const timeoutPromise = new Promise<never>((_, reject) => {
       setTimeout(() => reject(new Error("Baidu map script timeout")), BAIDU_MAP_READY_MAX_MS);
     });
+
+    /** WebGL 图区在容器尺寸未稳定或信息窗打开后可能未铺满，左侧会露出灰底；强制重算尺寸 */
+    const scheduleMapResize = (map: unknown) => {
+      if (cancelled) return;
+      const api = map as { checkResize?: () => void; resize?: () => void };
+      try {
+        api.checkResize?.();
+        api.resize?.();
+      } catch {
+        /* ignore */
+      }
+    };
+
+    const bindMapResize = (map: unknown, el: HTMLElement) => {
+      scheduleMapResize(map);
+      requestAnimationFrame(() => scheduleMapResize(map));
+      window.setTimeout(() => scheduleMapResize(map), 50);
+      window.setTimeout(() => scheduleMapResize(map), 250);
+      window.setTimeout(() => scheduleMapResize(map), 600);
+
+      mapResizeObserver?.disconnect();
+      mapResizeObserver = new ResizeObserver(() => scheduleMapResize(map));
+      mapResizeObserver.observe(el);
+
+      if (onWindowResize) window.removeEventListener("resize", onWindowResize);
+      onWindowResize = () => scheduleMapResize(map);
+      window.addEventListener("resize", onWindowResize, { passive: true });
+    };
 
     const loadAndInit = async () => {
       if (mapReadyRef.current) return;
@@ -108,40 +139,53 @@ export default function HomePage() {
       if (!el) return;
 
       const map = new window.BMapGL.Map("allmap");
+      bindMapResize(map, el);
+
       const fallbackPoint = new window.BMapGL.Point(116.23, 40.09);
       map.centerAndZoom(fallbackPoint, 17);
       map.enableScrollWheelZoom(true);
+      scheduleMapResize(map);
       // 在地图上标出公司位置，避免仅看底图无法判断具体建筑
       const BMapGLAny = window.BMapGL as unknown as {
-        Marker: new (point: unknown) => unknown;
         Label: new (content: string, opts: { position: unknown; offset: unknown }) => unknown;
         Size: new (width: number, height: number) => unknown;
-        InfoWindow: new (content: string, opts?: { width?: number; title?: string }) => unknown;
         Geocoder: new () => {
           getPoint: (address: string, callback: (point: unknown) => void, city?: string) => void;
         };
       };
       const mapAny = map as unknown as {
         addOverlay: (overlay: unknown) => void;
-        openInfoWindow: (infoWindow: unknown, point: unknown) => void;
         centerAndZoom: (point: unknown, zoom: number) => void;
       };
 
-      const renderCompanyMarker = (point: unknown) => {
-        const marker = new BMapGLAny.Marker(point);
-        mapAny.addOverlay(marker);
-        const markerAny = marker as {
-          setLabel: (label: unknown) => void;
-          addEventListener: (eventName: string, handler: () => void) => void;
-        };
-        // const label = new BMapGLAny.Label("新烛时代（公司位置）", {
-        //   position: point,
-        //   offset: new BMapGLAny.Size(20, -10),
-        // });
-        // markerAny.setLabel(label);
-        const infoWindow = new BMapGLAny.InfoWindow(COMPANY_ADDRESS, { title: "公司地址", width: 320 });
-        markerAny.addEventListener("click", () => mapAny.openInfoWindow(infoWindow, point));
-        mapAny.openInfoWindow(infoWindow, point);
+      const transparentLabelStyle = {
+        border: "none",
+        padding: "0",
+        margin: "0",
+        backgroundColor: "transparent",
+        backgroundImage: "none",
+        boxShadow: "none",
+      } as const;
+
+      const renderLocationPin = (point: unknown) => {
+        /** GL 默认 Marker 在画布下层；用 Label + SVG 图钉（DOM）才能盖在底图之上、稳定可见。 */
+        const pinHtml =
+          '<div class="home-bmap-pin-wrap" aria-hidden="true">' +
+          '<svg xmlns="http://www.w3.org/2000/svg" width="26" height="34" viewBox="0 0 26 34" focusable="false" class="home-bmap-pin-svg">' +
+          '<path fill="#D8574E" d="M13 34c-.5 0-1-.2-1.3-.6C9.6 29.6 0 15.9 0 12.5 0 5.6 5.8 0 13 0s13 5.6 13 12.5c0 3.4-9.6 17.1-11.7 20.9-.3.4-.8.6-1.3.6z"/>' +
+          '<circle cx="13" cy="11.5" r="4.5" fill="#fff"/>' +
+          "</svg></div>";
+        const pinLabel = new BMapGLAny.Label(pinHtml, {
+          position: point,
+          /** 26×34 图钉：尖端对准经纬度（左上角相对锚点） */
+          offset: new BMapGLAny.Size(-13, -34),
+        });
+        const pinLabelAny = pinLabel as { setStyle: (style: Record<string, string>) => void };
+        mapAny.addOverlay(pinLabel);
+        pinLabelAny.setStyle({ ...transparentLabelStyle });
+        scheduleMapResize(map);
+        window.setTimeout(() => scheduleMapResize(map), 80);
+        window.setTimeout(() => scheduleMapResize(map), 300);
       };
 
       const geocoder = new BMapGLAny.Geocoder();
@@ -149,11 +193,11 @@ export default function HomePage() {
         COMPANY_ADDRESS,
         (geocodedPoint) => {
           if (!geocodedPoint) {
-            renderCompanyMarker(fallbackPoint);
+            renderLocationPin(fallbackPoint);
             return;
           }
           mapAny.centerAndZoom(geocodedPoint, 18);
-          renderCompanyMarker(geocodedPoint);
+          renderLocationPin(geocodedPoint);
         },
         "北京市",
       );
@@ -185,43 +229,46 @@ export default function HomePage() {
       cancelled = true;
       window.clearTimeout(warmupTimer);
       observer?.disconnect();
+      mapResizeObserver?.disconnect();
+      if (onWindowResize) window.removeEventListener("resize", onWindowResize);
     };
   }, []);
   return (
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <main>
-      <section>
-      <div
-        className="relative h-[max(296px,24.01vw)] w-full overflow-hidden"
-        style={{ background: "linear-gradient(333deg, #F15A24 0%, #F7931E 100%)" }}
-      >
-        <picture className="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <section className="relative aspect-[1920/461] w-full overflow-hidden" data-name="banner-wrap">
+        <picture className="absolute inset-0 block h-full w-full">
           <source srcSet={bannerAvif} type="image/avif" />
           <source srcSet={bannerWebp} type="image/webp" />
           <img
             src={bannerFallbackPng}
             alt=""
-            width={2880}
-            height={692}
-            className="block h-full w-auto max-w-full"
+            className="h-full w-full object-cover object-center"
+            width={1920}
+            height={461}
+            sizes="100vw"
             loading="eager"
             fetchPriority="high"
-            decoding="async"
+            decoding="sync"
+            data-name="banner"
+            data-node-id="297:83"
           />
         </picture>
-      </div>
+      </section>
+      <section>
         <div className="relative overflow-hidden bg-[#F6F6F6] pt-[37px] lg:pt-[1.9271vw]">
             <picture className="pointer-events-none absolute inset-0 z-0 block h-full w-full">
+              <source srcSet={techBgAvif} type="image/avif" />
               <source srcSet={techBgWebp} type="image/webp" />
               <img
-                src={techBgPng}
+                src={techBgJpg}
                 alt=""
                 width={1920}
                 height={630}
                 className="h-full w-full object-cover"
                 loading="eager"
-                fetchPriority="high"
+                fetchPriority="low"
                 decoding="async"
               />
             </picture>
@@ -238,8 +285,8 @@ export default function HomePage() {
                   width={488}
                   height={303}
                   className="block h-auto w-[488px] max-w-[min(488px,50vw)] object-contain object-left lg:w-[25.4167vw] lg:max-w-none"
-                  loading="eager"
-                  fetchPriority="auto"
+                  loading="lazy"
+                  fetchPriority="low"
                   decoding="async"
                 />
               </picture>
@@ -260,14 +307,14 @@ export default function HomePage() {
               </div>
         </div>
       </section>
-        <Suspense fallback={<div className="h-[600px] w-full bg-white" />}>
-          <Team />
-        </Suspense>
+        <Team />
         <Suspense fallback={<div className="h-[900px] w-full bg-white" />}>
           <Partners />
         </Suspense>
-        {/* 百度地图容器需明确高度，否则地图无法渲染 */}
-        <div id="allmap" ref={mapRef} className="h-[clamp(240px,19.32vw,420px)] w-full" />
+        {/** 百度地图：容器需明确高度；overflow-hidden 避免 WebGL 未铺满时露出侧向灰条 */}
+        <div className="relative w-full overflow-hidden">
+          <div id="allmap" ref={mapRef} className="h-[clamp(240px,19.32vw,420px)] w-full" />
+        </div>
       </main>
       <Footer />
     </div>

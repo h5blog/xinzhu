@@ -1,4 +1,4 @@
-import Footer from "../components/Footer";
+﻿import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { assets } from "../components/assets";
 import { Fragment } from "react";
@@ -6,18 +6,16 @@ import { Link } from "react-router-dom";
 import { JOB_APPLY_FORM_URL, JOBS } from "../data/jobs";
 import joinBannerAvif from "../images/join-bg.opt.avif";
 import joinBannerWebp from "../images/join-bg.opt.webp";
-import joinBannerPng from "../images/join-bg.opt.png";
+import joinBannerJpg from "../images/join-bg.opt.jpg";
 import joinFooter1Avif from "../images/join-footer-1.opt.avif";
 import joinFooter1Webp from "../images/join-footer-1.opt.webp";
 import joinFooter1Jpg from "../images/join-footer-1.opt.jpg";
 import joinFooter2Avif from "../images/join-footer-2.opt.avif";
 import joinFooter2Webp from "../images/join-footer-2.opt.webp";
 import joinFooter2Jpg from "../images/join-footer-2.opt.jpg";
-import fuliPng from "../images/fuli.png";
-
-/** 1920 稿 fuli 图 1096×687；lg 下宽 57.0833vw（1096/1920），与首页 vw 适配一致 */
-const FULI_DESIGN_WIDTH = 1096;
-const FULI_DESIGN_HEIGHT = 687;
+import fuliAvif from "../images/fuli.opt.avif";
+import fuliWebp from "../images/fuli.opt.webp";
+import fuliJpg from "../images/fuli.opt.jpg";
 
 /** Figma 924:282 / 924:280 / 924:281：横向渐变；小屏 max 1025px，lg 与主栏同宽；高度 3px@1920 用 vw 略放大大屏 */
 function JoinSectionRuleBar({
@@ -137,17 +135,22 @@ function JoinBenefitsSection() {
       </h2>
       <JoinSectionRuleBar className="mt-6 lg:mt-8" data-node-id="924:280" />
 
-      <div className="relative mx-auto mt-10 aspect-[1096/687] w-full min-w-0 max-w-[min(100%,1096px)] overflow-hidden rounded-2xl bg-[#f0f0f0] sm:rounded-[24px] lg:mt-[2.6042vw] lg:w-[57.0833vw] lg:max-w-none">
-        <img
-          src={fuliPng}
-          alt="薪酬福利"
-          width={FULI_DESIGN_WIDTH}
-          height={FULI_DESIGN_HEIGHT}
-          className="absolute inset-0 h-full w-full object-contain object-center"
-          loading="lazy"
-          decoding="async"
-          sizes="(max-width: 1023px) min(calc(100vw - 48px), 1096px), 57vw"
-        />
+      <div className="relative mx-auto mt-10 aspect-[1200/749] w-full min-w-0 max-w-[min(100%,1200px)] overflow-hidden rounded-2xl bg-[#f0f0f0] sm:rounded-[24px] lg:mt-[2.6042vw] lg:w-[57.0833vw] lg:max-w-none">
+        <picture className="absolute inset-0 block h-full w-full">
+          <source srcSet={fuliAvif} type="image/avif" />
+          <source srcSet={fuliWebp} type="image/webp" />
+          <img
+            src={fuliJpg}
+            alt="薪酬福利"
+            width={1200}
+            height={749}
+            className="h-full w-full object-contain object-center"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            sizes="(max-width: 1023px) min(calc(100vw - 48px), 1096px), 57vw"
+          />
+        </picture>
       </div>
     </section>
   );
@@ -271,13 +274,13 @@ function JoinApplySection() {
   );
 }
 
-/** 1920 稿单张宽约 526px（406:305）；526/1920≈27.3958vw，大屏随视口放大 */
+/** 两列 flex-1 + 固定 gap：左右贴齐 mainCol，中间仅小间隙（避免 1fr 撑满） */
 function JoinFooterGallery() {
   const tileClass =
-    "relative aspect-[406/305] w-full min-w-0 overflow-hidden sm:w-0 sm:flex-1 sm:basis-0 lg:w-[27.3958vw] lg:flex-none lg:max-w-none";
+    "relative aspect-[406/305] w-full min-w-0 overflow-hidden sm:w-0 sm:flex-1 sm:basis-0";
   return (
     <div className="mt-12 w-full min-w-0 lg:mt-[3.3333vw]">
-      <div className="flex w-full min-w-0 flex-col gap-[10px] sm:flex-row sm:items-stretch lg:gap-[0.5208vw]">
+      <div className="flex w-full min-w-0 flex-col gap-[10px] sm:flex-row sm:items-stretch sm:gap-[10px] lg:gap-[0.5208vw]">
         <div className={tileClass}>
           <picture>
             <source srcSet={joinFooter1Avif} type="image/avif" />
@@ -291,7 +294,7 @@ function JoinFooterGallery() {
               data-node-id="729:29270"
               loading="lazy"
               decoding="async"
-              sizes="(max-width: 639px) 100vw, (max-width: 1023px) calc((100vw - 48px - 10px) / 2), 27.5vw"
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) calc((100vw - 48px - 10px) / 2), calc((58.1771vw - 0.5208vw) / 2)"
             />
           </picture>
         </div>
@@ -308,7 +311,7 @@ function JoinFooterGallery() {
               data-node-id="729:29271"
               loading="lazy"
               decoding="async"
-              sizes="(max-width: 639px) 100vw, (max-width: 1023px) calc((100vw - 48px - 10px) / 2), 27.5vw"
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) calc((100vw - 48px - 10px) / 2), calc((58.1771vw - 0.5208vw) / 2)"
             />
           </picture>
         </div>
@@ -323,34 +326,32 @@ export default function JoinUsPage() {
   return (
     <div className="min-h-screen bg-[#f0f0f0] text-[#363636]" data-name="加入我们" data-node-id="729:29148">
       <Navbar />
-
-      <section className="relative h-[max(160px,11.3021vw)] w-full overflow-hidden" data-node-id="108:82">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <picture className="absolute inset-0 block h-full w-full">
-            <source srcSet={joinBannerAvif} type="image/avif" />
-            <source srcSet={joinBannerWebp} type="image/webp" />
-            <img
-              alt=""
-              src={joinBannerPng}
-              width={3840}
-              height={434}
-              className="h-full w-full object-cover object-center"
-              sizes="100vw"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </picture>
-        </div>
+      <section className="relative aspect-[1920/217] w-full overflow-hidden" data-name="banner-wrap">
+        <picture className="absolute inset-0 block h-full w-full">
+          <source srcSet={joinBannerAvif} type="image/avif" />
+          <source srcSet={joinBannerWebp} type="image/webp" />
+          <img
+            src={joinBannerJpg}
+            alt=""
+            className="h-full w-full object-cover object-center"
+            width={1920}
+            height={217}
+            sizes="100vw"
+            loading="eager"
+            fetchPriority="high"
+            decoding="sync"
+            data-name="banner"
+            data-node-id="297:83"
+          />
+        </picture>
       </section>
-
       <main className={`${mainCol} pb-16 pt-10 lg:pb-24 lg:pt-12`}>
         <JoinBenefitsSection />
         <JoinProcessSection />
         <JoinApplySection />
         <JoinFooterGallery />
         <h2
-          className="mt-8 text-center font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[32px] font-semibold leading-[30px] text-[#f96d01] sm:text-[36px] lg:mt-10 lg:text-[2.0833vw] lg:leading-tight"
+          className="mt-8 text-center font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[32px] font-semibold leading-[30px] text-[#f96d01] sm:mt-10 sm:text-[36px] lg:mt-[max(3rem,5vw)] lg:text-[2.0833vw] lg:leading-tight"
           data-node-id="924:279"
         >
           岗位需求

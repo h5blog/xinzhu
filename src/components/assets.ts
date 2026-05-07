@@ -13,11 +13,7 @@ import partnerIcon4 from "../images/partner-icon4.jpg";
 import partnerIcon5 from "../images/partner-icon5.jpg";
 import partnerIcon6 from "../images/partner-icon6.jpg";
 import qrcode from "../images/qrcode.jpg";
-import team1 from "../images/team-1.jpg";
-import team2 from "../images/team-2.jpg";
-import team3 from "../images/team-3.jpg";
-import team4 from "../images/team-4.jpg";
-import teamBg from "../images/team-bg.png";
+import teamBg from "../images/team-bg.opt.webp";
 import teamList from "../images/team-list.jpg";
 import wg from "../images/wg.jpg";
 import wy from "../images/wy.jpg";
@@ -53,10 +49,6 @@ export const assets = {
   partnerIcon5,
   partnerIcon6,
   qrcode,
-  team1,
-  team2,
-  team3,
-  team4,
   zw,
   aboutGrid1,
   aboutGrid2,

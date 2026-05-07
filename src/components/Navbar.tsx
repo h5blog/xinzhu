@@ -2,6 +2,16 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import logoGroupA from "../images/logo-group-a.svg";
 import logoGroupB from "../images/logo-group-b.svg";
 import logoGroupC from "../images/logo-group-c.svg";
+import aboutCardGoalAvif from "../images/about-card-goal.opt.avif";
+import aboutCardPositionAvif from "../images/about-card-position.opt.avif";
+import aboutCardRouteAvif from "../images/about-card-route.opt.avif";
+import gsjjBannerAvif from "../images/gsjj-banner.opt.avif";
+import joinPageBannerAvif from "../images/join-bg.opt.avif";
+import joinFuliAvif from "../images/fuli.opt.avif";
+import newsBgAvif from "../images/news-bg.opt.avif";
+import teamPageBannerAvif from "../images/team-banner-bg.opt.avif";
+import techBannerAvif from "../images/tech-banner.opt.avif";
+import techIconAvif from "../images/tech-icon.opt.avif";
 
 const linkBase =
   "relative whitespace-nowrap text-[14px] font-medium leading-none tracking-normal transition-colors duration-150 md:text-[15px] lg:text-[0.96vw]";
@@ -11,13 +21,125 @@ const submenuWrap =
 const submenuPanel =
   "hidden origin-top rounded-b-md rounded-t-none border border-t-0 border-black/5 bg-white/95 text-center text-[14px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] backdrop-blur-[2px] transition-all duration-150 group-hover:block group-focus-within:block md:text-[15px] lg:text-[0.96vw]";
 
+type NavPreloadImage = {
+  href: string;
+  mime: string;
+  id: string;
+  fetchPriority?: "high" | "low";
+};
+
+const TECH_ROUTE_PRELOADS: NavPreloadImage[] = [
+  { href: techBannerAvif, mime: "image/avif", id: "preload-tech-banner-avif" },
+  { href: techIconAvif, mime: "image/avif", id: "preload-tech-icon-avif", fetchPriority: "low" },
+];
+
+const NEWS_ROUTE_PRELOADS: NavPreloadImage[] = [
+  { href: newsBgAvif, mime: "image/avif", id: "preload-news-banner-avif" },
+];
+
+/** 悬停「关于我们」整块：子路由顶栏预热（薪酬福利图仅在「加入我们」预取时高优加载，避免占住 preload id 为 low） */
+const ABOUT_MENU_PRELOADS: NavPreloadImage[] = [
+  { href: gsjjBannerAvif, mime: "image/avif", id: "preload-gsjj-banner-avif" },
+  { href: teamPageBannerAvif, mime: "image/avif", id: "preload-team-banner-avif" },
+  { href: joinPageBannerAvif, mime: "image/avif", id: "preload-join-banner-avif" },
+];
+
+const ABOUT_ROUTE_PRELOADS: NavPreloadImage[] = [
+  { href: gsjjBannerAvif, mime: "image/avif", id: "preload-gsjj-banner-avif" },
+  { href: aboutCardRouteAvif, mime: "image/avif", id: "preload-about-card-route-avif", fetchPriority: "low" },
+  { href: aboutCardPositionAvif, mime: "image/avif", id: "preload-about-card-position-avif", fetchPriority: "low" },
+  { href: aboutCardGoalAvif, mime: "image/avif", id: "preload-about-card-goal-avif", fetchPriority: "low" },
+];
+
+const TEAM_ROUTE_PRELOADS: NavPreloadImage[] = [
+  { href: teamPageBannerAvif, mime: "image/avif", id: "preload-team-banner-avif" },
+];
+
+const JOIN_ROUTE_PRELOADS: NavPreloadImage[] = [
+  { href: joinPageBannerAvif, mime: "image/avif", id: "preload-join-banner-avif" },
+  { href: joinFuliAvif, mime: "image/avif", id: "preload-join-fuli-avif", fetchPriority: "high" },
+];
+
+function preloadImageOnce(
+  href: string,
+  mime: string,
+  id: string,
+  fetchPriority: "high" | "low" = "high",
+) {
+  if (document.getElementById(id)) return;
+  const link = document.createElement("link");
+  link.id = id;
+  link.rel = "preload";
+  link.as = "image";
+  link.href = href;
+  link.type = mime;
+  link.setAttribute("fetchpriority", fetchPriority);
+  document.head.appendChild(link);
+}
+
+/** 按传入列表预加载图片（除首页外各菜单在 hover / focus 时调用） */
+function warmNavAssets(images: readonly NavPreloadImage[]) {
+  for (const img of images) {
+    preloadImageOnce(img.href, img.mime, img.id, img.fetchPriority ?? "high");
+  }
+}
+
+let aboutPageChunkPrefetched = false;
+function prefetchAboutPageChunk() {
+  if (aboutPageChunkPrefetched) return;
+  aboutPageChunkPrefetched = true;
+  warmNavAssets(ABOUT_ROUTE_PRELOADS);
+  void import("../pages/AboutPage");
+}
+
+let newsPageChunkPrefetched = false;
+function prefetchNewsPageChunk() {
+  if (newsPageChunkPrefetched) return;
+  newsPageChunkPrefetched = true;
+  warmNavAssets(NEWS_ROUTE_PRELOADS);
+  void import("../pages/NewsPage");
+}
+
+let techCorePageChunkPrefetched = false;
+function prefetchTechCorePageChunk() {
+  if (techCorePageChunkPrefetched) return;
+  techCorePageChunkPrefetched = true;
+  warmNavAssets(TECH_ROUTE_PRELOADS);
+  void import("../pages/TechCorePage");
+}
+
+let teamPageChunkPrefetched = false;
+function prefetchTeamPageChunk() {
+  if (teamPageChunkPrefetched) return;
+  teamPageChunkPrefetched = true;
+  warmNavAssets(TEAM_ROUTE_PRELOADS);
+  void import("../pages/TeamPage");
+}
+
+let joinUsPageChunkPrefetched = false;
+function prefetchJoinUsPageChunk() {
+  if (joinUsPageChunkPrefetched) return;
+  joinUsPageChunkPrefetched = true;
+  warmNavAssets(JOIN_ROUTE_PRELOADS);
+  void import("../pages/JoinUsPage");
+}
+
 /** 子菜单项：与「公司团队」同一套样式（字号、字重、背景、下划线） */
-function SubmenuLink({ to, children }: { to: string; children: string }) {
+function SubmenuLink({
+  to,
+  children,
+  onHoverPrefetch,
+}: {
+  to: string;
+  children: string;
+  onHoverPrefetch?: () => void;
+}) {
   const { pathname } = useLocation();
   const active = pathname === to;
   return (
     <Link
       to={to}
+      onMouseEnter={onHoverPrefetch}
       className={`relative flex h-[clamp(38px,2.4vw,48px)] items-center justify-center whitespace-nowrap px-[clamp(10px,0.7vw,14px)] text-center text-[14px] font-medium transition-colors md:text-[15px] lg:h-[2.4vw] lg:text-[0.96vw] ${
         active ? "bg-[rgba(255,255,255,0.8)] text-[#f96d01]" : "text-[#363636] hover:bg-[rgba(255,255,255,0.8)] hover:text-[#f96d01]"
       }`}
@@ -35,15 +157,18 @@ function NavItem({
   to,
   end,
   children,
+  onHoverPrefetch,
 }: {
   to: string;
   end?: boolean;
   children: string;
+  onHoverPrefetch?: () => void;
 }) {
   return (
     <NavLink
       to={to}
       end={end}
+      onMouseEnter={onHoverPrefetch}
       className={({ isActive }) =>
         `${linkBase} inline-flex h-full items-center ${isActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`
       }
@@ -97,7 +222,11 @@ export default function Navbar() {
           <NavItem to="/" end>
             首页
           </NavItem>
-          <div className="group relative flex h-full items-center">
+          <div
+            className="group relative flex h-full items-center"
+            onMouseEnter={() => warmNavAssets(TECH_ROUTE_PRELOADS)}
+            onFocusCapture={() => warmNavAssets(TECH_ROUTE_PRELOADS)}
+          >
             <span
               tabIndex={0}
               className={`${linkBase} relative inline-flex h-full cursor-default items-center rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#f96d01]/35 focus-visible:ring-offset-2 ${productSectionActive ? "text-[#f96d01]" : "text-black"}`}
@@ -111,12 +240,20 @@ export default function Navbar() {
             </span>
             <div className={submenuWrap}>
               <div className={`${submenuPanel} min-w-[132px] lg:min-w-[9.48vw]`}>
-                <SubmenuLink to="/tech">核心技术</SubmenuLink>
+                <SubmenuLink to="/tech" onHoverPrefetch={prefetchTechCorePageChunk}>
+                  核心技术
+                </SubmenuLink>
               </div>
             </div>
           </div>
-          <NavItem to="/news">新闻中心</NavItem>
-          <div className="group relative flex h-full items-center">
+          <NavItem to="/news" onHoverPrefetch={prefetchNewsPageChunk}>
+            新闻中心
+          </NavItem>
+          <div
+            className="group relative flex h-full items-center"
+            onMouseEnter={() => warmNavAssets(ABOUT_MENU_PRELOADS)}
+            onFocusCapture={() => warmNavAssets(ABOUT_MENU_PRELOADS)}
+          >
             <span
               tabIndex={0}
               className={`${linkBase} relative inline-flex h-full cursor-default items-center rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#f96d01]/35 focus-visible:ring-offset-2 ${aboutSectionActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`}
@@ -130,9 +267,15 @@ export default function Navbar() {
             </span>
             <div className={submenuWrap}>
               <div className={`${submenuPanel} min-w-[140px] lg:min-w-[10.52vw]`}>
-                <SubmenuLink to="/about">公司简介</SubmenuLink>
-                <SubmenuLink to="/team">创始团队</SubmenuLink>
-                <SubmenuLink to="/join">加入我们</SubmenuLink>
+                <SubmenuLink to="/about" onHoverPrefetch={prefetchAboutPageChunk}>
+                  公司简介
+                </SubmenuLink>
+                <SubmenuLink to="/team" onHoverPrefetch={prefetchTeamPageChunk}>
+                  创始团队
+                </SubmenuLink>
+                <SubmenuLink to="/join" onHoverPrefetch={prefetchJoinUsPageChunk}>
+                  加入我们
+                </SubmenuLink>
               </div>
             </div>
           </div>
