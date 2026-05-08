@@ -18,10 +18,10 @@ const root = path.join(__dirname, "..");
  * - fallbackFormat: "jpeg" | "png" — 兜底图格式（PNG 无损更清晰，体积更大）
  */
 const targets = [
-  // 首页顶栏横幅：1920 宽足够覆盖常见视口，显著减小体积与解码耗时
+  // 首页顶栏横幅：源图 3840×922，导出 3840 宽覆盖 1920 CSS 下的 2×（Retina）
   {
     input: "src/images/banner.png",
-    maxWidth: 1920,
+    maxWidth: 3840,
     quality: 92,
     avifQuality: 88,
     avifEffort: 7,
@@ -31,10 +31,10 @@ const targets = [
   // 详情页头图仅约 217px 高，无需 2K 宽；缩小体积加快首屏
   { input: "src/images/news-detail-hero-bg.jpg", maxWidth: 1600, quality: 62 },
   { input: "src/images/join-hero-bg.png", maxWidth: 1920, quality: 70 },
-  // 加入我们顶栏：全宽条带，1920 宽与常见视口 1:1，避免 1600 被拉糊
+  // 加入我们顶栏：源图 3840×434，导出 3840 宽覆盖 1920 CSS 下的 2×（Retina）
   {
     input: "src/images/join-bg.png",
-    maxWidth: 1920,
+    maxWidth: 3840,
     quality: 90,
     avifQuality: 84,
     avifEffort: 7,
@@ -96,19 +96,19 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 新闻中心顶栏：1920 宽与稿一致，体积适中
+  // 新闻中心顶栏：源图 3840×434，导出 3840 宽覆盖 1920 CSS 下的 2×（Retina）
   {
     input: "src/images/news-bg.png",
-    maxWidth: 1920,
+    maxWidth: 3840,
     quality: 90,
     avifQuality: 84,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 关于我们页首屏横幅：1920 宽；JPEG 兜底明显小于 PNG，加快不支持 AVIF/WebP 的浏览器
+  // 关于我们页首屏横幅：源图 3840×922，导出 3840 宽覆盖 1920 CSS 宽度下的 2×（Retina）
   {
     input: "src/images/gsjj-banner.png",
-    maxWidth: 1920,
+    maxWidth: 3840,
     quality: 92,
     avifQuality: 88,
     avifEffort: 7,

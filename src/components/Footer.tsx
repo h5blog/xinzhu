@@ -1,20 +1,21 @@
+import { CONTENT_MAX_WIDTH } from "../constants/contentAlign";
 import { assets } from "./assets";
 
 /**
- * Figma 470:41 底栏矩形 #252525 h320 + Group 14 (470:40) 文案与分割线布局
- * 内容区：1920 设计稿约 1180px 宽 → lg 使用 1180/1920≈61.46vw；小屏 max 1180 + 左右留白。
+ * Figma 470:41 底栏 #252525；内容区与首页 juzhen 图同宽（1153@1920）左对齐。
  */
 export default function Footer() {
   return (
     <footer className="bg-[#252525] text-[#363636]" data-node-id="470:41">
-      <div className="mx-auto box-border min-h-[320px] w-[min(100%-24px,1180px)] px-4 pb-[clamp(24px,2.2vw,36px)] pt-[clamp(32px,2.9vw,48px)] sm:px-6 md:px-8 lg:w-[61.4583vw] lg:max-w-none lg:px-[2.0833vw]">
+      <div className="mx-auto box-border w-full min-h-[320px] px-4 pb-[clamp(24px,2.2vw,36px)] pt-[clamp(32px,2.9vw,48px)]">
+        <div className="mx-auto w-full" style={{ maxWidth: CONTENT_MAX_WIDTH }}>
         <div className="flex flex-col gap-10 md:gap-12 lg:flex-row lg:justify-start lg:gap-[clamp(48px,4.17vw,80px)]">
           {/* 左栏：公司地址 + 联系方式 */}
           <div className="flex max-w-[475px] flex-col gap-[clamp(26px,2.35vw,45px)] lg:max-w-[40.4%]">
             <section data-node-id="470:42">
               <h3 className="text-[17px] font-medium leading-normal text-[#f96d01] md:text-[18px] lg:text-[1.04vw]">公司地址</h3>
               <div
-                className="mt-2 h-px w-[min(100%,384px)] bg-[#5c5c5c] lg:w-[32.5vw] lg:max-w-[384px]"
+                className="mt-2 h-px w-full bg-[#5c5c5c]"
                 data-node-id="470:48"
                 aria-hidden
               />
@@ -46,9 +47,9 @@ export default function Footer() {
             <img
               src={assets.qrcode}
               alt="公众号二维码"
-              width={129}
-              height={129}
-              className="block h-[clamp(108px,6.72vw,129px)] w-[clamp(108px,6.72vw,129px)] bg-white object-contain p-1"
+              width={192}
+              height={192}
+              className="block h-[clamp(108px,7.2vw,192px)] w-[clamp(108px,7.2vw,192px)] bg-white object-contain p-1"
               data-node-id="470:53"
               loading="lazy"
               decoding="async"
@@ -65,7 +66,7 @@ export default function Footer() {
               aria-hidden
             />
             <p
-              className="mt-3 max-w-[308px] text-[14px] font-medium leading-normal text-[#e8e8e8] md:text-[15px] lg:text-[0.83vw]"
+              className="mt-3  text-[14px] font-medium leading-normal text-[#e8e8e8] md:text-[15px] lg:text-[0.83vw]"
               data-node-id="470:47"
             >
               扫描二维码关注新烛时代公众号
@@ -102,6 +103,7 @@ export default function Footer() {
               沪公网安备31011402021678号
             </a>
           </p>
+        </div>
         </div>
       </div>
     </footer>

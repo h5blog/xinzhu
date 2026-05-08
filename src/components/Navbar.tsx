@@ -193,7 +193,7 @@ export default function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 h-[3.385vw] border-b border-black/[0.06] bg-white shadow-[0px_2px_8px_rgba(0,0,0,0.06)]"
+      className="sticky top-0 z-50 h-[3.385vw] border-b-0 bg-white shadow-[0px_2px_8px_rgba(0,0,0,0.06)]"
       data-node-id="103:327"
     >
       <div className="mx-auto flex h-full w-full max-w-[min(100%-2rem,1213px)] items-center justify-between px-4 sm:px-6 lg:w-[63.18vw] lg:max-w-none lg:px-[max(1rem,calc(0.833vw+0.75rem))]">
@@ -216,7 +216,7 @@ export default function Navbar() {
         </Link>
 
         <nav
-          className="flex h-full min-w-0 flex-1 items-center justify-end gap-6 pl-4 sm:gap-7 sm:pl-6 lg:gap-[max(1.875rem,3.35vw)] lg:pl-2"
+          className="flex h-full min-w-0 flex-1 items-stretch justify-end gap-6 pl-4 sm:gap-7 sm:pl-6 lg:gap-[max(1.875rem,3.35vw)] lg:pl-2"
           aria-label="主导航"
         >
           <NavItem to="/" end>

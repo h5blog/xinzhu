@@ -48,7 +48,7 @@ const industryArticles = [
     date: "2026-01-01",
     title: "中国核聚变相关政策时间线表格年份",
     excerpt:
-      "2022《加快电力装备绿色低碳创新发展行动计划的通知》加快三代核电标准化、谱系化发展，持续推进钠冷快堆、高温气冷堆…",
+      "2022《加快电力装备绿色低碳创新发展行动计划的通知》加快三代核电标准化、谱系化发展，持续推进钠冷快堆、高温气冷堆、铅铋快堆等四代核电堆型的研发和应用。加快可控核聚变等前沿颠覆性技术研究。",
     thumb: NEWS_THUMBS[1],
     overlayNodeId: "95:10" as const,
   },
@@ -57,7 +57,7 @@ const industryArticles = [
     date: "2026-01-01",
     title: "8月27日：《关于推进 「人工智能 +」 能源高质量发展的实施意见》",
     excerpt: `01 国家战略
-国家发展改革委、国家能源局《关于推进 「人工智能 +」 能源高质量发展…`,
+国家发展改革委、国家能源局《关于推进“人工智能 +”能源高质量发展的实施意见》`,
     thumb: NEWS_THUMBS[2],
     overlayNodeId: "95:11" as const,
   },
@@ -66,7 +66,7 @@ const industryArticles = [
     date: "2026-01-01",
     title: "AI 赋能聚变已成全球共识",
     excerpt:
-      "Microsoft与 Helion 达成全球首个聚变电力采购协议（2028 年起购买 50 MW 电力），并利用 Azure 平台加速 AI 在聚变领域的应用…",
+      "Microsoft与 Helion 达成全球首个聚变电力采购协议（2028 年起购买 50 MW 电力），并利用 Azure 平台加速 AI 在聚变领域的应用。",
     thumb: NEWS_THUMBS[3],
     overlayNodeId: "95:12" as const,
   },
@@ -243,7 +243,7 @@ export default function NewsPage() {
                       >
                         {item.date}
                       </p>
-                      <p className="mt-7 whitespace-pre-wrap text-[15px] font-normal leading-normal text-[#666] sm:mt-8 sm:text-[16px] lg:mt-[1.875vw] lg:text-[0.9375vw]">
+                      <p className="mt-7 line-clamp-3 break-words whitespace-pre-line text-[15px] font-normal leading-normal text-[#666] sm:mt-8 sm:text-[16px] lg:mt-[1.875vw] lg:text-[0.9375vw]">
                         {item.excerpt}
                       </p>
                     </div>

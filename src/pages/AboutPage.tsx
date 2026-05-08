@@ -78,24 +78,24 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="关于我们" data-node-id="942:40">
       <Navbar />
 
-      <section className="relative w-full overflow-hidden">
-        <div className="relative w-full">
-          <picture className="block w-full">
-            <source srcSet={gsjjBannerAvif} type="image/avif" />
-            <source srcSet={gsjjBannerWebp} type="image/webp" />
-            <img
-              src={gsjjBannerJpg}
-              alt=""
-              width={1920}
-              height={461}
-              className="block h-auto w-full max-w-none"
-              sizes="100vw"
-              loading="eager"
-              fetchPriority="high"
-              decoding="sync"
-            />
-          </picture>
-        </div>
+      {/* gsjj-banner：逻辑区 1920×461，资源 3840×922（2×）；固定比例 + cover 避免缩放发糊 */}
+      <section className="relative aspect-[1920/461] w-full overflow-hidden" data-name="banner-wrap">
+        <picture className="absolute inset-0 block h-full w-full">
+          <source srcSet={gsjjBannerAvif} type="image/avif" />
+          <source srcSet={gsjjBannerWebp} type="image/webp" />
+          <img
+            src={gsjjBannerJpg}
+            alt=""
+            width={1920}
+            height={461}
+            className="h-full w-full object-cover object-center"
+            sizes="100vw"
+            loading="eager"
+            fetchPriority="high"
+            decoding="sync"
+            data-name="banner"
+          />
+        </picture>
       </section>
 
       <main
