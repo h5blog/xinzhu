@@ -16,9 +16,12 @@ import aboutGallery1 from "../images/about-gallery-1.png";
 import aboutGallery2 from "../images/about-gallery-2.png";
 import gsjjIcon from "../images/gsjj-icon.png";
 
-/** 正文：与 TechCorePage（产品中心）一致 — 16/18/19px + lg 起 1.0417vw（1920 下约 20px），行高 1.7 */
-const bodyText =
-  "font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[16px] leading-[1.7] text-black sm:text-[18px] md:text-[19px] lg:text-[1.0417vw]";
+/** 1920 稿 20px；字族/行高/字距同首页 AI 段 */
+const aboutBodyText =
+  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-black";
+
+const aboutCardBodyText =
+  "font-['PingFang_SC'] text-[max(16px,calc(100vw*24/1920))] leading-[1.7] tracking-[0.03em] text-white";
 
 /** 与招聘页等一致：main 即内容列，mx-auto 在视口中左右居中；1920 下约 1130 → 58.9583vw */
 const mainContent =
@@ -63,9 +66,7 @@ function AboutPillarCard({
           {title}
         </p>
         <div className="mt-2.5 h-px w-full max-w-[288px] bg-white/90 sm:mt-3 lg:max-w-none" aria-hidden />
-        <p
-          className={`mt-3 min-w-0 break-words font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[16px] font-normal leading-[1.7] tracking-[0.05em] text-white sm:mt-4 sm:text-[18px] sm:tracking-[0.08em] md:text-[19px] lg:text-[1.0417vw] ${indent2}`}
-        >
+        <p className={`mt-3 min-w-0 break-words font-normal sm:mt-4 ${indent2} ${aboutCardBodyText}`}>
           {body}
         </p>
       </div>
@@ -102,7 +103,7 @@ export default function AboutPage() {
         className={`${mainContent} pb-[max(4rem,env(safe-area-inset-bottom,0px))] pt-10 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-[min(3.75rem,3.125vw)]`}
       >
         <p
-          className={`w-full text-pretty sm:text-justify ${indent2} ${bodyText} tracking-[0.06em] sm:tracking-[0.1em] lg:tracking-[0.14em]`}
+          className={`w-full text-pretty sm:text-justify ${indent2} ${aboutBodyText}`}
           data-node-id="942:47"
         >
           <span className="font-semibold text-[#f96d01]">新烛时代 (XinZhuAI)</span>
@@ -130,7 +131,7 @@ export default function AboutPage() {
         </div>
 
         <div
-          className={`mt-12 w-full text-pretty sm:text-justify sm:mt-14 md:mt-16 lg:mt-[min(5rem,4.17vw)] ${indent2} ${bodyText} tracking-[0.05em] sm:tracking-[0.06em] lg:tracking-[0.08em]`}
+          className={`mt-12 w-full text-pretty sm:text-justify sm:mt-14 md:mt-16 lg:mt-[min(5rem,4.17vw)] ${indent2} ${aboutBodyText}`}
           data-node-id="942:49"
         >
           <p className="mb-4">

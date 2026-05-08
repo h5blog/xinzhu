@@ -17,6 +17,38 @@ import fuliAvif from "../images/fuli.opt.avif";
 import fuliWebp from "../images/fuli.opt.webp";
 import fuliJpg from "../images/fuli.opt.jpg";
 
+/** 1920 稿 20px；字族/行高/字距同首页 AI 段 */
+const joinBodyText =
+  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-black";
+
+const joinProcessText =
+  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] font-semibold text-[#f96d01]";
+
+const joinProcessStepId =
+  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] font-medium text-[#f96d01]";
+
+const joinProcessCircleSize = "size-[max(56px,calc(100vw*68/1920))]";
+const joinProcessCircleRowH = "h-[max(56px,calc(100vw*68/1920))]";
+const joinProcessConnectorW = "w-[max(12px,calc(100vw*74/1920))]";
+
+const joinSectionHeading =
+  "text-center font-['PingFang_SC'] text-[max(22px,calc(100vw*40/1920))] font-semibold leading-tight text-[#f96d01]";
+
+const joinJobCardTitle =
+  "m-0 font-['PingFang_SC'] text-[max(18px,calc(100vw*24/1920))] font-semibold leading-tight text-[#f96d01]";
+
+/** 1920 稿 16px；与首页流体字号规则一致 */
+const joinJobDetailButtonText =
+  "font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[max(16px,calc(100vw*16/1920))] font-normal leading-none text-white";
+
+/** 1920 稿背景 152×40、圆角 25、图文间距 4px；箭头约 15.5×14 */
+const joinJobDetailButtonBox =
+  "h-[max(40px,calc(100vw*40/1920))] w-[max(152px,calc(100vw*152/1920))]";
+const joinJobDetailButtonRadius = "rounded-[max(25px,calc(100vw*25/1920))]";
+const joinJobDetailButtonGap = "gap-[max(4px,calc(100vw*4/1920))]";
+const joinJobDetailButtonArrow =
+  "h-[max(14px,calc(100vw*14/1920))] w-[max(14px,calc(100vw*15.5/1920))]";
+
 /** Figma 924:282 / 924:280 / 924:281：横向渐变；小屏 max 1025px，lg 与主栏同宽；高度 3px@1920 用 vw 略放大大屏 */
 function JoinSectionRuleBar({
   className = "",
@@ -52,9 +84,7 @@ function JobLabeledBlock({
   className?: string;
 }) {
   return (
-    <div
-      className={`flex min-w-0 items-start gap-1 text-[16px] leading-[1.7] text-black sm:text-[18px] md:text-[19px] lg:text-[1.0417vw] ${className}`}
-    >
+    <div className={`flex min-w-0 items-start gap-1 ${joinBodyText} ${className}`}>
       <span className="shrink-0 font-semibold">{label}</span>
       <span className="min-w-0 flex-1 text-left hyphens-none [overflow-wrap:anywhere]">{text}</span>
     </div>
@@ -67,7 +97,7 @@ function JobApplyButton({ to }: { to: string }) {
     <Link
       to={to}
       data-node-id="729:29226"
-      className="group box-border inline-flex h-10 w-[152px] shrink-0 cursor-pointer items-center justify-center gap-1 whitespace-nowrap rounded-[25px] bg-[#f96d01] font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[16px] font-normal leading-none text-white no-underline transition-opacity hover:opacity-95 lg:h-[2.0833vw] lg:w-[7.9167vw] lg:gap-[0.2083vw] lg:rounded-[1.3021vw] lg:text-[0.8333vw]"
+      className={`group box-border inline-flex ${joinJobDetailButtonBox} ${joinJobDetailButtonRadius} ${joinJobDetailButtonGap} shrink-0 cursor-pointer items-center justify-center whitespace-nowrap bg-[#f96d01] no-underline transition-opacity hover:opacity-95 ${joinJobDetailButtonText}`}
     >
       查看招聘详情
       <img
@@ -75,7 +105,7 @@ function JobApplyButton({ to }: { to: string }) {
         alt=""
         width={16}
         height={15}
-        className="h-[14px] w-[15.5px] shrink-0 object-contain transition-transform duration-200 group-hover:translate-x-0.5 lg:h-[0.7292vw] lg:w-[0.8073vw]"
+        className={`${joinJobDetailButtonArrow} shrink-0 object-contain transition-transform duration-200 group-hover:translate-x-0.5`}
         aria-hidden
         decoding="async"
       />
@@ -92,9 +122,7 @@ function JobCard({ job, isLast }: { job: (typeof JOBS)[number]; isLast: boolean 
     >
       <div className="min-w-0 flex-1 font-normal text-black">
         <div className="px-4 sm:px-6 lg:pl-[3.3333333333333335vw] lg:pr-[1.9270833333333333vw]">
-          <p className="m-0 text-[22px] font-semibold leading-[1.35] text-[#f96d01] sm:text-[24px] lg:text-[1.25vw]">
-            {job.title}
-          </p>
+          <p className={joinJobCardTitle}>{job.title}</p>
         </div>
         <div
           className="mx-4 mt-2.5 h-px bg-[#f96d01] sm:mx-6 sm:mt-3 lg:mx-[1.3541666666666667vw] lg:mt-[0.5208333333333333vw]"
@@ -126,29 +154,25 @@ function JobCard({ job, isLast }: { job: (typeof JOBS)[number]; isLast: boolean 
 function JoinBenefitsSection() {
   return (
     <section className="mt-10 min-w-0 sm:mt-12 lg:mt-14">
-      {/* Figma 729:29274：40px@1920 → 2.0833vw，与首页「AI解决方案…」标题一致 */}
-      <h2
-        className="text-center font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[32px] font-semibold leading-[30px] text-[#f96d01] sm:text-[36px] lg:text-[2.0833vw] lg:leading-tight"
-        data-node-id="729:29274"
-      >
+      <h2 className={joinSectionHeading} data-node-id="729:29274">
         薪酬福利
       </h2>
       <JoinSectionRuleBar className="mt-6 lg:mt-8" data-node-id="924:280" />
 
-      <div className="relative mx-auto mt-10 aspect-[1200/749] w-full min-w-0 max-w-[min(100%,1200px)] overflow-hidden rounded-2xl bg-[#f0f0f0] sm:rounded-[24px] lg:mt-[2.6042vw] lg:w-[57.0833vw] lg:max-w-none">
+      <div className="relative mx-auto mt-10 aspect-[1122/700] w-[min(100%,calc(100vw*1122/1920))] min-w-0 overflow-hidden rounded-2xl bg-[#f0f0f0] sm:rounded-[24px] lg:mt-[2.6042vw]">
         <picture className="absolute inset-0 block h-full w-full">
           <source srcSet={fuliAvif} type="image/avif" />
           <source srcSet={fuliWebp} type="image/webp" />
           <img
             src={fuliJpg}
             alt="薪酬福利"
-            width={1200}
-            height={749}
+            width={1122}
+            height={700}
             className="h-full w-full object-contain object-center"
             loading="eager"
             fetchPriority="high"
             decoding="async"
-            sizes="(max-width: 1023px) min(calc(100vw - 48px), 1096px), 57vw"
+            sizes="(max-width: 1023px) min(100%,calc(100vw - 48px)), min(100%,calc(100vw*1122/1920))"
           />
         </picture>
       </div>
@@ -159,23 +183,20 @@ function JoinBenefitsSection() {
 function JoinProcessSection() {
   return (
     <section className="mt-12 sm:mt-14 lg:mt-[max(3rem,5vw)]" data-node-id="729:29243">
-      <h2 className="text-center font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[32px] font-semibold leading-[30px] text-[#f96d01] sm:text-[36px] lg:text-[2.0833vw] lg:leading-tight">
-        招聘流程
-      </h2>
+      <h2 className={joinSectionHeading}>招聘流程</h2>
       <JoinSectionRuleBar className="mt-6 lg:mt-8" data-node-id="924:281" />
 
       <ol className="mt-10 flex flex-col gap-6 px-2 lg:mt-[2.6042vw] lg:hidden">
         {PROCESS_STEPS.map((step) => (
           <li key={step.id} className="flex gap-4">
-            <div className="flex size-[56px] shrink-0 items-center justify-center rounded-full border-2 border-[#f96d01] bg-white font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[18px] font-medium text-[#f96d01] sm:size-[68px] sm:text-[20px]">
+            <div
+              className={`flex ${joinProcessCircleSize} shrink-0 items-center justify-center rounded-full border-2 border-[#f96d01] bg-white ${joinProcessStepId}`}
+            >
               {step.id}
             </div>
             <div className="min-w-0 pt-1">
               {step.lines.map((line) => (
-                <p
-                  key={line}
-                  className="font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[18px] font-semibold leading-[1.4] text-[#f96d01] sm:text-[20px]"
-                >
+                <p key={line} className={joinProcessText}>
                   {line}
                 </p>
               ))}
@@ -184,7 +205,6 @@ function JoinProcessSection() {
         ))}
       </ol>
 
-      {/* lg+：单行；圆/线/字按 1920 稿用 vw 缩放（68px 圆、20px 字 ≈ 3.54vw / 1.04vw） */}
       <div
         className="mx-auto mt-10 hidden min-w-0 w-full max-w-[1040px] flex-nowrap items-start justify-center gap-0 overflow-x-auto pb-1 lg:mt-[2.6042vw] lg:flex lg:max-w-none"
         role="presentation"
@@ -192,17 +212,16 @@ function JoinProcessSection() {
         {PROCESS_STEPS.map((step, i) => (
           <Fragment key={step.id}>
             <div className="flex w-[min(104px,11vw)] shrink-0 flex-col items-center lg:w-[5.4167vw]">
-              <div className="flex h-[68px] w-full shrink-0 items-center justify-center lg:h-[3.5417vw]">
-                <div className="flex size-[68px] items-center justify-center rounded-full border-2 border-[#f96d01] bg-white font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[20px] font-medium text-[#f96d01] lg:size-[3.5417vw] lg:text-[1.0417vw]">
+              <div className={`flex ${joinProcessCircleRowH} w-full shrink-0 items-center justify-center`}>
+                <div
+                  className={`flex ${joinProcessCircleSize} items-center justify-center rounded-full border-2 border-[#f96d01] bg-white ${joinProcessStepId}`}
+                >
                   {step.id}
                 </div>
               </div>
               <div className="mt-3 w-full text-center lg:mt-[0.7813vw]">
                 {step.lines.map((line) => (
-                  <p
-                    key={line}
-                    className="font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[16px] font-semibold leading-snug text-[#f96d01] sm:text-[18px] lg:text-[1.0417vw]"
-                  >
+                  <p key={line} className={joinProcessText}>
                     {line}
                   </p>
                 ))}
@@ -210,10 +229,10 @@ function JoinProcessSection() {
             </div>
             {i < PROCESS_STEPS.length - 1 && (
               <div
-                className="flex h-[68px] min-w-[16px] flex-1 items-center px-1 lg:h-[3.5417vw] lg:min-w-[0.8333vw] lg:px-[0.2604vw]"
+                className={`flex ${joinProcessCircleRowH} shrink-0 items-center justify-center`}
                 aria-hidden
               >
-                <div className="h-0.5 w-full bg-[#f96d01] lg:h-[0.1042vw]" />
+                <div className={`h-0.5 bg-[#f96d01] lg:h-[0.1042vw] ${joinProcessConnectorW}`} />
               </div>
             )}
           </Fragment>
@@ -351,7 +370,7 @@ export default function JoinUsPage() {
         <JoinApplySection />
         <JoinFooterGallery />
         <h2
-          className="mt-8 text-center font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[32px] font-semibold leading-[30px] text-[#f96d01] sm:mt-10 sm:text-[36px] lg:mt-[max(3rem,5vw)] lg:text-[2.0833vw] lg:leading-tight"
+          className={`mt-8 sm:mt-10 lg:mt-[max(3rem,5vw)] ${joinSectionHeading}`}
           data-node-id="924:279"
         >
           岗位需求

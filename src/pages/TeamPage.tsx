@@ -6,6 +6,16 @@ import teamBannerAvif from "../images/team-banner-bg.opt.avif";
 import teamBannerWebp from "../images/team-banner-bg.opt.webp";
 import teamBannerJpg from "../images/team-banner-bg.opt.jpg";
 
+/** 1920 稿 20px；字族/行高/字距同首页 AI 段 */
+const teamBioText =
+  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-black";
+
+const teamNameText =
+  "whitespace-pre-wrap break-words font-['PingFang_SC'] text-[max(18px,calc(100vw*32/1920))] font-semibold leading-tight tracking-[0.03em] text-[#121212]";
+
+const teamTitleText =
+  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] font-semibold leading-tight tracking-[0.03em] text-[#121212]";
+
 const members = [
   {
     name: "张 伟",
@@ -52,7 +62,7 @@ const members = [
 
 function MemberBody({ bio }: { bio: readonly string[] }) {
   return (
-    <ul className="m-0 list-none space-y-2 pl-0 text-[16px] leading-[1.65] text-black sm:text-[18px] md:text-[19px] lg:space-y-[min(8px,0.4167vw)] lg:leading-[1.55] lg:text-[1.0417vw]">
+    <ul className={`m-0 list-none space-y-2 pl-0 lg:space-y-[min(8px,0.4167vw)] ${teamBioText}`}>
       {bio.map((para, i) => (
         <li key={i} className="flex gap-3">
           <span className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#f96d01]" aria-hidden />
@@ -68,12 +78,8 @@ function MemberHeading({ name, title }: { name: string; title: string }) {
 
   return (
     <div>
-      <p className="whitespace-pre-wrap break-words text-[26px] font-semibold leading-[1.15] font-['PingFang_SC'] text-[#121212] sm:text-[30px] md:text-[34px] md:leading-tight lg:text-[2.0833vw]">
-        {displayName}
-      </p>
-      <p className="mt-3 text-[16px] font-semibold font-['PingFang_SC'] text-[#121212] sm:mt-[18px] sm:text-[17px] md:text-[18px] lg:mt-[0.9375vw] lg:text-[1.0417vw]">
-        {title}
-      </p>
+      <p className={teamNameText}>{displayName}</p>
+      <p className={`mt-3 sm:mt-[18px] lg:mt-[0.9375vw] ${teamTitleText}`}>{title}</p>
       <div
         className="mt-2 h-1.5 w-[96px] max-w-full bg-gradient-to-r from-[#f96d01] to-transparent sm:h-2 sm:w-[113px] lg:w-[5.8854vw]"
         aria-hidden

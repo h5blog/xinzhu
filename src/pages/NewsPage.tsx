@@ -23,6 +23,10 @@ import n5Jpg from "../images/news-thumb-5.opt.jpg";
 
 type TabKey = "industry" | "company";
 
+/** 1920 稿摘要 20px；字族/行高/字距同首页正文 */
+const newsExcerptBody =
+  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-[#666]";
+
 /** 列表卡片左侧图：小屏 max 358；lg 按 1920 稿约 440px（22.9167vw）随屏放大，716 宽 .opt 仍可覆盖 2x */
 const NEWS_THUMBS = [
   { avif: n1Avif, webp: n1Webp, jpg: n1Jpg, width: 716, height: 344 },
@@ -243,7 +247,9 @@ export default function NewsPage() {
                       >
                         {item.date}
                       </p>
-                      <p className="mt-7 line-clamp-3 break-words whitespace-pre-line text-[15px] font-normal leading-normal text-[#666] sm:mt-8 sm:text-[16px] lg:mt-[1.875vw] lg:text-[0.9375vw]">
+                      <p
+                        className={`mt-7 line-clamp-3 break-words whitespace-pre-line sm:mt-8 lg:mt-[1.875vw] ${newsExcerptBody}`}
+                      >
                         {item.excerpt}
                       </p>
                     </div>
