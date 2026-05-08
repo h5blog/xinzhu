@@ -36,7 +36,7 @@ export default function Partners() {
             <div className="mx-auto w-full" style={{ maxWidth: CONTENT_MAX_WIDTH }}>
               {/* Figma 838:1310 — PingFang Medium，40px，#f96d01；文案勿删 */}
               <h2
-                className="m-0 mb-[clamp(40px,3.33vw,72px)] text-center font-['PingFang_SC',sans-serif] font-medium leading-normal text-[#f96d01] text-[clamp(1.75rem,2.083vw,2.5rem)]"
+                className="type-title-xl m-0 mb-[clamp(40px,3.33vw,72px)] text-center font-['PingFang_SC',sans-serif] !font-medium !leading-normal text-[#f96d01]"
                 data-node-id="838:1310"
               >
                 数字化资源支撑矩阵

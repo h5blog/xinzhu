@@ -257,46 +257,35 @@ export default function HomePage() {
         </picture>
       </section>
       <section>
-        <div className="relative overflow-hidden bg-[#F6F6F6] pt-[37px] lg:pt-[1.9271vw]">
-            <picture className="pointer-events-none absolute inset-0 z-0 block h-full w-full">
+        <div className="relative overflow-hidden bg-[#F6F6F6]">
+          <div className="relative grid grid-cols-1">
+            <picture className="pointer-events-none col-start-1 row-start-1 z-0 block w-full max-w-full self-start">
               <source srcSet={techBgAvif} type="image/avif" />
               <source srcSet={techBgWebp} type="image/webp" />
               <img
                 src={techBgJpg}
                 alt=""
                 width={1920}
-                height={630}
-                className="h-full w-full object-cover"
+                height={583}
+                className="block h-auto w-full max-w-full"
+                sizes="100vw"
                 loading="eager"
                 fetchPriority="low"
                 decoding="async"
               />
             </picture>
-            <h2 className="relative z-10 text-center font-['PingFang_SC'] text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]">
-              AI解决方案核心技术驱动力
-            </h2>
-            <div className="relative mx-auto box-border h-[303px] w-[min(100%-24px,1135px)] overflow-hidden lg:h-[15.7813vw] lg:w-[59.1146vw] lg:max-w-none">
-              <picture className="pointer-events-none absolute left-0 top-1/2 z-0 block -translate-y-1/2">
-                <source srcSet={assets.heroIconAvif} type="image/avif" />
-                <source srcSet={assets.heroIconWebp} type="image/webp" />
-                <img
-                  src={assets.heroIcon}
-                  alt=""
-                  width={488}
-                  height={303}
-                  className="block h-auto w-[488px] max-w-[min(488px,50vw)] object-contain object-left lg:w-[25.4167vw] lg:max-w-none"
-                  loading="lazy"
-                  fetchPriority="low"
-                  decoding="async"
-                />
-              </picture>
-              <div className="relative z-10 box-border min-h-0 pl-[clamp(300px,48vw,546px)] pt-[67px] pr-0 lg:pl-[28.4375vw] lg:pt-[3.4896vw]">
-                <div className="h-64 w-[589px] max-w-full justify-start text-left indent-[2em] text-[16px] leading-[1.7] tracking-[0.03em] font-['PingFang_SC'] text-black sm:text-[18px] md:text-[19px] lg:h-[13.3333vw] lg:w-[30.6771vw] lg:max-w-none lg:text-[1.0417vw]">
-                  强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 + 数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力，最终形成聚变电站的智能操作系统——终极能源的智慧大脑。
+            <div className="col-start-1 row-start-1 z-10 flex w-full min-w-0 flex-col">
+              <h2 className="relative pt-[37px] lg:pt-[1.9271vw] text-center font-['PingFang_SC'] text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]">
+                AI解决方案核心技术驱动力
+              </h2>
+              <div className="relative mx-auto box-border  w-[min(100%-24px,1135px)] overflow-hidden  lg:w-[59.1146vw] lg:max-w-none">
+                <div className="relative z-10 box-border min-h-0 pl-[clamp(300px,48vw,546px)] pt-[67px] pr-0 lg:pl-[28.4375vw] lg:pt-[3.4896vw]">
+                  <div className=" w-[589px] max-w-full justify-start text-left indent-[2em] font-['PingFang_SC'] text-[max(16px,calc(100vw*24/1920))] leading-[1.7] tracking-[0.03em] text-black  lg:w-[30.6771vw] lg:max-w-none">
+                    强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 + 数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力，最终形成聚变电站的智能操作系统——终极能源的智慧大脑。
+                  </div>
                 </div>
               </div>
-            </div>
-              <div className="relative z-10 mx-auto mb-[110px] w-[min(100%-24px,1135px)] pl-[clamp(300px,48vw,546px)] text-left lg:mb-[5.7292vw] lg:w-[59.1146vw] lg:max-w-none lg:pl-[28.4375vw]">
+              <div className="relative mx-auto mt-[max(12px,calc(100vw*50/1920))] w-[min(100%-24px,1135px)] pl-[clamp(300px,48vw,546px)] text-left lg:w-[59.1146vw] lg:max-w-none lg:pl-[28.4375vw]">
                 <Link
                   to="/tech"
                   data-node-id="838:1351"
@@ -305,6 +294,8 @@ export default function HomePage() {
                   查看详情
                 </Link>
               </div>
+            </div>
+          </div>
         </div>
       </section>
         <Team />
