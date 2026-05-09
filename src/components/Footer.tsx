@@ -53,9 +53,9 @@ export default function Footer() {
             <img
               src={assets.qrcode}
               alt="公众号二维码"
-              width={192}
-              height={192}
-              className="block h-[clamp(108px,7.2vw,192px)] w-[clamp(108px,7.2vw,192px)] bg-white object-contain p-1"
+              width={129}
+              height={129}
+              className="block size-[clamp(96px,calc(100vw*129/1920),240px)] bg-white object-contain p-1"
               data-node-id="470:53"
               loading="lazy"
               decoding="async"

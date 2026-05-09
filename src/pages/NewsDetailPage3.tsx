@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import {
+  newsDetailBodyClassName,
+  newsDetailStepBadgeClassName,
+  newsDetailTitleClassName,
+} from "../constants/typography";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import NewsDetailContentImage from "../components/NewsDetailContentImage";
@@ -21,7 +26,7 @@ export default function NewsDetailPage3() {
       <Navbar />
       <NewsDetailHero />
       <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24 lg:pt-[2.9167vw]">
-        <h1 className="m-0 text-[32px] font-semibold leading-[50px] text-black lg:text-[1.6667vw] lg:leading-[1.35]">
+        <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>
           8月27日：《关于推进“人工智能 +”能源高质量发展的实施意见》
         </h1>
         <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
@@ -37,17 +42,24 @@ export default function NewsDetailPage3() {
         </div>
         <section className="mt-8 space-y-4 lg:mt-[2.0833vw] lg:space-y-[0.8333vw]">
           {items.map((item) => (
-            <div key={item[0]} className="grid grid-cols-[57px_1fr] items-start gap-3 lg:grid-cols-[2.9688vw_1fr] lg:gap-[0.625vw]">
-              <div className="flex h-[57px] w-[57px] items-center justify-center bg-[#f96d01] text-[28px] font-semibold leading-[30px] text-white lg:h-[2.9688vw] lg:w-[2.9688vw] lg:text-[1.4583vw] lg:leading-[1.5625vw]">{item[0]}</div>
+            <div
+              key={item[0]}
+              className="grid grid-cols-[max(57px,calc(100vw*57/1920))_1fr] items-start gap-[max(12px,calc(100vw*20/1920))]"
+            >
+              <div
+                className={`flex shrink-0 items-center justify-center bg-[#f96d01] size-[max(57px,calc(100vw*57/1920))] ${newsDetailStepBadgeClassName}`}
+              >
+                {item[0]}
+              </div>
               <div className="pt-1 lg:pt-[0.2083vw]">
-                <p className="m-0 text-[20px] font-semibold leading-[30px] text-black lg:text-[1.0417vw] lg:leading-[1.5625vw]">{item[1]}</p>
-                <p className="m-0 text-[20px] leading-[30px] text-black lg:text-[1.0417vw] lg:leading-[1.5625vw]">{item[2]}</p>
+                <p className={`m-0 font-semibold ${newsDetailBodyClassName}`}>{item[1]}</p>
+                <p className={`m-0 ${newsDetailBodyClassName}`}>{item[2]}</p>
               </div>
             </div>
           ))}
         </section>
         <div className="mt-12 flex justify-end lg:mt-[2.5vw]">
-          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01] lg:text-[1.0417vw]">返回全部新闻</Link>
+          <Link to="/news" className={`${newsDetailBodyClassName} transition-colors hover:text-[#f96d01]`}>返回全部新闻</Link>
         </div>
       </main>
       <Footer />

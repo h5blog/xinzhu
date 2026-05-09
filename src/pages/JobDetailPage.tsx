@@ -1,4 +1,5 @@
 import { Link, Navigate, useParams } from "react-router-dom";
+import { jobDetailSectionLabelClassName, newsDetailBodyClassName } from "../constants/typography";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { JOB_APPLY_FORM_URL, JOBS } from "../data/jobs";
@@ -9,10 +10,12 @@ import joinHeroBgJpg from "../images/join-hero-bg.opt.jpg";
 function DetailBlock({ label, items }: { label: string; items: string[] }) {
   return (
     <section className="mt-6 sm:mt-8 lg:mt-[2.0833vw]">
-      <div className="inline-flex min-h-[40px] max-w-full items-center justify-center bg-[#f96d01] px-4 py-2 text-[16px] font-semibold leading-snug text-white sm:min-h-[44px] sm:px-5 sm:text-[18px] sm:leading-normal md:text-[19px] lg:min-h-[2.2917vw] lg:px-[1.0417vw] lg:py-[0.4167vw] lg:text-[1.0417vw]">
+      <div
+        className={`box-border inline-flex max-w-full items-center justify-center bg-[#f96d01] px-2 text-center sm:px-3 ${jobDetailSectionLabelClassName} min-h-[max(44px,calc(100vw*44/1920))] w-[max(103px,calc(100vw*103/1920))]`}
+      >
         {label}
       </div>
-      <div className="mt-2 space-y-0 text-[16px] leading-[1.7] text-black sm:mt-3 sm:text-[18px] sm:leading-[1.75] md:text-[19px] md:leading-[1.75] lg:mt-[0.78125vw] lg:text-[1.0417vw] lg:leading-[2.1354vw]">
+      <div className={`mt-2 space-y-0 sm:mt-3 lg:mt-[0.78125vw] ${newsDetailBodyClassName}`}>
         {items.map((item) => (
           <p key={item} className="m-0 hyphens-none [overflow-wrap:anywhere]">
             {item}
@@ -59,7 +62,7 @@ export default function JobDetailPage() {
 
       {/** 大屏按 1127/1920 比例拉宽；去掉 max-w，超宽显示器不再卡在 1127px */}
       <main className="mx-auto box-border w-[min(100%-32px,1127px)] px-4 pb-12 pt-5 sm:px-6 sm:pb-16 sm:pt-6 md:px-8 lg:w-[58.697916666666664vw] lg:max-w-none lg:px-[2.0833vw] lg:pb-[6.25vw] lg:pt-[1.875vw]">
-        <h1 className="text-[20px] font-semibold leading-snug text-black sm:text-[24px] sm:leading-snug md:text-[28px] md:leading-tight lg:text-[1.6667vw] lg:leading-tight [overflow-wrap:anywhere]">
+        <h1 className={`font-semibold [overflow-wrap:anywhere] ${newsDetailBodyClassName}`}>
           {job.title}
         </h1>
         <div
@@ -78,7 +81,7 @@ export default function JobDetailPage() {
           <div className="flex w-full justify-end">
             <Link
               to="/join"
-              className="text-right text-[16px] leading-normal text-black [overflow-wrap:anywhere] hover:text-[#f96d01] sm:text-[18px] md:text-[19px] lg:text-[1.0417vw]"
+              className={`text-right [overflow-wrap:anywhere] transition-colors hover:text-[#f96d01] ${newsDetailBodyClassName}`}
             >
               返回招聘列表
             </Link>

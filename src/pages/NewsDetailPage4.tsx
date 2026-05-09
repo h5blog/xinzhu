@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { newsDetailBodyClassName, newsDetailTitleClassName } from "../constants/typography";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import NewsTimelineDot from "../components/NewsTimelineDot";
 import NewsDetailContentImage from "../components/NewsDetailContentImage";
 import NewsDetailHero from "../components/NewsDetailHero";
 import globeAvif from "../images/news-detail-4-main.opt.avif";
@@ -12,6 +14,9 @@ import company3 from "../images/news-company-3.png";
 import company4 from "../images/news-company-4.png";
 import company5 from "../images/news-company-5.png";
 import company6 from "../images/news-company-6.png";
+
+/** 稿面条目纵向间距 22@1920，与全站 100vw/1920 规则一致；窄屏不低于 12px */
+const detail4StripeGapY = "flex flex-col gap-y-[max(12px,calc(100vw*22/1920))]";
 
 export default function NewsDetailPage4() {
   const companies = [
@@ -38,17 +43,23 @@ export default function NewsDetailPage4() {
       <Navbar />
       <NewsDetailHero />
       <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24 lg:pt-[2.9167vw]">
-        <h1 className="m-0 text-[32px] font-semibold leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.35]">AI 赋能聚变已成全球共识</h1>
+        <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>AI 赋能聚变已成全球共识</h1>
         <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
-        <section className="mt-10 lg:mt-[2.0833vw]">
+        <section className={`mt-10 lg:mt-[2.0833vw] ${detail4StripeGapY}`}>
           {companies.map((item, idx) => (
-            <div key={idx} className="grid grid-cols-[201px_1fr] items-center py-2 lg:grid-cols-[10.4688vw_1fr] lg:py-[0.4167vw]">
+            <div
+              key={idx}
+              className={`grid grid-cols-[max(201px,calc(100vw*201/1920))_minmax(0,1fr)] items-stretch ${
+                idx < 5
+                  ? /* 稿面前五条：整行 1097×73@1920；条间距由 section gap 承担 */
+                    "lg:mx-auto lg:min-h-0 lg:h-[max(73px,calc(100vw*73/1920))] lg:max-h-[max(73px,calc(100vw*73/1920))] lg:w-[min(100%,calc(100vw*1097/1920))]"
+                  : ""
+              }`}
+            >
               <div
-                className={`border border-[#f96d01] ${
-                  idx === 5 ? "bg-black" : "bg-white"
-                } ${
-                  idx === 0 || idx === 2 || idx === 3 || idx === 5 ? "h-[73px] lg:h-[3.8021vw]" : "h-[72px] lg:h-[3.75vw]"
-                }`}
+                className={`flex h-full min-h-[max(73px,calc(100vw*73/1920))] w-full min-w-0 items-center justify-center overflow-hidden border border-[#f96d01] ${
+                  idx < 5 ? "lg:min-h-0" : ""
+                } ${idx === 5 ? "bg-black" : "bg-white"}`}
               >
                 <img
                   src={item[0]}
@@ -76,12 +87,16 @@ export default function NewsDetailPage4() {
                 />
               </div>
               <div
-                className={`flex h-[72px] items-center px-5 lg:h-[3.75vw] lg:px-[1.0417vw] ${
-                  idx === 5 ? "bg-gradient-to-r from-[#eeeeee] to-[#ffffff]" : "bg-gradient-to-r from-[#eee] to-white"
-                }`}
+                className={`flex min-h-0 items-center px-5 py-3 lg:min-h-0 lg:items-center lg:overflow-hidden ${
+                  idx < 5 ? "lg:px-[max(12px,calc(100vw*20/1920))] lg:py-0" : "lg:px-[1.0417vw] lg:py-[0.625vw]"
+                } ${idx === 5 ? "bg-gradient-to-r from-[#eeeeee] to-[#ffffff]" : "bg-gradient-to-r from-[#eee] to-white"}`}
                 data-node-id={idx === 5 ? "113:179" : undefined}
               >
-                <p className="m-0 text-[20px] leading-[31px] text-black lg:text-[1.0417vw] lg:leading-[1.6146vw]">{item[1]}</p>
+                <p
+                  className={`m-0 min-w-0 ${idx < 5 ? "lg:line-clamp-2" : ""} ${newsDetailBodyClassName}`}
+                >
+                  {item[1]}
+                </p>
               </div>
             </div>
           ))}
@@ -99,35 +114,32 @@ export default function NewsDetailPage4() {
         </div>
         <section className="mt-10 w-full lg:mt-[2.0833vw]" aria-label="文献时间线">
           <div className="relative mx-auto w-full max-w-[1103px] lg:max-w-[57.4479vw]">
-            {/* 与 Figma 一致：左列右对齐、中列节点、右列正文；竖虚线过中列中心 */}
+            {/* 与 Figma 一致：左列 400px 右对齐、中列 48px 节点；虚线 = 400 + gap + 24（中列半宽），与网格同步 */}
             <div
-              className="pointer-events-none absolute left-[calc(400px+24px+24px)] top-3 z-0 hidden h-[calc(100%-24px)] -translate-x-1/2 border-l border-dashed border-[#f96d01]/55 lg:block"
+              className="pointer-events-none absolute left-[calc(400px+1.25vw+24px)] top-0 z-0 hidden h-full -translate-x-1/2 border-l border-dashed border-[#f96d01]/55 lg:block"
               aria-hidden
             />
-            <div className="relative z-[1] flex flex-col gap-10 lg:gap-[2.0833vw]">
+            <div className={`relative z-[1] ${detail4StripeGapY}`}>
               {references.map(([journal, year, body]) => (
                 <div
                   key={`${journal}-${year}`}
-                  className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,400px)_48px_minmax(0,1fr)] lg:gap-x-[1.25vw] lg:gap-y-0"
+                  className="grid grid-cols-1 gap-4 lg:grid-cols-[400px_48px_minmax(0,1fr)] lg:gap-x-[1.25vw] lg:gap-y-0"
                 >
-                  <p className="m-0 whitespace-nowrap text-left text-[24px] font-semibold leading-[30px] text-[#f96d01] lg:text-right lg:text-[1.25vw] lg:leading-[1.5625vw]">
+                  <p className="m-0 whitespace-nowrap text-left text-[24px] font-semibold leading-[30px] text-[#f96d01] lg:min-w-0 lg:text-right lg:text-[1.25vw] lg:leading-[1.5625vw]">
                     <span>{journal}</span>
                     <span className="ml-2">{year}</span>
                   </p>
-                  <div className="relative flex h-[30px] items-start justify-start lg:justify-center">
-                    <span className="relative mt-[5px] block size-[20px] shrink-0">
-                      <span className="absolute inset-0 rounded-full bg-[#f96d01]/20" />
-                      <span className="absolute left-1/2 top-1/2 block size-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f96d01]" />
-                    </span>
+                  <div className="relative flex min-h-[30px] items-start justify-start lg:min-h-0 lg:items-center lg:justify-center">
+                    <NewsTimelineDot className="mt-[max(5px,calc(100vw*5/1920))] lg:mt-0" />
                   </div>
-                  <p className="m-0 min-w-0 text-[20px] leading-[33px] text-black lg:text-[1.0417vw] lg:leading-[1.7188vw]">{body}</p>
+                  <p className={`m-0 min-w-0 ${newsDetailBodyClassName}`}>{body}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
         <div className="mt-12 flex justify-end lg:mt-[2.5vw]">
-          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01] lg:text-[1.0417vw]">返回全部新闻</Link>
+          <Link to="/news" className={`${newsDetailBodyClassName} transition-colors hover:text-[#f96d01]`}>返回全部新闻</Link>
         </div>
       </main>
       <Footer />

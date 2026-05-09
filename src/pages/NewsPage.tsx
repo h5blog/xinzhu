@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { newsListTitleClassName } from "../constants/typography";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import newsBgAvif from "../images/news-bg.opt.avif";
@@ -238,7 +239,9 @@ export default function NewsPage() {
 
                   <div className="flex min-w-0 flex-1 flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
                     <div className="min-w-0 flex-1">
-                      <h2 className="text-[18px] font-semibold leading-snug text-[#121212] transition-colors duration-200 group-hover:text-[#f96d01] group-focus-within:text-[#f96d01] sm:text-[19px] lg:text-[1.0417vw]">
+                      <h2
+                        className={`font-semibold transition-colors duration-200 group-hover:text-[#f96d01] group-focus-within:text-[#f96d01] ${newsListTitleClassName}`}
+                      >
                         {item.title}
                       </h2>
                       <p

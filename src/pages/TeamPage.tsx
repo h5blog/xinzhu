@@ -6,9 +6,9 @@ import teamBannerAvif from "../images/team-banner-bg.opt.avif";
 import teamBannerWebp from "../images/team-banner-bg.opt.webp";
 import teamBannerJpg from "../images/team-banner-bg.opt.jpg";
 
-/** 1920 稿 20px；字族/行高/字距同首页 AI 段 */
+/** 1920 稿 20px；简介行高略紧于首页正文 */
 const teamBioText =
-  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-black";
+  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.55] tracking-[0.03em] text-black";
 
 const teamNameText =
   "whitespace-pre-wrap break-words font-['PingFang_SC'] text-[max(18px,calc(100vw*32/1920))] font-semibold leading-tight tracking-[0.03em] text-[#121212]";
@@ -147,8 +147,20 @@ export default function TeamPage() {
                 }
                 edges={index % 2 === 0 ? "top-bottom-right" : "top-bottom-left"}
               >
-                <div className="flex w-full flex-col gap-5 sm:flex-row sm:items-start sm:gap-5 md:items-center md:gap-6 lg:gap-[1.0417vw]">
-                  <div className="w-max max-w-[min(100%,200px)] shrink-0 sm:max-w-[220px] lg:max-w-[9.375vw]">
+                <div
+                  className={`flex w-full flex-col sm:flex-row sm:items-start md:items-center ${
+                    m.imageLeft
+                      ? "gap-5 sm:gap-5 md:gap-6 lg:gap-[1.0417vw]"
+                      : "gap-4 sm:gap-3 md:gap-4 lg:gap-[0.5208vw]"
+                  }`}
+                >
+                  <div
+                    className={
+                      m.imageLeft
+                        ? "w-max max-w-[min(100%,200px)] shrink-0 sm:max-w-[220px] lg:max-w-[9.375vw]"
+                        : "w-max max-w-[min(100%,180px)] shrink-0 sm:max-w-[200px] lg:max-w-[7.2917vw]"
+                    }
+                  >
                     <MemberHeading name={m.name} title={m.title} />
                   </div>
                   <div className="min-w-0 flex-1">

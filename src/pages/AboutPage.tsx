@@ -3,15 +3,9 @@ import Navbar from "../components/Navbar";
 import gsjjBannerAvif from "../images/gsjj-banner.opt.avif";
 import gsjjBannerWebp from "../images/gsjj-banner.opt.webp";
 import gsjjBannerJpg from "../images/gsjj-banner.opt.jpg";
-import aboutCardRouteAvif from "../images/about-card-route.opt.avif";
-import aboutCardRouteWebp from "../images/about-card-route.opt.webp";
-import aboutCardRouteJpg from "../images/about-card-route.opt.jpg";
-import aboutCardPositionAvif from "../images/about-card-position.opt.avif";
-import aboutCardPositionWebp from "../images/about-card-position.opt.webp";
-import aboutCardPositionJpg from "../images/about-card-position.opt.jpg";
-import aboutCardGoalAvif from "../images/about-card-goal.opt.avif";
-import aboutCardGoalWebp from "../images/about-card-goal.opt.webp";
-import aboutCardGoalJpg from "../images/about-card-goal.opt.jpg";
+import aboutTagAvif from "../images/about-tag.opt.avif";
+import aboutTagWebp from "../images/about-tag.opt.webp";
+import aboutTagJpg from "../images/about-tag.opt.jpg";
 import aboutGallery1 from "../images/about-gallery-1.png";
 import aboutGallery2 from "../images/about-gallery-2.png";
 import gsjjIcon from "../images/gsjj-icon.png";
@@ -20,59 +14,12 @@ import gsjjIcon from "../images/gsjj-icon.png";
 const aboutBodyText =
   "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-black";
 
-const aboutCardBodyText =
-  "font-['PingFang_SC'] text-[max(16px,calc(100vw*24/1920))] leading-[1.7] tracking-[0.03em] text-white";
-
 /** 与招聘页等一致：main 即内容列，mx-auto 在视口中左右居中；1920 下约 1130 → 58.9583vw */
 const mainContent =
   "relative z-10 mx-auto box-border w-[min(100%-24px,1130px)] px-0 lg:w-[58.9583vw] lg:max-w-none";
 
 /** 中文正文首行缩进两个汉字（随字号缩放） */
 const indent2 = "[text-indent:2em]";
-
-type PillarCardImageSet = {
-  avif: string;
-  webp: string;
-  jpg: string;
-};
-
-function AboutPillarCard({
-  imageSet,
-  title,
-  body,
-}: {
-  imageSet: PillarCardImageSet;
-  title: string;
-  body: string;
-}) {
-  return (
-    <div className="relative mx-auto aspect-[360/426] w-full max-w-[min(360px,100%)] overflow-hidden rounded-bl-[clamp(3rem,12vw,8.75rem)] rounded-tr-[clamp(3rem,12vw,8.75rem)] lg:mx-0 lg:max-w-none lg:rounded-bl-[min(7rem,5.5vw)] lg:rounded-tr-[min(7rem,5.5vw)]">
-      <picture className="absolute inset-0 block size-full">
-        <source srcSet={imageSet.avif} type="image/avif" />
-        <source srcSet={imageSet.webp} type="image/webp" />
-        <img
-          src={imageSet.jpg}
-          alt=""
-          width={360}
-          height={426}
-          className="absolute inset-0 size-full object-cover"
-          sizes="(max-width: 767px) min(360px, 100vw), (max-width: 1023px) 45vw, 20vw"
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
-      <div className="relative z-10 flex h-full min-h-0 flex-col px-5 pb-7 pt-9 min-[400px]:px-6 sm:px-8 sm:pb-8 sm:pt-11 lg:px-[min(1.75rem,4.2vw)] lg:pb-[min(2rem,4.8vw)] lg:pt-[min(2.75rem,6.2vw)] xl:px-[2.34vw] xl:pb-8 xl:pt-[2.45vw]">
-        <p className="m-0 font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[18px] font-semibold leading-snug tracking-[0.06em] text-white sm:text-[24px] sm:tracking-[0.08em] md:text-[28px] lg:text-[1.4583vw]">
-          {title}
-        </p>
-        <div className="mt-2.5 h-px w-full max-w-[288px] bg-white/90 sm:mt-3 lg:max-w-none" aria-hidden />
-        <p className={`mt-3 min-w-0 break-words font-normal sm:mt-4 ${indent2} ${aboutCardBodyText}`}>
-          {body}
-        </p>
-      </div>
-    </div>
-  );
-}
 
 export default function AboutPage() {
   return (
@@ -110,23 +57,22 @@ export default function AboutPage() {
           作为国内AI赋能可控核聚变的引领者，通过深度融合物理机理与人工智能技术，致力于打造服务全球聚变能源产业的通用“聚变智能体”。我们为全球聚变研究机构及商业公司提供涵盖设计、模拟到运维控制的全栈式AI解决方案，推动聚变研发从传统的“经验试错”向“智能预测与主动控制”变革，加速全人类迈向聚变能源新时代。
         </p>
 
-        <div className="mt-12 grid w-full grid-cols-1 gap-6 sm:mt-14 sm:gap-6 md:mt-16 md:grid-cols-2 md:gap-5 lg:mt-[min(5rem,4.17vw)] lg:grid-cols-3 lg:justify-items-stretch lg:gap-[min(1.25rem,1.1vw)]">
-          <AboutPillarCard
-            imageSet={{ avif: aboutCardRouteAvif, webp: aboutCardRouteWebp, jpg: aboutCardRouteJpg }}
-            title="我们的路线"
-            body="打造聚变的 “智能操作系统” "
-          />
-          <AboutPillarCard
-            imageSet={{ avif: aboutCardPositionAvif, webp: aboutCardPositionWebp, jpg: aboutCardPositionJpg }}
-            title="我们的定位"
-            body="我们不造硬件，我们打造驱动硬件的“智慧大脑”。"
-          />
-          <div className="flex min-w-0 justify-center md:col-span-2 lg:col-span-1 lg:block lg:w-full">
-            <AboutPillarCard
-              imageSet={{ avif: aboutCardGoalAvif, webp: aboutCardGoalWebp, jpg: aboutCardGoalJpg }}
-              title="我们的目标"
-              body="让这套智能系统从实验室的辅助工具，进化为驱动聚变电厂硬件运行的神经中枢，在每一次能量的脉动中，贡献源自“新烛”的驱动力！"
-            />
+        <div className="mt-12 w-full sm:mt-14 md:mt-16 lg:mt-[min(5rem,4.17vw)]">
+          <div className="mx-auto w-[min(100%,calc(100vw*1122/1920))] max-w-full aspect-[1122/459]">
+            <picture className="block h-full w-full">
+              <source srcSet={aboutTagAvif} type="image/avif" />
+              <source srcSet={aboutTagWebp} type="image/webp" />
+              <img
+                src={aboutTagJpg}
+                alt="新烛时代：路线、定位与目标"
+                width={1122}
+                height={459}
+                className="block h-full w-full object-contain object-center"
+                sizes="(max-width: 640px) 100vw, (max-width: 1920px) min(100vw, 1122px), 1122px"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
 

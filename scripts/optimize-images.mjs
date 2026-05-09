@@ -141,6 +141,15 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
+  // 关于我们标签整图：稿 1122×459；压到约 1500 宽 + 现代格式，显著小于原 PNG
+  {
+    input: "src/images/about-tag.png",
+    maxWidth: 1500,
+    quality: 76,
+    avifQuality: 66,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   // 新闻列表缩略图（卡片约 358×172，2x 约 716 宽）
   { input: "src/images/news-thumb-1.jpg", maxWidth: 716, quality: 72 },
   { input: "src/images/news-thumb-2.jpg", maxWidth: 716, quality: 72 },

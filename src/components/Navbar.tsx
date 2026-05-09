@@ -2,9 +2,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import logoGroupA from "../images/logo-group-a.svg";
 import logoGroupB from "../images/logo-group-b.svg";
 import logoGroupC from "../images/logo-group-c.svg";
-import aboutCardGoalAvif from "../images/about-card-goal.opt.avif";
-import aboutCardPositionAvif from "../images/about-card-position.opt.avif";
-import aboutCardRouteAvif from "../images/about-card-route.opt.avif";
+import aboutTagAvif from "../images/about-tag.opt.avif";
 import gsjjBannerAvif from "../images/gsjj-banner.opt.avif";
 import joinPageBannerAvif from "../images/join-bg.opt.avif";
 import joinFuliAvif from "../images/fuli.opt.avif";
@@ -13,17 +11,29 @@ import teamPageBannerAvif from "../images/team-banner-bg.opt.avif";
 import techBannerAvif from "../images/tech-banner.opt.avif";
 import techIconAvif from "../images/tech-icon.opt.avif";
 
-/** 与首页同一套：PingFang、流体字号 max(…,100vw/1920)、字距 0.03em；lg+ 主菜单 1920 为 14px、行高 4.643 */
+/**
+ * 与首页引言同一套：PingFang、leading-[1.7]、tracking-[0.03em]；
+ * 稿面 1920 主菜单 16px → text-[max(16px,calc(100vw*16/1920))]（窄屏不低于 16px，与引言的 max 下限规则一致）。
+ */
 const linkBase =
-  "relative whitespace-nowrap font-['PingFang_SC'] text-[14px] font-medium leading-none tracking-[0.03em] transition-colors duration-150 md:text-[15px] lg:text-[max(12px,calc(100vw*14/1920))] lg:leading-[4.643]";
+  "relative whitespace-nowrap font-['PingFang_SC'] text-[max(16px,calc(100vw*16/1920))] font-medium leading-[1.7] tracking-[0.03em] transition-colors duration-150";
+
+/** 1920 稿顶栏内容区高度 58px，随视口比例缩放，窄屏不低于 58px（与稿一致） */
+const navBarInnerMinH = "min-h-[max(58px,calc(100vw*58/1920))]";
+/**
+ * Logo 1920 稿 106×30；与首页引言同一套 max(下限, calc(100vw*稿面/1920))。
+ * 引言为 max(16px, …×24/1920)，下限/稿面=16/24；Logo 宽下限取 106×(16/24)，高由 aspect-[106/30] 跟宽走。
+ */
+const logoBoxClassName =
+  "relative block w-[max(calc(106px*16/24),calc(100vw*106/1920))] shrink-0 self-center aspect-[106/30] h-auto";
 /** 贴齐触发项所在行底边（top-full），不再用 pt 留出缝隙，避免鼠标移入时断开 */
 const submenuWrap =
   "absolute left-1/2 top-full z-50 w-max -translate-x-1/2 pt-0";
 const submenuPanel =
   "hidden origin-top rounded-b-md rounded-t-none border border-t-0 border-black/5 bg-white/95 text-center shadow-[0_8px_24px_rgba(0,0,0,0.12)] backdrop-blur-[2px] transition-all duration-150 group-hover:block group-focus-within:block";
 
-/** 1920 稿子菜单宽 112px */
-const submenuPanelW = "w-[max(96px,calc(100vw*112/1920))]";
+/** 1920 稿子菜单宽 112px；下限与稿对齐，避免随视口缩得过窄 */
+const submenuPanelW = "w-[max(112px,calc(100vw*112/1920))]";
 
 type NavPreloadImage = {
   href: string;
@@ -50,9 +60,7 @@ const ABOUT_MENU_PRELOADS: NavPreloadImage[] = [
 
 const ABOUT_ROUTE_PRELOADS: NavPreloadImage[] = [
   { href: gsjjBannerAvif, mime: "image/avif", id: "preload-gsjj-banner-avif" },
-  { href: aboutCardRouteAvif, mime: "image/avif", id: "preload-about-card-route-avif", fetchPriority: "low" },
-  { href: aboutCardPositionAvif, mime: "image/avif", id: "preload-about-card-position-avif", fetchPriority: "low" },
-  { href: aboutCardGoalAvif, mime: "image/avif", id: "preload-about-card-goal-avif", fetchPriority: "low" },
+  { href: aboutTagAvif, mime: "image/avif", id: "preload-about-tag-avif", fetchPriority: "low" },
 ];
 
 const TEAM_ROUTE_PRELOADS: NavPreloadImage[] = [
@@ -128,7 +136,7 @@ function prefetchJoinUsPageChunk() {
   void import("../pages/JoinUsPage");
 }
 
-/** 子菜单：1920 为 14px、行高 3.57；其余与主菜单同一套字族/字距 */
+/** 子菜单：与主菜单同一套字号 / 行高 / 字距（1920 为 16px） */
 function SubmenuLink({
   to,
   children,
@@ -144,7 +152,7 @@ function SubmenuLink({
     <Link
       to={to}
       onMouseEnter={onHoverPrefetch}
-      className={`relative flex min-h-[38px] items-center justify-center whitespace-nowrap px-[clamp(10px,0.7vw,14px)] text-center font-['PingFang_SC'] text-[14px] font-medium leading-none tracking-[0.03em] transition-colors lg:min-h-[3.57em] lg:text-[max(12px,calc(100vw*14/1920))] lg:leading-[3.57] ${
+      className={`relative flex min-h-[44px] items-center justify-center whitespace-nowrap px-[clamp(10px,0.7vw,14px)] text-center font-['PingFang_SC'] text-[max(16px,calc(100vw*16/1920))] font-medium leading-[1.7] tracking-[0.03em] transition-colors lg:min-h-[3.57em] ${
         active ? "bg-[rgba(255,255,255,0.8)] text-[#f96d01]" : "text-[#363636] hover:bg-[rgba(255,255,255,0.8)] hover:text-[#f96d01]"
       }`}
     >
@@ -174,11 +182,11 @@ function NavItem({
       end={end}
       onMouseEnter={onHoverPrefetch}
       className={({ isActive }) =>
-        `${linkBase} inline-flex items-center ${isActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`
+        `${linkBase} inline-flex h-full min-h-0 items-stretch self-stretch ${isActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`
       }
     >
       {({ isActive }) => (
-        <span className="relative inline-flex items-center">
+        <span className="relative inline-flex h-full min-h-0 items-center">
           <span>{children}</span>
           <span
             className={`absolute bottom-0 left-0 h-[3px] w-full rounded-[1px] transition-opacity ${isActive ? "bg-[#f96d01] opacity-100" : "opacity-0"}`}
@@ -197,13 +205,15 @@ export default function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b-0 bg-white shadow-[0px_2px_8px_rgba(0,0,0,0.06)]"
+      className="sticky top-0 z-50 border-b-0 bg-white shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)]"
       data-node-id="103:327"
     >
-      <div className="mx-auto flex w-full max-w-[min(100%-2rem,1213px)] items-center justify-between px-4 sm:px-6 lg:w-[63.18vw] lg:max-w-none lg:px-[max(1rem,calc(0.833vw+0.75rem))]">
+      <div
+        className={`mx-auto flex w-full max-w-[min(100%-2rem,1213px)] items-stretch justify-between px-4 sm:px-6 lg:w-[63.18vw] lg:max-w-none lg:px-[max(1rem,calc(0.833vw+0.75rem))] ${navBarInnerMinH}`}
+      >
         <Link
           to="/"
-          className="relative block h-[clamp(22px,calc(100vw*32/1920),32px)] w-auto shrink-0 aspect-[106/30]"
+          className={logoBoxClassName}
           data-name="logo"
           data-node-id="103:339"
           aria-label="首页"
@@ -220,23 +230,25 @@ export default function Navbar() {
         </Link>
 
         <nav
-          className="flex min-w-0 flex-1 items-center justify-end gap-6 pl-4 sm:gap-7 sm:pl-6 lg:gap-[max(1.875rem,3.35vw)] lg:pl-2"
+          className="flex min-h-0 min-w-0 flex-1 items-stretch justify-end gap-6 pl-4 sm:gap-7 sm:pl-6 lg:gap-[max(1.875rem,3.35vw)] lg:pl-2"
           aria-label="主导航"
         >
           <NavItem to="/" end>
             首页
           </NavItem>
           <div
-            className="group relative flex items-center"
+            className="group relative flex items-stretch"
             onMouseEnter={() => warmNavAssets(TECH_ROUTE_PRELOADS)}
             onFocusCapture={() => warmNavAssets(TECH_ROUTE_PRELOADS)}
           >
             <span
               tabIndex={0}
-              className={`${linkBase} relative inline-flex cursor-default items-center rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#f96d01]/35 focus-visible:ring-offset-2 ${productSectionActive ? "text-[#f96d01]" : "text-black"}`}
+              className={`${linkBase} relative inline-flex h-full min-h-0 cursor-default items-stretch self-stretch rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#f96d01]/35 focus-visible:ring-offset-2 ${productSectionActive ? "text-[#f96d01]" : "text-black"}`}
               data-node-id="103:330"
             >
-              <span>产品中心</span>
+              <span className="inline-flex h-full min-h-0 items-center">
+                <span>产品中心</span>
+              </span>
               <span
                 className={`absolute bottom-0 left-0 h-[3px] w-full rounded-[1px] transition-opacity group-hover:opacity-0 group-focus-within:opacity-0 ${productSectionActive ? "bg-[#f96d01] opacity-100" : "opacity-0"}`}
                 aria-hidden
@@ -254,16 +266,18 @@ export default function Navbar() {
             新闻中心
           </NavItem>
           <div
-            className="group relative flex items-center"
+            className="group relative flex items-stretch"
             onMouseEnter={() => warmNavAssets(ABOUT_MENU_PRELOADS)}
             onFocusCapture={() => warmNavAssets(ABOUT_MENU_PRELOADS)}
           >
             <span
               tabIndex={0}
-              className={`${linkBase} relative inline-flex cursor-default items-center rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#f96d01]/35 focus-visible:ring-offset-2 ${aboutSectionActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`}
+              className={`${linkBase} relative inline-flex h-full min-h-0 cursor-default items-stretch self-stretch rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#f96d01]/35 focus-visible:ring-offset-2 ${aboutSectionActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`}
               data-node-id="103:335"
             >
-              <span>关于我们</span>
+              <span className="inline-flex h-full min-h-0 items-center">
+                <span>关于我们</span>
+              </span>
               <span
                 className={`absolute bottom-0 left-0 h-[3px] w-full rounded-[1px] transition-opacity group-hover:opacity-0 group-focus-within:opacity-0 ${aboutSectionActive ? "bg-[#f96d01] opacity-100" : "opacity-0"}`}
                 aria-hidden

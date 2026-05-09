@@ -1,6 +1,13 @@
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
+import {
+  newsDetailBodyClassName,
+  newsDetailTimelineLabelClassName,
+  newsDetailTitleClassName,
+} from "../constants/typography";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import NewsTimelineDot from "../components/NewsTimelineDot";
 import NewsDetailContentImage from "../components/NewsDetailContentImage";
 import NewsDetailHero from "../components/NewsDetailHero";
 import mainAvif from "../images/news-detail-1-main.opt.avif";
@@ -34,7 +41,7 @@ export default function NewsDetailPage1() {
       <Navbar />
       <NewsDetailHero />
       <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24 lg:pt-[2.9167vw]">
-        <h1 className="m-0 text-[32px] font-medium leading-[30px] text-black lg:text-[1.6667vw] lg:leading-[1.35]">
+        <h1 className={`m-0 font-medium ${newsDetailTitleClassName}`}>
           全球各国核聚变战略部署
         </h1>
         <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
@@ -50,29 +57,46 @@ export default function NewsDetailPage1() {
         </div>
 
         <section className="mx-auto mt-[56px] w-full max-w-[1103px] lg:mt-[2.9167vw] lg:max-w-[57.4479vw]">
-          <div className="relative">
-            {/* 与 grid 列对齐：第 1 列宽 + gap + 第 2 列一半；lg 用 vw 与 lg:grid-cols 一致；translate 使 1px 线落在圆心 */}
+          {/*
+            单列 auto + 标签右对齐：左缘到圆心的水平距离 = 圆心到正文左缘（同为 gap-x）。
+            虚线放在第 2 列 grid 内并跨行，避免 absolute 依赖固定左列宽。
+          */}
+          <div className="grid grid-cols-[auto_max(40px,calc(100vw*40/1920))_minmax(0,1fr)] items-start gap-x-[max(12px,calc(100vw*20/1920))] gap-y-0">
             <div
-              className="pointer-events-none absolute left-[calc(130px+1.25rem+20px)] top-[-12px] z-0 h-[calc(100%-36px)] w-px -translate-x-1/2 border-0 border-l border-dashed border-[#f09652] lg:left-[calc(6.7708vw+1.0417vw+2.0833vw/2)] lg:top-[-0.625vw] lg:h-[calc(100%-1.875vw)]"
               aria-hidden
+              className="pointer-events-none col-start-2 row-start-1 z-0 justify-self-center self-stretch border-0 border-l border-dashed border-[#f09652]"
+              style={{
+                gridRow: `1 / span ${rows.length}`,
+                width: "max(1px, calc(100vw / 1920))",
+              }}
             />
-            <div className="space-y-0">
-              {rows.map((row) => (
-                <div key={row.year} className="grid min-h-[101px] grid-cols-[130px_40px_1fr] items-start gap-x-5 lg:min-h-[5.2604vw] lg:grid-cols-[6.7708vw_2.0833vw_1fr] lg:gap-x-[1.0417vw]">
-                  <p className="m-0 h-[30px] whitespace-nowrap text-[24px] font-semibold leading-[30px] text-[#f96d01] lg:h-[1.5625vw] lg:text-[1.25vw] lg:leading-[1.5625vw]">{row.year}</p>
-                  <span className="relative mt-[4px] flex h-[20px] w-[40px] items-center justify-center lg:mt-[0.2083vw] lg:h-[1.0417vw] lg:w-[2.0833vw]">
-                    <span className="absolute left-1/2 top-1/2 h-[20px] w-[20px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f96d01]/25 lg:h-[1.0417vw] lg:w-[1.0417vw]" />
-                    <span className="absolute left-1/2 top-1/2 block h-[12px] w-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f96d01] lg:h-[0.625vw] lg:w-[0.625vw]" />
-                  </span>
-                  <p className="m-0 text-[20px] leading-[30px] text-black lg:text-[1.0417vw] lg:leading-[1.5625vw]">{row.text}</p>
-                </div>
-              ))}
-            </div>
+            {rows.map((row, i) => (
+              <Fragment key={row.year}>
+                <p
+                  className={`m-0 min-h-[max(101px,calc(100vw*101/1920))] whitespace-nowrap text-right ${newsDetailTimelineLabelClassName}`}
+                  style={{ gridColumnStart: 1, gridRowStart: i + 1 }}
+                >
+                  {row.year}
+                </p>
+                <span
+                  className="relative z-10 isolate mt-[max(4px,calc(100vw*4/1920))] flex size-[max(40px,calc(100vw*40/1920))] shrink-0 items-center justify-center"
+                  style={{ gridColumnStart: 2, gridRowStart: i + 1 }}
+                >
+                  <NewsTimelineDot />
+                </span>
+                <p
+                  className={`m-0 min-h-[max(101px,calc(100vw*101/1920))] ${newsDetailBodyClassName}`}
+                  style={{ gridColumnStart: 3, gridRowStart: i + 1 }}
+                >
+                  {row.text}
+                </p>
+              </Fragment>
+            ))}
           </div>
         </section>
-        <p className="mt-[102px] text-center text-[20px] text-black lg:mt-[5.3125vw] lg:text-[1.0417vw]">数据来源：各国能源部门网站、机构研报</p>
+        <p className={`mt-[102px] text-center lg:mt-[5.3125vw] ${newsDetailBodyClassName}`}>数据来源：各国能源部门网站、机构研报</p>
         <div className="mt-[38px] flex justify-end lg:mt-[1.9792vw]">
-          <Link to="/news" className="text-[20px] text-black hover:text-[#f96d01] lg:text-[1.0417vw]">返回全部新闻</Link>
+          <Link to="/news" className={`${newsDetailBodyClassName} transition-colors hover:text-[#f96d01]`}>返回全部新闻</Link>
         </div>
       </main>
       <Footer />
