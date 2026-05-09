@@ -2,7 +2,7 @@ import Footer from "../components/Footer";
 import { homeDetailCtaInteractionClasses } from "../constants/homeDetailCta";
 import { introBody20ClassName } from "../constants/typography";
 import Navbar from "../components/Navbar";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import Team from "../components/Team";
 import { Link } from "react-router-dom";
 import bannerAvif from "../images/banner.opt.avif";
@@ -86,14 +86,10 @@ function ensureBaiduMapApi(): Promise<void> {
 
 export default function HomePage() {
   const mapRef = useRef<HTMLDivElement | null>(null);
-  const mapShellRef = useRef<HTMLDivElement | null>(null);
   const mapReadyRef = useRef(false);
-  const [mapShellVisible, setMapShellVisible] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    let observer: IntersectionObserver | null = null;
-    let warmupTimer = 0;
     let mapResizeObserver: ResizeObserver | null = null;
     let onWindowResize: (() => void) | null = null;
 
@@ -207,55 +203,14 @@ export default function HomePage() {
       mapReadyRef.current = true;
     };
 
-    const target = mapRef.current;
-    if (!target) return;
-
-    // 提前在后台预热地图脚本，滚到地图区域时能更快初始化
-    warmupTimer = window.setTimeout(() => {
-      void ensureBaiduMapApi().catch(() => {
-        // 忽略预热失败，进入视口时会再次尝试加载
-      });
-    }, 1200);
-
-    observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) {
-          void loadAndInit();
-          observer?.disconnect();
-        }
-      },
-      { rootMargin: "1000px 0px" },
-    );
-    observer.observe(target);
+    /** 首页进入即加载脚本并初始化地图，无需滚动触发 */
+    void loadAndInit();
 
     return () => {
       cancelled = true;
-      window.clearTimeout(warmupTimer);
-      observer?.disconnect();
       mapResizeObserver?.disconnect();
       if (onWindowResize) window.removeEventListener("resize", onWindowResize);
     };
-  }, []);
-
-  /** 地图区首次进入视口时淡入；减少动效时直接显示 */
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setMapShellVisible(true);
-      return;
-    }
-    const el = mapShellRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e?.isIntersecting) {
-          setMapShellVisible(true);
-          io.disconnect();
-        }
-      },
-      { rootMargin: "64px 0px", threshold: 0.01 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
   }, []);
 
   return (
@@ -330,11 +285,8 @@ export default function HomePage() {
         <Suspense fallback={<div className="h-[900px] w-full bg-white" />}>
           <Partners />
         </Suspense>
-        {/** 百度地图：容器需明确高度；overflow-hidden 避免 WebGL 未铺满时露出侧向灰条；首次进入视口淡入 */}
-        <div
-          ref={mapShellRef}
-          className={`relative w-full overflow-hidden transition-opacity duration-300 ease-out motion-reduce:transition-none ${mapShellVisible ? "opacity-100" : "opacity-0"}`}
-        >
+        {/** 百度地图：容器需明确高度；overflow-hidden 避免 WebGL 未铺满时露出侧向灰条 */}
+        <div className="relative w-full overflow-hidden">
           <div id="allmap" ref={mapRef} className="h-[clamp(240px,19.32vw,420px)] w-full" />
         </div>
       </main>
