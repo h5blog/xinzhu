@@ -1,6 +1,7 @@
 ﻿import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { assets } from "../components/assets";
+import { homeDetailCtaInteractionClasses } from "../constants/homeDetailCta";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { JOB_APPLY_FORM_URL, JOBS } from "../data/jobs";
@@ -97,7 +98,7 @@ function JobApplyButton({ to }: { to: string }) {
     <Link
       to={to}
       data-node-id="729:29226"
-      className={`group box-border inline-flex ${joinJobDetailButtonBox} ${joinJobDetailButtonRadius} ${joinJobDetailButtonGap} shrink-0 cursor-pointer items-center justify-center whitespace-nowrap bg-[#f96d01] no-underline transition-opacity hover:opacity-95 ${joinJobDetailButtonText}`}
+      className={`group box-border inline-flex ${joinJobDetailButtonBox} ${joinJobDetailButtonRadius} ${joinJobDetailButtonGap} shrink-0 cursor-pointer items-center justify-center whitespace-nowrap bg-[#f96d01] no-underline ${homeDetailCtaInteractionClasses} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f96d01]/55 ${joinJobDetailButtonText}`}
     >
       查看招聘详情
       <img
@@ -105,7 +106,7 @@ function JobApplyButton({ to }: { to: string }) {
         alt=""
         width={16}
         height={15}
-        className={`${joinJobDetailButtonArrow} shrink-0 object-contain transition-transform duration-200 group-hover:translate-x-0.5`}
+        className={`${joinJobDetailButtonArrow} shrink-0 object-contain transition-transform duration-200 ease-out group-hover:translate-x-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0`}
         aria-hidden
         decoding="async"
       />

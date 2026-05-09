@@ -13,12 +13,11 @@ export default function TeamMemberTextPanel({
   edges?: EdgeMode;
   className?: string;
 }) {
+  /** 悬停灰色光晕；减少动效时不加阴影 */
   const borderClass =
-    edges === "top-bottom-right"
-      ? "border border-solid border-white border-b border-r border-t border-l-0 transition-colors duration-200 group-hover:border-[#f96d01]"
-      : edges === "top-bottom-left"
-        ? "border border-solid border-white border-b border-l border-t border-r-0 transition-colors duration-200 group-hover:border-[#f96d01]"
-        : "border-0";
+    edges === "top-bottom-right" || edges === "top-bottom-left"
+      ? "border-0 shadow-none transition-[box-shadow] duration-200 ease-out group-hover:shadow-[0_0_22px_rgba(15,23,42,0.08),0_8px_24px_rgba(15,23,42,0.12)] motion-reduce:transition-none motion-reduce:group-hover:shadow-none"
+      : "border-0";
 
   /** 图在右侧时（top-bottom-left）：左内边距更小、卡片 max-w 略增，给介绍区更多宽度 */
   const horizontalPadClass =

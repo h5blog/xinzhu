@@ -12,8 +12,18 @@ import techIconJpg from "../images/tech-icon.opt.jpg";
 const techIntroBody =
   "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-black";
 
+/** 核心技术页：橘色四药丸与「物理 + 数据」条共用高度、字号断点 */
+const techCoreCtaSize =
+  "h-[76px] text-[17px] sm:h-[82px] sm:text-[22px] md:h-[86px] md:text-[26px] lg:h-[4.4792vw] lg:text-[1.6667vw]";
+
+const techCoreCtaDefaultShadow = "shadow-[0px_16px_17px_0px_rgba(251,85,14,0.25)]";
+
+/** 四枚橘色药丸：悬停略放大、提亮、同色系光晕；减少动效时保持默认投影（「物理+数据」条不用） */
+const techCoreCtaHover =
+  "origin-center transition-[filter,box-shadow,transform] duration-200 ease-out hover:scale-[1.03] hover:brightness-[1.06] hover:shadow-[0_8px_22px_-3px_rgba(249,109,1,0.4),0_0_18px_rgba(255,184,92,0.35)] motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:hover:brightness-100 motion-reduce:hover:shadow-[0px_16px_17px_0px_rgba(251,85,14,0.25)]";
+
 const pillBase =
-  "flex h-[max(76px,calc(100vw*115/1920))] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-gradient-to-b from-[#ffb85c] to-[#f96d01] px-3 text-center font-['PingFang_SC'] text-[max(16px,calc(100vw*32/1920))] font-semibold leading-tight tracking-[0.03em] text-white shadow-[0px_16px_17px_0px_rgba(251,85,14,0.25)]";
+  `flex shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-gradient-to-b from-[#ffb85c] to-[#f96d01] px-4 text-center font-['PingFang_SC'] font-semibold leading-tight tracking-[0.03em] text-white ${techCoreCtaDefaultShadow} ${techCoreCtaHover} ${techCoreCtaSize}`;
 
 export default function TechCorePage() {
   return (
@@ -97,7 +107,7 @@ export default function TechCorePage() {
 
             <div className="mt-10 flex justify-center sm:mt-12 md:mt-14" data-node-id="299:103">
               <div
-                className="flex h-[76px] w-full max-w-[572px] items-center justify-center rounded-full px-4 text-center text-[17px] font-semibold leading-tight text-white shadow-[0px_16px_17px_0px_rgba(251,85,14,0.25)] sm:h-[82px] sm:text-[22px] md:h-[86px] md:text-[26px] lg:h-[4.4792vw] lg:max-w-[29.7917vw] lg:text-[1.6667vw]"
+                className={`flex w-full max-w-[572px] items-center justify-center rounded-full px-4 text-center font-semibold leading-tight text-white lg:max-w-[29.7917vw] ${techCoreCtaDefaultShadow} ${techCoreCtaSize}`}
                 style={{
                   background:
                     "linear-gradient(180deg, #fd7e94 0%, #1e4ca9 87.5%, #1e4ca9 99.52%)",

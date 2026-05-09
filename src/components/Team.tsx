@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { homeDetailCtaInteractionClasses } from "../constants/homeDetailCta";
 import { assets } from "./assets";
 import team1Avif from "../images/team-1.opt.avif";
 import team1Webp from "../images/team-1.opt.webp";
@@ -36,21 +37,23 @@ export default function Team() {
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:mt-[3.65vw] lg:grid-cols-4 lg:gap-[1.67vw]">
           {teamMembers.map((member) => (
             <div key={member.name} className="text-center">
-              <picture>
-                <source srcSet={member.avif} type="image/avif" />
-                <source srcSet={member.webp} type="image/webp" />
-                <img
-                  src={member.jpg}
-                  alt={member.name}
-                  width={187}
-                  height={187}
-                  style={{ borderRadius: "100%" }}
-                  className="mx-auto h-44 w-44 object-cover object-center lg:h-[9.17vw] lg:w-[9.17vw]"
-                  loading="eager"
-                  fetchPriority="low"
-                  decoding="async"
-                />
-              </picture>
+              <div className="group/avatar mx-auto w-fit">
+                <picture className="block">
+                  <source srcSet={member.avif} type="image/avif" />
+                  <source srcSet={member.webp} type="image/webp" />
+                  <img
+                    src={member.jpg}
+                    alt={member.name}
+                    width={187}
+                    height={187}
+                    style={{ borderRadius: "100%" }}
+                    className="mx-auto h-44 w-44 origin-center object-cover object-center transition-transform duration-200 ease-out group-hover/avatar:scale-[1.07] motion-reduce:transition-none motion-reduce:group-hover/avatar:scale-100 lg:h-[9.17vw] lg:w-[9.17vw]"
+                    loading="eager"
+                    fetchPriority="low"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
               <div className="type-label-md mt-6 font-semibold text-white lg:mt-[1.25vw]">
                 {member.name}
               </div>
@@ -62,7 +65,7 @@ export default function Team() {
         <div className="mt-12 flex justify-center lg:mt-[2.5vw]">
           <Link
             to="/team"
-            className="type-label-md inline-flex min-w-[max(122px,6.35vw)] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[19.5px] bg-[#F96D01] px-5 py-2.5 text-center font-['PingFang_SC'] text-white tracking-[4.60px]"
+            className={`inline-flex min-w-[6.78em] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[1.0833em] bg-[#F96D01] px-[1.1111em] py-[0.6111em] text-center font-['PingFang_SC'] text-[17px] font-medium leading-none text-white tracking-[0.16em] sm:text-[18px] lg:text-[1.0417vw] ${homeDetailCtaInteractionClasses} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70`}
           >
             查看详情
           </Link>

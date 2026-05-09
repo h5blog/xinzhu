@@ -1,7 +1,8 @@
 import Footer from "../components/Footer";
-import { assets } from "../components/assets";
+import { homeDetailCtaInteractionClasses } from "../constants/homeDetailCta";
+import { introBody20ClassName } from "../constants/typography";
 import Navbar from "../components/Navbar";
-import { lazy, Suspense, useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import Team from "../components/Team";
 import { Link } from "react-router-dom";
 import bannerAvif from "../images/banner.opt.avif";
@@ -85,7 +86,9 @@ function ensureBaiduMapApi(): Promise<void> {
 
 export default function HomePage() {
   const mapRef = useRef<HTMLDivElement | null>(null);
+  const mapShellRef = useRef<HTMLDivElement | null>(null);
   const mapReadyRef = useRef(false);
+  const [mapShellVisible, setMapShellVisible] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -233,6 +236,28 @@ export default function HomePage() {
       if (onWindowResize) window.removeEventListener("resize", onWindowResize);
     };
   }, []);
+
+  /** 地图区首次进入视口时淡入；减少动效时直接显示 */
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setMapShellVisible(true);
+      return;
+    }
+    const el = mapShellRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e?.isIntersecting) {
+          setMapShellVisible(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "64px 0px", threshold: 0.01 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
@@ -281,7 +306,9 @@ export default function HomePage() {
               </h2>
               <div className="relative mx-auto box-border  w-[min(100%-24px,1135px)] overflow-hidden  lg:w-[59.1146vw] lg:max-w-none">
                 <div className="relative z-10 box-border min-h-0 pl-[clamp(300px,48vw,546px)] pt-[67px] pr-0 lg:pl-[28.4375vw] lg:pt-[3.4896vw]">
-                  <div className="w-[589px] max-w-full text-pretty indent-[2em] font-['PingFang_SC'] text-[max(16px,calc(100vw*24/1920))] leading-[1.7] tracking-[0.03em] text-black sm:text-justify lg:w-[30.6771vw] lg:max-w-none">
+                  <div
+                    className={`w-[589px] max-w-full text-pretty indent-[2em] text-black sm:text-justify lg:w-[30.6771vw] lg:max-w-none ${introBody20ClassName}`}
+                  >
                     强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 + 数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力，最终形成聚变电站的智能操作系统——终极能源的智慧大脑。
                   </div>
                 </div>
@@ -290,7 +317,7 @@ export default function HomePage() {
                 <Link
                   to="/tech"
                   data-node-id="838:1351"
-                  className="inline-flex min-w-[6.78em] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[1.0833em] bg-[#F96D01] px-[1.1111em] py-[0.6111em] text-center font-['PingFang_SC'] text-[17px] font-medium leading-none text-white tracking-[0.16em] transition-opacity hover:opacity-95 sm:text-[18px] lg:text-[1.0417vw]"
+                  className={`inline-flex min-w-[6.78em] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[1.0833em] bg-[#F96D01] px-[1.1111em] py-[0.6111em] text-center font-['PingFang_SC'] text-[17px] font-medium leading-none text-white tracking-[0.16em] sm:text-[18px] lg:text-[1.0417vw] ${homeDetailCtaInteractionClasses} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f96d01]/55`}
                 >
                   查看详情
                 </Link>
@@ -303,8 +330,11 @@ export default function HomePage() {
         <Suspense fallback={<div className="h-[900px] w-full bg-white" />}>
           <Partners />
         </Suspense>
-        {/** 百度地图：容器需明确高度；overflow-hidden 避免 WebGL 未铺满时露出侧向灰条 */}
-        <div className="relative w-full overflow-hidden">
+        {/** 百度地图：容器需明确高度；overflow-hidden 避免 WebGL 未铺满时露出侧向灰条；首次进入视口淡入 */}
+        <div
+          ref={mapShellRef}
+          className={`relative w-full overflow-hidden transition-opacity duration-300 ease-out motion-reduce:transition-none ${mapShellVisible ? "opacity-100" : "opacity-0"}`}
+        >
           <div id="allmap" ref={mapRef} className="h-[clamp(240px,19.32vw,420px)] w-full" />
         </div>
       </main>

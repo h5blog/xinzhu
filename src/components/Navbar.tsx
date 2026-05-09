@@ -16,7 +16,7 @@ import techIconAvif from "../images/tech-icon.opt.avif";
  * 稿面 1920 主菜单 16px → text-[max(16px,calc(100vw*16/1920))]（窄屏不低于 16px，与引言的 max 下限规则一致）。
  */
 const linkBase =
-  "relative whitespace-nowrap font-['PingFang_SC'] text-[max(16px,calc(100vw*16/1920))] font-medium leading-[1.7] tracking-[0.03em] transition-colors duration-150";
+  "relative whitespace-nowrap font-['PingFang_SC'] text-[max(16px,calc(100vw*16/1920))] font-medium leading-[1.7] tracking-[0.03em] transition-colors duration-200 ease-out motion-reduce:transition-none";
 
 /** 1920 稿顶栏内容区高度 58px，随视口比例缩放，窄屏不低于 58px（与稿一致） */
 const navBarInnerMinH = "min-h-[max(58px,calc(100vw*58/1920))]";
@@ -29,8 +29,9 @@ const logoBoxClassName =
 /** 贴齐触发项所在行底边（top-full），不再用 pt 留出缝隙，避免鼠标移入时断开 */
 const submenuWrap =
   "absolute left-1/2 top-full z-50 w-max -translate-x-1/2 pt-0";
+/** 下拉：淡入 + 轻微下落与缩放（替代 hidden/block 才能做 transition） */
 const submenuPanel =
-  "hidden origin-top rounded-b-md rounded-t-none border border-t-0 border-black/5 bg-white/95 text-center shadow-[0_8px_24px_rgba(0,0,0,0.12)] backdrop-blur-[2px] transition-all duration-150 group-hover:block group-focus-within:block";
+  "origin-top rounded-b-md rounded-t-none border border-t-0 border-black/5 bg-white/95 text-center shadow-[0_8px_24px_rgba(0,0,0,0.12)] backdrop-blur-[2px] pointer-events-none translate-y-1 scale-[0.98] opacity-0 transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:translate-y-0 motion-reduce:scale-100 motion-reduce:transition-opacity group-hover/drop:pointer-events-auto group-hover/drop:translate-y-0 group-hover/drop:scale-100 group-hover/drop:opacity-100 group-focus-within/drop:pointer-events-auto group-focus-within/drop:translate-y-0 group-focus-within/drop:scale-100 group-focus-within/drop:opacity-100";
 
 /** 1920 稿子菜单宽 112px；下限与稿对齐，避免随视口缩得过窄 */
 const submenuPanelW = "w-[max(112px,calc(100vw*112/1920))]";
@@ -152,13 +153,15 @@ function SubmenuLink({
     <Link
       to={to}
       onMouseEnter={onHoverPrefetch}
-      className={`relative flex min-h-[44px] items-center justify-center whitespace-nowrap px-[clamp(10px,0.7vw,14px)] text-center font-['PingFang_SC'] text-[max(16px,calc(100vw*16/1920))] font-medium leading-[1.7] tracking-[0.03em] transition-colors lg:min-h-[3.57em] ${
+      className={`group/subitem relative flex min-h-[44px] items-center justify-center whitespace-nowrap px-[clamp(10px,0.7vw,14px)] text-center font-['PingFang_SC'] text-[max(16px,calc(100vw*16/1920))] font-medium leading-[1.7] tracking-[0.03em] transition-[color,background-color,transform] duration-200 ease-out motion-reduce:transition-colors active:scale-[0.98] motion-reduce:active:scale-100 lg:min-h-[3.57em] ${
         active ? "bg-[rgba(255,255,255,0.8)] text-[#f96d01]" : "text-[#363636] hover:bg-[rgba(255,255,255,0.8)] hover:text-[#f96d01]"
       }`}
     >
-      {children}
+      <span className="relative z-10 transition-transform duration-200 ease-out group-hover/subitem:translate-x-0.5 motion-reduce:group-hover/subitem:translate-x-0">
+        {children}
+      </span>
       <span
-        className={`absolute inset-x-0 bottom-0 h-[3px] bg-[#f96d01] transition-opacity ${active ? "opacity-100" : "opacity-0 hover:opacity-100"}`}
+        className={`absolute inset-x-0 bottom-0 h-[3px] origin-center bg-[#f96d01] transition-transform duration-300 ease-out motion-reduce:transition-none ${active ? "scale-x-100" : "scale-x-0 group-hover/subitem:scale-x-100"}`}
         aria-hidden
       />
     </Link>
@@ -182,14 +185,16 @@ function NavItem({
       end={end}
       onMouseEnter={onHoverPrefetch}
       className={({ isActive }) =>
-        `${linkBase} inline-flex h-full min-h-0 items-stretch self-stretch ${isActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`
+        `${linkBase} group/nav inline-flex h-full min-h-0 items-stretch self-stretch ${isActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`
       }
     >
       {({ isActive }) => (
         <span className="relative inline-flex h-full min-h-0 items-center">
-          <span>{children}</span>
+          <span className="transition-transform duration-200 ease-out group-hover/nav:-translate-y-px motion-reduce:group-hover/nav:translate-y-0">
+            {children}
+          </span>
           <span
-            className={`absolute bottom-0 left-0 h-[3px] w-full rounded-[1px] transition-opacity ${isActive ? "bg-[#f96d01] opacity-100" : "opacity-0"}`}
+            className={`absolute bottom-0 left-0 h-[3px] w-full origin-center rounded-[1px] bg-[#f96d01] transition-transform duration-300 ease-out motion-reduce:transition-none ${isActive ? "scale-x-100" : "scale-x-0 group-hover/nav:scale-x-100"}`}
             aria-hidden
           />
         </span>
@@ -205,7 +210,7 @@ export default function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b-0 bg-white shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)]"
+      className="sticky top-0 z-50 border-b-0 bg-white shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)] transition-shadow duration-300 ease-out"
       data-node-id="103:327"
     >
       <div
@@ -213,7 +218,7 @@ export default function Navbar() {
       >
         <Link
           to="/"
-          className={logoBoxClassName}
+          className={`${logoBoxClassName} transition-opacity duration-200 ease-out hover:opacity-90 motion-reduce:transition-none`}
           data-name="logo"
           data-node-id="103:339"
           aria-label="首页"
@@ -237,20 +242,20 @@ export default function Navbar() {
             首页
           </NavItem>
           <div
-            className="group relative flex items-stretch"
+            className="group/drop relative flex items-stretch"
             onMouseEnter={() => warmNavAssets(TECH_ROUTE_PRELOADS)}
             onFocusCapture={() => warmNavAssets(TECH_ROUTE_PRELOADS)}
           >
             <span
               tabIndex={0}
-              className={`${linkBase} relative inline-flex h-full min-h-0 cursor-default items-stretch self-stretch rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#f96d01]/35 focus-visible:ring-offset-2 ${productSectionActive ? "text-[#f96d01]" : "text-black"}`}
+              className={`${linkBase} group/trigger relative inline-flex h-full min-h-0 cursor-default items-stretch self-stretch rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#f96d01]/35 focus-visible:ring-offset-2 ${productSectionActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`}
               data-node-id="103:330"
             >
-              <span className="inline-flex h-full min-h-0 items-center">
+              <span className="inline-flex h-full min-h-0 items-center transition-transform duration-200 ease-out group-hover/trigger:-translate-y-px motion-reduce:group-hover/trigger:translate-y-0">
                 <span>产品中心</span>
               </span>
               <span
-                className={`absolute bottom-0 left-0 h-[3px] w-full rounded-[1px] transition-opacity group-hover:opacity-0 group-focus-within:opacity-0 ${productSectionActive ? "bg-[#f96d01] opacity-100" : "opacity-0"}`}
+                className={`absolute bottom-0 left-0 h-[3px] w-full origin-center rounded-[1px] bg-[#f96d01] transition-transform duration-300 ease-out motion-reduce:transition-none ${productSectionActive ? "scale-x-100 group-hover/drop:scale-x-0 group-focus-within/drop:scale-x-0" : "scale-x-0 group-hover/trigger:scale-x-100"}`}
                 aria-hidden
               />
             </span>
@@ -266,20 +271,20 @@ export default function Navbar() {
             新闻中心
           </NavItem>
           <div
-            className="group relative flex items-stretch"
+            className="group/drop relative flex items-stretch"
             onMouseEnter={() => warmNavAssets(ABOUT_MENU_PRELOADS)}
             onFocusCapture={() => warmNavAssets(ABOUT_MENU_PRELOADS)}
           >
             <span
               tabIndex={0}
-              className={`${linkBase} relative inline-flex h-full min-h-0 cursor-default items-stretch self-stretch rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#f96d01]/35 focus-visible:ring-offset-2 ${aboutSectionActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`}
+              className={`${linkBase} group/trigger relative inline-flex h-full min-h-0 cursor-default items-stretch self-stretch rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-[#f96d01]/35 focus-visible:ring-offset-2 ${aboutSectionActive ? "text-[#f96d01]" : "text-black hover:text-[#f96d01]/90"}`}
               data-node-id="103:335"
             >
-              <span className="inline-flex h-full min-h-0 items-center">
+              <span className="inline-flex h-full min-h-0 items-center transition-transform duration-200 ease-out group-hover/trigger:-translate-y-px motion-reduce:group-hover/trigger:translate-y-0">
                 <span>关于我们</span>
               </span>
               <span
-                className={`absolute bottom-0 left-0 h-[3px] w-full rounded-[1px] transition-opacity group-hover:opacity-0 group-focus-within:opacity-0 ${aboutSectionActive ? "bg-[#f96d01] opacity-100" : "opacity-0"}`}
+                className={`absolute bottom-0 left-0 h-[3px] w-full origin-center rounded-[1px] bg-[#f96d01] transition-transform duration-300 ease-out motion-reduce:transition-none ${aboutSectionActive ? "scale-x-100 group-hover/drop:scale-x-0 group-focus-within/drop:scale-x-0" : "scale-x-0 group-hover/trigger:scale-x-100"}`}
                 aria-hidden
               />
             </span>

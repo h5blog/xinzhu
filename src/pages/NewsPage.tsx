@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { newsListTitleClassName } from "../constants/typography";
+import { introBody20ClassName, newsListTitleClassName } from "../constants/typography";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import newsBgAvif from "../images/news-bg.opt.avif";
@@ -24,9 +24,8 @@ import n5Jpg from "../images/news-thumb-5.opt.jpg";
 
 type TabKey = "industry" | "company";
 
-/** 1920 稿摘要 20px；字族/行高/字距同首页正文 */
-const newsExcerptBody =
-  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-[#666]";
+/** 1920 稿摘要 20px；与首页技术引言、`introBody20ClassName` 同源 */
+const newsExcerptBody = `${introBody20ClassName} text-[#666]`;
 
 /** 列表卡片左侧图：小屏 max 358；lg 按 1920 稿约 440px（22.9167vw）随屏放大，716 宽 .opt 仍可覆盖 2x */
 const NEWS_THUMBS = [
@@ -165,7 +164,7 @@ export default function NewsPage() {
             role="tab"
             aria-selected={tab === "industry"}
             aria-controls="news-tab-panel"
-            className={`min-h-[48px] whitespace-nowrap border-b-[4px] px-2 pb-3 pt-2 text-center text-[17px] font-semibold outline-none transition-[color,border-color,background-color] duration-200 sm:min-h-[52px] sm:px-4 sm:text-[18px] lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] lg:text-[1.0417vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 ${
+            className={`min-h-[48px] whitespace-nowrap border-b-[4px] px-2 pb-3 pt-2 text-center font-semibold outline-none transition-[color,border-color,background-color] duration-200 sm:min-h-[52px] sm:px-4 lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 ${introBody20ClassName} ${
               tab === "industry"
                 ? "border-[#f96d01] text-[#f96d01]"
                 : "border-[#e8e8e8] text-[#363636] hover:border-[#f96d01]/40 hover:bg-black/[0.02] hover:text-[#f96d01]"
@@ -181,7 +180,7 @@ export default function NewsPage() {
             role="tab"
             aria-selected={tab === "company"}
             aria-controls="news-tab-panel"
-            className={`min-h-[48px] whitespace-nowrap border-b-[4px] px-2 pb-3 pt-2 text-center text-[17px] font-semibold outline-none transition-[color,border-color,background-color] duration-200 sm:min-h-[52px] sm:px-4 sm:text-[18px] lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] lg:text-[1.0417vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 ${
+            className={`min-h-[48px] whitespace-nowrap border-b-[4px] px-2 pb-3 pt-2 text-center font-semibold outline-none transition-[color,border-color,background-color] duration-200 sm:min-h-[52px] sm:px-4 lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 ${introBody20ClassName} ${
               tab === "company"
                 ? "border-[#f96d01] text-[#f96d01]"
                 : "border-[#e8e8e8] text-[#363636] hover:border-[#f96d01]/40 hover:bg-black/[0.02] hover:text-[#f96d01]"
@@ -209,8 +208,8 @@ export default function NewsPage() {
                 to={"to" in item && item.to ? item.to : `/news/${item.id}`}
                 className="group block"
               >
-                <article className="flex flex-col gap-6 rounded-sm bg-white p-5 shadow-none transition-[background-color,box-shadow] duration-200 sm:p-6 lg:flex-row lg:items-center lg:gap-8 hover:bg-[#f5f5f5] hover:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)] focus-within:bg-[#f5f5f5] focus-within:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)]">
-                  <div className="relative aspect-[358/172] w-full max-w-[358px] shrink-0 overflow-hidden sm:max-w-[min(100%,420px)] lg:max-w-none lg:w-[22.9167vw]">
+                <article className="flex flex-col gap-6 rounded-sm bg-white p-5 shadow-none transition-[background-color,box-shadow] duration-200 sm:p-6 lg:flex-row lg:items-center lg:gap-6 hover:bg-[#f5f5f5] hover:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)] focus-within:bg-[#f5f5f5] focus-within:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)]">
+                  <div className="relative aspect-[358/172] w-full max-w-[358px] shrink-0 overflow-hidden sm:max-w-[min(100%,420px)] lg:max-w-none lg:w-[20.8333vw]">
                     <picture className="absolute inset-0 block h-full w-full">
                       <source srcSet={item.thumb.avif} type="image/avif" />
                       <source srcSet={item.thumb.webp} type="image/webp" />
@@ -220,7 +219,7 @@ export default function NewsPage() {
                         width={item.thumb.width}
                         height={item.thumb.height}
                         className="absolute inset-0 h-full w-full object-cover"
-                        sizes="(max-width: 1023px) min(100vw - 2rem, 420px), 22.9167vw"
+                        sizes="(max-width: 1023px) min(100vw - 2rem, 420px), 20.8333vw"
                         loading={index < 2 ? "eager" : "lazy"}
                         fetchPriority={index < 2 ? "high" : "low"}
                         decoding="async"
@@ -237,7 +236,7 @@ export default function NewsPage() {
                     />
                   </div>
 
-                  <div className="flex min-w-0 flex-1 flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
+                  <div className="flex min-w-0 flex-1 flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
                     <div className="min-w-0 flex-1">
                       <h2
                         className={`font-semibold transition-colors duration-200 group-hover:text-[#f96d01] group-focus-within:text-[#f96d01] ${newsListTitleClassName}`}
@@ -245,18 +244,20 @@ export default function NewsPage() {
                         {item.title}
                       </h2>
                       <p
-                        className="mt-5 text-[15px] font-normal leading-normal text-[#888] sm:mt-6 sm:text-[16px] lg:mt-[1.25vw] lg:text-[0.8333vw]"
+                        className="mt-3 text-[15px] font-normal leading-normal text-[#888] sm:mt-3.5 sm:text-[16px] lg:mt-[0.625vw] lg:text-[0.8333vw]"
                         data-date
                       >
                         {item.date}
                       </p>
                       <p
-                        className={`mt-7 line-clamp-3 break-words whitespace-pre-line sm:mt-8 lg:mt-[1.875vw] ${newsExcerptBody}`}
+                        className={`mt-4 line-clamp-3 break-words whitespace-pre-line sm:mt-5 lg:mt-[1.0417vw] ${newsExcerptBody}`}
                       >
                         {item.excerpt}
                       </p>
                     </div>
-                    <ArrowCircleButton />
+                    <span className="shrink-0 lg:ml-1">
+                      <ArrowCircleButton />
+                    </span>
                   </div>
                 </article>
               </Link>

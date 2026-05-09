@@ -126,7 +126,7 @@ export default function TeamPage() {
             >
               {/** 大屏两列栅格：左/右交替用 col 定位，保证各行左右外缘对齐（避免 flex+max-w 产生单侧留白） */}
               <div
-                className={`relative mx-auto aspect-[259/313] w-[clamp(200px,13.489583333333334vw,259px)] max-w-full shrink-0 shadow-none transition-shadow duration-200 group-hover:shadow-[-6px_10px_22px_rgba(0,0,0,0.18),2px_4px_10px_rgba(0,0,0,0.08)] sm:w-[clamp(220px,13.489583333333334vw,259px)] lg:mx-0 lg:w-full lg:max-w-none lg:self-center ${
+                className={`group/photo relative mx-auto aspect-[259/313] w-[clamp(200px,13.489583333333334vw,259px)] max-w-full shrink-0 overflow-hidden shadow-none transition-shadow duration-200 group-hover:shadow-[-6px_10px_22px_rgba(0,0,0,0.18),2px_4px_10px_rgba(0,0,0,0.08)] sm:w-[clamp(220px,13.489583333333334vw,259px)] lg:mx-0 lg:w-full lg:max-w-none lg:self-center ${
                   m.imageLeft ? "lg:col-start-1 lg:row-start-1" : "lg:col-start-2 lg:row-start-1"
                 }`}
               >
@@ -139,7 +139,7 @@ export default function TeamPage() {
                     width={259}
                     height={313}
                     sizes="(max-width: 1023px) clamp(200px, 86vw, 420px), 13.49vw"
-                    className="block h-full w-full border-0 object-cover object-top outline-none ring-0"
+                    className="block h-full w-full origin-center border-0 object-cover object-top outline-none ring-0 transition-transform duration-200 ease-out group-hover/photo:scale-[1.06] motion-reduce:transition-none motion-reduce:group-hover/photo:scale-100"
                     loading={index === 0 ? "eager" : "lazy"}
                     fetchPriority={index === 0 ? "auto" : "low"}
                     decoding="async"
