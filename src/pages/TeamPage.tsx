@@ -20,7 +20,7 @@ const members = [
   {
     name: "张 伟",
     title: "首席执行官",
-    avatar: assets.zw,
+    avatar: { avif: assets.zwAvif, webp: assets.zwWebp, jpg: assets.zwJpg },
     imageLeft: true,
     bio: [
       "清华大学工程物理系，拥有十余年跨国企业市场营销管理经验。",
@@ -30,7 +30,7 @@ const members = [
   {
     name: "汪 跃",
     title: "首席技术官",
-    avatar: assets.wy,
+    avatar: { avif: assets.wyAvif, webp: assets.wyWebp, jpg: assets.wyJpg },
     imageLeft: false,
     bio: [
       "北京交通大学信息与计算科学本科，概率论与数理统计专业博士学位，博士生导师为马志明院士。",
@@ -41,7 +41,7 @@ const members = [
   {
     name: "吴 果",
     title: "首席运营官",
-    avatar: assets.wg,
+    avatar: { avif: assets.wgAvif, webp: assets.wgWebp, jpg: assets.wgJpg },
     imageLeft: true,
     bio: [
       "本科毕业于英属哥伦比亚大学，清华大学硕博士经济学背景。",
@@ -51,7 +51,7 @@ const members = [
   {
     name: "刘铁岩",
     title: "首席科学顾问",
-    avatar: assets.lty,
+    avatar: { avif: assets.ltyAvif, webp: assets.ltyWebp, jpg: assets.ltyJpg },
     imageLeft: false,
     bio: [
       "刘铁岩，现任北京中关村学院院长，北京中关村学院党委书记，中关村人工智能研究院理事长。",
@@ -130,13 +130,21 @@ export default function TeamPage() {
                   m.imageLeft ? "lg:col-start-1 lg:row-start-1" : "lg:col-start-2 lg:row-start-1"
                 }`}
               >
-                <img
-                  src={m.avatar}
-                  alt={m.name}
-                  className="block h-full w-full border-0 object-cover object-top outline-none ring-0"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <picture className="contents">
+                  <source srcSet={m.avatar.avif} type="image/avif" />
+                  <source srcSet={m.avatar.webp} type="image/webp" />
+                  <img
+                    src={m.avatar.jpg}
+                    alt={m.name}
+                    width={259}
+                    height={313}
+                    sizes="(max-width: 1023px) clamp(200px, 86vw, 420px), 13.49vw"
+                    className="block h-full w-full border-0 object-cover object-top outline-none ring-0"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "auto" : "low"}
+                    decoding="async"
+                  />
+                </picture>
               </div>
 
               <TeamMemberTextPanel

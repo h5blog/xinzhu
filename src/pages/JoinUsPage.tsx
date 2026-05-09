@@ -269,7 +269,7 @@ function JoinApplySection() {
         </div>
         {/** 729:29272：Figma 白底 rounded-17；729:29273：1920 稿 109×111 → vw；图 absolute + object-cover */}
         <div
-          className="relative shrink-0 overflow-clip rounded-[17px] bg-white p-2 sm:p-2.5 lg:box-border lg:rounded-[0.8854166666666667vw] lg:p-[0.15625vw]"
+          className="relative shrink-0 overflow-clip rounded-[17px] bg-white p-3 sm:p-3.5 lg:box-border lg:rounded-[0.8854166666666667vw] lg:p-[0.3125vw]"
           data-node-id="729:29272"
         >
           <div

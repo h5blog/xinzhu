@@ -150,6 +150,23 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
+  // 公司简介底部双栏配图：稿比例 539×404，桌面单列宽约 ≤565px；1200 覆盖 2×，原 PNG 数 MB
+  {
+    input: "src/images/about-gallery-1.png",
+    maxWidth: 1200,
+    quality: 78,
+    avifQuality: 68,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  {
+    input: "src/images/about-gallery-2.png",
+    maxWidth: 1200,
+    quality: 78,
+    avifQuality: 68,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   // 新闻列表缩略图（卡片约 358×172，2x 约 716 宽）
   { input: "src/images/news-thumb-1.jpg", maxWidth: 716, quality: 72 },
   { input: "src/images/news-thumb-2.jpg", maxWidth: 716, quality: 72 },
@@ -162,6 +179,38 @@ const targets = [
     maxWidth: 1920,
     quality: 70,
     avifQuality: 62,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 首页「数字化资源支撑矩阵」：稿 1153 宽，2×≈2306；原 PNG 数 MB，压成 AVIF/WebP/JPEG
+  {
+    input: "src/images/juzhen.png",
+    maxWidth: 2306,
+    quality: 78,
+    avifQuality: 68,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 首页「核心战略协作方」下方白底区背景：稿 1920×1460，源 3840 宽；导出 3840 覆盖 1920 CSS 下 2×
+  {
+    input: "src/images/partner-bg.png",
+    maxWidth: 3840,
+    quality: 72,
+    avifQuality: 64,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 创始团队页头像（稿宽约 259px，520 覆盖 2×）
+  { input: "src/images/zw.jpg", maxWidth: 520, quality: 82, avifQuality: 72, avifEffort: 7, fallbackFormat: "jpeg" },
+  { input: "src/images/wg.jpg", maxWidth: 520, quality: 82, avifQuality: 72, avifEffort: 7, fallbackFormat: "jpeg" },
+  { input: "src/images/wy.jpg", maxWidth: 520, quality: 82, avifQuality: 72, avifEffort: 7, fallbackFormat: "jpeg" },
+  { input: "src/images/lty.jpg", maxWidth: 520, quality: 82, avifQuality: 72, avifEffort: 7, fallbackFormat: "jpeg" },
+  // 创始团队文案卡片底图（多卡片复用同一 URL）
+  {
+    input: "src/images/team-list.jpg",
+    maxWidth: 1600,
+    quality: 74,
+    avifQuality: 64,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },

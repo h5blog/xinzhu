@@ -36,13 +36,18 @@ export default function TeamMemberTextPanel({
     >
       <div className="absolute inset-0 bg-[#f2f2f2]" aria-hidden />
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
-        <img
-          src={assets.teamList}
-          alt=""
-          className="h-full min-h-full w-full object-cover object-center"
-          loading="lazy"
-          decoding="async"
-        />
+        <picture className="contents">
+          <source srcSet={assets.teamListAvif} type="image/avif" />
+          <source srcSet={assets.teamListWebp} type="image/webp" />
+          <img
+            src={assets.teamListJpg}
+            alt=""
+            className="h-full min-h-full w-full object-cover object-center"
+            sizes="(max-width: 1024px) 100vw, min(926px, 50vw)"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </div>
       <div className="relative z-10 w-full overflow-x-hidden">
         <div className="flex w-full flex-col justify-center">{children}</div>

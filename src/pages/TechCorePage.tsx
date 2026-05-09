@@ -44,7 +44,10 @@ export default function TechCorePage() {
       <section className="relative overflow-hidden">
         <div className="relative mx-auto w-[min(100%-2rem,1145px)] px-0 pb-12 pt-[77px] sm:w-[min(100%-3rem,1145px)] sm:pb-12 md:pb-16 lg:w-[59.6354vw] lg:max-w-none lg:pt-[4.0104vw]">
           <div className="mx-auto w-full">
-            <p className={`indent-[2em] ${techIntroBody}`} data-node-id="280:61">
+            <p
+              className={`w-full text-pretty indent-[2em] sm:text-justify ${techIntroBody}`}
+              data-node-id="280:61"
+            >
               当前，核聚变正成为全球科技竞争与能源变革的关键战略方向，而人工智能的快速发展，正在显著改写其研发范式。长期以来，聚变研发面临参数空间庞大、等离子体行为高度复杂、控制精度要求极高、实验与试错成本高昂等核心挑战，导致整体推进周期长、研发效率低。我们判断，AI
               不只是聚变研究的辅助工具，而将成为重塑诊断、预测、控制与设计全流程的关键基础设施，推动可控核聚变从依赖经验的探索式研发，加速迈向以智能预测与主动控制为核心的新阶段。
             </p>
@@ -83,7 +86,10 @@ export default function TechCorePage() {
               </div>
             </div>
 
-            <p className={`mt-10 indent-[2em] sm:mt-12 md:mt-14 lg:mt-[2.9167vw] ${techIntroBody}`} data-node-id="297:87">
+            <p
+              className={`mt-10 w-full text-pretty indent-[2em] sm:mt-12 sm:text-justify md:mt-14 lg:mt-[2.9167vw] ${techIntroBody}`}
+              data-node-id="297:87"
+            >
               基于这一判断，新烛时代于 2025 年 9
               月成立，致力于以人工智能破解核聚变领域最关键的控制与预测难题。公司以强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 +
               数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力。我们的目标，是为未来聚变反应堆打造专属的“智能操作系统”，将分散、模糊、依赖专家经验的知识与流程，沉淀为可复制、可量化、可部署的智能能力，持续提升聚变研发效率，降低研发成本，加速聚变能源走向工程化与商业化。

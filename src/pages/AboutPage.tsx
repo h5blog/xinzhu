@@ -6,8 +6,12 @@ import gsjjBannerJpg from "../images/gsjj-banner.opt.jpg";
 import aboutTagAvif from "../images/about-tag.opt.avif";
 import aboutTagWebp from "../images/about-tag.opt.webp";
 import aboutTagJpg from "../images/about-tag.opt.jpg";
-import aboutGallery1 from "../images/about-gallery-1.png";
-import aboutGallery2 from "../images/about-gallery-2.png";
+import aboutGallery1Avif from "../images/about-gallery-1.opt.avif";
+import aboutGallery1Webp from "../images/about-gallery-1.opt.webp";
+import aboutGallery1Jpg from "../images/about-gallery-1.opt.jpg";
+import aboutGallery2Avif from "../images/about-gallery-2.opt.avif";
+import aboutGallery2Webp from "../images/about-gallery-2.opt.webp";
+import aboutGallery2Jpg from "../images/about-gallery-2.opt.jpg";
 import gsjjIcon from "../images/gsjj-icon.png";
 
 /** 1920 稿 20px；字族/行高/字距同首页 AI 段 */
@@ -112,22 +116,38 @@ export default function AboutPage() {
 
         <div className="mt-12 grid w-full grid-cols-1 gap-5 sm:mt-14 sm:gap-6 md:mt-16 md:grid-cols-2 lg:mt-[min(5rem,4.17vw)] lg:gap-8">
           <div className="relative aspect-[539/404] w-full overflow-hidden">
-            <img
-              src={aboutGallery1}
-              alt=""
-              className="absolute inset-0 size-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture className="absolute inset-0 block size-full">
+              <source srcSet={aboutGallery1Avif} type="image/avif" />
+              <source srcSet={aboutGallery1Webp} type="image/webp" />
+              <img
+                src={aboutGallery1Jpg}
+                alt=""
+                width={539}
+                height={404}
+                className="absolute inset-0 size-full object-cover"
+                sizes="(max-width: 767px) min(calc(100vw - 48px), 1130px), min(565px, calc(50vw - 28px))"
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+              />
+            </picture>
           </div>
           <div className="relative aspect-[539/404] w-full overflow-hidden">
-            <img
-              src={aboutGallery2}
-              alt=""
-              className="absolute inset-0 size-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture className="absolute inset-0 block size-full">
+              <source srcSet={aboutGallery2Avif} type="image/avif" />
+              <source srcSet={aboutGallery2Webp} type="image/webp" />
+              <img
+                src={aboutGallery2Jpg}
+                alt=""
+                width={539}
+                height={404}
+                className="absolute inset-0 size-full object-cover"
+                sizes="(max-width: 767px) min(calc(100vw - 48px), 1130px), min(565px, calc(50vw - 28px))"
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+              />
+            </picture>
           </div>
         </div>
       </main>

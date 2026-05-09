@@ -5,6 +5,9 @@ import { assets } from "./assets";
 const JZ_W = 1153;
 const JZ_H = 1041;
 
+/** 稿面 partner-bg 1920×1460，区块最小高度随视口等比，避免窄屏/内容短时背景被压扁 */
+const PARTNER_BG_MIN_H = "min-h-[calc(100vw*1460/1920)]";
+
 export default function Partners() {
   return (
       <div className="text-center" style={{background: 'linear-gradient(310deg, #F96D01 33%, #FFB941 100%)'}} >
@@ -22,17 +25,28 @@ export default function Partners() {
           />
         </div>
         <div
-        style={{
-          width: "100%",
-          backgroundColor: "#fff",
-          backgroundImage: `url(${assets.partnerBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          backgroundRepeat: "no-repeat",
-          paddingTop: "clamp(40px,3.23vw,62px)",
-          paddingBottom: "clamp(48px,4.17vw,80px)",
-        }}>
-          <div className="mx-auto w-full px-4">
+          className={`relative w-full overflow-x-clip bg-white ${PARTNER_BG_MIN_H}`}
+          style={{
+            paddingTop: "clamp(40px,3.23vw,62px)",
+            paddingBottom: "clamp(48px,4.17vw,80px)",
+          }}
+        >
+          <picture className="pointer-events-none absolute inset-0 z-0 block h-full min-h-full w-full">
+            <source srcSet={assets.partnerBgAvif} type="image/avif" />
+            <source srcSet={assets.partnerBgWebp} type="image/webp" />
+            <img
+              src={assets.partnerBgJpg}
+              alt=""
+              width={1920}
+              height={1460}
+              className="h-full min-h-full w-full object-cover object-top"
+              sizes="100vw"
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+            />
+          </picture>
+          <div className="relative z-10 mx-auto w-full px-4">
             <div className="mx-auto w-full" style={{ maxWidth: CONTENT_MAX_WIDTH }}>
               {/* Figma 838:1310 — PingFang Medium，40px，#f96d01；文案勿删 */}
               <h2
@@ -41,15 +55,22 @@ export default function Partners() {
               >
                 数字化资源支撑矩阵
               </h2>
-              <img
-                src={assets.juzhen}
-                alt=""
-                width={JZ_W}
-                height={JZ_H}
-                decoding="async"
-                className="mx-auto block h-auto w-full object-contain"
-                style={{ maxWidth: "100%" }}
-              />
+              <picture>
+                <source srcSet={assets.juzhenAvif} type="image/avif" />
+                <source srcSet={assets.juzhenWebp} type="image/webp" />
+                <img
+                  src={assets.juzhenJpg}
+                  alt=""
+                  width={JZ_W}
+                  height={JZ_H}
+                  sizes="(max-width: 768px) calc(100vw - 2rem), min(1153px, 60vw)"
+                  decoding="async"
+                  loading="lazy"
+                  fetchPriority="low"
+                  className="mx-auto block h-auto w-full object-contain"
+                  style={{ maxWidth: "100%" }}
+                />
+              </picture>
             </div>
           </div>
         </div>
