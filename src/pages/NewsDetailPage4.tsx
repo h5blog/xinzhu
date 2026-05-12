@@ -123,13 +123,14 @@ export default function NewsDetailPage4() {
               {references.map(([journal, year, body]) => (
                 <div
                   key={`${journal}-${year}`}
-                  className="grid grid-cols-1 gap-4 lg:grid-cols-[400px_48px_minmax(0,1fr)] lg:gap-x-[1.25vw] lg:gap-y-0"
+                  className="grid grid-cols-1 gap-4 lg:grid-cols-[400px_48px_minmax(0,1fr)] lg:items-start lg:gap-x-[1.25vw] lg:gap-y-0"
                 >
                   <p className="m-0 whitespace-nowrap text-left text-[24px] font-semibold leading-[30px] text-[#f96d01] lg:min-w-0 lg:text-right lg:text-[1.25vw] lg:leading-[1.5625vw]">
                     <span>{journal}</span>
                     <span className="ml-2">{year}</span>
                   </p>
-                  <div className="relative flex min-h-[30px] items-start justify-start lg:min-h-0 lg:items-center lg:justify-center">
+                  <div className="relative flex min-h-[30px] items-start justify-start lg:min-h-0 lg:items-start lg:justify-center">
+                    {/** 与右侧正文首行对齐：大屏勿垂直居中（多行时圆点会落到段落中部），与左列、正文列同行顶对齐 */}
                     <NewsTimelineDot className="mt-[max(5px,calc(100vw*5/1920))] lg:mt-0" />
                   </div>
                   <p className={`m-0 min-w-0 ${newsDetailBodyClassName}`}>{body}</p>

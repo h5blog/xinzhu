@@ -95,11 +95,11 @@ export default function Footer() {
             <span> </span>
             <a
               className="underline decoration-solid underline-offset-2 transition hover:text-[#e8e8e8]"
-              href="https://beian.mps.gov.cn/#/query/webSearch?code=31011402021678"
+              href="https://beian.mps.gov.cn/#/query/webSearch?code=11010802048377"
               target="_blank"
               rel="noreferrer"
             >
-              沪公网安备31011402021678号
+              京公网安备11010802048377号
             </a>
           </p>
         </div>
