@@ -14,7 +14,7 @@ const footerLegalText =
   "font-['PingFang_SC'] text-[max(11px,calc(100vw*12/1920))] font-medium leading-[1.7] tracking-[0.03em] text-[#9c9c9c]";
 
 /**
- * Figma 470:41 底栏 #252525；内容区与首页 juzhen 图同宽（1153@1920）左对齐。
+ * Figma 470:41 底栏 #252525；内容区与全站主列同宽（1200@1920）左对齐。
  */
 export default function Footer() {
   return (

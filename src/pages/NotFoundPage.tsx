@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -53,7 +54,7 @@ export default function NotFoundPage() {
     <div className="flex min-h-screen flex-col bg-[#f9f9f9] text-[#363636]">
       <Navbar />
       <main
-        className="flex flex-1 flex-col items-center justify-center bg-[#f9f9f9] px-4 py-16"
+        className={`${pageMainWidthClassName} flex flex-1 flex-col items-center justify-center bg-[#f9f9f9] py-16`}
         data-node-id="108:28319"
       >
         <RocketOutline className="h-36 w-36 shrink-0 sm:h-44 sm:w-44" />

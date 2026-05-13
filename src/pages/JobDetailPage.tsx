@@ -1,11 +1,12 @@
+import { pageMainWidthClassName } from "../constants/contentAlign";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { jobDetailSectionLabelClassName, newsDetailBodyClassName } from "../constants/typography";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { JOB_APPLY_FORM_URL, JOBS } from "../data/jobs";
-import joinHeroBgAvif from "../images/join-hero-bg.opt.avif";
-import joinHeroBgWebp from "../images/join-hero-bg.opt.webp";
-import joinHeroBgJpg from "../images/join-hero-bg.opt.jpg";
+import jobDetailBannerAvif from "../images/job-detail-banner.opt.avif";
+import jobDetailBannerWebp from "../images/job-detail-banner.opt.webp";
+import jobDetailBannerJpg from "../images/job-detail-banner.opt.jpg";
 
 function DetailBlock({ label, items }: { label: string; items: string[] }) {
   return (
@@ -35,22 +36,23 @@ export default function JobDetailPage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="职位详情" data-node-id="113:221">
       <Navbar />
 
-      {/** 高度与新闻详情头图一致：小屏不低于 180px，大屏按 217/1920 比例 */}
-      <section className="relative h-[max(180px,11.3021vw)] w-full overflow-hidden">
+      {/** job-detail-banner：稿 1920×217；小屏高度不低于 180px，大屏按 217/1920；AVIF/WebP/JPEG + 渐变叠层 */}
+      <section className="relative h-[max(180px,11.3021vw)] w-full overflow-hidden" data-name="banner-wrap">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <picture className="absolute inset-0 block h-full w-full">
-            <source srcSet={joinHeroBgAvif} type="image/avif" />
-            <source srcSet={joinHeroBgWebp} type="image/webp" />
+            <source srcSet={jobDetailBannerAvif} type="image/avif" />
+            <source srcSet={jobDetailBannerWebp} type="image/webp" />
             <img
               alt=""
-              src={joinHeroBgJpg}
+              src={jobDetailBannerJpg}
               width={1920}
-              height={1080}
+              height={217}
               className="h-full w-full object-cover object-center"
               sizes="100vw"
               loading="eager"
               fetchPriority="high"
               decoding="sync"
+              data-name="banner"
             />
           </picture>
         </div>
@@ -60,8 +62,8 @@ export default function JobDetailPage() {
         />
       </section>
 
-      {/** 大屏按 1127/1920 比例拉宽；去掉 max-w，超宽显示器不再卡在 1127px */}
-      <main className="mx-auto box-border w-[min(100%-32px,1127px)] px-4 pb-12 pt-5 sm:px-6 sm:pb-16 sm:pt-6 md:px-8 lg:w-[58.697916666666664vw] lg:max-w-none lg:px-[2.0833vw] lg:pb-[6.25vw] lg:pt-[1.875vw]">
+      {/** 主列与全站一致：最大 1200@1920，小屏带安全边距 */}
+      <main className={`${pageMainWidthClassName} pb-12 pt-5 sm:pb-16 sm:pt-6 lg:pb-[6.25vw] lg:pt-[1.875vw]`}>
         <h1 className={`font-semibold [overflow-wrap:anywhere] ${newsDetailBodyClassName}`}>
           {job.title}
         </h1>

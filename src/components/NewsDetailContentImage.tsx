@@ -29,7 +29,7 @@ export default function NewsDetailContentImage({
         width={width}
         height={height}
         className={imgClassName}
-        sizes="(max-width: 1127px) 100vw, 1127px"
+        sizes="(max-width: 768px) 100vw, 62.5vw"
         loading="eager"
         fetchPriority="high"
         decoding="async"

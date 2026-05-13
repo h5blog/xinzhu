@@ -1,3 +1,4 @@
+import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import gsjjBannerAvif from "../images/gsjj-banner.opt.avif";
@@ -18,10 +19,6 @@ import gsjjIcon from "../images/gsjj-icon.png";
 const aboutBodyText =
   "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-black";
 
-/** 与招聘页等一致：main 即内容列，mx-auto 在视口中左右居中；1920 下约 1130 → 58.9583vw */
-const mainContent =
-  "relative z-10 mx-auto box-border w-[min(100%-24px,1130px)] px-0 lg:w-[58.9583vw] lg:max-w-none";
-
 /** 中文正文首行缩进两个汉字（随字号缩放） */
 const indent2 = "[text-indent:2em]";
 
@@ -30,7 +27,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="关于我们" data-node-id="942:40">
       <Navbar />
 
-      {/* gsjj-banner：逻辑区 1920×461，资源 3840×922（2×）；固定比例 + cover 避免缩放发糊 */}
+      {/* gsjj-banner：稿 1920×461；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
       <section className="relative aspect-[1920/461] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
           <source srcSet={gsjjBannerAvif} type="image/avif" />
@@ -51,7 +48,7 @@ export default function AboutPage() {
       </section>
 
       <main
-        className={`${mainContent} pb-[max(4rem,env(safe-area-inset-bottom,0px))] pt-10 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-[min(3.75rem,3.125vw)]`}
+        className={`${pageMainWidthClassName} relative z-10 pb-[max(4rem,env(safe-area-inset-bottom,0px))] pt-10 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-[min(3.75rem,3.125vw)]`}
       >
         <p
           className={`w-full text-pretty sm:text-justify ${indent2} ${aboutBodyText}`}
@@ -62,7 +59,7 @@ export default function AboutPage() {
         </p>
 
         <div className="mt-12 w-full sm:mt-14 md:mt-16 lg:mt-[min(5rem,4.17vw)]">
-          <div className="mx-auto w-[min(100%,calc(100vw*1122/1920))] max-w-full aspect-[1122/459]">
+          <div className="mx-auto aspect-[1122/459] w-full max-w-[min(100%,calc(100vw*1122/1920))]">
             <picture className="block h-full w-full">
               <source srcSet={aboutTagAvif} type="image/avif" />
               <source srcSet={aboutTagWebp} type="image/webp" />

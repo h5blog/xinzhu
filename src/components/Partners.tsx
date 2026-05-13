@@ -1,9 +1,9 @@
-import { CONTENT_MAX_WIDTH } from "../constants/contentAlign";
+import { homeSectionMaxWidthCss } from "../constants/contentAlign";
 import { assets } from "./assets";
 
-/** @1920 稿：juzhen.png 1153×1041 */
-const JZ_W = 1153;
-const JZ_H = 1041;
+/** @1920 稿：juzhen.png 1200×1075 */
+const JZ_W = 1200;
+const JZ_H = 1075;
 
 /** 稿面 partner-bg 1920×1460，区块最小高度随视口等比，避免窄屏/内容短时背景被压扁 */
 const PARTNER_BG_MIN_H = "min-h-[calc(100vw*1460/1920)]";
@@ -47,7 +47,7 @@ export default function Partners() {
             />
           </picture>
           <div className="relative z-10 mx-auto w-full px-4">
-            <div className="mx-auto w-full" style={{ maxWidth: CONTENT_MAX_WIDTH }}>
+            <div className="mx-auto w-full" style={{ maxWidth: homeSectionMaxWidthCss }}>
               {/* Figma 838:1310 — PingFang Medium，40px，#f96d01；文案勿删 */}
               <h2
                 className="type-title-xl m-0 mb-[clamp(40px,3.33vw,72px)] text-center font-['PingFang_SC',sans-serif] !font-medium !leading-normal text-[#f96d01]"
@@ -63,7 +63,7 @@ export default function Partners() {
                   alt=""
                   width={JZ_W}
                   height={JZ_H}
-                  sizes="(max-width: 768px) calc(100vw - 2rem), min(1153px, 60vw)"
+                  sizes="(max-width: 768px) calc(100vw - 2rem), min(1200px, 62.5vw)"
                   decoding="async"
                   loading="lazy"
                   fetchPriority="low"

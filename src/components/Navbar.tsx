@@ -1,13 +1,14 @@
+import { pageMainWidthClassName } from "../constants/contentAlign";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logoGroupA from "../images/logo-group-a.svg";
 import logoGroupB from "../images/logo-group-b.svg";
 import logoGroupC from "../images/logo-group-c.svg";
 import aboutTagAvif from "../images/about-tag.opt.avif";
 import gsjjBannerAvif from "../images/gsjj-banner.opt.avif";
-import joinPageBannerAvif from "../images/join-bg.opt.avif";
+import joinPageBannerAvif from "../images/job-banner.opt.avif";
 import joinFuliAvif from "../images/fuli.opt.avif";
-import newsBgAvif from "../images/news-bg.opt.avif";
-import teamPageBannerAvif from "../images/team-banner-bg.opt.avif";
+import newsBannerAvif from "../images/news-banner.opt.avif";
+import teamPageBannerAvif from "../images/team-banner.opt.avif";
 import techBannerAvif from "../images/tech-banner.opt.avif";
 import techIconAvif from "../images/tech-icon.opt.avif";
 
@@ -49,7 +50,7 @@ const TECH_ROUTE_PRELOADS: NavPreloadImage[] = [
 ];
 
 const NEWS_ROUTE_PRELOADS: NavPreloadImage[] = [
-  { href: newsBgAvif, mime: "image/avif", id: "preload-news-banner-avif" },
+  { href: newsBannerAvif, mime: "image/avif", id: "preload-news-banner-avif" },
 ];
 
 /** 悬停「关于我们」整块：子路由顶栏预热（薪酬福利图仅在「加入我们」预取时高优加载，避免占住 preload id 为 low） */
@@ -214,7 +215,7 @@ export default function Navbar() {
       data-node-id="103:327"
     >
       <div
-        className={`mx-auto flex w-full max-w-[min(100%-2rem,1213px)] items-stretch justify-between px-4 sm:px-6 lg:w-[63.18vw] lg:max-w-none lg:px-[max(1rem,calc(0.833vw+0.75rem))] ${navBarInnerMinH}`}
+        className={`${pageMainWidthClassName} flex items-stretch justify-between px-4 sm:px-6 md:px-8 ${navBarInnerMinH}`}
       >
         <Link
           to="/"

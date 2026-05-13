@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { newsDetailBodyClassName, newsDetailTitleClassName } from "../constants/typography";
+import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import NewsTimelineDot from "../components/NewsTimelineDot";
@@ -42,7 +43,7 @@ export default function NewsDetailPage4() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24 lg:pt-[2.9167vw]">
+      <main className={`${pageMainWidthClassName} pb-16 pt-8 lg:pb-24 lg:pt-[2.9167vw]`}>
         <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>AI 赋能聚变已成全球共识</h1>
         <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
         <section className={`mt-10 lg:mt-[2.0833vw] ${detail4StripeGapY}`}>
@@ -52,7 +53,7 @@ export default function NewsDetailPage4() {
               className={`grid grid-cols-[max(201px,calc(100vw*201/1920))_minmax(0,1fr)] items-stretch ${
                 idx < 5
                   ? /* 稿面前五条：整行 1097×73@1920；条间距由 section gap 承担 */
-                    "lg:mx-auto lg:min-h-0 lg:h-[max(73px,calc(100vw*73/1920))] lg:max-h-[max(73px,calc(100vw*73/1920))] lg:w-[min(100%,calc(100vw*1097/1920))]"
+                    "lg:mx-auto lg:min-h-0 lg:h-[max(73px,calc(100vw*73/1920))] lg:max-h-[max(73px,calc(100vw*73/1920))] lg:w-full"
                   : ""
               }`}
             >
@@ -101,7 +102,7 @@ export default function NewsDetailPage4() {
             </div>
           ))}
         </section>
-        <div className="mx-auto mt-4 h-px w-full max-w-[1064px] bg-[#dfdfdf] lg:max-w-[55.4167vw]" data-node-id="113:164" aria-hidden />
+        <div className="mx-auto mt-4 h-px w-full bg-[#dfdfdf]" data-node-id="113:164" aria-hidden />
         <div className="mt-8 h-[259px] w-full overflow-hidden lg:mt-[1.6667vw] lg:h-[13.4896vw]">
           <NewsDetailContentImage
             avif={globeAvif}
@@ -113,7 +114,7 @@ export default function NewsDetailPage4() {
           />
         </div>
         <section className="mt-10 w-full lg:mt-[2.0833vw]" aria-label="文献时间线">
-          <div className="relative mx-auto w-full max-w-[1103px] lg:max-w-[57.4479vw]">
+          <div className="relative mx-auto w-full">
             {/* 与 Figma 一致：左列 400px 右对齐、中列 48px 节点；虚线 = 400 + gap + 24（中列半宽），与网格同步 */}
             <div
               className="pointer-events-none absolute left-[calc(400px+1.25vw+24px)] top-0 z-0 hidden h-full -translate-x-1/2 border-l border-dashed border-[#f96d01]/55 lg:block"

@@ -1,24 +1,25 @@
-import heroBgAvif from "../images/news-detail-hero-bg.opt.avif";
-import heroBgWebp from "../images/news-detail-hero-bg.opt.webp";
-import heroBgJpg from "../images/news-detail-hero-bg.opt.jpg";
+import detailBannerAvif from "../images/news-detail-banner.opt.avif";
+import detailBannerWebp from "../images/news-detail-banner.opt.webp";
+import detailBannerJpg from "../images/news-detail-banner.opt.jpg";
 
-/** 新闻详情页顶部横幅（与 Figma 头图 + 103:391 渐变一致） */
+/** 新闻详情页顶部横幅：稿 1920×217；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG；与 103:391 渐变叠层 */
 export default function NewsDetailHero() {
   return (
-    <section className="relative h-[217px] w-full overflow-hidden lg:h-[11.3021vw]">
+    <section className="relative aspect-[1920/217] w-full overflow-hidden" data-name="banner-wrap">
       <picture className="absolute inset-0 block h-full w-full">
-        <source srcSet={heroBgAvif} type="image/avif" />
-        <source srcSet={heroBgWebp} type="image/webp" />
+        <source srcSet={detailBannerAvif} type="image/avif" />
+        <source srcSet={detailBannerWebp} type="image/webp" />
         <img
-          src={heroBgJpg}
+          src={detailBannerJpg}
           alt=""
-          width={1600}
-          height={1060}
-          className="h-full w-full object-cover"
+          width={1920}
+          height={217}
+          className="h-full w-full object-cover object-center"
           sizes="100vw"
           loading="eager"
           fetchPriority="high"
           decoding="sync"
+          data-name="banner"
         />
       </picture>
       <div

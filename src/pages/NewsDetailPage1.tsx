@@ -5,6 +5,7 @@ import {
   newsDetailTimelineLabelClassName,
   newsDetailTitleClassName,
 } from "../constants/typography";
+import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import NewsTimelineDot from "../components/NewsTimelineDot";
@@ -40,12 +41,12 @@ export default function NewsDetailPage1() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24 lg:pt-[2.9167vw]">
+      <main className={`${pageMainWidthClassName} pb-16 pt-8 lg:pb-24 lg:pt-[2.9167vw]`}>
         <h1 className={`m-0 font-medium ${newsDetailTitleClassName}`}>
           全球各国核聚变战略部署
         </h1>
         <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
-        <div className="mx-auto mt-[46px] h-[259px] w-full max-w-[1103px] overflow-hidden lg:mt-[2.9167vw] lg:h-[13.4896vw] lg:max-w-[57.4479vw]">
+        <div className="mx-auto mt-[46px] h-[259px] w-full overflow-hidden lg:mt-[2.9167vw] lg:h-[13.4896vw]">
           <NewsDetailContentImage
             avif={mainAvif}
             webp={mainWebp}
@@ -56,7 +57,7 @@ export default function NewsDetailPage1() {
           />
         </div>
 
-        <section className="mx-auto mt-[56px] w-full max-w-[1103px] lg:mt-[2.9167vw] lg:max-w-[57.4479vw]">
+        <section className="mx-auto mt-[56px] w-full lg:mt-[2.9167vw]">
           {/*
             单列 auto + 标签右对齐：左缘到圆心的水平距离 = 圆心到正文左缘（同为 gap-x）。
             虚线放在第 2 列 grid 内并跨行，避免 absolute 依赖固定左列宽。

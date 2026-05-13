@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { homeSectionMaxWidthCss } from "../constants/contentAlign";
 import { homeDetailCtaInteractionClasses } from "../constants/homeDetailCta";
 import { assets } from "./assets";
 import team1Avif from "../images/team-1.opt.avif";
@@ -31,7 +32,10 @@ export default function Team() {
         backgroundPosition: "center",
       }}
     >
-      <div className="mx-auto w-[min(100%-24px,1213px)] px-6 lg:w-[63.18vw] lg:max-w-none">
+      <div
+        className="mx-auto box-border w-full min-w-0 px-6"
+        style={{ maxWidth: homeSectionMaxWidthCss }}
+      >
         <h2 className="type-title-xl text-center text-[#f96d01]">创始团队</h2>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:mt-[3.65vw] lg:grid-cols-4 lg:gap-[1.67vw]">

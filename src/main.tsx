@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import heroBannerAvif from "./images/banner.opt.avif";
+import heroBannerAvif from "./images/home-banner.opt.avif";
 
 /** 与首屏 JS 并行拉取横幅（与 picture 首源 AVIF 一致，避免等 Home  chunk 再请求） */
 {

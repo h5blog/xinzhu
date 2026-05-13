@@ -1,3 +1,4 @@
+import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { assets } from "../components/assets";
@@ -52,7 +53,9 @@ export default function TechCorePage() {
       </section>
 
       <section className="relative overflow-hidden">
-        <div className="relative mx-auto w-[min(100%-2rem,1145px)] px-0 pb-12 pt-[77px] sm:w-[min(100%-3rem,1145px)] sm:pb-12 md:pb-16 lg:w-[59.6354vw] lg:max-w-none lg:pt-[4.0104vw]">
+        <div
+          className={`${pageMainWidthClassName} relative pb-12 pt-[77px] sm:pb-12 md:pb-16 lg:pt-[4.0104vw]`}
+        >
           <div className="mx-auto w-full">
             <p
               className={`w-full text-pretty indent-[2em] sm:text-justify ${techIntroBody}`}
@@ -123,7 +126,7 @@ export default function TechCorePage() {
                 alt="核心技术体系示意图"
                 width={1132}
                 height={483}
-                className="mx-auto h-auto w-full max-w-[1132px] object-contain"
+                className="mx-auto h-auto w-full max-w-[min(100%,calc(100vw*1132/1920))] object-contain"
               />
             </div>
           </div>

@@ -1,13 +1,14 @@
-﻿import Footer from "../components/Footer";
+﻿import { pageMainWidthClassName } from "../constants/contentAlign";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { assets } from "../components/assets";
 import { homeDetailCtaInteractionClasses } from "../constants/homeDetailCta";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { JOB_APPLY_FORM_URL, JOBS } from "../data/jobs";
-import joinBannerAvif from "../images/join-bg.opt.avif";
-import joinBannerWebp from "../images/join-bg.opt.webp";
-import joinBannerJpg from "../images/join-bg.opt.jpg";
+import jobBannerAvif from "../images/job-banner.opt.avif";
+import jobBannerWebp from "../images/job-banner.opt.webp";
+import jobBannerJpg from "../images/job-banner.opt.jpg";
 import joinFooter1Avif from "../images/join-footer-1.opt.avif";
 import joinFooter1Webp from "../images/join-footer-1.opt.webp";
 import joinFooter1Jpg from "../images/join-footer-1.opt.jpg";
@@ -23,7 +24,7 @@ const joinBodyText =
   "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-black";
 
 const joinProcessText =
-  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] font-semibold text-[#f96d01]";
+  "break-keep font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] font-semibold text-[#f96d01]";
 
 const joinProcessStepId =
   "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] font-medium text-[#f96d01]";
@@ -60,7 +61,7 @@ function JoinSectionRuleBar({
 }) {
   return (
     <div
-      className={`mx-auto h-[3px] w-full max-w-[min(1025px,100%)] bg-[linear-gradient(90deg,#f0f0f0_0%,#f96d01_49.519%,#f0f0f0_100%)] lg:h-[0.15625vw] lg:max-h-[5px] lg:max-w-none lg:min-h-[3px] ${className}`}
+      className={`mx-auto h-[3px] w-full bg-[linear-gradient(90deg,#f0f0f0_0%,#f96d01_49.519%,#f0f0f0_100%)] lg:h-[0.15625vw] lg:max-h-[5px] lg:min-h-[3px] ${className}`}
       data-node-id={nodeId}
       aria-hidden
     />
@@ -70,7 +71,7 @@ function JoinSectionRuleBar({
 const PROCESS_STEPS: { id: string; lines: string[] }[] = [
   { id: "01", lines: ["简历投递"] },
   { id: "02", lines: ["初筛"] },
-  { id: "03", lines: ["技术面试", "（1-2 轮）"] },
+  { id: "03", lines: ["技术面试", "（1-2轮）"] },
   { id: "04", lines: ["终面/交流"] },
   { id: "05", lines: ["发放offer"] },
 ];
@@ -114,7 +115,7 @@ function JobApplyButton({ to }: { to: string }) {
   );
 }
 
-/** Figma 729:29156：1920 下 1117×283（宽与 mainCol 一致）；小屏按内容增高，lg 起 min-h 与边距按 vw */
+/** Figma 729:29156：1920 下与主列同宽（1200）；小屏按内容增高，lg 起 min-h 与边距按 vw */
 function JobCard({ job, isLast }: { job: (typeof JOBS)[number]; isLast: boolean }) {
   return (
     <article
@@ -160,20 +161,20 @@ function JoinBenefitsSection() {
       </h2>
       <JoinSectionRuleBar className="mt-6 lg:mt-8" data-node-id="924:280" />
 
-      <div className="relative mx-auto mt-10 aspect-[1122/700] w-[min(100%,calc(100vw*1122/1920))] min-w-0 overflow-hidden rounded-2xl bg-[#f0f0f0] sm:rounded-[24px] lg:mt-[2.6042vw]">
+      <div className="relative mx-auto mt-10 aspect-[1124/687] w-full min-w-0 overflow-hidden rounded-2xl bg-[#f0f0f0] sm:rounded-[24px] lg:mt-[2.6042vw]">
         <picture className="absolute inset-0 block h-full w-full">
           <source srcSet={fuliAvif} type="image/avif" />
           <source srcSet={fuliWebp} type="image/webp" />
           <img
             src={fuliJpg}
             alt="薪酬福利"
-            width={1122}
-            height={700}
+            width={1124}
+            height={687}
             className="h-full w-full object-contain object-center"
             loading="eager"
             fetchPriority="high"
             decoding="async"
-            sizes="(max-width: 1023px) min(100%,calc(100vw - 48px)), min(100%,calc(100vw*1122/1920))"
+            sizes="(max-width: 1023px) min(100%,calc(100vw - 48px)), min(100%,calc(100vw*1124/1920))"
           />
         </picture>
       </div>
@@ -196,8 +197,13 @@ function JoinProcessSection() {
               {step.id}
             </div>
             <div className="min-w-0 pt-1">
-              {step.lines.map((line) => (
-                <p key={line} className={joinProcessText}>
+              {step.lines.map((line, lineIndex) => (
+                <p
+                  key={`${step.id}-${lineIndex}`}
+                  className={`${joinProcessText}${
+                    step.id === "03" && lineIndex === 1 ? " whitespace-nowrap" : ""
+                  }`}
+                >
                   {line}
                 </p>
               ))}
@@ -207,12 +213,12 @@ function JoinProcessSection() {
       </ol>
 
       <div
-        className="mx-auto mt-10 hidden min-w-0 w-full max-w-[1040px] flex-nowrap items-start justify-center gap-0 overflow-x-auto pb-1 lg:mt-[2.6042vw] lg:flex lg:max-w-none"
+        className="mx-auto mt-10 hidden min-w-0 w-full flex-nowrap items-start justify-center gap-0 overflow-x-auto pb-1 lg:mt-[2.6042vw] lg:flex"
         role="presentation"
       >
         {PROCESS_STEPS.map((step, i) => (
           <Fragment key={step.id}>
-            <div className="flex w-[min(104px,11vw)] shrink-0 flex-col items-center lg:w-[5.4167vw]">
+            <div className="flex w-[min(104px,calc(100vw*104/1920))] shrink-0 flex-col items-center lg:w-[calc(100vw*108/1920)]">
               <div className={`flex ${joinProcessCircleRowH} w-full shrink-0 items-center justify-center`}>
                 <div
                   className={`flex ${joinProcessCircleSize} items-center justify-center rounded-full border-2 border-[#f96d01] bg-white ${joinProcessStepId}`}
@@ -221,8 +227,13 @@ function JoinProcessSection() {
                 </div>
               </div>
               <div className="mt-3 w-full text-center lg:mt-[0.7813vw]">
-                {step.lines.map((line) => (
-                  <p key={line} className={joinProcessText}>
+                {step.lines.map((line, lineIndex) => (
+                  <p
+                    key={`${step.id}-${lineIndex}`}
+                    className={`${joinProcessText}${
+                      step.id === "03" && lineIndex === 1 ? " whitespace-nowrap" : ""
+                    }`}
+                  >
                     {line}
                   </p>
                 ))}
@@ -230,7 +241,7 @@ function JoinProcessSection() {
             </div>
             {i < PROCESS_STEPS.length - 1 && (
               <div
-                className={`flex ${joinProcessCircleRowH} shrink-0 items-center justify-center`}
+                className={`flex ${joinProcessCircleRowH} shrink-0 items-center justify-center -mx-3 lg:-mx-[max(10px,calc(100vw*16/1920))]`}
                 aria-hidden
               >
                 <div className={`h-0.5 bg-[#f96d01] lg:h-[0.1042vw] ${joinProcessConnectorW}`} />
@@ -314,7 +325,7 @@ function JoinFooterGallery() {
               data-node-id="729:29270"
               loading="lazy"
               decoding="async"
-              sizes="(max-width: 639px) 100vw, (max-width: 1023px) calc((100vw - 48px - 10px) / 2), calc((58.1771vw - 0.5208vw) / 2)"
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) calc((100vw - 48px - 10px) / 2), calc((62.5vw - 0.5208vw) / 2)"
             />
           </picture>
         </div>
@@ -331,7 +342,7 @@ function JoinFooterGallery() {
               data-node-id="729:29271"
               loading="lazy"
               decoding="async"
-              sizes="(max-width: 639px) 100vw, (max-width: 1023px) calc((100vw - 48px - 10px) / 2), calc((58.1771vw - 0.5208vw) / 2)"
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) calc((100vw - 48px - 10px) / 2), calc((62.5vw - 0.5208vw) / 2)"
             />
           </picture>
         </div>
@@ -340,18 +351,19 @@ function JoinFooterGallery() {
   );
 }
 
-const mainCol = "mx-auto w-[min(100%-24px,1117px)] px-0 lg:w-[58.1771vw] lg:max-w-none";
+const mainCol = pageMainWidthClassName;
 
 export default function JoinUsPage() {
   return (
     <div className="min-h-screen bg-[#f0f0f0] text-[#363636]" data-name="加入我们" data-node-id="729:29148">
       <Navbar />
+      {/* job-banner：稿 1920×217；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
       <section className="relative aspect-[1920/217] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={joinBannerAvif} type="image/avif" />
-          <source srcSet={joinBannerWebp} type="image/webp" />
+          <source srcSet={jobBannerAvif} type="image/avif" />
+          <source srcSet={jobBannerWebp} type="image/webp" />
           <img
-            src={joinBannerJpg}
+            src={jobBannerJpg}
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}

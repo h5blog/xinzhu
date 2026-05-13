@@ -1,10 +1,11 @@
+import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import TeamMemberTextPanel from "../components/TeamMemberTextPanel";
 import { assets } from "../components/assets";
 import Navbar from "../components/Navbar";
-import teamBannerAvif from "../images/team-banner-bg.opt.avif";
-import teamBannerWebp from "../images/team-banner-bg.opt.webp";
-import teamBannerJpg from "../images/team-banner-bg.opt.jpg";
+import teamBannerAvif from "../images/team-banner.opt.avif";
+import teamBannerWebp from "../images/team-banner.opt.webp";
+import teamBannerJpg from "../images/team-banner.opt.jpg";
 
 /** 1920 稿 20px；简介行高略紧于首页正文 */
 const teamBioText =
@@ -92,7 +93,8 @@ export default function TeamPage() {
   return (
     <div className="min-h-screen bg-white text-[#363636]" data-node-id="103:299">
       <Navbar />
-      <section className="relative aspect-[3840/434] w-full overflow-hidden" data-name="banner-wrap">
+      {/* team-banner：稿 1920×217；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
+      <section className="relative aspect-[1920/217] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
           <source srcSet={teamBannerAvif} type="image/avif" />
           <source srcSet={teamBannerWebp} type="image/webp" />
@@ -100,8 +102,8 @@ export default function TeamPage() {
             src={teamBannerJpg}
             alt=""
             className="h-full w-full object-cover object-center"
-            width={3840}
-            height={434}
+            width={1920}
+            height={217}
             sizes="100vw"
             loading="eager"
             fetchPriority="high"
@@ -111,7 +113,9 @@ export default function TeamPage() {
           />
         </picture>
       </section>
-      <main className="mx-auto box-border w-[min(100%-32px,1248px)] min-w-0 overflow-x-hidden px-4 pb-16 pt-12 sm:w-[min(100%-48px,1248px)] sm:px-6 sm:pb-20 sm:pt-14 md:px-8 md:pt-[72px] lg:w-[65vw] lg:max-w-none lg:px-[2.0833vw] lg:pb-[5.2083vw] lg:pt-[4.0625vw]">
+      <main
+        className={`${pageMainWidthClassName} overflow-x-hidden pb-16 pt-12 sm:pb-20 sm:pt-14 md:pt-[72px] lg:pb-[5.2083vw] lg:pt-[4.0625vw]`}
+      >
         <h1 className="text-[26px] font-semibold leading-tight text-[#f96d01] sm:text-[30px] md:text-[34px] lg:text-[2.0833vw]">创始团队</h1>
 
         <div className="mt-6 flex flex-col gap-0 sm:mt-8 lg:mt-[1.5625vw] lg:gap-y-[min(12px,0.625vw)]">

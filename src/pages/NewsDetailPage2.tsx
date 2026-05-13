@@ -5,6 +5,7 @@ import {
   newsDetailTimelineLabelClassName,
   newsDetailTitleClassName,
 } from "../constants/typography";
+import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import NewsDetailHero from "../components/NewsDetailHero";
@@ -24,7 +25,7 @@ export default function NewsDetailPage2() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className="mx-auto w-full max-w-[1127px] px-4 pb-16 pt-8 lg:w-[58.6979vw] lg:max-w-none lg:pb-24 lg:pt-[2.9167vw]">
+      <main className={`${pageMainWidthClassName} pb-16 pt-8 lg:pb-24 lg:pt-[2.9167vw]`}>
         <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>
           中国核聚变相关政策时间线表格
         </h1>

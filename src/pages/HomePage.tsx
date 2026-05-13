@@ -5,9 +5,9 @@ import Navbar from "../components/Navbar";
 import { lazy, Suspense, useEffect, useRef } from "react";
 import Team from "../components/Team";
 import { Link } from "react-router-dom";
-import bannerAvif from "../images/banner.opt.avif";
-import bannerWebp from "../images/banner.opt.webp";
-import bannerFallbackPng from "../images/banner.opt.png";
+import homeBannerAvif from "../images/home-banner.opt.avif";
+import homeBannerWebp from "../images/home-banner.opt.webp";
+import homeBannerJpg from "../images/home-banner.opt.jpg";
 import techBgAvif from "../images/tech-bg.opt.avif";
 import techBgWebp from "../images/tech-bg.opt.webp";
 import techBgJpg from "../images/tech-bg.opt.jpg";
@@ -217,12 +217,13 @@ export default function HomePage() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <main>
+      {/* home-banner：稿 1920×461；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
       <section className="relative aspect-[1920/461] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={bannerAvif} type="image/avif" />
-          <source srcSet={bannerWebp} type="image/webp" />
+          <source srcSet={homeBannerAvif} type="image/avif" />
+          <source srcSet={homeBannerWebp} type="image/webp" />
           <img
-            src={bannerFallbackPng}
+            src={homeBannerJpg}
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}
@@ -239,6 +240,7 @@ export default function HomePage() {
       <section>
         <div className="relative overflow-hidden bg-[#F6F6F6]">
           {/* 背景随区块增高铺满；内容撑开外层高度，图用 cover 避免露底 */}
+          {/* tech-bg：稿 1920×583；至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
           <div className="relative min-h-0 w-full">
             <picture className="pointer-events-none absolute inset-0 z-0 block h-full w-full">
               <source srcSet={techBgAvif} type="image/avif" />
@@ -259,16 +261,17 @@ export default function HomePage() {
               <h2 className="relative pt-[37px] lg:pt-[1.9271vw] text-center font-['PingFang_SC'] text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]">
                 AI解决方案核心技术驱动力
               </h2>
-              <div className="relative mx-auto box-border  w-[min(100%-24px,1135px)] overflow-hidden  lg:w-[59.1146vw] lg:max-w-none">
-                <div className="relative z-10 box-border min-h-0 pl-[clamp(300px,48vw,546px)] pt-[67px] pr-0 lg:pl-[28.4375vw] lg:pt-[3.4896vw]">
+              <div className="relative mx-auto box-border w-[min(calc(100%-24px),calc(100vw*1200/1920))]">
+                {/** 左缩进按 529@1920 同比随 vw 增大，避免超大屏仍锁 529px 显得正文过靠左 */}
+                <div className="relative z-10 box-border min-h-0 pl-[max(1rem,calc(100vw*529/1920))] pr-4 pt-[67px] sm:pr-5 lg:pr-0 lg:pt-[3.4896vw]">
                   <div
-                    className={`w-[589px] max-w-full text-pretty indent-[2em] text-black sm:text-justify lg:w-[30.6771vw] lg:max-w-none ${introBody20ClassName}`}
+                    className={`w-full max-w-[min(671px,100%)] text-pretty indent-[2em] text-black sm:text-justify lg:max-w-[min(calc(100vw*671/1920),100%)] ${introBody20ClassName}`}
                   >
                     强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 + 数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力，最终形成聚变电站的智能操作系统——终极能源的智慧大脑。
                   </div>
                 </div>
               </div>
-              <div className="relative mx-auto my-[max(12px,calc(100vw*50/1920))] w-[min(100%-24px,1135px)] pl-[clamp(300px,48vw,546px)] text-left lg:w-[59.1146vw] lg:max-w-none lg:pl-[28.4375vw]">
+              <div className="relative mx-auto my-[max(12px,calc(100vw*50/1920))] w-[min(calc(100%-24px),calc(100vw*1200/1920))] pl-[max(1rem,calc(100vw*529/1920))] pr-4 text-left sm:pr-5 lg:pr-0">
                 <Link
                   to="/tech"
                   data-node-id="838:1351"

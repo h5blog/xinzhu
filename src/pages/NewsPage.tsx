@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { introBody20ClassName, newsListTitleClassName } from "../constants/typography";
+import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import newsBgAvif from "../images/news-bg.opt.avif";
-import newsBgWebp from "../images/news-bg.opt.webp";
-import newsBgJpg from "../images/news-bg.opt.jpg";
+import newsBannerAvif from "../images/news-banner.opt.avif";
+import newsBannerWebp from "../images/news-banner.opt.webp";
+import newsBannerJpg from "../images/news-banner.opt.jpg";
 import n1Avif from "../images/news-thumb-1.opt.avif";
 import n1Webp from "../images/news-thumb-1.opt.webp";
 import n1Jpg from "../images/news-thumb-1.opt.jpg";
@@ -124,12 +125,13 @@ export default function NewsPage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="新闻中心" data-node-id="83:169">
       <Navbar />
 
+      {/* news-banner：稿 1920×217；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
       <section className="relative aspect-[1920/217] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={newsBgAvif} type="image/avif" />
-          <source srcSet={newsBgWebp} type="image/webp" />
+          <source srcSet={newsBannerAvif} type="image/avif" />
+          <source srcSet={newsBannerWebp} type="image/webp" />
           <img
-            src={newsBgJpg}
+            src={newsBannerJpg}
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}
@@ -143,8 +145,9 @@ export default function NewsPage() {
           />
         </picture>
       </section>
+      <div className={pageMainWidthClassName}>
       {/* 83:242 页眉标题 */}
-      <div className="mx-auto w-full max-w-[1920px] px-4 pt-9 text-center lg:pt-[1.875vw]">
+      <div className="w-full pt-9 text-center lg:pt-[1.875vw]">
         <h1 className="text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]" data-node-id="83:242">
           新闻中心
         </h1>
@@ -152,7 +155,7 @@ export default function NewsPage() {
 
       {/* 83:243–266 Tab：底边统一 4px 避免切换跳动；lg 宽度 368/1920 */}
       <div
-        className="mx-auto mt-10 flex w-[min(100%-2rem,1183px)] justify-center overflow-x-auto px-2 lg:mt-[2.0833vw] lg:w-[61.6146vw] lg:px-0"
+        className="mx-auto mt-10 flex w-full justify-center overflow-x-auto px-2 lg:mt-[2.0833vw] lg:px-0"
         role="tablist"
         aria-label="资讯分类"
       >
@@ -197,7 +200,7 @@ export default function NewsPage() {
         id="news-tab-panel"
         role="tabpanel"
         aria-labelledby={tab === "industry" ? "tab-industry" : "tab-company"}
-        className="mx-auto w-[min(100%-2rem,1183px)] px-0 pb-16 pt-10 lg:w-[61.6146vw] lg:max-w-none lg:pt-[2.0833vw]"
+        className="w-full pb-16 pt-10 lg:pt-[2.0833vw]"
         data-node-id={tab === "company" ? "684:40" : undefined}
       >
         <div className="flex flex-col">
@@ -264,6 +267,7 @@ export default function NewsPage() {
           ))}
         </div>
       </main>
+      </div>
 
       <Footer />
     </div>

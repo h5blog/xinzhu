@@ -18,34 +18,49 @@ const root = path.join(__dirname, "..");
  * - fallbackFormat: "jpeg" | "png" — 兜底图格式（PNG 无损更清晰，体积更大）
  */
 const targets = [
-  // 首页顶栏横幅：源图 3840×922，导出 3840 宽覆盖 1920 CSS 下的 2×（Retina）
+  // 首页顶栏横幅 home-banner：稿 1920×461@1920；导出 3840 宽覆盖 2×；JPEG 兜底减小体积
   {
-    input: "src/images/banner.png",
-    maxWidth: 3840,
-    quality: 92,
-    avifQuality: 88,
-    avifEffort: 7,
-    fallbackFormat: "png",
-  },
-  { input: "src/images/news-detail-5-main.png", maxWidth: 1064, quality: 72 },
-  // 详情页头图仅约 217px 高，无需 2K 宽；缩小体积加快首屏
-  { input: "src/images/news-detail-hero-bg.jpg", maxWidth: 1600, quality: 62 },
-  { input: "src/images/join-hero-bg.png", maxWidth: 1920, quality: 70 },
-  // 加入我们顶栏：源图 3840×434，导出 3840 宽覆盖 1920 CSS 下的 2×（Retina）
-  {
-    input: "src/images/join-bg.png",
+    input: "src/images/home-banner.png",
     maxWidth: 3840,
     quality: 90,
     avifQuality: 84,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 创始团队顶栏：源图 3840 宽，导出 3840 以覆盖 2x 屏（1920 CSS px）；略提质量保文字锐利
+  { input: "src/images/news-detail-5-main.png", maxWidth: 1064, quality: 72 },
+  // 新闻详情页顶栏 news-detail-banner：稿 1920×217@1920；导出 3840 宽覆盖 2×；JPEG 兜底
   {
-    input: "src/images/team-banner-bg.png",
+    input: "src/images/news-detail-banner.png",
     maxWidth: 3840,
-    quality: 92,
-    avifQuality: 88,
+    quality: 90,
+    avifQuality: 84,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 岗位详情页顶栏 job-detail-banner：稿 1920×217@1920；导出 3840 宽覆盖 2×；JPEG 兜底
+  {
+    input: "src/images/job-detail-banner.png",
+    maxWidth: 3840,
+    quality: 90,
+    avifQuality: 84,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 加入我们页顶栏 job-banner：稿 1920×217@1920；导出 3840 宽覆盖 2×；JPEG 兜底
+  {
+    input: "src/images/job-banner.png",
+    maxWidth: 3840,
+    quality: 90,
+    avifQuality: 84,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 创始团队页顶栏 team-banner：稿 1920×217@1920；导出 3840 宽覆盖 2×；JPEG 兜底
+  {
+    input: "src/images/team-banner.png",
+    maxWidth: 3840,
+    quality: 90,
+    avifQuality: 84,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
@@ -63,12 +78,12 @@ const targets = [
   { input: "src/images/team-2.jpg", maxWidth: 352, quality: 82 },
   { input: "src/images/team-3.jpg", maxWidth: 352, quality: 82 },
   { input: "src/images/team-4.jpg", maxWidth: 352, quality: 82 },
-  // 加入我们「薪酬福利」：展示宽约 1096，1200 宽约 1.1× 稿宽，体积明显小于 1600；原 PNG ~1.6MB
+  // 加入我们「薪酬福利」fuli：稿 1124×687@1920；导出 2400 宽覆盖 2×；AVIF/WebP/JPEG 控体积
   {
     input: "src/images/fuli.png",
-    maxWidth: 1200,
-    quality: 68,
-    avifQuality: 56,
+    maxWidth: 2400,
+    quality: 76,
+    avifQuality: 66,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
@@ -78,12 +93,12 @@ const targets = [
   { input: "src/images/news-detail-1-main.png", maxWidth: 1103, quality: 72 },
   { input: "src/images/news-detail-4-main.png", maxWidth: 1064, quality: 72 },
   { input: "src/images/our-team.png", maxWidth: 1920, quality: 70 },
-  // 技术中心顶栏横幅（JPEG 兜底远小于 PNG）
+  // 技术中心顶栏 tech-banner：稿 1920×461@1920；导出 3840 宽覆盖 2×；JPEG 兜底控体积
   {
     input: "src/images/tech-banner.png",
-    maxWidth: 1920,
-    quality: 82,
-    avifQuality: 78,
+    maxWidth: 3840,
+    quality: 90,
+    avifQuality: 84,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
@@ -96,21 +111,21 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 新闻中心顶栏：源图 3840×434，导出 3840 宽覆盖 1920 CSS 下的 2×（Retina）
+  // 新闻中心顶栏 news-banner：稿 1920×217@1920；导出 3840 宽覆盖 2×；JPEG 兜底
   {
-    input: "src/images/news-bg.png",
+    input: "src/images/news-banner.png",
     maxWidth: 3840,
     quality: 90,
     avifQuality: 84,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 关于我们页首屏横幅：源图 3840×922，导出 3840 宽覆盖 1920 CSS 宽度下的 2×（Retina）
+  // 公司简介页首屏 gsjj-banner：稿 1920×461@1920；导出 3840 宽覆盖 2×；AVIF/WebP/JPEG 控体积
   {
     input: "src/images/gsjj-banner.png",
     maxWidth: 3840,
-    quality: 92,
-    avifQuality: 88,
+    quality: 90,
+    avifQuality: 84,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
@@ -173,19 +188,19 @@ const targets = [
   { input: "src/images/news-thumb-3.jpg", maxWidth: 716, quality: 72 },
   { input: "src/images/news-thumb-4.jpg", maxWidth: 716, quality: 72 },
   { input: "src/images/news-thumb-5.jpg", maxWidth: 716, quality: 72 },
-  // 首页 AI 解决方案区背景（首屏下方）：1920 宽 + AVIF/WebP/JPEG，体积与解码兼顾
+  // 首页 AI 解决方案区 tech-bg：稿 1920×583@1920；导出 3840 宽覆盖 2×；AVIF/WebP/JPEG 控体积
   {
     input: "src/images/tech-bg.png",
-    maxWidth: 1920,
-    quality: 70,
-    avifQuality: 62,
+    maxWidth: 3840,
+    quality: 88,
+    avifQuality: 80,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 首页「数字化资源支撑矩阵」：稿 1153 宽，2×≈2306；原 PNG 数 MB，压成 AVIF/WebP/JPEG
+  // 首页「数字化资源支撑矩阵」：稿 1200×1075@1920，导出宽 2400 覆盖 2×；AVIF/WebP/JPEG 控体积
   {
     input: "src/images/juzhen.png",
-    maxWidth: 2306,
+    maxWidth: 2400,
     quality: 78,
     avifQuality: 68,
     avifEffort: 7,
