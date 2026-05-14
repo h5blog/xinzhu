@@ -166,28 +166,20 @@ const targets = [
   { input: "src/images/news-detail-1-main.png", maxWidth: 1103, quality: 72 },
   { input: "src/images/news-detail-4-main.png", maxWidth: 1064, quality: 72 },
   { input: "src/images/our-team.png", maxWidth: 1920, quality: 70 },
-  // 技术中心顶栏 tech-banner：稿 1920×461；1× + 2×
+  // 技术中心顶栏 tech-banner：稿 1920×461；仅 1×1920w（不重导 3840 2×，控体积）
   {
     input: "src/images/tech-banner.png",
     maxWidth: 1920,
     outputBase: "tech-banner-1x",
-    quality: 88,
-    avifQuality: 82,
+    quality: 72,
+    avifQuality: 62,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  {
-    input: "src/images/tech-banner.png",
-    maxWidth: 3840,
-    quality: 90,
-    avifQuality: 84,
-    avifEffort: 7,
-    fallbackFormat: "jpeg",
-  },
-  // 技术中心胶囊区顶图：展示宽约 min(100%,49.58vw)≈952@1920，1200 宽覆盖常见 DPR；JPEG 兜底远小于原 .opt.png
+  // 技术中心胶囊区顶图：稿展示宽约 952@1920（1×），仅导出 ≤952 宽以控体积
   {
     input: "src/images/tech-icon.png",
-    maxWidth: 1200,
+    maxWidth: 952,
     quality: 78,
     avifQuality: 68,
     avifEffort: 7,
@@ -408,7 +400,9 @@ async function optimizeOne(target) {
   console.log(`[ok] ${target.input} (${meta.width ?? "?"}x${meta.height ?? "?"}) -> ${sizeLabel}; wrote ${outLabel} (${fbLabel})`);
 }
 
+const onlyInput = process.argv[2];
 for (const target of targets) {
+  if (onlyInput && target.input !== onlyInput) continue;
   // eslint-disable-next-line no-await-in-loop
   await optimizeOne(target);
 }

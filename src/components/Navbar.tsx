@@ -14,7 +14,6 @@ import newsBanner2xAvif from "../images/news-banner.opt.avif";
 import teamPageBanner1xAvif from "../images/team-banner-1x.opt.avif";
 import teamPageBanner2xAvif from "../images/team-banner.opt.avif";
 import techBanner1xAvif from "../images/tech-banner-1x.opt.avif";
-import techBanner2xAvif from "../images/tech-banner.opt.avif";
 import techIconAvif from "../images/tech-icon.opt.avif";
 
 /**
@@ -55,8 +54,6 @@ type NavPreloadImage = {
 const TECH_ROUTE_PRELOADS: NavPreloadImage[] = [
   {
     href: techBanner1xAvif,
-    imageSrcSet: `${techBanner1xAvif} 1920w, ${techBanner2xAvif} 3840w`,
-    imageSizes: "100vw",
     mime: "image/avif",
     id: "preload-tech-banner-avif",
   },

@@ -1,9 +1,6 @@
 import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import techBannerAvif from "../images/tech-banner.opt.avif";
-import techBannerWebp from "../images/tech-banner.opt.webp";
-import techBannerJpg from "../images/tech-banner.opt.jpg";
 import techBanner1xAvif from "../images/tech-banner-1x.opt.avif";
 import techBanner1xWebp from "../images/tech-banner-1x.opt.webp";
 import techBanner1xJpg from "../images/tech-banner-1x.opt.jpg";
@@ -36,23 +33,13 @@ export default function TechCorePage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="核心技术" data-node-id="108:28398">
       <Navbar />
 
-      {/* tech-banner：稿 1920×461；1×1920w + 2×3840w */}
+      {/* tech-banner：稿 1920×461；仅 1×1920w */}
       <section className="relative aspect-[1920/461] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source
-            type="image/avif"
-            srcSet={`${techBanner1xAvif} 1920w, ${techBannerAvif} 3840w`}
-            sizes="100vw"
-          />
-          <source
-            type="image/webp"
-            srcSet={`${techBanner1xWebp} 1920w, ${techBannerWebp} 3840w`}
-            sizes="100vw"
-          />
+          <source srcSet={techBanner1xAvif} type="image/avif" />
+          <source srcSet={techBanner1xWebp} type="image/webp" />
           <img
             src={techBanner1xJpg}
-            srcSet={`${techBanner1xJpg} 1920w, ${techBannerJpg} 3840w`}
-            sizes="100vw"
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}
