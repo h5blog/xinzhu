@@ -4,6 +4,9 @@ import Navbar from "../components/Navbar";
 import gsjjBannerAvif from "../images/gsjj-banner.opt.avif";
 import gsjjBannerWebp from "../images/gsjj-banner.opt.webp";
 import gsjjBannerJpg from "../images/gsjj-banner.opt.jpg";
+import gsjjBanner1xAvif from "../images/gsjj-banner-1x.opt.avif";
+import gsjjBanner1xWebp from "../images/gsjj-banner-1x.opt.webp";
+import gsjjBanner1xJpg from "../images/gsjj-banner-1x.opt.jpg";
 import aboutTagAvif from "../images/about-tag.opt.avif";
 import aboutTagWebp from "../images/about-tag.opt.webp";
 import aboutTagJpg from "../images/about-tag.opt.jpg";
@@ -27,18 +30,27 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="关于我们" data-node-id="942:40">
       <Navbar />
 
-      {/* gsjj-banner：稿 1920×461；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
+      {/* gsjj-banner：稿 1920×461；1×1920w + 2×3840w */}
       <section className="relative aspect-[1920/461] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={gsjjBannerAvif} type="image/avif" />
-          <source srcSet={gsjjBannerWebp} type="image/webp" />
+          <source
+            type="image/avif"
+            srcSet={`${gsjjBanner1xAvif} 1920w, ${gsjjBannerAvif} 3840w`}
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcSet={`${gsjjBanner1xWebp} 1920w, ${gsjjBannerWebp} 3840w`}
+            sizes="100vw"
+          />
           <img
-            src={gsjjBannerJpg}
+            src={gsjjBanner1xJpg}
+            srcSet={`${gsjjBanner1xJpg} 1920w, ${gsjjBannerJpg} 3840w`}
+            sizes="100vw"
             alt=""
             width={1920}
             height={461}
             className="h-full w-full object-cover object-center"
-            sizes="100vw"
             loading="eager"
             fetchPriority="high"
             decoding="sync"
@@ -48,7 +60,7 @@ export default function AboutPage() {
       </section>
 
       <main
-        className={`${pageMainWidthClassName} relative z-10 pb-[max(4rem,env(safe-area-inset-bottom,0px))] pt-10 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-[min(3.75rem,3.125vw)]`}
+        className={`${pageMainWidthClassName} relative z-10 pb-[max(4rem,env(safe-area-inset-bottom,0px))] pt-9 sm:pb-20 lg:pb-24 lg:pt-[1.875vw]`}
       >
         <p
           className={`w-full text-pretty sm:text-justify ${indent2} ${aboutBodyText}`}

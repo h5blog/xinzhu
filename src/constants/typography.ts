@@ -14,7 +14,7 @@ export const newsDetailBodyClassName =
 
 /** 新闻列表卡片标题：1920 稿 20px；字重与 hover 由页面叠加（色值沿用列表卡片稿 #121212）；超长标题单行省略 */
 export const newsListTitleClassName =
-  `${introLikeTone} text-[max(16px,calc(100vw*20/1920))] text-[#121212] line-clamp-1 break-words`;
+  `${introLikeTone} text-[max(18px,calc(100vw*24/1920))] text-[#121212] line-clamp-1 break-words`;
 
 /** 新闻详情页主标题 h1：1920 稿 32px；字重由各页叠加 font-medium / font-semibold */
 export const newsDetailTitleClassName =

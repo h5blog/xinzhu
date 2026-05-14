@@ -1,13 +1,18 @@
 import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { assets } from "../components/assets";
 import techBannerAvif from "../images/tech-banner.opt.avif";
 import techBannerWebp from "../images/tech-banner.opt.webp";
 import techBannerJpg from "../images/tech-banner.opt.jpg";
+import techBanner1xAvif from "../images/tech-banner-1x.opt.avif";
+import techBanner1xWebp from "../images/tech-banner-1x.opt.webp";
+import techBanner1xJpg from "../images/tech-banner-1x.opt.jpg";
 import techIconAvif from "../images/tech-icon.opt.avif";
 import techIconWebp from "../images/tech-icon.opt.webp";
 import techIconJpg from "../images/tech-icon.opt.jpg";
+import jishuBAvif from "../images/jishu-b.opt.avif";
+import jishuBWebp from "../images/jishu-b.opt.webp";
+import jishuBJpg from "../images/jishu-b.opt.jpg";
 
 /** 1920 稿正文 20px */
 const techIntroBody =
@@ -31,18 +36,27 @@ export default function TechCorePage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="核心技术" data-node-id="108:28398">
       <Navbar />
 
-      {/* tech-banner：1920×461（源图 3840×922 等比缩放）；固定比例 + object-cover */}
+      {/* tech-banner：稿 1920×461；1×1920w + 2×3840w */}
       <section className="relative aspect-[1920/461] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={techBannerAvif} type="image/avif" />
-          <source srcSet={techBannerWebp} type="image/webp" />
+          <source
+            type="image/avif"
+            srcSet={`${techBanner1xAvif} 1920w, ${techBannerAvif} 3840w`}
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcSet={`${techBanner1xWebp} 1920w, ${techBannerWebp} 3840w`}
+            sizes="100vw"
+          />
           <img
-            src={techBannerJpg}
+            src={techBanner1xJpg}
+            srcSet={`${techBanner1xJpg} 1920w, ${techBannerJpg} 3840w`}
+            sizes="100vw"
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}
             height={461}
-            sizes="100vw"
             loading="eager"
             fetchPriority="high"
             decoding="sync"
@@ -54,7 +68,7 @@ export default function TechCorePage() {
 
       <section className="relative overflow-hidden">
         <div
-          className={`${pageMainWidthClassName} relative pb-12 pt-[77px] sm:pb-12 md:pb-16 lg:pt-[4.0104vw]`}
+          className={`${pageMainWidthClassName} relative pb-12 pt-9 sm:pb-12 md:pb-16 lg:pt-[1.875vw]`}
         >
           <div className="mx-auto w-full">
             <p
@@ -121,13 +135,20 @@ export default function TechCorePage() {
             </div>
 
             <div className="mt-10 flex justify-center sm:mt-12 md:mt-14" data-node-id="297:86">
-              <img
-                src={assets.jishuB}
-                alt="核心技术体系示意图"
-                width={1132}
-                height={483}
-                className="mx-auto h-auto w-full max-w-[min(100%,calc(100vw*1132/1920))] object-contain"
-              />
+              <picture className="mx-auto block w-full max-w-[min(100%,calc(100vw*1132/1920))]">
+                <source srcSet={jishuBAvif} type="image/avif" />
+                <source srcSet={jishuBWebp} type="image/webp" />
+                <img
+                  src={jishuBJpg}
+                  alt="核心技术体系示意图"
+                  width={1132}
+                  height={483}
+                  className="h-auto w-full object-contain"
+                  sizes="(max-width: 1023px) calc(100vw - 2rem), min(1132px, 58.958333vw)"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
           </div>
         </div>

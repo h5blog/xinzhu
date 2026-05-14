@@ -7,12 +7,15 @@ import { JOB_APPLY_FORM_URL, JOBS } from "../data/jobs";
 import jobDetailBannerAvif from "../images/job-detail-banner.opt.avif";
 import jobDetailBannerWebp from "../images/job-detail-banner.opt.webp";
 import jobDetailBannerJpg from "../images/job-detail-banner.opt.jpg";
+import jobDetailBanner1xAvif from "../images/job-detail-banner-1x.opt.avif";
+import jobDetailBanner1xWebp from "../images/job-detail-banner-1x.opt.webp";
+import jobDetailBanner1xJpg from "../images/job-detail-banner-1x.opt.jpg";
 
 function DetailBlock({ label, items }: { label: string; items: string[] }) {
   return (
     <section className="mt-6 sm:mt-8 lg:mt-[2.0833vw]">
       <div
-        className={`box-border inline-flex max-w-full items-center justify-center bg-[#f96d01] px-2 text-center sm:px-3 ${jobDetailSectionLabelClassName} min-h-[max(44px,calc(100vw*44/1920))] w-[max(103px,calc(100vw*103/1920))]`}
+        className={`box-border inline-flex w-fit max-w-full shrink-0 items-center justify-center whitespace-nowrap bg-[#f96d01] px-2 text-center sm:px-3 ${jobDetailSectionLabelClassName} min-h-[max(44px,calc(100vw*44/1920))]`}
       >
         {label}
       </div>
@@ -36,19 +39,28 @@ export default function JobDetailPage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="职位详情" data-node-id="113:221">
       <Navbar />
 
-      {/** job-detail-banner：稿 1920×217；小屏高度不低于 180px，大屏按 217/1920；AVIF/WebP/JPEG + 渐变叠层 */}
+      {/** job-detail-banner：稿 1920×217；1×1920w + 2×3840w；小屏高度不低于 180px */}
       <section className="relative h-[max(180px,11.3021vw)] w-full overflow-hidden" data-name="banner-wrap">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <picture className="absolute inset-0 block h-full w-full">
-            <source srcSet={jobDetailBannerAvif} type="image/avif" />
-            <source srcSet={jobDetailBannerWebp} type="image/webp" />
+            <source
+              type="image/avif"
+              srcSet={`${jobDetailBanner1xAvif} 1920w, ${jobDetailBannerAvif} 3840w`}
+              sizes="100vw"
+            />
+            <source
+              type="image/webp"
+              srcSet={`${jobDetailBanner1xWebp} 1920w, ${jobDetailBannerWebp} 3840w`}
+              sizes="100vw"
+            />
             <img
               alt=""
-              src={jobDetailBannerJpg}
+              src={jobDetailBanner1xJpg}
+              srcSet={`${jobDetailBanner1xJpg} 1920w, ${jobDetailBannerJpg} 3840w`}
+              sizes="100vw"
               width={1920}
               height={217}
               className="h-full w-full object-cover object-center"
-              sizes="100vw"
               loading="eager"
               fetchPriority="high"
               decoding="sync"

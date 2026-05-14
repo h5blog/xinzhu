@@ -4,12 +4,17 @@ import logoGroupA from "../images/logo-group-a.svg";
 import logoGroupB from "../images/logo-group-b.svg";
 import logoGroupC from "../images/logo-group-c.svg";
 import aboutTagAvif from "../images/about-tag.opt.avif";
-import gsjjBannerAvif from "../images/gsjj-banner.opt.avif";
-import joinPageBannerAvif from "../images/job-banner.opt.avif";
+import gsjjBanner1xAvif from "../images/gsjj-banner-1x.opt.avif";
+import gsjjBanner2xAvif from "../images/gsjj-banner.opt.avif";
+import joinPageBanner1xAvif from "../images/job-banner-1x.opt.avif";
+import joinPageBanner2xAvif from "../images/job-banner.opt.avif";
 import joinFuliAvif from "../images/fuli.opt.avif";
-import newsBannerAvif from "../images/news-banner.opt.avif";
-import teamPageBannerAvif from "../images/team-banner.opt.avif";
-import techBannerAvif from "../images/tech-banner.opt.avif";
+import newsBanner1xAvif from "../images/news-banner-1x.opt.avif";
+import newsBanner2xAvif from "../images/news-banner.opt.avif";
+import teamPageBanner1xAvif from "../images/team-banner-1x.opt.avif";
+import teamPageBanner2xAvif from "../images/team-banner.opt.avif";
+import techBanner1xAvif from "../images/tech-banner-1x.opt.avif";
+import techBanner2xAvif from "../images/tech-banner.opt.avif";
 import techIconAvif from "../images/tech-icon.opt.avif";
 
 /**
@@ -42,59 +47,111 @@ type NavPreloadImage = {
   mime: string;
   id: string;
   fetchPriority?: "high" | "low";
+  /** 横幅 1×/2× 与页面 <picture> 一致时用 imagesrcset */
+  imageSrcSet?: string;
+  imageSizes?: string;
 };
 
 const TECH_ROUTE_PRELOADS: NavPreloadImage[] = [
-  { href: techBannerAvif, mime: "image/avif", id: "preload-tech-banner-avif" },
+  {
+    href: techBanner1xAvif,
+    imageSrcSet: `${techBanner1xAvif} 1920w, ${techBanner2xAvif} 3840w`,
+    imageSizes: "100vw",
+    mime: "image/avif",
+    id: "preload-tech-banner-avif",
+  },
   { href: techIconAvif, mime: "image/avif", id: "preload-tech-icon-avif", fetchPriority: "low" },
 ];
 
 const NEWS_ROUTE_PRELOADS: NavPreloadImage[] = [
-  { href: newsBannerAvif, mime: "image/avif", id: "preload-news-banner-avif" },
+  {
+    href: newsBanner1xAvif,
+    imageSrcSet: `${newsBanner1xAvif} 1920w, ${newsBanner2xAvif} 3840w`,
+    imageSizes: "100vw",
+    mime: "image/avif",
+    id: "preload-news-banner-avif",
+  },
 ];
 
 /** 悬停「关于我们」整块：子路由顶栏预热（薪酬福利图仅在「加入我们」预取时高优加载，避免占住 preload id 为 low） */
 const ABOUT_MENU_PRELOADS: NavPreloadImage[] = [
-  { href: gsjjBannerAvif, mime: "image/avif", id: "preload-gsjj-banner-avif" },
-  { href: teamPageBannerAvif, mime: "image/avif", id: "preload-team-banner-avif" },
-  { href: joinPageBannerAvif, mime: "image/avif", id: "preload-join-banner-avif" },
+  {
+    href: gsjjBanner1xAvif,
+    imageSrcSet: `${gsjjBanner1xAvif} 1920w, ${gsjjBanner2xAvif} 3840w`,
+    imageSizes: "100vw",
+    mime: "image/avif",
+    id: "preload-gsjj-banner-avif",
+  },
+  {
+    href: teamPageBanner1xAvif,
+    imageSrcSet: `${teamPageBanner1xAvif} 1920w, ${teamPageBanner2xAvif} 3840w`,
+    imageSizes: "100vw",
+    mime: "image/avif",
+    id: "preload-team-banner-avif",
+  },
+  {
+    href: joinPageBanner1xAvif,
+    imageSrcSet: `${joinPageBanner1xAvif} 1920w, ${joinPageBanner2xAvif} 3840w`,
+    imageSizes: "100vw",
+    mime: "image/avif",
+    id: "preload-join-banner-avif",
+  },
 ];
 
 const ABOUT_ROUTE_PRELOADS: NavPreloadImage[] = [
-  { href: gsjjBannerAvif, mime: "image/avif", id: "preload-gsjj-banner-avif" },
+  {
+    href: gsjjBanner1xAvif,
+    imageSrcSet: `${gsjjBanner1xAvif} 1920w, ${gsjjBanner2xAvif} 3840w`,
+    imageSizes: "100vw",
+    mime: "image/avif",
+    id: "preload-gsjj-banner-avif",
+  },
   { href: aboutTagAvif, mime: "image/avif", id: "preload-about-tag-avif", fetchPriority: "low" },
 ];
 
 const TEAM_ROUTE_PRELOADS: NavPreloadImage[] = [
-  { href: teamPageBannerAvif, mime: "image/avif", id: "preload-team-banner-avif" },
+  {
+    href: teamPageBanner1xAvif,
+    imageSrcSet: `${teamPageBanner1xAvif} 1920w, ${teamPageBanner2xAvif} 3840w`,
+    imageSizes: "100vw",
+    mime: "image/avif",
+    id: "preload-team-banner-avif",
+  },
 ];
 
 const JOIN_ROUTE_PRELOADS: NavPreloadImage[] = [
-  { href: joinPageBannerAvif, mime: "image/avif", id: "preload-join-banner-avif" },
+  {
+    href: joinPageBanner1xAvif,
+    imageSrcSet: `${joinPageBanner1xAvif} 1920w, ${joinPageBanner2xAvif} 3840w`,
+    imageSizes: "100vw",
+    mime: "image/avif",
+    id: "preload-join-banner-avif",
+  },
   { href: joinFuliAvif, mime: "image/avif", id: "preload-join-fuli-avif", fetchPriority: "high" },
 ];
 
-function preloadImageOnce(
-  href: string,
-  mime: string,
-  id: string,
-  fetchPriority: "high" | "low" = "high",
-) {
-  if (document.getElementById(id)) return;
+function preloadImageOnce(img: NavPreloadImage) {
+  if (document.getElementById(img.id)) return;
   const link = document.createElement("link");
-  link.id = id;
+  link.id = img.id;
   link.rel = "preload";
   link.as = "image";
-  link.href = href;
-  link.type = mime;
-  link.setAttribute("fetchpriority", fetchPriority);
+  link.type = img.mime;
+  link.setAttribute("fetchpriority", img.fetchPriority ?? "high");
+  if (img.imageSrcSet) {
+    link.setAttribute("imagesrcset", img.imageSrcSet);
+    link.setAttribute("imagesizes", img.imageSizes ?? "100vw");
+    link.href = img.href;
+  } else {
+    link.href = img.href;
+  }
   document.head.appendChild(link);
 }
 
 /** 按传入列表预加载图片（除首页外各菜单在 hover / focus 时调用） */
 function warmNavAssets(images: readonly NavPreloadImage[]) {
   for (const img of images) {
-    preloadImageOnce(img.href, img.mime, img.id, img.fetchPriority ?? "high");
+    preloadImageOnce(img);
   }
 }
 

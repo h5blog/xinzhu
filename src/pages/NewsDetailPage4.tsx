@@ -43,7 +43,7 @@ export default function NewsDetailPage4() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className={`${pageMainWidthClassName} pb-16 pt-8 lg:pb-24 lg:pt-[2.9167vw]`}>
+      <main className={`${pageMainWidthClassName} pb-16 pt-9 lg:pb-24 lg:pt-[1.875vw]`}>
         <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>AI 赋能聚变已成全球共识</h1>
         <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
         <section className={`mt-10 lg:mt-[2.0833vw] ${detail4StripeGapY}`}>

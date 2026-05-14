@@ -82,8 +82,11 @@ export default function Footer() {
           className="mt-10 border-t border-[#5c5c5c] pt-5 sm:mt-12 sm:pt-6"
           data-node-id="470:49"
         >
-          <p className={`text-center ${footerLegalText}`} data-node-id="470:50">
-            <span>©2025 北京新烛时代科技有限公司 版权所有 </span>
+          <p
+            className={`flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center ${footerLegalText}`}
+            data-node-id="470:50"
+          >
+            <span>©2025 北京新烛时代科技有限公司 版权所有</span>
             <a
               className="underline decoration-solid underline-offset-2 transition hover:text-[#e8e8e8]"
               href="http://beian.miit.gov.cn/"
@@ -92,13 +95,22 @@ export default function Footer() {
             >
               京ICP备2025157244号-1
             </a>
-            <span> </span>
             <a
-              className="underline decoration-solid underline-offset-2 transition hover:text-[#e8e8e8]"
+              className="inline-flex items-center gap-[0.35em] underline decoration-solid underline-offset-2 transition hover:text-[#e8e8e8]"
               href="https://beian.mps.gov.cn/#/query/webSearch?code=11010802048377"
               target="_blank"
               rel="noreferrer"
             >
+              <img
+                src={assets.gongan}
+                alt=""
+                width={36}
+                height={40}
+                className="h-[1em] w-auto shrink-0 object-contain align-middle"
+                decoding="async"
+                loading="lazy"
+                aria-hidden
+              />
               京公网安备11010802048377号
             </a>
           </p>

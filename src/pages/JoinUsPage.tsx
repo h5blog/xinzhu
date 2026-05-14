@@ -9,6 +9,9 @@ import { JOB_APPLY_FORM_URL, JOBS } from "../data/jobs";
 import jobBannerAvif from "../images/job-banner.opt.avif";
 import jobBannerWebp from "../images/job-banner.opt.webp";
 import jobBannerJpg from "../images/job-banner.opt.jpg";
+import jobBanner1xAvif from "../images/job-banner-1x.opt.avif";
+import jobBanner1xWebp from "../images/job-banner-1x.opt.webp";
+import jobBanner1xJpg from "../images/job-banner-1x.opt.jpg";
 import joinFooter1Avif from "../images/join-footer-1.opt.avif";
 import joinFooter1Webp from "../images/join-footer-1.opt.webp";
 import joinFooter1Jpg from "../images/join-footer-1.opt.jpg";
@@ -155,11 +158,11 @@ function JobCard({ job, isLast }: { job: (typeof JOBS)[number]; isLast: boolean 
 
 function JoinBenefitsSection() {
   return (
-    <section className="mt-10 min-w-0 sm:mt-12 lg:mt-14">
+    <section className="min-w-0">
       <h2 className={joinSectionHeading} data-node-id="729:29274">
         薪酬福利
       </h2>
-      <JoinSectionRuleBar className="mt-6 lg:mt-8" data-node-id="924:280" />
+      <JoinSectionRuleBar className="mt-4 lg:mt-5" data-node-id="924:280" />
 
       <div className="relative mx-auto mt-10 aspect-[1124/687] w-full min-w-0 overflow-hidden rounded-2xl bg-[#f0f0f0] sm:rounded-[24px] lg:mt-[2.6042vw]">
         <picture className="absolute inset-0 block h-full w-full">
@@ -186,7 +189,7 @@ function JoinProcessSection() {
   return (
     <section className="mt-12 sm:mt-14 lg:mt-[max(3rem,5vw)]" data-node-id="729:29243">
       <h2 className={joinSectionHeading}>招聘流程</h2>
-      <JoinSectionRuleBar className="mt-6 lg:mt-8" data-node-id="924:281" />
+      <JoinSectionRuleBar className="mt-4 lg:mt-5" data-node-id="924:281" />
 
       <ol className="mt-10 flex flex-col gap-6 px-2 lg:mt-[2.6042vw] lg:hidden">
         {PROCESS_STEPS.map((step) => (
@@ -218,7 +221,7 @@ function JoinProcessSection() {
       >
         {PROCESS_STEPS.map((step, i) => (
           <Fragment key={step.id}>
-            <div className="flex w-[min(104px,calc(100vw*104/1920))] shrink-0 flex-col items-center lg:w-[calc(100vw*108/1920)]">
+            <div className="flex w-[min(128px,calc(100vw*128/1920))] shrink-0 flex-col items-center lg:w-[calc(100vw*152/1920)]">
               <div className={`flex ${joinProcessCircleRowH} w-full shrink-0 items-center justify-center`}>
                 <div
                   className={`flex ${joinProcessCircleSize} items-center justify-center rounded-full border-2 border-[#f96d01] bg-white ${joinProcessStepId}`}
@@ -241,7 +244,7 @@ function JoinProcessSection() {
             </div>
             {i < PROCESS_STEPS.length - 1 && (
               <div
-                className={`flex ${joinProcessCircleRowH} shrink-0 items-center justify-center -mx-3 lg:-mx-[max(10px,calc(100vw*16/1920))]`}
+                className={`flex ${joinProcessCircleRowH} shrink-0 items-center justify-center -mx-3 lg:-mx-[max(12px,calc(100vw*22/1920))]`}
                 aria-hidden
               >
                 <div className={`h-0.5 bg-[#f96d01] lg:h-[0.1042vw] ${joinProcessConnectorW}`} />
@@ -249,57 +252,6 @@ function JoinProcessSection() {
             )}
           </Fragment>
         ))}
-      </div>
-    </section>
-  );
-}
-
-function JoinApplySection() {
-  /** 729:29244 / 729:29245 / 729:29246：Figma 32px / 行高 30px；大屏 32/1920vw、30/1920vw */
-  const applyLine =
-    "m-0 text-center font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[32px] font-semibold leading-[30px] text-white lg:text-[1.6666666666666667vw] lg:leading-[1.5625vw]";
-  return (
-    <section
-      className="relative mx-auto mt-12 box-border h-auto w-full max-w-[699px] overflow-clip rounded-[24px] bg-[#f96d01] px-6 py-8 shadow-[0px_4px_11px_0px_#f96d01] sm:px-10 sm:py-10 lg:mt-[3.3333vw] lg:h-[8.90625vw] lg:max-w-none lg:w-[36.40625vw] lg:rounded-[1.25vw] lg:px-[3.125vw] lg:py-[0.7291666666666667vw] lg:shadow-[0px_0.2083vw_0.5729vw_0px_#f96d01]"
-      data-node-id="729:29242"
-    >
-      <div className="flex h-full min-h-0 w-full min-w-0 flex-col items-center gap-8 md:flex-row md:items-center md:justify-between md:gap-8 lg:gap-[1.5625vw]">
-        <div className="flex w-full min-w-0 flex-col items-center gap-[0.65em] text-white md:flex-1 lg:min-w-0 lg:flex-1 lg:items-center lg:gap-[0.8333vw]">
-          <a
-            href={JOB_APPLY_FORM_URL}
-            className={`${applyLine} underline decoration-solid underline-offset-[0.2em]`}
-            data-node-id="729:29246"
-          >
-            网申链接
-          </a>
-          <p className={applyLine} data-node-id="729:29245">
-            或
-          </p>
-          <p className={applyLine} data-node-id="729:29244">
-            简历投递二维码
-          </p>
-        </div>
-        {/** 729:29272：Figma 白底 rounded-17；729:29273：1920 稿 109×111 → vw；图 absolute + object-cover */}
-        <div
-          className="relative shrink-0 overflow-clip rounded-[17px] bg-white p-3 sm:p-3.5 lg:box-border lg:rounded-[0.8854166666666667vw] lg:p-[0.3125vw]"
-          data-node-id="729:29272"
-        >
-          <div
-            className="relative size-[clamp(104px,28vw,127px)] min-h-0 min-w-0 overflow-clip rounded-[14px] sm:size-[118px] lg:h-[5.78125vw] lg:w-[5.677083333333333vw] lg:rounded-[0.7291666666666667vw]"
-            data-node-id="729:29273"
-          >
-            <img
-              src={assets.joinQr}
-              alt="简历投递二维码"
-              className="pointer-events-none absolute inset-0 size-full max-w-none rounded-[14px] object-cover lg:rounded-[0.7291666666666667vw]"
-              width={109}
-              height={111}
-              loading="lazy"
-              decoding="async"
-              sizes="(max-width: 767px) 28vw, (max-width: 1023px) 118px, 111px"
-            />
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -357,18 +309,27 @@ export default function JoinUsPage() {
   return (
     <div className="min-h-screen bg-[#f0f0f0] text-[#363636]" data-name="加入我们" data-node-id="729:29148">
       <Navbar />
-      {/* job-banner：稿 1920×217；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
+      {/* job-banner：稿 1920×217；1×1920w + 2×3840w */}
       <section className="relative aspect-[1920/217] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={jobBannerAvif} type="image/avif" />
-          <source srcSet={jobBannerWebp} type="image/webp" />
+          <source
+            type="image/avif"
+            srcSet={`${jobBanner1xAvif} 1920w, ${jobBannerAvif} 3840w`}
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcSet={`${jobBanner1xWebp} 1920w, ${jobBannerWebp} 3840w`}
+            sizes="100vw"
+          />
           <img
-            src={jobBannerJpg}
+            src={jobBanner1xJpg}
+            srcSet={`${jobBanner1xJpg} 1920w, ${jobBannerJpg} 3840w`}
+            sizes="100vw"
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}
             height={217}
-            sizes="100vw"
             loading="eager"
             fetchPriority="high"
             decoding="sync"
@@ -377,10 +338,9 @@ export default function JoinUsPage() {
           />
         </picture>
       </section>
-      <main className={`${mainCol} pb-16 pt-10 lg:pb-24 lg:pt-12`}>
+      <main className={`${mainCol} pb-16 pt-9 lg:pb-24 lg:pt-[1.875vw]`}>
         <JoinBenefitsSection />
         <JoinProcessSection />
-        <JoinApplySection />
         <JoinFooterGallery />
         <h2
           className={`mt-8 sm:mt-10 lg:mt-[max(3rem,5vw)] ${joinSectionHeading}`}
@@ -388,7 +348,7 @@ export default function JoinUsPage() {
         >
           岗位需求
         </h2>
-        <JoinSectionRuleBar className="mt-6 lg:mt-8" data-node-id="924:282" />
+        <JoinSectionRuleBar className="mt-4 lg:mt-5" data-node-id="924:282" />
         <div className="mt-8 flex flex-col gap-5 lg:mt-10 lg:gap-[1.0416666666666667vw]">
           {JOBS.map((job, index) => (
             <JobCard key={job.title} job={job} isLast={index === JOBS.length - 1} />

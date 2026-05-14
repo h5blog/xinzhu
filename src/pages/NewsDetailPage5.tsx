@@ -19,13 +19,15 @@ export default function NewsDetailPage5() {
       <Navbar />
       <NewsDetailHero />
 
-      <main className={`${pageMainWidthClassName} pb-16 pt-8 lg:pb-24 lg:pt-[2.9167vw]`}>
+      <main className={`${pageMainWidthClassName} pb-16 pt-9 lg:pb-24 lg:pt-[1.875vw]`}>
         <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>
           AI加速可控核聚变商业化，新烛时代完成6000万元天使轮融资
         </h1>
         <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
 
-        <p className={`mx-auto mt-10 w-full lg:mt-[1.875vw] ${newsDetailBodyClassName}`}>
+        <p
+          className={`mx-auto mt-10 w-full indent-[2em] text-justify lg:mt-[1.875vw] ${newsDetailBodyClassName}`}
+        >
           近日，新烛时代宣布完成6000万元天使轮融资。本轮融资由中科创星、鼎峰科创联合领投，水木清华校友基金跟投，
           资金将主要用于核心技术研发、联合验证、平台建设及关键人才引进等，全力推动可控核聚变向商用化加速迈进。
         </p>
@@ -46,7 +48,10 @@ export default function NewsDetailPage5() {
           <h2 className={`m-0 ${newsDetailSectionHeadingClassName}`}>
             核聚变商业化遭遇多重难关，AI技术成破局关键
           </h2>
-          <div className={`mt-4 whitespace-pre-wrap lg:mt-[0.8333vw] ${newsDetailBodyClassName}`} data-node-id="684:166">
+          <div
+            className={`mt-4 whitespace-pre-wrap text-justify [&>p]:indent-[2em] lg:mt-[0.8333vw] ${newsDetailBodyClassName}`}
+            data-node-id="684:166"
+          >
             <p className="m-0">
               当前，核聚变成为全球科技的战略共识方向，正在AI的驱动下快速发展，成为全球主要国家争抢布局的核心。然而，传统核聚变研发模式存在预测参数繁多、控制难度极高、研究成本高昂、推进进度缓慢等痛点，而AI技术的深度融入，为破解这些痛点提供了破局之道。通过深度赋能诊断、预测、控制及设计等核心环节，AI正有力推动可控核聚变加速迈向商业化。
             </p>
@@ -65,7 +70,10 @@ export default function NewsDetailPage5() {
           <h2 className={`m-0 ${newsDetailSectionHeadingClassName}`}>
             “AI+聚变”顶尖跨界团队，加速可控核聚变商业化
           </h2>
-          <div className={`mt-4 whitespace-pre-wrap lg:mt-[0.8333vw] ${newsDetailBodyClassName}`} data-node-id="684:168">
+          <div
+            className={`mt-4 whitespace-pre-wrap text-justify [&>p]:indent-[2em] lg:mt-[0.8333vw] ${newsDetailBodyClassName}`}
+            data-node-id="684:168"
+          >
             <p className="m-0">
               新烛时代是由北京中关村学院与中关村人工智能研究院联合孵化的首批企业，团队配置全面、实力雄厚，精准融合AI4S、核聚变科研与商业运营三大核心能力，形成“技术研发+商业运营”的黄金配置。
             </p>
@@ -92,7 +100,10 @@ export default function NewsDetailPage5() {
           <h2 className={`m-0 ${newsDetailSectionHeadingClassName}`}>
             AI算力暴涨催生终极能源刚需，AI for Fusion蓝海赛道价值凸显
           </h2>
-          <div className={`mt-4 whitespace-pre-wrap lg:mt-[0.8333vw] ${newsDetailBodyClassName}`} data-node-id="684:170">
+          <div
+            className={`mt-4 whitespace-pre-wrap text-justify [&>p]:indent-[2em] lg:mt-[0.8333vw] ${newsDetailBodyClassName}`}
+            data-node-id="684:170"
+          >
             <p className="m-0">
               随着ChatGPT等大模型引爆全球AI竞赛，算力需求指数级增长使全球电力消耗急剧攀升。高盛在近期的报告中预测2030年全球AI用电需求将暴增220%，传统能源难以为继。核聚变作为已知“终极清洁能源”，将成为破解AI能源危机的关键。OpenAI CEO奥特曼曾直言“没有核聚变，AI未来难以为继”。据Allied Market Research等机构预测，聚变能源商业化初期市场规模将达近万亿美元，头部企业预计2030年代实现并网发电。
             </p>
@@ -109,7 +120,10 @@ export default function NewsDetailPage5() {
 
         <section className="mx-auto mt-12 w-full lg:mt-[2.5vw]">
           <h2 className={`m-0 ${newsDetailSectionHeadingClassName}`}>投资人说</h2>
-          <div className={`mt-4 whitespace-pre-wrap lg:mt-[0.8333vw] ${newsDetailBodyClassName}`} data-node-id="684:172">
+          <div
+            className={`mt-4 whitespace-pre-wrap text-justify [&>p]:indent-[2em] lg:mt-[0.8333vw] ${newsDetailBodyClassName}`}
+            data-node-id="684:172"
+          >
             <p className="m-0">
               中科创星 可控核聚变是解决AI时代能源危机的终极方案。我们看好新烛时代将AI技术与聚变物理深度结合的创新路径，这不仅大幅缩短了技术迭代周期，更为实现商业化聚变发电提供了可落地的工程方案。新烛团队兼具顶尖学术背景与产业落地能力，是当下国内稀缺的复合型创业团队。
             </p>

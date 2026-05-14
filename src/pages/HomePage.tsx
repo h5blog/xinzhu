@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 import homeBannerAvif from "../images/home-banner.opt.avif";
 import homeBannerWebp from "../images/home-banner.opt.webp";
 import homeBannerJpg from "../images/home-banner.opt.jpg";
+import homeBanner1xAvif from "../images/home-banner-1x.opt.avif";
+import homeBanner1xWebp from "../images/home-banner-1x.opt.webp";
+import homeBanner1xJpg from "../images/home-banner-1x.opt.jpg";
 import techBgAvif from "../images/tech-bg.opt.avif";
 import techBgWebp from "../images/tech-bg.opt.webp";
 import techBgJpg from "../images/tech-bg.opt.jpg";
@@ -217,18 +220,27 @@ export default function HomePage() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <main>
-      {/* home-banner：稿 1920×461；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
+      {/* home-banner：稿 1920×461；1×1920w + 2×3840w，picture 按宽度/DPR 选用 */}
       <section className="relative aspect-[1920/461] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={homeBannerAvif} type="image/avif" />
-          <source srcSet={homeBannerWebp} type="image/webp" />
+          <source
+            type="image/avif"
+            srcSet={`${homeBanner1xAvif} 1920w, ${homeBannerAvif} 3840w`}
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcSet={`${homeBanner1xWebp} 1920w, ${homeBannerWebp} 3840w`}
+            sizes="100vw"
+          />
           <img
-            src={homeBannerJpg}
+            src={homeBanner1xJpg}
+            srcSet={`${homeBanner1xJpg} 1920w, ${homeBannerJpg} 3840w`}
+            sizes="100vw"
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}
             height={461}
-            sizes="100vw"
             loading="eager"
             fetchPriority="high"
             decoding="sync"
@@ -240,7 +252,7 @@ export default function HomePage() {
       <section>
         <div className="relative overflow-hidden bg-[#F6F6F6]">
           {/* 背景随区块增高铺满；内容撑开外层高度，图用 cover 避免露底 */}
-          {/* tech-bg：稿 1920×583；至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
+          {/* tech-bg：稿 1920×583；1×1920w + AVIF/WebP/JPEG */}
           <div className="relative min-h-0 w-full">
             <picture className="pointer-events-none absolute inset-0 z-0 block h-full w-full">
               <source srcSet={techBgAvif} type="image/avif" />

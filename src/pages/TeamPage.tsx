@@ -6,6 +6,9 @@ import Navbar from "../components/Navbar";
 import teamBannerAvif from "../images/team-banner.opt.avif";
 import teamBannerWebp from "../images/team-banner.opt.webp";
 import teamBannerJpg from "../images/team-banner.opt.jpg";
+import teamBanner1xAvif from "../images/team-banner-1x.opt.avif";
+import teamBanner1xWebp from "../images/team-banner-1x.opt.webp";
+import teamBanner1xJpg from "../images/team-banner-1x.opt.jpg";
 
 /** 1920 稿 20px；简介行高略紧于首页正文 */
 const teamBioText =
@@ -93,18 +96,27 @@ export default function TeamPage() {
   return (
     <div className="min-h-screen bg-white text-[#363636]" data-node-id="103:299">
       <Navbar />
-      {/* team-banner：稿 1920×217；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
+      {/* team-banner：稿 1920×217；1×1920w + 2×3840w */}
       <section className="relative aspect-[1920/217] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={teamBannerAvif} type="image/avif" />
-          <source srcSet={teamBannerWebp} type="image/webp" />
+          <source
+            type="image/avif"
+            srcSet={`${teamBanner1xAvif} 1920w, ${teamBannerAvif} 3840w`}
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcSet={`${teamBanner1xWebp} 1920w, ${teamBannerWebp} 3840w`}
+            sizes="100vw"
+          />
           <img
-            src={teamBannerJpg}
+            src={teamBanner1xJpg}
+            srcSet={`${teamBanner1xJpg} 1920w, ${teamBannerJpg} 3840w`}
+            sizes="100vw"
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}
             height={217}
-            sizes="100vw"
             loading="eager"
             fetchPriority="high"
             decoding="sync"
@@ -114,7 +126,7 @@ export default function TeamPage() {
         </picture>
       </section>
       <main
-        className={`${pageMainWidthClassName} overflow-x-hidden pb-16 pt-12 sm:pb-20 sm:pt-14 md:pt-[72px] lg:pb-[5.2083vw] lg:pt-[4.0625vw]`}
+        className={`${pageMainWidthClassName} overflow-x-hidden pb-16 pt-9 sm:pb-20 lg:pb-[5.2083vw] lg:pt-[1.875vw]`}
       >
         <h1 className="text-[26px] font-semibold leading-tight text-[#f96d01] sm:text-[30px] md:text-[34px] lg:text-[2.0833vw]">创始团队</h1>
 

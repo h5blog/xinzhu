@@ -26,7 +26,7 @@ export default function NewsDetailPage3() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className={`${pageMainWidthClassName} pb-16 pt-8 lg:pb-24 lg:pt-[2.9167vw]`}>
+      <main className={`${pageMainWidthClassName} pb-16 pt-9 lg:pb-24 lg:pt-[1.875vw]`}>
         <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>
           8月27日：《关于推进“人工智能 +”能源高质量发展的实施意见》
         </h1>

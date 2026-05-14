@@ -41,7 +41,7 @@ export default function NewsDetailPage1() {
     <div className="min-h-screen bg-white text-[#363636]">
       <Navbar />
       <NewsDetailHero />
-      <main className={`${pageMainWidthClassName} pb-16 pt-8 lg:pb-24 lg:pt-[2.9167vw]`}>
+      <main className={`${pageMainWidthClassName} pb-16 pt-9 lg:pb-24 lg:pt-[1.875vw]`}>
         <h1 className={`m-0 font-medium ${newsDetailTitleClassName}`}>
           全球各国核聚变战略部署
         </h1>

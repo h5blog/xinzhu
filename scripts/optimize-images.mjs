@@ -15,10 +15,19 @@ const root = path.join(__dirname, "..");
  * - avifQuality: optional AVIF quality（默认 quality-10，含文字的横幅建议单独调高）
  * - webpNearLossless: optional，WebP 近无损，文字/边缘更利（体积会变大）
  * - avifEffort: optional AVIF effort 0–9（默认 6）
- * - fallbackFormat: "jpeg" | "png" — 兜底图格式（PNG 无损更清晰，体积更大）
+ * - outputBase: optional basename (no ext) for .opt.* outputs，同源多档宽时用于如 home-banner-1x
  */
 const targets = [
-  // 首页顶栏横幅 home-banner：稿 1920×461@1920；导出 3840 宽覆盖 2×；JPEG 兜底减小体积
+  // 首页顶栏横幅 home-banner：稿 1920×461；1× 1920w + 2× 3840w，picture 用 srcset 按 DPR/宽度选用
+  {
+    input: "src/images/home-banner.png",
+    maxWidth: 1920,
+    outputBase: "home-banner-1x",
+    quality: 88,
+    avifQuality: 82,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   {
     input: "src/images/home-banner.png",
     maxWidth: 3840,
@@ -28,7 +37,16 @@ const targets = [
     fallbackFormat: "jpeg",
   },
   { input: "src/images/news-detail-5-main.png", maxWidth: 1064, quality: 72 },
-  // 新闻详情页顶栏 news-detail-banner：稿 1920×217@1920；导出 3840 宽覆盖 2×；JPEG 兜底
+  // 新闻详情页顶栏 news-detail-banner：稿 1920×217；1×1920w + 2×3840w
+  {
+    input: "src/images/news-detail-banner.png",
+    maxWidth: 1920,
+    outputBase: "news-detail-banner-1x",
+    quality: 88,
+    avifQuality: 82,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   {
     input: "src/images/news-detail-banner.png",
     maxWidth: 3840,
@@ -37,7 +55,16 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 岗位详情页顶栏 job-detail-banner：稿 1920×217@1920；导出 3840 宽覆盖 2×；JPEG 兜底
+  // 岗位详情页顶栏 job-detail-banner：稿 1920×217；1× + 2×
+  {
+    input: "src/images/job-detail-banner.png",
+    maxWidth: 1920,
+    outputBase: "job-detail-banner-1x",
+    quality: 88,
+    avifQuality: 82,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   {
     input: "src/images/job-detail-banner.png",
     maxWidth: 3840,
@@ -46,7 +73,16 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 加入我们页顶栏 job-banner：稿 1920×217@1920；导出 3840 宽覆盖 2×；JPEG 兜底
+  // 加入我们页顶栏 job-banner：稿 1920×217；1× + 2×
+  {
+    input: "src/images/job-banner.png",
+    maxWidth: 1920,
+    outputBase: "job-banner-1x",
+    quality: 88,
+    avifQuality: 82,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   {
     input: "src/images/job-banner.png",
     maxWidth: 3840,
@@ -55,7 +91,16 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 创始团队页顶栏 team-banner：稿 1920×217@1920；导出 3840 宽覆盖 2×；JPEG 兜底
+  // 创始团队页顶栏 team-banner：稿 1920×217；1× + 2×
+  {
+    input: "src/images/team-banner.png",
+    maxWidth: 1920,
+    outputBase: "team-banner-1x",
+    quality: 88,
+    avifQuality: 82,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   {
     input: "src/images/team-banner.png",
     maxWidth: 3840,
@@ -64,20 +109,48 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 首页「创始团队」区块背景（首屏下方：体积适中即可）
+  // 首页「创始团队」区块背景：稿 1920 宽；1×1920w + AVIF/WebP/JPEG（避免 PNG 兜底体积膨胀）
   {
     input: "src/images/team-bg.png",
     maxWidth: 1920,
     quality: 82,
     avifQuality: 76,
     avifEffort: 6,
-    fallbackFormat: "png",
+    fallbackFormat: "jpeg",
   },
-  // 首页创始团队头像（展示约 176px～9vw，352 宽覆盖 2x）
-  { input: "src/images/team-1.jpg", maxWidth: 352, quality: 82 },
-  { input: "src/images/team-2.jpg", maxWidth: 352, quality: 82 },
-  { input: "src/images/team-3.jpg", maxWidth: 352, quality: 82 },
-  { input: "src/images/team-4.jpg", maxWidth: 352, quality: 82 },
+  // 首页创始团队头像：稿 187px@1920，源 374×375；导出 ≤374 + AVIF/WebP/JPEG
+  {
+    input: "src/images/home-zw.png",
+    maxWidth: 374,
+    quality: 82,
+    avifQuality: 72,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  {
+    input: "src/images/home-wy.png",
+    maxWidth: 374,
+    quality: 82,
+    avifQuality: 72,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  {
+    input: "src/images/home-wg.png",
+    maxWidth: 374,
+    quality: 82,
+    avifQuality: 72,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  {
+    input: "src/images/home-lty.png",
+    maxWidth: 374,
+    quality: 82,
+    avifQuality: 72,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   // 加入我们「薪酬福利」fuli：稿 1124×687@1920；导出 2400 宽覆盖 2×；AVIF/WebP/JPEG 控体积
   {
     input: "src/images/fuli.png",
@@ -93,7 +166,16 @@ const targets = [
   { input: "src/images/news-detail-1-main.png", maxWidth: 1103, quality: 72 },
   { input: "src/images/news-detail-4-main.png", maxWidth: 1064, quality: 72 },
   { input: "src/images/our-team.png", maxWidth: 1920, quality: 70 },
-  // 技术中心顶栏 tech-banner：稿 1920×461@1920；导出 3840 宽覆盖 2×；JPEG 兜底控体积
+  // 技术中心顶栏 tech-banner：稿 1920×461；1× + 2×
+  {
+    input: "src/images/tech-banner.png",
+    maxWidth: 1920,
+    outputBase: "tech-banner-1x",
+    quality: 88,
+    avifQuality: 82,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   {
     input: "src/images/tech-banner.png",
     maxWidth: 3840,
@@ -111,7 +193,25 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 新闻中心顶栏 news-banner：稿 1920×217@1920；导出 3840 宽覆盖 2×；JPEG 兜底
+  // 技术核心页「核心技术体系示意图」：源 1132×483，1× 多格式替代 ~550KB PNG
+  {
+    input: "src/images/jishu-b.png",
+    maxWidth: 1132,
+    quality: 82,
+    avifQuality: 70,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 新闻中心顶栏 news-banner：稿 1920×217；1× + 2×
+  {
+    input: "src/images/news-banner.png",
+    maxWidth: 1920,
+    outputBase: "news-banner-1x",
+    quality: 88,
+    avifQuality: 82,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   {
     input: "src/images/news-banner.png",
     maxWidth: 3840,
@@ -120,7 +220,16 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 公司简介页首屏 gsjj-banner：稿 1920×461@1920；导出 3840 宽覆盖 2×；AVIF/WebP/JPEG 控体积
+  // 公司简介页首屏 gsjj-banner：稿 1920×461；1× + 2×
+  {
+    input: "src/images/gsjj-banner.png",
+    maxWidth: 1920,
+    outputBase: "gsjj-banner-1x",
+    quality: 88,
+    avifQuality: 82,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
   {
     input: "src/images/gsjj-banner.png",
     maxWidth: 3840,
@@ -188,10 +297,10 @@ const targets = [
   { input: "src/images/news-thumb-3.jpg", maxWidth: 716, quality: 72 },
   { input: "src/images/news-thumb-4.jpg", maxWidth: 716, quality: 72 },
   { input: "src/images/news-thumb-5.jpg", maxWidth: 716, quality: 72 },
-  // 首页 AI 解决方案区 tech-bg：稿 1920×583@1920；导出 3840 宽覆盖 2×；AVIF/WebP/JPEG 控体积
+  // 首页 AI 解决方案区 tech-bg：稿 1920×583@1920；1×1920w 控体积（不重导 3840 2×）
   {
     input: "src/images/tech-bg.png",
-    maxWidth: 3840,
+    maxWidth: 1920,
     quality: 88,
     avifQuality: 80,
     avifEffort: 7,
@@ -206,10 +315,19 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 首页「核心战略协作方」下方白底区背景：稿 1920×1460，源 3840 宽；导出 3840 覆盖 1920 CSS 下 2×
+  // 首页矩阵卡片 3D 图标：稿展示宽 170px@1920（2×≈340）；源已更新为大图，导出宽 ≤400 + AVIF/WebP/PNG
+  ...[1, 2, 3, 4, 5, 6].map((n) => ({
+    input: `src/images/juzhen-icon${n}.png`,
+    maxWidth: 400,
+    quality: 82,
+    avifQuality: 70,
+    avifEffort: 7,
+    fallbackFormat: "png",
+  })),
+  // 首页「核心战略协作方」下方白底区背景：稿 1920×1460；1×1920w + AVIF/WebP/JPEG（不重导 3840 2×）
   {
     input: "src/images/partner-bg.png",
-    maxWidth: 3840,
+    maxWidth: 1920,
     quality: 72,
     avifQuality: 64,
     avifEffort: 7,
@@ -231,10 +349,10 @@ const targets = [
   },
 ];
 
-function toOutputPaths(absInput, fallbackFormat = "jpeg") {
+function toOutputPaths(absInput, fallbackFormat = "jpeg", outputBase) {
   const dir = path.dirname(absInput);
   const ext = path.extname(absInput);
-  const base = path.basename(absInput, ext);
+  const base = outputBase ?? path.basename(absInput, ext);
   const fallbackExt = fallbackFormat === "png" ? ".png" : ".jpg";
   return {
     avif: path.join(dir, `${base}.opt.avif`),
@@ -252,7 +370,7 @@ async function optimizeOne(target) {
 
   const meta = await sharp(absInput).metadata();
   const fallbackFormat = target.fallbackFormat ?? "jpeg";
-  const outputs = toOutputPaths(absInput, fallbackFormat);
+  const outputs = toOutputPaths(absInput, fallbackFormat, target.outputBase);
 
   let pipeline;
   let sizeLabel;
@@ -286,7 +404,8 @@ async function optimizeOne(target) {
   }
 
   const fbLabel = fallbackFormat === "png" ? ".opt.png" : ".opt.jpg";
-  console.log(`[ok] ${target.input} (${meta.width ?? "?"}x${meta.height ?? "?"}) -> ${sizeLabel}; wrote .opt.avif/.opt.webp/${fbLabel}`);
+  const outLabel = target.outputBase ? `${target.outputBase}.opt.*` : `${path.basename(absInput, path.extname(absInput))}.opt.*`;
+  console.log(`[ok] ${target.input} (${meta.width ?? "?"}x${meta.height ?? "?"}) -> ${sizeLabel}; wrote ${outLabel} (${fbLabel})`);
 }
 
 for (const target of targets) {

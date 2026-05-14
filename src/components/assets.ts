@@ -15,7 +15,7 @@ import partnerIcon4 from "../images/partner-icon4.jpg";
 import partnerIcon5 from "../images/partner-icon5.jpg";
 import partnerIcon6 from "../images/partner-icon6.jpg";
 import qrcode from "../images/qrcode.jpg";
-import teamBg from "../images/team-bg.opt.webp";
+import gongan from "../images/gongan.png";
 import teamListAvif from "../images/team-list.opt.avif";
 import teamListWebp from "../images/team-list.opt.webp";
 import teamListJpg from "../images/team-list.opt.jpg";
@@ -41,16 +41,29 @@ import joinLine35 from "../images/join-line-35.svg";
 import joinArrow from "../images/join-arrow.svg";
 import joinQr from "../images/join-qr.jpg";
 import job from "../images/job.png";
-import juzhenAvif from "../images/juzhen.opt.avif";
-import juzhenWebp from "../images/juzhen.opt.webp";
-import juzhenJpg from "../images/juzhen.opt.jpg";
-import jishuB from "../images/jishu-b.png";
+import juzhenIcon1Avif from "../images/juzhen-icon1.opt.avif";
+import juzhenIcon1Webp from "../images/juzhen-icon1.opt.webp";
+import juzhenIcon1Png from "../images/juzhen-icon1.opt.png";
+import juzhenIcon2Avif from "../images/juzhen-icon2.opt.avif";
+import juzhenIcon2Webp from "../images/juzhen-icon2.opt.webp";
+import juzhenIcon2Png from "../images/juzhen-icon2.opt.png";
+import juzhenIcon3Avif from "../images/juzhen-icon3.opt.avif";
+import juzhenIcon3Webp from "../images/juzhen-icon3.opt.webp";
+import juzhenIcon3Png from "../images/juzhen-icon3.opt.png";
+import juzhenIcon4Avif from "../images/juzhen-icon4.opt.avif";
+import juzhenIcon4Webp from "../images/juzhen-icon4.opt.webp";
+import juzhenIcon4Png from "../images/juzhen-icon4.opt.png";
+import juzhenIcon5Avif from "../images/juzhen-icon5.opt.avif";
+import juzhenIcon5Webp from "../images/juzhen-icon5.opt.webp";
+import juzhenIcon5Png from "../images/juzhen-icon5.opt.png";
+import juzhenIcon6Avif from "../images/juzhen-icon6.opt.avif";
+import juzhenIcon6Webp from "../images/juzhen-icon6.opt.webp";
+import juzhenIcon6Png from "../images/juzhen-icon6.opt.png";
 import techCoreSectionBg from "../images/tech-core-section-bg.jpg";
 export const assets = {
   heroIcon,
   heroIconAvif,
   heroIconWebp,
-  teamBg,
   teamListAvif,
   teamListWebp,
   teamListJpg,
@@ -68,6 +81,7 @@ export const assets = {
   partnerIcon5,
   partnerIcon6,
   qrcode,
+  gongan,
   zwAvif,
   zwWebp,
   zwJpg,
@@ -90,10 +104,14 @@ export const assets = {
   joinArrow,
   joinQr,
   job,
-  juzhenAvif,
-  juzhenWebp,
-  juzhenJpg,
-  jishuB,
+  juzhenMatrixIconPack: [
+    { avif: juzhenIcon1Avif, webp: juzhenIcon1Webp, png: juzhenIcon1Png, width: 400, height: 401 },
+    { avif: juzhenIcon2Avif, webp: juzhenIcon2Webp, png: juzhenIcon2Png, width: 400, height: 372 },
+    { avif: juzhenIcon3Avif, webp: juzhenIcon3Webp, png: juzhenIcon3Png, width: 400, height: 439 },
+    { avif: juzhenIcon4Avif, webp: juzhenIcon4Webp, png: juzhenIcon4Png, width: 400, height: 400 },
+    { avif: juzhenIcon5Avif, webp: juzhenIcon5Webp, png: juzhenIcon5Png, width: 400, height: 398 },
+    { avif: juzhenIcon6Avif, webp: juzhenIcon6Webp, png: juzhenIcon6Png, width: 400, height: 420 },
+  ],
   techCoreSectionBg,
 } as const;
 

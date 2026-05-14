@@ -7,6 +7,9 @@ import Navbar from "../components/Navbar";
 import newsBannerAvif from "../images/news-banner.opt.avif";
 import newsBannerWebp from "../images/news-banner.opt.webp";
 import newsBannerJpg from "../images/news-banner.opt.jpg";
+import newsBanner1xAvif from "../images/news-banner-1x.opt.avif";
+import newsBanner1xWebp from "../images/news-banner-1x.opt.webp";
+import newsBanner1xJpg from "../images/news-banner-1x.opt.jpg";
 import n1Avif from "../images/news-thumb-1.opt.avif";
 import n1Webp from "../images/news-thumb-1.opt.webp";
 import n1Jpg from "../images/news-thumb-1.opt.jpg";
@@ -125,18 +128,27 @@ export default function NewsPage() {
     <div className="min-h-screen bg-white text-[#363636]" data-name="新闻中心" data-node-id="83:169">
       <Navbar />
 
-      {/* news-banner：稿 1920×217；资源至多 3840 宽（2×）+ AVIF/WebP/JPEG */}
+      {/* news-banner：稿 1920×217；1×1920w + 2×3840w */}
       <section className="relative aspect-[1920/217] w-full overflow-hidden" data-name="banner-wrap">
         <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={newsBannerAvif} type="image/avif" />
-          <source srcSet={newsBannerWebp} type="image/webp" />
+          <source
+            type="image/avif"
+            srcSet={`${newsBanner1xAvif} 1920w, ${newsBannerAvif} 3840w`}
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcSet={`${newsBanner1xWebp} 1920w, ${newsBannerWebp} 3840w`}
+            sizes="100vw"
+          />
           <img
-            src={newsBannerJpg}
+            src={newsBanner1xJpg}
+            srcSet={`${newsBanner1xJpg} 1920w, ${newsBannerJpg} 3840w`}
+            sizes="100vw"
             alt=""
             className="h-full w-full object-cover object-center"
             width={1920}
             height={217}
-            sizes="100vw"
             loading="eager"
             fetchPriority="high"
             decoding="sync"
@@ -153,23 +165,23 @@ export default function NewsPage() {
         </h1>
       </div>
 
-      {/* 83:243–266 Tab：底边统一 4px 避免切换跳动；lg 宽度 368/1920 */}
+      {/* Tab：文字色 + 底轨灰线；橘色指示条 translate 滑动（约 300ms） */}
       <div
         className="mx-auto mt-10 flex w-full justify-center overflow-x-auto px-2 lg:mt-[2.0833vw] lg:px-0"
         role="tablist"
         aria-label="资讯分类"
       >
-        <div className="grid w-full max-w-[368px] grid-cols-2 gap-0 sm:max-w-[min(100%,400px)] lg:max-w-none lg:w-[19.1667vw]">
+        <div className="relative grid w-full max-w-[368px] grid-cols-2 gap-0 sm:max-w-[min(100%,400px)] lg:max-w-none lg:w-[19.1667vw]">
           <button
             id="tab-industry"
             type="button"
             role="tab"
             aria-selected={tab === "industry"}
             aria-controls="news-tab-panel"
-            className={`min-h-[48px] whitespace-nowrap border-b-[4px] px-2 pb-3 pt-2 text-center font-semibold outline-none transition-[color,border-color,background-color] duration-200 sm:min-h-[52px] sm:px-4 lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 ${introBody20ClassName} ${
+            className={`relative z-10 min-h-[48px] whitespace-nowrap border-b-0 px-2 pb-3 pt-2 text-center font-semibold outline-none transition-colors duration-200 sm:min-h-[52px] sm:px-4 lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 text-[max(20px,calc(100vw*26/1920))] ${
               tab === "industry"
-                ? "border-[#f96d01] text-[#f96d01]"
-                : "border-[#e8e8e8] text-[#363636] hover:border-[#f96d01]/40 hover:bg-black/[0.02] hover:text-[#f96d01]"
+                ? "text-[#f96d01]"
+                : "text-[#363636] hover:bg-black/[0.02] hover:text-[#f96d01]"
             }`}
             onClick={() => setTab("industry")}
             data-node-id="83:243"
@@ -182,16 +194,26 @@ export default function NewsPage() {
             role="tab"
             aria-selected={tab === "company"}
             aria-controls="news-tab-panel"
-            className={`min-h-[48px] whitespace-nowrap border-b-[4px] px-2 pb-3 pt-2 text-center font-semibold outline-none transition-[color,border-color,background-color] duration-200 sm:min-h-[52px] sm:px-4 lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 ${introBody20ClassName} ${
+            className={`relative z-10 min-h-[48px] whitespace-nowrap border-b-0 px-2 pb-3 pt-2 text-center font-semibold outline-none transition-colors duration-200 sm:min-h-[52px] sm:px-4 lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 text-[max(20px,calc(100vw*26/1920))] ${
               tab === "company"
-                ? "border-[#f96d01] text-[#f96d01]"
-                : "border-[#e8e8e8] text-[#363636] hover:border-[#f96d01]/40 hover:bg-black/[0.02] hover:text-[#f96d01]"
+                ? "text-[#f96d01]"
+                : "text-[#363636] hover:bg-black/[0.02] hover:text-[#f96d01]"
             }`}
             onClick={() => setTab("company")}
             data-node-id="83:244"
           >
             公司新闻
           </button>
+          {/* 底轨 + 橘色指示条随 Tab 滑动 */}
+          <div
+            className="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-1 bg-[#e8e8e8] sm:h-1 lg:h-[min(4px,0.2083vw)]"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute bottom-0 left-0 z-[1] h-1 w-1/2 origin-left bg-[#f96d01] transition-transform duration-300 ease-out motion-reduce:transition-none sm:h-1 lg:h-[min(4px,0.2083vw)]"
+            style={{ transform: tab === "industry" ? "translateX(0)" : "translateX(100%)" }}
+            aria-hidden
+          />
         </div>
       </div>
 
@@ -246,13 +268,14 @@ export default function NewsPage() {
                         {item.title}
                       </h2>
                       <p
+                      style={{lineHeight:"1"}}
                         className="mt-3 text-[15px] font-normal leading-normal text-[#888] sm:mt-3.5 sm:text-[16px] lg:mt-[0.625vw] lg:text-[0.8333vw]"
                         data-date
                       >
                         {item.date}
                       </p>
                       <p
-                        className={`mt-4 line-clamp-3 break-words whitespace-pre-line sm:mt-5 lg:mt-[1.0417vw] ${newsExcerptBody}`}
+                        className={`mt-2.5 line-clamp-3 break-words whitespace-pre-line sm:mt-3 lg:mt-[0.625vw] ${newsExcerptBody}`}
                       >
                         {item.excerpt}
                       </p>
