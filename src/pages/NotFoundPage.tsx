@@ -61,7 +61,7 @@ export default function NotFoundPage() {
         <h1 className="mt-10 text-[56px] font-bold leading-none tracking-tight text-[#363636] sm:text-[64px]">
           404
         </h1>
-        <p className="mt-4 text-[20px] font-medium leading-normal text-[#363636] sm:text-[22px]">页面丢了</p>
+        <p className="mt-4 text-[16px] font-medium leading-normal text-[#363636] sm:text-[22px]">页面丢了</p>
         <Link
           to="/"
           className="mt-10 inline-flex min-h-[44px] items-center justify-center border border-solid border-[#f96d01] bg-transparent px-10 text-[16px] font-medium leading-none text-[#f96d01] transition hover:bg-[#f96d01]/5"

@@ -22,29 +22,29 @@ import fuliAvif from "../images/fuli.opt.avif";
 import fuliWebp from "../images/fuli.opt.webp";
 import fuliJpg from "../images/fuli.opt.jpg";
 
-/** 1920 稿 20px；字族/行高/字距同首页 AI 段 */
+/** 1920 稿 16px；字族/行高/字距同首页 AI 段 */
 const joinBodyText =
-  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-black";
+  "font-['PingFang_SC'] text-[16px] leading-[1.7] tracking-[0.03em] text-black";
 
 const joinProcessText =
-  "break-keep font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] font-semibold text-[#f96d01]";
+  "break-keep font-['PingFang_SC'] text-[16px] leading-[1.7] tracking-[0.03em] font-semibold text-[#f96d01]";
 
 const joinProcessStepId =
-  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] font-medium text-[#f96d01]";
+  "font-['PingFang_SC'] text-[16px] font-medium text-[#f96d01]";
 
 const joinProcessCircleSize = "size-[max(56px,calc(100vw*68/1920))]";
 const joinProcessCircleRowH = "h-[max(56px,calc(100vw*68/1920))]";
 const joinProcessConnectorW = "w-[max(12px,calc(100vw*74/1920))]";
 
 const joinSectionHeading =
-  "text-center font-['PingFang_SC'] text-[max(22px,calc(100vw*40/1920))] font-semibold leading-tight text-[#f96d01]";
+  "text-center font-['PingFang_SC'] text-[28px] font-semibold leading-tight text-[#f96d01]";
 
 const joinJobCardTitle =
-  "m-0 font-['PingFang_SC'] text-[max(18px,calc(100vw*24/1920))] font-semibold leading-tight text-[#f96d01]";
+  "m-0 font-['PingFang_SC'] text-[18px] font-semibold leading-tight text-[#f96d01]";
 
 /** 1920 稿 16px；与首页流体字号规则一致 */
 const joinJobDetailButtonText =
-  "font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[max(16px,calc(100vw*16/1920))] font-normal leading-none text-white";
+  "font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[16px] font-normal leading-none text-white";
 
 /** 1920 稿背景 152×40、圆角 25、图文间距 4px；箭头约 15.5×14 */
 const joinJobDetailButtonBox =

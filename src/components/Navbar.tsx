@@ -18,10 +18,10 @@ import techIconAvif from "../images/tech-icon.opt.avif";
 
 /**
  * 与首页引言同一套：PingFang、leading-[1.7]、tracking-[0.03em]；
- * 稿面 1920 主菜单 16px → text-[max(16px,calc(100vw*16/1920))]（窄屏不低于 16px，与引言的 max 下限规则一致）。
+ * 稿面 1920 主菜单 16px（固定 px）。
  */
 const linkBase =
-  "relative whitespace-nowrap font-['PingFang_SC'] text-[max(16px,calc(100vw*16/1920))] font-medium leading-[1.7] tracking-[0.03em] transition-colors duration-200 ease-out motion-reduce:transition-none";
+  "relative whitespace-nowrap font-['PingFang_SC'] text-[16px] font-medium leading-[1.7] tracking-[0.03em] transition-colors duration-200 ease-out motion-reduce:transition-none";
 
 /** 1920 稿顶栏内容区高度 58px，随视口比例缩放，窄屏不低于 58px（与稿一致） */
 const navBarInnerMinH = "min-h-[max(58px,calc(100vw*58/1920))]";
@@ -208,7 +208,7 @@ function SubmenuLink({
     <Link
       to={to}
       onMouseEnter={onHoverPrefetch}
-      className={`group/subitem relative flex min-h-[44px] items-center justify-center whitespace-nowrap px-[clamp(10px,0.7vw,14px)] text-center font-['PingFang_SC'] text-[max(16px,calc(100vw*16/1920))] font-medium leading-[1.7] tracking-[0.03em] transition-[color,background-color,transform] duration-200 ease-out motion-reduce:transition-colors active:scale-[0.98] motion-reduce:active:scale-100 lg:min-h-[3.57em] ${
+      className={`group/subitem relative flex min-h-[44px] items-center justify-center whitespace-nowrap px-[clamp(10px,0.7vw,14px)] text-center font-['PingFang_SC'] text-[16px] font-medium leading-[1.7] tracking-[0.03em] transition-[color,background-color,transform] duration-200 ease-out motion-reduce:transition-colors active:scale-[0.98] motion-reduce:active:scale-100 lg:min-h-[3.57em] ${
         active ? "bg-[rgba(255,255,255,0.8)] text-[#f96d01]" : "text-[#363636] hover:bg-[rgba(255,255,255,0.8)] hover:text-[#f96d01]"
       }`}
     >

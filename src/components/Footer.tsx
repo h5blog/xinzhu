@@ -1,17 +1,17 @@
 import { CONTENT_MAX_WIDTH } from "../constants/contentAlign";
 import { assets } from "./assets";
 
-/** 1920 稿 20px；与首页段落同一套：PingFang、流体字号、行高、字距 */
+/** 1920 稿 16px；与首页段落同一套：PingFang、流体字号、行高、字距 */
 const footerSectionTitle =
-  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] font-medium leading-[1.7] tracking-[0.03em] text-[#f96d01]";
+  "font-['PingFang_SC'] text-[16px] font-medium leading-[1.7] tracking-[0.03em] text-[#f96d01]";
 
 /** 1920 稿 16px */
 const footerBodyText =
-  "font-['PingFang_SC'] text-[max(14px,calc(100vw*16/1920))] font-medium leading-[1.7] tracking-[0.03em] text-[#e8e8e8]";
+  "font-['PingFang_SC'] text-[14px] font-medium leading-[1.7] tracking-[0.03em] text-[#e8e8e8]";
 
 /** 1920 稿 12px */
 const footerLegalText =
-  "font-['PingFang_SC'] text-[max(11px,calc(100vw*12/1920))] font-medium leading-[1.7] tracking-[0.03em] text-[#9c9c9c]";
+  "font-['PingFang_SC'] text-[12px] font-medium leading-[1.7] tracking-[0.03em] text-[#9c9c9c]";
 
 /**
  * Figma 470:41 底栏 #252525；内容区与全站主列同宽（1200@1920）左对齐。

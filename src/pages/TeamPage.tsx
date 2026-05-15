@@ -10,15 +10,15 @@ import teamBanner1xAvif from "../images/team-banner-1x.opt.avif";
 import teamBanner1xWebp from "../images/team-banner-1x.opt.webp";
 import teamBanner1xJpg from "../images/team-banner-1x.opt.jpg";
 
-/** 1920 稿 20px；简介行高略紧于首页正文 */
+/** 1920 稿 16px；简介行高略紧于首页正文 */
 const teamBioText =
-  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.55] tracking-[0.03em] text-black";
+  "font-['PingFang_SC'] text-[16px] tracking-[0.03em] text-black";
 
 const teamNameText =
-  "whitespace-pre-wrap break-words font-['PingFang_SC'] text-[max(18px,calc(100vw*32/1920))] font-semibold leading-tight tracking-[0.03em] text-[#121212]";
+  "whitespace-pre-wrap break-words font-['PingFang_SC'] text-[18px] font-semibold leading-tight tracking-[0.03em] text-[#121212]";
 
 const teamTitleText =
-  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] font-semibold leading-tight tracking-[0.03em] text-[#121212]";
+  "font-['PingFang_SC'] text-[16px] font-semibold leading-tight tracking-[0.03em] text-[#121212]";
 
 const members = [
   {
@@ -128,7 +128,7 @@ export default function TeamPage() {
       <main
         className={`${pageMainWidthClassName} overflow-x-hidden pb-16 pt-9 sm:pb-20 lg:pb-[5.2083vw] lg:pt-[1.875vw]`}
       >
-        <h1 className="text-[26px] font-semibold leading-tight text-[#f96d01] sm:text-[30px] md:text-[34px] lg:text-[2.0833vw]">创始团队</h1>
+        <h1 className="text-[20px] font-semibold leading-tight text-[#f96d01] sm:text-[30px] md:text-[34px] lg:text-[28px]">创始团队</h1>
 
         <div className="mt-6 flex flex-col gap-0 sm:mt-8 lg:mt-[1.5625vw] lg:gap-y-[min(12px,0.625vw)]">
           {members.map((m, index) => (

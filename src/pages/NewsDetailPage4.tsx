@@ -45,7 +45,7 @@ export default function NewsDetailPage4() {
       <NewsDetailHero />
       <main className={`${pageMainWidthClassName} pb-16 pt-9 lg:pb-24 lg:pt-[1.875vw]`}>
         <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>AI 赋能聚变已成全球共识</h1>
-        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
+        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw]" />
         <section className={`mt-10 lg:mt-[2.0833vw] ${detail4StripeGapY}`}>
           {companies.map((item, idx) => (
             <div
@@ -126,7 +126,7 @@ export default function NewsDetailPage4() {
                   key={`${journal}-${year}`}
                   className="grid grid-cols-1 gap-4 lg:grid-cols-[400px_48px_minmax(0,1fr)] lg:items-start lg:gap-x-[1.25vw] lg:gap-y-0"
                 >
-                  <p className="m-0 whitespace-nowrap text-left text-[24px] font-semibold leading-[30px] text-[#f96d01] lg:min-w-0 lg:text-right lg:text-[1.25vw] lg:leading-[1.5625vw]">
+                  <p className="m-0 whitespace-nowrap text-left text-[18px] font-semibold leading-[23px] text-[#f96d01] lg:min-w-0 lg:text-right lg:text-[18px] lg:leading-[23px]">
                     <span>{journal}</span>
                     <span className="ml-2">{year}</span>
                   </p>

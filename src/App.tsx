@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import { HashRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import HomePage from "./pages/HomePage";
 
@@ -23,25 +23,37 @@ function ScrollToTop() {
   return null;
 }
 
+/** 路由切换：淡入 + 轻微上移；无 path 的布局路由，子路由经 Outlet 渲染 */
+function PageTransitionShell() {
+  const { pathname } = useLocation();
+  return (
+    <div key={pathname} className="page-route-enter min-h-[100dvh] w-full">
+      <Outlet />
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <HashRouter>
       <ScrollToTop />
       <Suspense fallback={<div className="min-h-screen w-full bg-white" />}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/news/1" element={<NewsDetailPage1 />} />
-          <Route path="/news/2" element={<NewsDetailPage2 />} />
-          <Route path="/news/3" element={<NewsDetailPage3 />} />
-          <Route path="/news/4" element={<NewsDetailPage4 />} />
-          <Route path="/news/5" element={<NewsDetailPage5 />} />
-          <Route path="/team" element={<TeamPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/join" element={<JoinUsPage />} />
-          <Route path="/join/:jobId" element={<JobDetailPage />} />
-          <Route path="/tech" element={<TechCorePage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route element={<PageTransitionShell />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/1" element={<NewsDetailPage1 />} />
+            <Route path="/news/2" element={<NewsDetailPage2 />} />
+            <Route path="/news/3" element={<NewsDetailPage3 />} />
+            <Route path="/news/4" element={<NewsDetailPage4 />} />
+            <Route path="/news/5" element={<NewsDetailPage5 />} />
+            <Route path="/team" element={<TeamPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/join" element={<JoinUsPage />} />
+            <Route path="/join/:jobId" element={<JobDetailPage />} />
+            <Route path="/tech" element={<TechCorePage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
         </Routes>
       </Suspense>
     </HashRouter>

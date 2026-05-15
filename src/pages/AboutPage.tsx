@@ -16,11 +16,16 @@ import aboutGallery1Jpg from "../images/about-gallery-1.opt.jpg";
 import aboutGallery2Avif from "../images/about-gallery-2.opt.avif";
 import aboutGallery2Webp from "../images/about-gallery-2.opt.webp";
 import aboutGallery2Jpg from "../images/about-gallery-2.opt.jpg";
-import gsjjIcon from "../images/gsjj-icon.png";
+import gsjjIconAvif from "../images/gsjj-icon.opt.avif";
+import gsjjIconWebp from "../images/gsjj-icon.opt.webp";
+import gsjjIconJpg from "../images/gsjj-icon.opt.jpg";
+import gsjjIcon1xAvif from "../images/gsjj-icon-1x.opt.avif";
+import gsjjIcon1xWebp from "../images/gsjj-icon-1x.opt.webp";
+import gsjjIcon1xJpg from "../images/gsjj-icon-1x.opt.jpg";
 
-/** 1920 稿 20px；字族/行高/字距同首页 AI 段 */
+/** 1920 稿 16px；字族/行高/字距同首页 AI 段 */
 const aboutBodyText =
-  "font-['PingFang_SC'] text-[max(16px,calc(100vw*20/1920))] leading-[1.7] tracking-[0.03em] text-black";
+  "font-['PingFang_SC'] text-[16px] leading-[1.7] tracking-[0.03em] text-black";
 
 /** 中文正文首行缩进两个汉字（随字号缩放） */
 const indent2 = "[text-indent:2em]";
@@ -103,7 +108,8 @@ export default function AboutPage() {
           <p className="mb-4">
             我们以<span className="font-semibold text-[#f96d01]">“工程痛点”为导向</span>
             ，以<span className="font-semibold text-[#f96d01]">“物理先验”为基石</span>
-            ，构建起一个<span className="font-semibold text-[#f96d01]">“物理+数据”双轮驱动的强大内核</span>。
+            ，构建起一个
+            <span className="whitespace-nowrap font-semibold text-[#f96d01]">“物理+数据”双轮驱动的强大内核</span>。
           </p>
           <p className="mb-4">
             我们将以标准化的智能服务赋能全行业，让每一台昂贵的聚变装置都能在我们的系统支持下高效运转。而放眼终局，这套系统将成为未来聚变电厂真正的“灵魂”。
@@ -114,13 +120,29 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-12 w-full sm:mt-14 md:mt-16 lg:mt-[min(5rem,4.17vw)]">
-          <img
-            src={gsjjIcon}
-            alt="从实验室辅助工具到驱动聚变电厂硬件运行的神经中枢"
-            className="block h-auto w-full max-w-full object-contain"
-            loading="lazy"
-            decoding="async"
-          />
+          <picture className="mx-auto block aspect-[1772/284] w-full max-w-full">
+            <source
+              type="image/avif"
+              srcSet={`${gsjjIcon1xAvif} 1200w, ${gsjjIconAvif} 1772w`}
+              sizes="(max-width: 1023px) calc(100vw - 2rem), min(1200px, calc(100vw * 1200 / 1920))"
+            />
+            <source
+              type="image/webp"
+              srcSet={`${gsjjIcon1xWebp} 1200w, ${gsjjIconWebp} 1772w`}
+              sizes="(max-width: 1023px) calc(100vw - 2rem), min(1200px, calc(100vw * 1200 / 1920))"
+            />
+            <img
+              src={gsjjIcon1xJpg}
+              srcSet={`${gsjjIcon1xJpg} 1200w, ${gsjjIconJpg} 1772w`}
+              sizes="(max-width: 1023px) calc(100vw - 2rem), min(1200px, calc(100vw * 1200 / 1920))"
+              alt="从实验室辅助工具到驱动聚变电厂硬件运行的神经中枢"
+              width={1772}
+              height={284}
+              className="block h-auto w-full object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
 
         <div className="mt-12 grid w-full grid-cols-1 gap-5 sm:mt-14 sm:gap-6 md:mt-16 md:grid-cols-2 lg:mt-[min(5rem,4.17vw)] lg:gap-8">

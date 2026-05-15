@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { introBody20ClassName, newsListTitleClassName } from "../constants/typography";
+import { introBody16ClassName, newsListTitleClassName } from "../constants/typography";
 import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -28,16 +28,16 @@ import n5Jpg from "../images/news-thumb-5.opt.jpg";
 
 type TabKey = "industry" | "company";
 
-/** 1920 稿摘要 20px；与首页技术引言、`introBody20ClassName` 同源 */
-const newsExcerptBody = `${introBody20ClassName} text-[#666]`;
+/** 1920 稿摘要 16px；与首页技术引言、`introBody16ClassName` 同源 */
+const newsExcerptBody = `${introBody16ClassName} text-[#666]`;
 
-/** 列表卡片左侧图：小屏 max 358；lg 按 1920 稿约 440px（22.9167vw）随屏放大，716 宽 .opt 仍可覆盖 2x */
+/** 列表卡片左侧图：稿 312×150@1920；固定比例与最大尺寸，716 宽 .opt 覆盖 2× */
 const NEWS_THUMBS = [
-  { avif: n1Avif, webp: n1Webp, jpg: n1Jpg, width: 716, height: 344 },
-  { avif: n2Avif, webp: n2Webp, jpg: n2Jpg, width: 361, height: 172 },
-  { avif: n3Avif, webp: n3Webp, jpg: n3Jpg, width: 716, height: 344 },
-  { avif: n4Avif, webp: n4Webp, jpg: n4Jpg, width: 716, height: 344 },
-  { avif: n5Avif, webp: n5Webp, jpg: n5Jpg, width: 716, height: 217 },
+  { avif: n1Avif, webp: n1Webp, jpg: n1Jpg, width: 312, height: 150 },
+  { avif: n2Avif, webp: n2Webp, jpg: n2Jpg, width: 312, height: 150 },
+  { avif: n3Avif, webp: n3Webp, jpg: n3Jpg, width: 312, height: 150 },
+  { avif: n4Avif, webp: n4Webp, jpg: n4Jpg, width: 312, height: 150 },
+  { avif: n5Avif, webp: n5Webp, jpg: n5Jpg, width: 312, height: 150 },
 ] as const;
 
 /** 缩略图对应 Figma 83:245 / 86:287 / 86:289 / 86:291；左侧渐变层 95:9–95:12 */
@@ -160,7 +160,7 @@ export default function NewsPage() {
       <div className={pageMainWidthClassName}>
       {/* 83:242 页眉标题 */}
       <div className="w-full pt-9 text-center lg:pt-[1.875vw]">
-        <h1 className="text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]" data-node-id="83:242">
+        <h1 className="text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[28px]" data-node-id="83:242">
           新闻中心
         </h1>
       </div>
@@ -178,7 +178,7 @@ export default function NewsPage() {
             role="tab"
             aria-selected={tab === "industry"}
             aria-controls="news-tab-panel"
-            className={`relative z-10 min-h-[48px] whitespace-nowrap border-b-0 px-2 pb-3 pt-2 text-center font-semibold outline-none transition-colors duration-200 sm:min-h-[52px] sm:px-4 lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 text-[max(20px,calc(100vw*26/1920))] ${
+            className={`relative z-10 min-h-[48px] whitespace-nowrap border-b-0 px-2 pb-3 pt-2 text-center font-semibold outline-none transition-colors duration-200 sm:min-h-[52px] sm:px-4 lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 text-[20px] ${
               tab === "industry"
                 ? "text-[#f96d01]"
                 : "text-[#363636] hover:bg-black/[0.02] hover:text-[#f96d01]"
@@ -194,7 +194,7 @@ export default function NewsPage() {
             role="tab"
             aria-selected={tab === "company"}
             aria-controls="news-tab-panel"
-            className={`relative z-10 min-h-[48px] whitespace-nowrap border-b-0 px-2 pb-3 pt-2 text-center font-semibold outline-none transition-colors duration-200 sm:min-h-[52px] sm:px-4 lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 text-[max(20px,calc(100vw*26/1920))] ${
+            className={`relative z-10 min-h-[48px] whitespace-nowrap border-b-0 px-2 pb-3 pt-2 text-center font-semibold outline-none transition-colors duration-200 sm:min-h-[52px] sm:px-4 lg:min-h-0 lg:px-[0.625vw] lg:pb-[0.78125vw] lg:pt-[0.5208vw] focus-visible:ring-2 focus-visible:ring-[#f96d01] focus-visible:ring-offset-2 text-[20px] ${
               tab === "company"
                 ? "text-[#f96d01]"
                 : "text-[#363636] hover:bg-black/[0.02] hover:text-[#f96d01]"
@@ -232,8 +232,8 @@ export default function NewsPage() {
                 to={"to" in item && item.to ? item.to : `/news/${item.id}`}
                 className="group block"
               >
-                <article className="flex flex-col gap-6 rounded-sm bg-white p-5 shadow-none transition-[background-color,box-shadow] duration-200 sm:p-6 lg:flex-row lg:items-center lg:gap-6 hover:bg-[#f5f5f5] hover:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)] focus-within:bg-[#f5f5f5] focus-within:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)]">
-                  <div className="relative aspect-[358/172] w-full max-w-[358px] shrink-0 overflow-hidden sm:max-w-[min(100%,420px)] lg:max-w-none lg:w-[20.8333vw]">
+                <article className="flex flex-col gap-4 rounded-sm bg-white py-5 pl-5 pr-2.5 shadow-none transition-[background-color,box-shadow] duration-200 sm:py-6 sm:pl-6 sm:pr-3 lg:flex-row lg:items-center lg:gap-4 hover:bg-[#f5f5f5] hover:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)] focus-within:bg-[#f5f5f5] focus-within:shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)]">
+                  <div className="relative aspect-[312/150] w-full max-w-[312px] shrink-0 overflow-hidden">
                     <picture className="absolute inset-0 block h-full w-full">
                       <source srcSet={item.thumb.avif} type="image/avif" />
                       <source srcSet={item.thumb.webp} type="image/webp" />
@@ -243,7 +243,7 @@ export default function NewsPage() {
                         width={item.thumb.width}
                         height={item.thumb.height}
                         className="absolute inset-0 h-full w-full object-cover"
-                        sizes="(max-width: 1023px) min(100vw - 2rem, 420px), 20.8333vw"
+                        sizes="(max-width: 1023px) min(100vw - 2rem, 312px), 312px"
                         loading={index < 2 ? "eager" : "lazy"}
                         fetchPriority={index < 2 ? "high" : "low"}
                         decoding="async"
@@ -260,7 +260,7 @@ export default function NewsPage() {
                     />
                   </div>
 
-                  <div className="flex min-w-0 flex-1 flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+                  <div className="flex min-w-0 flex-1 flex-col gap-[15px] lg:flex-row lg:items-center lg:justify-between">
                     <div className="min-w-0 flex-1">
                       <h2
                         className={`font-semibold transition-colors duration-200 group-hover:text-[#f96d01] group-focus-within:text-[#f96d01] ${newsListTitleClassName}`}
@@ -268,19 +268,20 @@ export default function NewsPage() {
                         {item.title}
                       </h2>
                       <p
-                      style={{lineHeight:"1"}}
-                        className="mt-3 text-[15px] font-normal leading-normal text-[#888] sm:mt-3.5 sm:text-[16px] lg:mt-[0.625vw] lg:text-[0.8333vw]"
+                      style={{lineHeight:"1.7"}}
+                        className="mt-3 text-[15px] font-normal leading-normal text-[#888] sm:mt-3.5 sm:text-[16px] lg:mt-[0.625vw] lg:text-[16px]"
                         data-date
                       >
                         {item.date}
                       </p>
                       <p
-                        className={`mt-2.5 line-clamp-3 break-words whitespace-pre-line sm:mt-3 lg:mt-[0.625vw] ${newsExcerptBody}`}
+                      style={{textAlign:"justify",lineHeight:"1.7"}}
+                        className={`mt-2.5 line-clamp-3 break-words whitespace-pre-line sm:mt-3 lg:mt-[0.625vw] text-[#666]`}
                       >
                         {item.excerpt}
                       </p>
                     </div>
-                    <span className="shrink-0 lg:ml-1">
+                    <span className="shrink-0">
                       <ArrowCircleButton />
                     </span>
                   </div>

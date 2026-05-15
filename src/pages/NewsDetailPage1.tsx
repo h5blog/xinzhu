@@ -45,7 +45,7 @@ export default function NewsDetailPage1() {
         <h1 className={`m-0 font-medium ${newsDetailTitleClassName}`}>
           全球各国核聚变战略部署
         </h1>
-        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
+        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw]" />
         <div className="mx-auto mt-[46px] h-[259px] w-full overflow-hidden lg:mt-[2.9167vw] lg:h-[13.4896vw]">
           <NewsDetailContentImage
             avif={mainAvif}

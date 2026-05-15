@@ -29,7 +29,7 @@ export default function NewsDetailPage2() {
         <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>
           中国核聚变相关政策时间线表格
         </h1>
-        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
+        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw]" />
         <section className="mt-8 overflow-hidden bg-white shadow-[0px_4px_10px_0px_rgba(0,0,0,0.12)] lg:mt-[1.875vw]">
           <div className="grid grid-cols-[1fr_2.6fr_2.7fr_2.1fr] bg-[#f96d01] text-white">
             {["年份", "政策名字", "相关内容", "发布部门"].map((head) => (

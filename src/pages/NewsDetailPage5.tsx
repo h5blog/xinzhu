@@ -23,7 +23,7 @@ export default function NewsDetailPage5() {
         <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>
           AI加速可控核聚变商业化，新烛时代完成6000万元天使轮融资
         </h1>
-        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
+        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw]" />
 
         <p
           className={`mx-auto mt-10 w-full indent-[2em] text-justify lg:mt-[1.875vw] ${newsDetailBodyClassName}`}
@@ -61,7 +61,9 @@ export default function NewsDetailPage5() {
             </p>
             <p className="m-0">{"\n"}</p>
             <p className="m-0">
-              在这一背景下，新烛时代于2025年9月注册成立，核心使命是以人工智能破解核聚变领域的关键难题。公司依托强化学习、生成式模型、自进化智能体及算子学习等前沿技术，构建“物理+数据”双轮驱动的技术底座，推动聚变研发从传统的“经验试错”加速迈向“智能预测与主动控制”的新阶段。新烛时代致力于为聚变反应堆打造专属“智能操作系统”，精准攻克制约可控核聚变商业化进程中最核心的“控制与预测”瓶颈。
+              在这一背景下，新烛时代于2025年9月注册成立，核心使命是以人工智能破解核聚变领域的关键难题。公司依托强化学习、生成式模型、自进化智能体及算子学习等前沿技术，构建
+              <span className="whitespace-nowrap">“物理+数据”双轮驱动的技术底座</span>
+              ，推动聚变研发从传统的“经验试错”加速迈向“智能预测与主动控制”的新阶段。新烛时代致力于为聚变反应堆打造专属“智能操作系统”，精准攻克制约可控核聚变商业化进程中最核心的“控制与预测”瓶颈。
             </p>
           </div>
         </section>

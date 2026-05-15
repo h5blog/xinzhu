@@ -30,7 +30,7 @@ export default function NewsDetailPage3() {
         <h1 className={`m-0 font-semibold ${newsDetailTitleClassName}`}>
           8月27日：《关于推进“人工智能 +”能源高质量发展的实施意见》
         </h1>
-        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw] lg:h-[max(3px,0.2083vw)]" />
+        <div className="mt-6 h-[2px] w-full bg-[#f96d01] lg:mt-[1.25vw]" />
         <div className="mt-8 h-[259px] w-full overflow-hidden lg:mt-[1.875vw] lg:h-[13.4896vw]">
           <NewsDetailContentImage
             avif={mainAvif}

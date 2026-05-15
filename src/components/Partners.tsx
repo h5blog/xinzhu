@@ -84,7 +84,7 @@ export default function Partners() {
       className="text-center"
       style={{ background: "linear-gradient(310deg, #F96D01 33%, #FFB941 100%)" }}
     >
-      <div className="break-words px-4 py-[clamp(40px,3.23vw,62px)] text-center font-['PingFang_SC',sans-serif] text-3xl font-semibold text-white md:text-4xl lg:text-[2.08vw]">
+      <div className="break-words px-4 py-[clamp(40px,3.23vw,62px)] text-center font-['PingFang_SC',sans-serif] text-[30px] font-semibold text-white md:text-[36px] lg:text-[28px]">
         核心战略协作方
       </div>
       <div
@@ -134,9 +134,9 @@ export default function Partners() {
             <div className="relative box-border w-full px-[clamp(20px,calc(100vw*30/1920),50px)] py-[clamp(20px,calc(100vw*30/1920),50px)]">
               <JuzhenMatrixFrameOrnaments />
               <div className="relative z-[1] w-full min-w-0">
-                {/* Figma 838:1311：2×3 网格；略收线框 padding / 列间距，让单卡内容区略宽 */}
+                {/* Figma 838:1311：大屏 2×3；窄于 lg 单列，一排放一张卡 */}
                 <div
-                  className="grid w-full grid-cols-1 justify-items-stretch gap-4 sm:gap-5 md:grid-cols-2 md:[grid-auto-rows:minmax(0,1fr)] md:justify-items-center md:gap-[clamp(14px,calc(100vw*20/1920),24px)] lg:gap-[calc(100vw*20/1920)]"
+                  className="grid w-full grid-cols-1 justify-items-stretch gap-4 sm:gap-5 lg:grid-cols-2 lg:[grid-auto-rows:minmax(0,1fr)] lg:justify-items-center lg:gap-[clamp(14px,calc(100vw*20/1920),24px)] xl:gap-[calc(100vw*20/1920)]"
                   data-node-id="838:1311"
                 >
                   {JUZHEN_MATRIX_CARDS.map((card, index) => {
@@ -146,24 +146,25 @@ export default function Partners() {
                       <article
                         key={card.title}
                         data-node-id={card["data-node-id"]}
-                        className="box-border flex h-full min-h-0 w-full max-w-full flex-col justify-self-center overflow-hidden rounded-[14px] p-5 shadow-[0_2px_10px_rgba(233,90,0,0.12)] sm:p-6 md:max-w-[min(100%,calc(100vw*656/1920))] lg:rounded-[0.73vw] lg:p-[calc(100vw*24/1920)]"
+                        className="box-border flex h-full min-h-0 w-full max-w-full flex-col justify-self-center overflow-hidden rounded-[14px] p-4 shadow-[0_2px_10px_rgba(233,90,0,0.12)] sm:p-6 lg:max-w-[min(100%,calc(100vw*656/1920))] lg:rounded-[0.73vw] lg:p-[calc(100vw*24/1920)]"
                         style={{ background: juzhenCardGradient }}
                       >
-                        <div className="flex min-h-0 flex-1 flex-col gap-6 sm:flex-row sm:items-stretch sm:gap-6 lg:gap-[calc(100vw*28/1920)]">
-                          <div className="min-w-0 flex-1 text-left">
-                            {/* Figma 838:1322 — 卡片标题 32px@1920、#8d3e00、PingFang Semibold */}
-                            <h3
-                              data-node-id="838:1324"
-                              className="m-0 font-['PingFang_SC',sans-serif] text-[max(20px,calc(100vw*32/1920))] font-semibold leading-normal tracking-[0.03em] text-[#8d3e00]"
+                        <h3
+                          data-node-id="838:1324"
+                          className="m-0 w-full min-w-0 max-w-full break-words text-left font-['PingFang_SC',sans-serif] text-[max(16px,calc(100vw*20/1920))] font-semibold leading-snug tracking-[0.03em] text-[#8d3e00] sm:text-[22px] md:text-[max(16px,calc(100vw*28/1920))] lg:text-[max(22px,calc(100vw*30/1920))] xl:text-[18px] xl:leading-normal"
+                        >
+                          {card.title}
+                        </h3>
+                        <div className="mt-2.5 flex min-h-0 w-full min-w-0 flex-1 flex-col gap-5 sm:mt-3 sm:gap-6 md:flex-row md:items-center lg:gap-[calc(100vw*28/1920)]">
+                          <div className="min-w-0 flex-1 self-start text-left">
+                            <p
+                              style={{ textAlign: "justify" }}
+                              className="m-0 font-['PingFang_SC',sans-serif] text-[16px] font-normal leading-relaxed text-[#8d3e00] sm:text-[17px] lg:text-[16px] lg:leading-normal"
                             >
-                              {card.title}
-                            </h3>
-                            {/* 正文 20@1920：与首页「AI 技术驱动」引言同类 max(16px,vw)，大屏随视口放大 */}
-                            <p style={{textAlign:"justify"}} className="mt-2.5 font-['PingFang_SC',sans-serif] text-[max(16px,calc(100vw*20/1920))] font-normal leading-normal text-[#8d3e00] sm:mt-3">
                               {card.body}
                             </p>
                           </div>
-                          <div className="flex shrink-0 items-center justify-center self-center sm:ml-auto sm:min-h-0 sm:self-stretch">
+                          <div className="flex w-full min-h-0 flex-1 shrink-0 flex-col items-center justify-center max-md:min-h-0 md:ml-auto md:w-auto md:flex-none md:self-center">
                             <picture>
                               <source srcSet={icon.avif} type="image/avif" />
                               <source srcSet={icon.webp} type="image/webp" />
@@ -172,11 +173,11 @@ export default function Partners() {
                                 alt=""
                                 width={icon.width}
                                 height={icon.height}
-                                sizes="(max-width: 640px) 100px, (max-width: 1023px) 140px, min(400px, max(100px, calc(100vw * 170 / 1920)))"
+                                sizes="(max-width: 639px) 120px, (max-width: 1023px) 160px, min(400px, max(100px, calc(100vw * 170 / 1920)))"
                                 decoding="async"
                                 loading="lazy"
                                 fetchPriority="low"
-                                className="mx-auto block h-auto w-[min(400px,max(100px,calc(100vw*170/1920)))] max-w-full object-contain sm:mx-0"
+                                className="mx-auto block h-auto w-[min(280px,max(112px,calc(100vw*0.55)))] max-w-full object-contain sm:w-[min(320px,max(120px,calc(100vw*0.5)))] md:mx-0 md:w-[min(400px,max(100px,calc(100vw*170/1920)))]"
                               />
                             </picture>
                           </div>

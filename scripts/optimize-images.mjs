@@ -176,7 +176,7 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 技术中心胶囊区顶图：稿展示宽约 952@1920（1×），仅导出 ≤952 宽以控体积
+  // 技术中心胶囊区顶图 tech-icon：稿 952×475@1920（1×），仅导出 ≤952 宽以控体积
   {
     input: "src/images/tech-icon.png",
     maxWidth: 952,
@@ -185,12 +185,21 @@ const targets = [
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
-  // 技术核心页「核心技术体系示意图」：源 1132×483，1× 多格式替代 ~550KB PNG
+  // 技术核心页「物理+数据」条与体系示意图合并图 shuanglun：稿 1132×483@1920；1132w + 2264w（2×）picture
   {
-    input: "src/images/jishu-b.png",
+    input: "src/images/shuanglun.png",
     maxWidth: 1132,
+    outputBase: "shuanglun-1x",
     quality: 82,
     avifQuality: 70,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  {
+    input: "src/images/shuanglun.png",
+    maxWidth: 2264,
+    quality: 84,
+    avifQuality: 72,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
@@ -227,6 +236,24 @@ const targets = [
     maxWidth: 3840,
     quality: 90,
     avifQuality: 84,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 关于我们正文间宽图 gsjj-icon：源 1772×284；主列 1200@1920 → 1200w + 1772w（2×）picture
+  {
+    input: "src/images/gsjj-icon.png",
+    maxWidth: 1200,
+    outputBase: "gsjj-icon-1x",
+    quality: 80,
+    avifQuality: 70,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  {
+    input: "src/images/gsjj-icon.png",
+    maxWidth: 1772,
+    quality: 82,
+    avifQuality: 72,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },
@@ -295,6 +322,24 @@ const targets = [
     maxWidth: 1920,
     quality: 88,
     avifQuality: 80,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  // 首页 AI 解决方案区左侧插图 home-tech-icon：稿 538×347@1920；538w + 1076w（2×）picture 控体积
+  {
+    input: "src/images/home-tech-icon.png",
+    maxWidth: 538,
+    outputBase: "home-tech-icon-1x",
+    quality: 80,
+    avifQuality: 70,
+    avifEffort: 7,
+    fallbackFormat: "jpeg",
+  },
+  {
+    input: "src/images/home-tech-icon.png",
+    maxWidth: 1076,
+    quality: 82,
+    avifQuality: 72,
     avifEffort: 7,
     fallbackFormat: "jpeg",
   },

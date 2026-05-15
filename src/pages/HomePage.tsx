@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
 import { homeDetailCtaInteractionClasses } from "../constants/homeDetailCta";
-import { introBody20ClassName } from "../constants/typography";
+import { introBody18ClassName } from "../constants/typography";
 import Navbar from "../components/Navbar";
 import { lazy, Suspense, useEffect, useRef } from "react";
 import Team from "../components/Team";
@@ -14,6 +14,12 @@ import homeBanner1xJpg from "../images/home-banner-1x.opt.jpg";
 import techBgAvif from "../images/tech-bg.opt.avif";
 import techBgWebp from "../images/tech-bg.opt.webp";
 import techBgJpg from "../images/tech-bg.opt.jpg";
+import homeTechIconAvif from "../images/home-tech-icon.opt.avif";
+import homeTechIconWebp from "../images/home-tech-icon.opt.webp";
+import homeTechIconJpg from "../images/home-tech-icon.opt.jpg";
+import homeTechIcon1xAvif from "../images/home-tech-icon-1x.opt.avif";
+import homeTechIcon1xWebp from "../images/home-tech-icon-1x.opt.webp";
+import homeTechIcon1xJpg from "../images/home-tech-icon-1x.opt.jpg";
 
 const Partners = lazy(() => import("../components/Partners"));
 
@@ -270,27 +276,54 @@ export default function HomePage() {
               />
             </picture>
             <div className="relative z-10 flex w-full min-w-0 flex-col">
-              <h2 className="relative pt-[37px] lg:pt-[1.9271vw] text-center font-['PingFang_SC'] text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[2.0833vw]">
+              <h2 className="relative pt-[37px] lg:pt-[1.9271vw] text-center font-['PingFang_SC'] text-[30px] font-semibold leading-tight text-[#f96d01] md:text-[36px] lg:text-[28px]">
                 AI解决方案核心技术驱动力
               </h2>
-              <div className="relative mx-auto box-border w-[min(calc(100%-24px),calc(100vw*1200/1920))]">
-                {/** 左缩进按 529@1920 同比随 vw 增大，避免超大屏仍锁 529px 显得正文过靠左 */}
-                <div className="relative z-10 box-border min-h-0 pl-[max(1rem,calc(100vw*529/1920))] pr-4 pt-[67px] sm:pr-5 lg:pr-0 lg:pt-[3.4896vw]">
-                  <div
-                    className={`w-full max-w-[min(671px,100%)] text-pretty indent-[2em] text-black sm:text-justify lg:max-w-[min(calc(100vw*671/1920),100%)] ${introBody20ClassName}`}
-                  >
-                    强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 + 数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力，最终形成聚变电站的智能操作系统——终极能源的智慧大脑。
+              {/** 左侧 home-tech-icon 538×347@1920；AVIF/WebP/JPEG + srcset 减体积 */}
+              {/** 上距：收紧 h2→配图；正文列 lg 顶距加大，拉开 h2→首段；竖排再加大图与文间隙 */}
+              <div className="relative z-10 mx-auto box-border w-[min(calc(100%-24px),calc(100vw*1200/1920))] px-4 pb-[max(28px,calc(100vw*50/1920))] pt-[14px] sm:px-5 lg:px-0 lg:pb-[max(32px,calc(100vw*56/1920))] lg:pt-[0.8333vw]">
+                <div className="flex min-h-0 w-full flex-col items-stretch gap-12 lg:flex-row lg:items-start lg:gap-[clamp(1rem,calc(100vw*40/1920),2.5rem)]">
+                  <picture className="mx-auto block aspect-[538/347] w-full max-w-[min(538px,calc(100vw*538/1920))] shrink-0 lg:mx-0">
+                    <source
+                      type="image/avif"
+                      srcSet={`${homeTechIcon1xAvif} 538w, ${homeTechIconAvif} 1076w`}
+                      sizes="(max-width: 1023px) min(calc(100vw - 48px), 538px), min(538px, calc(100vw * 538 / 1920))"
+                    />
+                    <source
+                      type="image/webp"
+                      srcSet={`${homeTechIcon1xWebp} 538w, ${homeTechIconWebp} 1076w`}
+                      sizes="(max-width: 1023px) min(calc(100vw - 48px), 538px), min(538px, calc(100vw * 538 / 1920))"
+                    />
+                    <img
+                      src={homeTechIcon1xJpg}
+                      srcSet={`${homeTechIcon1xJpg} 538w, ${homeTechIconJpg} 1076w`}
+                      sizes="(max-width: 1023px) min(calc(100vw - 48px), 538px), min(538px, calc(100vw * 538 / 1920))"
+                      width={538}
+                      height={347}
+                      alt=""
+                      decoding="async"
+                      loading="lazy"
+                      fetchPriority="low"
+                      className="block h-auto w-full object-contain"
+                    />
+                  </picture>
+                  <div className="mt-12 flex min-w-0 flex-1 flex-col gap-[max(12px,calc(100vw*32/1920))] lg:mt-0 lg:pt-[clamp(52px,calc(100vw*76/1920),92px)]">
+                    <div
+                      className={`w-full max-w-[min(671px,100%)] text-pretty indent-[2em] text-black text-justify sm:text-justify lg:max-w-[min(calc(100vw*671/1920),100%)] ${introBody18ClassName}`}
+                    >
+                      强化学习、生成式模型、自进化智能体、算子学习等前沿技术为核心，构建“物理 + 数据”双轮驱动的技术体系，打造面向聚变装置的智能诊断、动态预测、实时控制与辅助设计能力，最终形成聚变电站的智能操作系统——终极能源的智慧大脑。
+                    </div>
+                    <div className="text-left">
+                      <Link
+                        to="/tech"
+                        data-node-id="838:1351"
+                        className={`inline-flex min-w-[6.78em] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[1.0833em] bg-[#F96D01] px-[1.1111em] py-[0.6111em] text-center font-['PingFang_SC'] text-[17px] font-medium leading-none text-white tracking-[0.16em] sm:text-[16px] lg:text-[16px] ${homeDetailCtaInteractionClasses} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f96d01]/55`}
+                      >
+                        查看详情
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="relative mx-auto my-[max(12px,calc(100vw*50/1920))] w-[min(calc(100%-24px),calc(100vw*1200/1920))] pl-[max(1rem,calc(100vw*529/1920))] pr-4 text-left sm:pr-5 lg:pr-0">
-                <Link
-                  to="/tech"
-                  data-node-id="838:1351"
-                  className={`inline-flex min-w-[6.78em] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[1.0833em] bg-[#F96D01] px-[1.1111em] py-[0.6111em] text-center font-['PingFang_SC'] text-[17px] font-medium leading-none text-white tracking-[0.16em] sm:text-[18px] lg:text-[1.0417vw] ${homeDetailCtaInteractionClasses} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f96d01]/55`}
-                >
-                  查看详情
-                </Link>
               </div>
             </div>
           </div>

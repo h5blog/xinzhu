@@ -80,7 +80,7 @@ export default function JobDetailPage() {
           {job.title}
         </h1>
         <div
-          className="mt-4 h-0.5 w-full bg-[#f96d01] sm:mt-5 lg:mt-[1.5625vw] lg:h-[min(0.15625vw,4px)] lg:min-h-[2px]"
+          className="mt-4 h-[2px] w-full bg-[#f96d01] sm:mt-5 lg:mt-[1.5625vw]"
           aria-hidden
         />
 
@@ -105,7 +105,7 @@ export default function JobDetailPage() {
               href={JOB_APPLY_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="box-border inline-flex h-[52px] w-full max-w-[min(100%,280px)] shrink-0 items-center justify-center whitespace-nowrap rounded-[20px] bg-[#f96d01] px-6 font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[17px] font-semibold leading-none text-white no-underline shadow-[0px_4px_12px_0px_#f96d01] transition-opacity hover:opacity-95 sm:h-[61px] sm:w-[235px] sm:max-w-none sm:rounded-[24px] sm:px-8 sm:text-[20px] sm:shadow-[0px_5px_14px_0px_#f96d01] lg:h-[clamp(48px,3.1770833333333335vw,96px)] lg:w-[clamp(168px,12.239583333333334vw,400px)] lg:max-w-none lg:px-[1.25vw] lg:text-[clamp(16px,1.0417vw,22px)] lg:shadow-[0px_0.26041666666666666vw_0.7291666666666666vw_0px_#f96d01]"
+              className="box-border inline-flex h-[52px] w-full max-w-[min(100%,280px)] shrink-0 origin-center items-center justify-center whitespace-nowrap rounded-[20px] bg-[#f96d01] px-6 font-['PingFang_SC','Microsoft_YaHei',sans-serif] text-[17px] font-semibold leading-none text-white no-underline shadow-[0px_4px_12px_0px_#f96d01] transition-[transform,opacity] duration-200 ease-out hover:scale-[1.04] hover:opacity-95 sm:h-[61px] sm:w-[235px] sm:max-w-none sm:rounded-[24px] sm:px-8 sm:text-[16px] sm:shadow-[0px_5px_14px_0px_#f96d01] lg:h-[clamp(48px,3.1770833333333335vw,96px)] lg:w-[clamp(168px,12.239583333333334vw,400px)] lg:max-w-none lg:px-[1.25vw] lg:text-[16px] lg:shadow-[0px_0.26041666666666666vw_0.7291666666666666vw_0px_#f96d01] motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:hover:opacity-100"
               data-node-id="936:421"
             >
               立 即 投 递
