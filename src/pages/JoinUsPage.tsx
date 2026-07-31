@@ -1,5 +1,6 @@
 ﻿import { pageMainWidthClassName } from "../constants/contentAlign";
 import Footer from "../components/Footer";
+import JoinBenefitsSection from "../components/JoinBenefitsSection";
 import Navbar from "../components/Navbar";
 import { assets } from "../components/assets";
 import { homeDetailCtaInteractionClasses } from "../constants/homeDetailCta";
@@ -18,10 +19,6 @@ import joinFooter1Jpg from "../images/join-footer-1.opt.jpg";
 import joinFooter2Avif from "../images/join-footer-2.opt.avif";
 import joinFooter2Webp from "../images/join-footer-2.opt.webp";
 import joinFooter2Jpg from "../images/join-footer-2.opt.jpg";
-import fuliAvif from "../images/fuli.opt.avif";
-import fuliWebp from "../images/fuli.opt.webp";
-import fuliJpg from "../images/fuli.opt.jpg";
-
 /** 1920 稿 16px；字族/行高/字距同首页 AI 段 */
 const joinBodyText =
   "font-['PingFang_SC'] text-[16px] leading-[1.7] tracking-[0.03em] text-black";
@@ -40,7 +37,7 @@ const joinSectionHeading =
   "text-center font-['PingFang_SC'] text-[28px] font-semibold leading-tight text-[#f96d01]";
 
 const joinJobCardTitle =
-  "m-0 font-['PingFang_SC'] text-[18px] font-semibold leading-tight text-[#f96d01]";
+  "m-0 font-['PingFang_SC'] text-[18px] font-semibold leading-tight text-[#121212] transition-colors duration-200 group-hover:text-[#f96d01] group-focus-within:text-[#f96d01]";
 
 /** 1920 稿 16px；与首页流体字号规则一致 */
 const joinJobDetailButtonText =
@@ -122,7 +119,7 @@ function JobApplyButton({ to }: { to: string }) {
 function JobCard({ job, isLast }: { job: (typeof JOBS)[number]; isLast: boolean }) {
   return (
     <article
-      className="relative mx-auto box-border flex w-full min-w-0 max-w-full flex-col overflow-hidden rounded-none bg-white pt-6 shadow-[0px_7px_8px_0px_rgba(0,0,0,0.12)] transition-shadow hover:shadow-[0px_10px_14px_0px_rgba(0,0,0,0.16)] sm:pt-7 lg:min-h-[14.739583333333334vw] lg:pt-[1.4583333333333333vw] lg:shadow-[0px_0.36458333333333335vw_0.4166666666666667vw_0px_rgba(0,0,0,0.12)] lg:hover:shadow-[0px_0.5208333333333334vw_0.7291666666666666vw_0px_rgba(0,0,0,0.16)]"
+      className="group relative mx-auto box-border flex w-full min-w-0 max-w-full flex-col overflow-hidden rounded-none bg-white pt-6 shadow-[0px_7px_8px_0px_rgba(0,0,0,0.12)] transition-shadow hover:shadow-[0px_10px_14px_0px_rgba(0,0,0,0.16)] sm:pt-7 lg:min-h-[14.739583333333334vw] lg:pt-[1.4583333333333333vw] lg:shadow-[0px_0.36458333333333335vw_0.4166666666666667vw_0px_rgba(0,0,0,0.12)] lg:hover:shadow-[0px_0.5208333333333334vw_0.7291666666666666vw_0px_rgba(0,0,0,0.16)]"
       data-node-id="729:29156"
     >
       <div className="min-w-0 flex-1 font-normal text-black">
@@ -153,35 +150,6 @@ function JobCard({ job, isLast }: { job: (typeof JOBS)[number]; isLast: boolean 
         </div>
       </div>
     </article>
-  );
-}
-
-function JoinBenefitsSection() {
-  return (
-    <section className="min-w-0">
-      <h2 className={joinSectionHeading} data-node-id="729:29274">
-        薪酬福利
-      </h2>
-      <JoinSectionRuleBar className="mt-4 lg:mt-5" data-node-id="924:280" />
-
-      <div className="relative mx-auto mt-10 aspect-[1124/687] w-full min-w-0 overflow-hidden rounded-2xl bg-[#f0f0f0] sm:rounded-[24px] lg:mt-[2.6042vw]">
-        <picture className="absolute inset-0 block h-full w-full">
-          <source srcSet={fuliAvif} type="image/avif" />
-          <source srcSet={fuliWebp} type="image/webp" />
-          <img
-            src={fuliJpg}
-            alt="薪酬福利"
-            width={1124}
-            height={687}
-            className="h-full w-full object-contain object-center"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-            sizes="(max-width: 1023px) min(100%,calc(100vw - 48px)), min(100%,calc(100vw*1124/1920))"
-          />
-        </picture>
-      </div>
-    </section>
   );
 }
 

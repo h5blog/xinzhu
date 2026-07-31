@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { pageMainMaxWidthClassName } from "../constants/contentAlign";
-import { homeDetailCtaInteractionClasses } from "../constants/homeDetailCta";
+import { homeDetailCtaClassName } from "../constants/homeDetailCta";
+import { formatTeamMemberDisplayName } from "../utils/formatTeamMemberName";
 import teamBgAvif from "../images/team-bg.opt.avif";
 import teamBgWebp from "../images/team-bg.opt.webp";
 import teamBgJpg from "../images/team-bg.opt.jpg";
@@ -22,9 +23,9 @@ const TEAM_AVATAR_W = 374;
 const TEAM_AVATAR_H = 375;
 
 const teamMembers = [
-  { name: "张 伟", title: "首席执行官", avif: homeZwAvif, webp: homeZwWebp, jpg: homeZwJpg },
-  { name: "汪 跃", title: "首席技术官", avif: homeWyAvif, webp: homeWyWebp, jpg: homeWyJpg },
-  { name: "吴 果", title: "首席运营官", avif: homeWgAvif, webp: homeWgWebp, jpg: homeWgJpg },
+  { name: "张伟", title: "首席执行官", avif: homeZwAvif, webp: homeZwWebp, jpg: homeZwJpg },
+  { name: "汪跃", title: "首席技术官", avif: homeWyAvif, webp: homeWyWebp, jpg: homeWyJpg },
+  { name: "吴果", title: "首席运营官", avif: homeWgAvif, webp: homeWgWebp, jpg: homeWgJpg },
   { name: "刘铁岩", title: "首席科学顾问", avif: homeLtyAvif, webp: homeLtyWebp, jpg: homeLtyJpg },
 ] as const;
 
@@ -57,7 +58,7 @@ export default function Team() {
 
           <div className="mt-14 grid min-w-0 gap-8 sm:grid-cols-2 lg:mt-[3.65vw] lg:grid-cols-4 lg:gap-[1.67vw]">
             {teamMembers.map((member) => (
-              <div key={member.name} className="min-w-0 text-center">
+              <div key={member.name} className="flex min-w-0 flex-col items-center text-center">
                 <div className="group/avatar mx-auto flex w-full min-w-0 justify-center px-1 sm:px-0">
                   <picture className="block w-full max-w-[clamp(10rem,44vw,11.5rem)] lg:max-w-[min(374px,max(10rem,calc(100vw*187/1920)))]">
                     <source srcSet={member.avif} type="image/avif" />
@@ -76,19 +77,18 @@ export default function Team() {
                     />
                   </picture>
                 </div>
-                <div className="type-label-md mt-6 font-semibold text-white lg:mt-[1.25vw]">
-                  {member.name}
+                <div className="type-team-name mt-6 min-h-[1em] w-full text-white lg:mt-[1.25vw]">
+                  {formatTeamMemberDisplayName(member.name)}
                 </div>
-                <div className="type-body-md mt-2 text-white/85 lg:mt-[0.42vw]">{member.title}</div>
+                <div className="type-team-title mt-2 min-h-[1.5em] w-full text-white lg:mt-[0.42vw]">
+                  {member.title}
+                </div>
               </div>
             ))}
           </div>
 
           <div className="mt-12 flex justify-center lg:mt-[2.5vw]">
-            <Link
-              to="/team"
-              className={`inline-flex min-w-[6.78em] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[1.0833em] bg-[#F96D01] px-[1.1111em] py-[0.6111em] text-center font-['PingFang_SC'] text-[17px] font-medium leading-none text-white tracking-[0.16em] sm:text-[16px] lg:text-[16px] ${homeDetailCtaInteractionClasses} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70`}
-            >
+            <Link to="/team" className={homeDetailCtaClassName}>
               查看详情
             </Link>
           </div>

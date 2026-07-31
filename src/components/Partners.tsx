@@ -82,9 +82,9 @@ export default function Partners() {
   return (
     <div
       className="text-center"
-      style={{ background: "linear-gradient(310deg, #F96D01 33%, #FFB941 100%)" }}
+      // style={{ background: "linear-gradient(310deg, #F96D01 33%, #FFB941 100%)" }}
     >
-      <div className="break-words px-4 py-[clamp(40px,3.23vw,62px)] text-center font-['PingFang_SC',sans-serif] text-[30px] font-semibold text-white md:text-[36px] lg:text-[28px]">
+      {/* <div className="break-words px-4 py-[clamp(40px,3.23vw,62px)] text-center font-['PingFang_SC',sans-serif] text-[30px] font-semibold text-white md:text-[36px] lg:text-[28px]">
         核心战略协作方
       </div>
       <div
@@ -99,7 +99,7 @@ export default function Partners() {
           className="aspect-[491/142] w-full max-w-[491px] overflow-hidden rounded-[14px] bg-white bg-[length:clamp(220px,22.29vw,428px)_auto] bg-center bg-no-repeat sm:w-[calc(50%-0.75rem)] sm:max-w-[491px] xl:w-[25.57vw] xl:max-w-none xl:rounded-[0.73vw] xl:bg-[length:22.29vw_auto]"
           // style={{ backgroundImage: `url(${assets.partnerB})` }}
         />
-      </div>
+      </div> */}
       <div
         className={`relative w-full overflow-x-clip bg-white ${PARTNER_BG_MIN_H}`}
         style={{

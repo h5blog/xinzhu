@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import TeamMemberTextPanel from "../components/TeamMemberTextPanel";
 import { assets } from "../components/assets";
 import Navbar from "../components/Navbar";
+import { formatTeamMemberDisplayName } from "../utils/formatTeamMemberName";
 import teamBannerAvif from "../images/team-banner.opt.avif";
 import teamBannerWebp from "../images/team-banner.opt.webp";
 import teamBannerJpg from "../images/team-banner.opt.jpg";
@@ -14,15 +15,9 @@ import teamBanner1xJpg from "../images/team-banner-1x.opt.jpg";
 const teamBioText =
   "font-['PingFang_SC'] text-[16px] tracking-[0.03em] text-black";
 
-const teamNameText =
-  "whitespace-pre-wrap break-words font-['PingFang_SC'] text-[18px] font-semibold leading-tight tracking-[0.03em] text-[#121212]";
-
-const teamTitleText =
-  "font-['PingFang_SC'] text-[16px] font-semibold leading-tight tracking-[0.03em] text-[#121212]";
-
 const members = [
   {
-    name: "张 伟",
+    name: "张伟",
     title: "首席执行官",
     avatar: { avif: assets.zwAvif, webp: assets.zwWebp, jpg: assets.zwJpg },
     imageLeft: true,
@@ -32,7 +27,7 @@ const members = [
     ],
   },
   {
-    name: "汪 跃",
+    name: "汪跃",
     title: "首席技术官",
     avatar: { avif: assets.wyAvif, webp: assets.wyWebp, jpg: assets.wyJpg },
     imageLeft: false,
@@ -43,7 +38,7 @@ const members = [
     ],
   },
   {
-    name: "吴 果",
+    name: "吴果",
     title: "首席运营官",
     avatar: { avif: assets.wgAvif, webp: assets.wgWebp, jpg: assets.wgJpg },
     imageLeft: true,
@@ -78,12 +73,12 @@ function MemberBody({ bio }: { bio: readonly string[] }) {
 }
 
 function MemberHeading({ name, title }: { name: string; title: string }) {
-  const displayName = name.replace(" ", "  ");
-
   return (
     <div>
-      <p className={teamNameText}>{displayName}</p>
-      <p className={`mt-3 sm:mt-[18px] lg:mt-[0.9375vw] ${teamTitleText}`}>{title}</p>
+      <p className="type-team-page-name break-words text-[#121212]">
+        {formatTeamMemberDisplayName(name)}
+      </p>
+      <p className="type-team-page-title mt-3 text-[#121212] sm:mt-[18px] lg:mt-[0.9375vw]">{title}</p>
       <div
         className="mt-2 h-1.5 w-[96px] max-w-full bg-gradient-to-r from-[#f96d01] to-transparent sm:h-2 sm:w-[113px] lg:w-[5.8854vw]"
         aria-hidden

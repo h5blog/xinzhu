@@ -1,5 +1,5 @@
 import Footer from "../components/Footer";
-import { homeDetailCtaInteractionClasses } from "../constants/homeDetailCta";
+import { homeDetailCtaClassName } from "../constants/homeDetailCta";
 import { introBody18ClassName } from "../constants/typography";
 import Navbar from "../components/Navbar";
 import { lazy, Suspense, useEffect, useRef } from "react";
@@ -317,7 +317,7 @@ export default function HomePage() {
                       <Link
                         to="/tech"
                         data-node-id="838:1351"
-                        className={`inline-flex min-w-[6.78em] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[1.0833em] bg-[#F96D01] px-[1.1111em] py-[0.6111em] text-center font-['PingFang_SC'] text-[17px] font-medium leading-none text-white tracking-[0.16em] sm:text-[16px] lg:text-[16px] ${homeDetailCtaInteractionClasses} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f96d01]/55`}
+                        className={homeDetailCtaClassName}
                       >
                         查看详情
                       </Link>

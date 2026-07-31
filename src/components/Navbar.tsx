@@ -8,7 +8,7 @@ import gsjjBanner1xAvif from "../images/gsjj-banner-1x.opt.avif";
 import gsjjBanner2xAvif from "../images/gsjj-banner.opt.avif";
 import joinPageBanner1xAvif from "../images/job-banner-1x.opt.avif";
 import joinPageBanner2xAvif from "../images/job-banner.opt.avif";
-import joinFuliAvif from "../images/fuli.opt.avif";
+import { preloadJoinPerkSprite } from "../data/joinPerkSprite";
 import newsBanner1xAvif from "../images/news-banner-1x.opt.avif";
 import newsBanner2xAvif from "../images/news-banner.opt.avif";
 import teamPageBanner1xAvif from "../images/team-banner-1x.opt.avif";
@@ -124,7 +124,6 @@ const JOIN_ROUTE_PRELOADS: NavPreloadImage[] = [
     mime: "image/avif",
     id: "preload-join-banner-avif",
   },
-  { href: joinFuliAvif, mime: "image/avif", id: "preload-join-fuli-avif", fetchPriority: "high" },
 ];
 
 function preloadImageOnce(img: NavPreloadImage) {
@@ -189,6 +188,7 @@ function prefetchJoinUsPageChunk() {
   if (joinUsPageChunkPrefetched) return;
   joinUsPageChunkPrefetched = true;
   warmNavAssets(JOIN_ROUTE_PRELOADS);
+  preloadJoinPerkSprite();
   void import("../pages/JoinUsPage");
 }
 

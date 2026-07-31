@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+:root {
+  /* 系统 CJK，不嵌入 Web Font；与全站 body 栈一致 */
+  --font-cjk: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
 /* Keep default page look stable */
 html,
 body {
@@ -82,6 +87,27 @@ body {
 
   .type-label-md {
     @apply text-[17px] font-medium sm:text-[16px] lg:text-[16px];
+  }
+
+  /* 首页创始团队：名称略大于职称 */
+  .type-team-name {
+    @apply text-[18px] font-normal leading-none tracking-[0.03em];
+  }
+
+  .type-team-title {
+    @apply text-[14px] font-normal leading-[1.7];
+  }
+
+  .type-team-page-name {
+    font-family: var(--font-cjk);
+    font-synthesis: none;
+    @apply text-[18px] font-semibold leading-none tracking-[0.03em];
+  }
+
+  .type-team-page-title {
+    font-family: var(--font-cjk);
+    font-synthesis: none;
+    @apply text-[16px] font-semibold leading-normal tracking-[0.03em];
   }
 }
 

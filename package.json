@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "optimize:hero-icon": "node scripts/optimize-hero-icon.mjs",
+    "build:job-perk-sprite": "node scripts/build-job-perk-sprite.mjs",
     "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
