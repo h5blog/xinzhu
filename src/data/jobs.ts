@@ -1,6 +1,6 @@
 /** 飞书网申表单，与招聘页「网申链接」一致 */
 export const JOB_APPLY_FORM_URL =
-  "https://ecn5wfrohzj8.feishu.cn/share/base/form/shrcnBNsL5EtkP8DOQBKp6T3qac";
+  "https://ecn5wfrohzj8.feishu.cn/share/base/form/shrcnOwTBQEI0iVlttbdCqCEPxh";
 
 export type JobDetail = {
   id: string;
